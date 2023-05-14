@@ -1,44 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
-export default function ViewUsers() {
-  const [isPerson, setIsPerson] = useState(true);
+export default function viewExpert() {
   return (
     <div>
-      <div className="flex justify-between py-6">
-        <p className="text-xl font-extrabold">مشاهده کاربران</p>
-        <div className="flex bg-white rounded-xl">
-          <button
-            className={`${
-              !isPerson && " bg-blue-600 text-white "
-            } p-3 ml-4 rounded-xl`}
-            onClick={() => {
-              setIsPerson(!isPerson);
-            }}
-          >
-            حقوقی
-          </button>
-          <button
-            className={`${
-              isPerson && " bg-blue-600 text-white "
-            } rounded-xl p-3 `}
-            onClick={() => {
-              setIsPerson(!isPerson);
-            }}
-          >
-            حقیقی
-          </button>
+      <div className=" py-6">
+        <p className="text-xl font-extrabold">وضعیت کارشناسان</p>
+
+        <div className="flex items-center pt-2">
+          <AiOutlineInfoCircle className="text-blue-400" />
+          <p className="text-xs  text-gray-600 px-2">
+            برای مشاهده درخواست های جاری هر کارشناس روی کارشناس مربوطه کلیک کنید
+          </p>
         </div>
       </div>
       <div className="max-h-[60vh] overflow-y-scroll">
-        {isPerson ? (
-          <table className="w-full ">
+        <table className="w-full ">
+          <thead>
             <tr className=" sticky top-0   ">
               <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
               <th className="bg-white p-3 ">نام </th>
               <th className="bg-white p-3 ">نام خانوادگی</th>
-              <th className="bg-white p-3 ">تاریخ ثبت نام کاربر </th>
+              <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
+          </thead>
+          <tbody>
             <tr className="">
               <td>
                 {" "}
@@ -56,7 +43,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -81,7 +68,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -106,7 +93,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -131,7 +118,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -156,7 +143,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -181,7 +168,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -206,7 +193,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -231,7 +218,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -256,7 +243,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -281,7 +268,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -306,7 +293,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -331,7 +318,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -356,7 +343,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -381,7 +368,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -406,7 +393,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -431,7 +418,7 @@ export default function ViewUsers() {
               <td className="p-4 text-xs text-gray-400 font-bold">
                 <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کاربر
+                    حذف کارشناس
                   </button>
                   <button className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
@@ -439,144 +426,8 @@ export default function ViewUsers() {
                 </div>
               </td>
             </tr>
-          </table>
-        ) : (
-          <table className="w-full ">
-            <tr className=" sticky top-0   ">
-              <th className="bg-white p-3 rounded-r-xl ">نام شرکت </th>
-              <th className="bg-white p-3 ">نوع شخص حقوقی </th>
-              <th className="bg-white p-3 ">نوع درخواست </th>
-              <th className="bg-white p-3 ">نام ونام خانوادگی نماینده </th>
-              <th className="bg-white p-3 rounded-l-xl">محل ثبت </th>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-            <tr className="p-4 text-xs text-gray-400 font-bold">
-              <td>باتیس سهامی عام</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">مدیر عامل</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">ضمانتنامه</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                اشکان ایران منش
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
-            </tr>
-          </table>
-        )}
+          </tbody>
+        </table>
       </div>
       <hr />
       <div className="flex justify-between py-4 text-gray-600 items-center">
@@ -597,17 +448,9 @@ export default function ViewUsers() {
           </button>
         </div>
         <div className="flex">
-          <select
-            dir="ltr"
-            name=""
-            id=""
-            className="rounded outline-none w-20 text-gray-800 border ml-4"
-          >
-            <option value="10">10</option>
-            <option value="10">15</option>
-            <option value="10">20</option>
-          </select>
-          <p>تعداد کاربر در هر صفحه</p>
+          <button className="text-blue-700   p-2 font-bold text-sm">
+            <span className="text-3xl">+</span> اضافه کردن کارشناس
+          </button>
         </div>
       </div>
     </div>

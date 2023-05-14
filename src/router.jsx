@@ -7,7 +7,11 @@ import Forgotpassword from "./pages/Login/Forgotpassword";
 import Verification from "./pages/Register/Verification";
 import Addexpert from "./pages/Expert/Addexpert";
 import Panel from "./pages/Panel";
-import ViewUsers from "./pages/viewUser/ViewUsers";
+import ViewUsers from "./pages/User/ViewUsers";
+import ViewExpert from "./pages/Expert/viewExpert";
+import ViewTickets from "./pages/viewTicket/ViewTickets";
+import Support from "./pages/support/Support";
+
 const routes = [
   {
     path: "/panel",
@@ -18,7 +22,10 @@ const routes = [
       { path: "dashboard", element: <Dashboard /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
+      { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
+      { path: "viewTickets", element: <ViewTickets /> },
+      { path: "Suport", element: <Support /> },
     ],
   },
 
