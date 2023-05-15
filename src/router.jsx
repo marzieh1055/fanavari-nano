@@ -16,6 +16,9 @@ import SiteGuide from "./pages/siteGuide/SiteGuide";
 import Guarantee from "./pages/siteGuide/Guarantee";
 import AddFacilities from "./pages/Facilities/AddFacilities";
 import AllNotifs from "./pages/notif/AllNotifs";
+import ViewRequest from "./pages/request/ViewRequest";
+import OpenedRequests from "./pages/request/OpenedRequests";
+import UploadDoc from "./pages/UploadDoc";
 
 const routes = [
   {
@@ -36,6 +39,9 @@ const routes = [
       { path: "guarantee", element: <Guarantee /> },
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
+      { path: "viewRequest", element: <ViewRequest /> },
+      { path: "openedRequests", element: <OpenedRequests /> },
+      { path: "oploadDoc", element: <UploadDoc /> },
     ],
   },
 

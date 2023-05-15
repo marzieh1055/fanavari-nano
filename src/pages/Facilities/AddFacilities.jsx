@@ -5,7 +5,7 @@ export default function AddFacilities() {
   return (
     <div className="px-5">
       <div className=" py-6">
-        <p className="text-xl font-extrabold">راهنمای سایت </p>
+        <p className="text-xl font-extrabold">درخواست تسهیلات </p>
       </div>
       <input
         type="text"
