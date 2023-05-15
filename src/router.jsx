@@ -9,14 +9,15 @@ import Addexpert from "./pages/Expert/Addexpert";
 import Panel from "./pages/Panel";
 import ViewUsers from "./pages/User/ViewUsers";
 import ViewExpert from "./pages/Expert/viewExpert";
-import ViewTickets from "./pages/viewTicket/ViewTickets";
+import ViewTickets from "./pages/Ticket/ViewTickets";
+import AddTicket from "./pages/Ticket/AddTicket";
 import Support from "./pages/support/Support";
 
 const routes = [
   {
     path: "/panel",
     element: <Panel />,
-    children: [
+    children: [ 
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
@@ -25,6 +26,7 @@ const routes = [
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "viewTickets", element: <ViewTickets /> },
+      { path: "addTicket", element: <AddTicket /> },
       { path: "Suport", element: <Support /> },
     ],
   },

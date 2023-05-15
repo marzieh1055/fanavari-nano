@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-export default function viewExpert() {
+export default function ViewExpert() {
   return (
     <div>
       <div className=" py-6">
