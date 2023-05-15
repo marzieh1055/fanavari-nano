@@ -12,6 +12,10 @@ import ViewExpert from "./pages/Expert/viewExpert";
 import ViewTickets from "./pages/Ticket/ViewTickets";
 import AddTicket from "./pages/Ticket/AddTicket";
 import Support from "./pages/support/Support";
+import SiteGuide from "./pages/siteGuide/SiteGuide";
+import Guarantee from "./pages/siteGuide/Guarantee";
+import AddFacilities from "./pages/Facilities/AddFacilities";
+import AllNotifs from "./pages/notif/AllNotifs";
 
 const routes = [
   {
@@ -27,7 +31,11 @@ const routes = [
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "addTicket", element: <AddTicket /> },
-      { path: "Suport", element: <Support /> },
+      { path: "suport", element: <Support /> },
+      { path: "siteGuide", element: <SiteGuide /> },
+      { path: "guarantee", element: <Guarantee /> },
+      { path: "addFacilities", element: <AddFacilities /> },
+      { path: "allNotifs", element: <AllNotifs /> },
     ],
   },
 

@@ -9,7 +9,7 @@ export default function AddTicket() {
       </div>
       <input
         type="text"
-        className="w-full p-4 bg-transparent rounded-2xl border-b border-gray-400  outline-none "
+        className="w-full p-4 bg-transparent rounded-2xl border-0 border-b border-gray-400  outline-none "
         placeholder="عنوان تیکت"
       />
 
