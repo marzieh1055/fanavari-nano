@@ -1,13 +1,22 @@
 import React, { useState , useEffect } from 'react'
 import Input from "../../components/Input/Input";
+import axios from 'axios';
 // Validation
 import { Validation } from '../../helper/validation';
 // api 
-import { singup } from '../../services/apireq';
+import { verify } from '../../services/apireq';
+import Verification from './Verification';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
 
   const [selectedOption, setSelectedOption] = useState("genuine");
+  
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [errRes, setErrRes] = useState(false);
+  const [showVerify, setShowVerify] = useState(false);
+  
   const [showPass, setShowPass] = useState(false);
   const [showComPass, setComShowPass] = useState(false);
 
@@ -72,7 +81,6 @@ const Register = () => {
         }
       }
 
-      console.log(genuine);
     }
   const focusHandler = e => {
       if (e.target.name !== "is_confirmed") {
@@ -81,14 +89,101 @@ const Register = () => {
       }
      
   }
-  const subHandler = e => {
+  const subHandler = async e => {
     e.preventDefault();
+
     if (!Object.keys(errors).length) {
+      setIsLoading(true)
+      setErrRes(false)
       if (selectedOption === "genuine") {
         
+        const singup = (userData) => {
+          let datas = {}
+          if (userData.type == "genuine") {
+              datas = {
+                  "type":"genuine",
+                  "name":userData.name,
+                  "family":userData.family,
+                  "phone":userData.phone,
+                  "password":userData.password,
+                  "password_confirmation":userData.password_confirmation,
+                  "is_confirmed":true,
+                  "national_code":userData.national_code,
+                  "email":""
+              }
+          }
+          console.log(datas);
+          axios.post('/api/v1/register', datas , {
+              headers: {
+                  Authorization:"token",
+                  'Access-Control-Allow-Origin': "http://localhost:5173"
+              }
+          })
+          .then(response => {
+              console.log(response.data);
+              window.localStorage.accessToken = response.data.authorisation.token
+              setShowVerify(!showVerify)
+
+              // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
+              verify({
+                type : "genuine",
+                phone : genuine.phone
+              })
+              setUserResponse(res)
+              setErrRes(false)
+              setIsLoading(false)              
+          })
+          .catch(error =>{
+            setErrRes(true)
+            setIsLoading(false)
+          })
+
+        }
         singup(genuine)
-        
       } else if (selectedOption === 'legal') {
+
+        const singup = (userData) => {
+          let datas = {}
+          if (userData.type == "legal") {
+              datas = {
+                  "type":"legal",
+                  "company_name":userData.company_name,
+                  "name":userData.name,
+                  "family":userData.name + "ei",
+                  "national_company":userData.national_company,
+                  "phone":userData.phone,
+                  "password":userData.password,
+                  "password_confirmation":userData.password_confirmation,
+                  "is_confirmed":true,
+                  "email":""
+              }
+          }
+          
+          console.log(datas);
+          axios.post('/api/v1/register', datas , {
+              headers: {
+                  Authorization:"token",
+                  'Access-Control-Allow-Origin': "http://localhost:5173"
+              }
+          })
+          .then(response => {
+              console.log(response.data);
+              window.localStorage.accessToken = response.data.authorisation.token
+              setShowVerify(!showVerify)
+              // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
+              verify({
+                type : "legal",
+                phone : legal.phone
+              })
+              setUserResponse(res)
+              setErrRes(false)
+              setIsLoading(false)
+          })
+          .catch(error =>{
+            setErrRes(true)
+            setIsLoading(false)
+          })
+        }
         singup(legal)
       }
     } else {
@@ -134,6 +229,12 @@ const Register = () => {
       setComShowPass(!showComPass)
   }
 
+
+
+  
+  
+  
+  {if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} />}  
   return (
     <div class="flex">
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
@@ -174,11 +275,14 @@ const Register = () => {
                 <label
                   class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
                   for="inlineRadio2"
-                >حقوقی</label
+                  >حقوقی</label
                 >
               </div>
             </div>
           </div>
+          
+          
+
           {selectedOption === "genuine" ? (
             <>
               <h2 class="text-sm">
@@ -343,8 +447,10 @@ const Register = () => {
           <button  onClick={subHandler} class="text-sm bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">
             ورود
           </button>
+          {isLoading && <span style={{color:'#e88f19'}}>در حال ارسال اطلاعات...</span>}
+          {errRes && <span style={{color:'#a73c36'}}>اطلاعات به درستی وارد نشده اند و یا کاربر دیگری با این اطلاعات موجود میباشد</span>}
           <p class="text-xs text-center">
-            اگر قبلا حساب کاربری دارید<a className='text-c-orange'> وارد </a>شوید!
+            اگر قبلا حساب کاربری دارید<Link to="/auth/login" className='text-c-orange'> وارد </Link>شوید!
           </p>
         </form>
       </div>

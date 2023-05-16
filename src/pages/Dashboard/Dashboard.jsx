@@ -1,10 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../components/Topbar/Topbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Counter from "../../components/Counter/Counter";
 import User from "../../components/User/User";
+import Axios from "../../../axiosinstancs";
 
 const Dashboard = () => {
+  const [allRequest, setAllRequest] = useState(null);
+  const [allExpert, setAllExpert] = useState(null)
+  const [allUser, setAllUser] = useState(null)
+  const [Expert, setExpert] = useState(null)
+
+
+  const getAllexpert = () => {
+    Axios.get("/api/admin/count_experts").then(async res => {
+      console.log(res)
+      setAllExpert(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  const getAllrequest = () => {
+    Axios.get("/api/admin/count_requests").then(async res => {
+      console.log(res)
+      setAllRequest(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  const getAllUser = () => {
+    Axios.get("/api/admin/count_users").then(async res => {
+      console.log(res)
+      setAllUser(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  const getExpert = () => {
+    Axios.get("/api/admin/expert").then(async res => {
+      console.log(res)
+      setAllExpert(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+
+  useEffect(() => {
+    getAllUser();
+    getAllexpert();
+    getAllrequest();
+    getExpert();
+  }, []);
   return (
     <>
       <div className="p-6 flex flex-col gap-6">
@@ -86,17 +140,17 @@ const Dashboard = () => {
         <div className="w-1/2 flex flex-col gap-6">
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={648}
+            number={allRequest}
             title="تعداد درخواست"
           />
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number="1.2k"
+            number={allExpert}
             title="تعداد کارشناس"
           />
           <Counter
             logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number="14k"
+            number={allUser}
             title="تعداد کاربر"
           />
         </div>

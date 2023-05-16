@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import Axios from "../../../axiosinstancs";
 
 export default function ViewExpert() {
+  const [allExpert, setAllExpert] = useState(null)
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [showDetailsUser, setShowDetailsUser] = useState(false);
+  
+
+  const getExpert = () => {
+    Axios.get("/api/admin/expert").then(async res => {
+      console.log(res)
+      setAllExpert(res.data)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
+  useEffect(() => {
+    getExpert();
+  }, [console.log(allExpert)]);
+
   return (
     <div>
       <div className=" py-6">
-        <p className="text-xl font-extrabold">وضعیت کارشناسان</p>
+        <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
         <div className="flex items-center pt-2">
           <AiOutlineInfoCircle className="text-blue-400" />
@@ -26,22 +46,33 @@ export default function ViewExpert() {
             </tr>
           </thead>
           <tbody>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
+          {allExpert && allExpert.map((expert) => {
+              return (
+                <tr
+                  key={expert.id}
+                  id={expert.id}
+                  onClick={() => handleSelectRow(expert)}
+                  className={
+                    selectedItem?.id === expert.id
+                      ? console.log(expert.id)
+                      : null
+                  }
+                >
+                  <td>
+                    {" "}
+                    <img
+                      className="w-10"
+                      src="/./src/assets/imges/user.png"
+                      alt=""
+                    />
+                  </td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                    {expert.created_at}
+                  </td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                  <div className="flex">
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>
@@ -49,383 +80,10 @@ export default function ViewExpert() {
                     اطلاعات بیشتر
                   </button>
                 </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr className="">
-              <td>
-                {" "}
-                <img
-                  className="w-10"
-                  src="/./src/assets/imges/user.png"
-                  alt=""
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">امیر حسین</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">عابدی</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                1400/12/13
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                    حذف کارشناس
-                  </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
-                    اطلاعات بیشتر
-                  </button>
-                </div>
-              </td>
-            </tr>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
