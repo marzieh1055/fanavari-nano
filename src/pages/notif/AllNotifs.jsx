@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "../../../axiosinstancs";
 
 export default function AllNotifs() {
+  const [allnotif, setAllnotif] = useState(null);
+  
+  useEffect(() => {
+    getAllnotification()
+  }, [console.log(allnotif)]);
+
+  const getAllnotification = () => {
+    Axios.get("/api/v1/get_all_notification").then(async res => {
+      console.log(res)
+      setAllnotif(res)
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
   return (
     <div>
       <div className="flex justify-between py-6">
