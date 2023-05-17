@@ -48,6 +48,16 @@ const Dashboard = () => {
     }
     )
   }
+  // const getExpert = () => {
+  //   Axios.get("/api/admin/expert").then(async res => {
+  //     console.log(res)
+  //     setAllExpert(res.data)
+  //   }
+  //   ).catch(err => {
+  //     console.log(err)
+  //   }
+  //   )
+  // }
   const getExpert = () => {
     Axios.get("/api/admin/expert").then(async res => {
       console.log(res)
@@ -64,7 +74,6 @@ const Dashboard = () => {
     getAllUser();
     getAllexpert();
     getAllrequest();
-    getExpert();
   }, []);
   const detailsHandler = (e) => {
     setSelectItemE(e)

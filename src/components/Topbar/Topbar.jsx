@@ -54,7 +54,7 @@ const Topbar = ({ avatar }) => {
               <div onClick={() => setShowModal(false)}
                 class="absolute w-80 h-c-9 py-4 px-6 left-7 top-full bg-white z-10 rounded-lg flex flex-col gap-4">
                 <div class="text-center bg-c-2 rounded-lg py-3">
-                  <img class="w-16 h-16 mx-auto" src="css/assets/img/user.png" alt="" />
+                  <img class="w-16 h-16 mx-auto" src="/src/assets/imges/account.png" alt="" />
                   <h2 class="font-bold my-3 mb-1">محمد رنجبر</h2>
                   <a class="text-xs text-c-8 font-semibold">asd@gmail.com</a>
                 </div>
