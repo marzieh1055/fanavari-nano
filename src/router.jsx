@@ -19,6 +19,8 @@ import AllNotifs from "./pages/notif/AllNotifs";
 import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
+import DashboardUser from "./pages/Dashboard/DashboardUser";
+import DashboardExpert from "./pages/Dashboard/DashboardExpert";
 
 const routes = [
   {
@@ -28,6 +30,8 @@ const routes = [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboardUser", element: <DashboardUser /> },
+      { path: "dashboardExpert", element: <DashboardExpert /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
