@@ -1,9 +1,12 @@
 import React from "react";
 
-const Viewdetailuser = () => {
+const Viewdetailuser = ({details , close}) => {
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
-      <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
+      <div style={{display:"flex" , justifyContent:"space-between"}}>
+        <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
+        <span onClick={() => close(false)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
+      </div>
       <hr className="border-dashed" />
 
       <div className="flex flex-wrap">
@@ -11,8 +14,8 @@ const Viewdetailuser = () => {
           <p className="font-bold text-sm">نام و نام خانوادگی</p>
           <input
             type="text"
-            placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            placeholder={`${details.name} ${details.family}`}
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -20,7 +23,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -29,15 +32,15 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="12345678"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
           <p className="font-bold text-sm">سری و سریال شناسنامه</p>
           <input
             type="text"
-            placeholder="024165058410 / 306545605"
-            className="outline-none placeholder:text-sm"
+            placeholder={details.national_code}
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -45,7 +48,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="امیر حسین عابدی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -53,15 +56,15 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="ایرانی"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کد ملی</p>
           <input
             type="text"
-            placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            placeholder={details.national_code}
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -69,7 +72,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="00/11/13"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -77,7 +80,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -85,7 +88,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="طراح"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -94,7 +97,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
       </div>
@@ -187,7 +190,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -195,7 +198,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="4654651518948"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
@@ -204,7 +207,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="03298748978"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -212,7 +215,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -220,7 +223,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -228,7 +231,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="rangbarmohad@gmail.com"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -236,7 +239,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -244,7 +247,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="03498180798"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -252,7 +255,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder="32498748978"
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
@@ -260,7 +263,7 @@ const Viewdetailuser = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="outline-none border-none placeholder:text-sm"
           />
         </div>
       </div>

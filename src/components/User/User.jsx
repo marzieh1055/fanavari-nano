@@ -6,7 +6,6 @@ const User = ({ avatar, name, date }) => {
       <div className="flex-1 flex gap-4 items-center">
         <img className="w-12 h-12" src={avatar} alt="" />
         <div className="flex-1 font-bold text-c-5">{name}</div>
-        <button className="text-black">...</button>
       </div>
       <div className="text-c-10 mr-16">{date}</div>
     </div>

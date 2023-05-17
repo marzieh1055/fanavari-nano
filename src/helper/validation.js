@@ -124,6 +124,14 @@ export const Validation = (data , type) => {
         } else if (data.username) {
             delete errors.username;
         }
+
+        if (!data.password) {
+            errors.password = "این فیلد نباید خالی باشد";
+        } else if (data.password.length < 3) {
+            errors.password = "پسورد کوتاه می باشد"
+        } else {
+            delete errors.password
+        }
     }
     if (type === 'forgotpass') {
         if (!data.phone) {

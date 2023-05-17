@@ -91,7 +91,7 @@ export default function ViewUsers() {
                 <tr
                   key={GenuineUser.id}
                   id={GenuineUser.id}
-                  onClick={() => handleSelectRow(GenuineUser)}
+                  
                   className={
                     selectedItem?.id === GenuineUser.id
                       ? console.log(GenuineUser.id)
@@ -116,7 +116,7 @@ export default function ViewUsers() {
                       <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
-                      <button className="text-blue-700 border rounded-2xl p-2 ">
+                      <button onClick={() => handleSelectRow(GenuineUser)} className="text-blue-700 border rounded-2xl p-2 ">
                         اطلاعات بیشتر
                       </button>
                     </div>
