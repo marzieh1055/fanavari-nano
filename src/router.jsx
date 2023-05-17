@@ -19,6 +19,7 @@ import AllNotifs from "./pages/notif/AllNotifs";
 import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
+import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
 
 const routes = [
   {
@@ -42,6 +43,9 @@ const routes = [
       { path: "viewRequest", element: <ViewRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
+      { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
+
+      
     ],
   },
 
@@ -51,4 +55,3 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
-export default routes;

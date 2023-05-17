@@ -1,7 +1,83 @@
-import React from "react";
+import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+import React, { useState } from "react";
 import { AiFillFolder, AiOutlineDownload } from "react-icons/ai";
 
 export default function AddFacilities() {
+  
+  
+  const formDataFile = new FormData();
+  const [file , setFile] = useState(null)
+  const [titleText , setTitleText] = useState("")
+  
+  const textChangeHandler = (event) => {
+    setTitleText(event.target.value)
+  }
+
+  const addFacilitiesReq = () => {
+    console.log(file)
+    formDataFile.append('user_id', 2)
+    formDataFile.append('type', 'facilities')
+    formDataFile.append('title', "titleText")
+    formDataFile.append('file', file)
+  
+    axios.post("/api/v1/request", formDataFile, 
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+    ).then(res => {
+      console.log(res)
+      if(res.data.success == true ){
+        toast.notify(response.message)
+      }
+      else(
+        console.log("Ddd")
+      )
+    }
+    ).catch(err => {
+      console.log(err)
+    })
+  }
+
+  const notify = ()=>{
+    <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={true}
+    newestOnTop
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss={false}
+    draggable
+    pauseOnHover
+/>
+    toast("Here is the toast notification!");
+}
+
+  const fileHandler = (e) => {
+    // const selectFile = e.files[0];
+    // setFile(selectFile)
+    // fileReq = new File([selectFile] , "form.pdf" ,{ type: 'application/pdf'})
+    // formDataFile.append('file' , fileReq)
+
+    const temp = e.target.files[0];
+    console.log(temp)
+    setFile(temp)
+
+    // const formData = new FormData();
+    // formData.append("FactorFile", files[0]);
+
+
+    // const newFile = new File([file], "form.pdf", { type: "application/pdf" })
+    //   console.log(newFile);
+
+  }
+  
+
   return (
     <div className="px-5">
       <div className=" py-6">
@@ -9,6 +85,8 @@ export default function AddFacilities() {
       </div>
       <input
         type="text"
+        onChange={textChangeHandler}
+        value={titleText}
         className="w-full p-4 bg-transparent rounded-2xl border-0 border-b border-gray-400  outline-none "
         placeholder="اسم درخواست و توضیحات (توضیحات اختیاری است)"
       />
@@ -33,7 +111,7 @@ export default function AddFacilities() {
               2-دانلود و آپلود به روش ما !
             </p>
           </div>
-          <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
+          <button onClick={notify} className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
             <AiOutlineDownload className="text-2xl ml-2" />
             دانلود فایل{" "}
           </button>{" "}
@@ -57,17 +135,19 @@ export default function AddFacilities() {
                 type="file"
                 name=""
                 id=""
+                onChange={fileHandler}
                 className="opacity-0 w-full h-full absolute top-0"
               />
             </div>
-            <div className="absolute rounded-b-xl w-60 h-6 -bottom-6 bg-white p-2  shadow-sm">
+            {/* <div className="absolute rounded-b-xl w-60 h-6 -bottom-6 bg-white p-2  shadow-sm">
                 <div className="rounded-full bg-c w-full h-full overflow-hidden " dir="ltr">
                     <div className="bg-blue-600 w-1/2 h-full"></div>
                 </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+                <button onClick={() => addFacilitiesReq({file : file , user_id : "2" , title : titleText })} style={{width: "95%" }} className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center mx-auto">ارسال</button>
     </div>
   );
 }

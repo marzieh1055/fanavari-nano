@@ -13,10 +13,10 @@ const Sidebar = () => {
       <div className="mb-6">
         <h1 className="font-bold text-center">داشبورد</h1>
       </div>
-      <Dropdown title="کارشناسان" itemsList={["کارشناس دوم" , "کارشناس اول"]} />
-      <Dropdown title="مشاهده کاربران" itemsList={["کاربر اول" , "کاربر دوم"]} />
-      <Dropdown title="پشتیبانی" itemsList={["مشاهده تیکت ها" , "راهنما"]} />
-      <Dropdown title="مشاهده درخواست ها" itemsList={["مشاهده تیکت ها" , "راهنما"]} />
+      <Dropdown title="کارشناسان" itemsList={[" مشاهده کارشناس ها" , "اضافه کردن کارشناس"]} />
+      <Dropdown title="مشاهده کاربران" itemsList={[" مشاهده کارشناس ها" , "اضافه کردن کارشناس"]}/>
+      <Dropdown title="پشتیبانی" itemsList={["مشاهده تیکت ها" , "راهنما" ]} />
+      <Dropdown title="مشاهده درخواست ها" itemsList={["مشاهده درخواست ها" ]} />
     </section>
   );
 };

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Topbar from "../../components/Topbar/Topbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Counter from "../../components/Counter/Counter";
-import User from "../../components/User/User";
 import Axios from "../../../axiosinstancs";
+import ViewDetailExpert from "../Expert/ViewDetailExpert";
 
-const Dashboard = () => {
+const DashboardUser = () => {
   const [allRequest, setAllRequest] = useState(null);
   const [allExpert, setAllExpert] = useState(null)
   const [allUser, setAllUser] = useState(null)
   const [Expert, setExpert] = useState(null)
+  
+  
+  const [showDetailsUser, setShowDetailsUser] = useState(false)
+  const [selectItemE, setSelectItemE] = useState(null)
 
 
   const getAllexpert = () => {
@@ -42,22 +43,31 @@ const Dashboard = () => {
     }
     )
   }
-  // const getExpert = () => {
-  //   Axios.get("/api/admin/expert").then(async res => {
-  //     console.log(res)
-  //     setAllExpert(res.data)
-  //   }
-  //   ).catch(err => {
-  //     console.log(err)
-  //   }
-  //   )
-  // }
+  const getExpert = () => {
+    Axios.get("/api/admin/expert").then(async res => {
+      console.log(res)
+      setExpert(res.data)
+
+    }
+    ).catch(err => {
+      console.log(err)
+    }
+    )
+  }
 
   useEffect(() => {
     getAllUser();
     getAllexpert();
     getAllrequest();
+    getExpert();
   }, []);
+  const detailsHandler = (e) => {
+    setSelectItemE(e)
+    setShowDetailsUser(true)
+
+  }
+
+  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
   return (
     <>
       <div className="p-6 flex flex-col gap-6">
@@ -110,52 +120,9 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="flex gap-6 px-6">
-        <div className="shadow-c rounded-2xl w-1/2 bg-white p-3.5 flex flex-col gap-7 z-10">
-          <div className="p-2 flex justify-between items-center">
-            <div className="text-lg font-bold">وضعیت کارشناسان</div>
-            <img
-              className="w-c-4 h-c-4"
-              src="/src/assets/imges/ViewRequests/Vectorx.png"
-              alt=""
-            />
-          </div>
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1378/12/21"
-            name="مرضیه محمدی"
-          />
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1377/03/15"
-            name="متین موسوی"
-          />
-          <User
-            avatar="/src/assets/imges/user.png"
-            date="1371/04/09"
-            name="محمد رنجبر"
-          />
-        </div>
-        <div className="w-1/2 flex flex-col gap-6">
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allRequest}
-            title="تعداد درخواست"
-          />
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allExpert}
-            title="تعداد کارشناس"
-          />
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allUser}
-            title="تعداد کاربر"
-          />
-        </div>
-      </div>
+      
     </>
   );
 };
 
-export default Dashboard;
+export default DashboardUser;

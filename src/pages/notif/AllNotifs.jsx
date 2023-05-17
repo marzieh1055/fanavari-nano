@@ -3,15 +3,15 @@ import Axios from "../../../axiosinstancs";
 
 export default function AllNotifs() {
   const [allnotif, setAllnotif] = useState(null);
-  
+
   useEffect(() => {
     getAllnotification()
   }, [console.log(allnotif)]);
 
   const getAllnotification = () => {
     Axios.get("/api/v1/get_all_notification").then(async res => {
-      console.log(res)
-      setAllnotif(res)
+      console.log(res.data)
+      setAllnotif(res.data)
     }
     ).catch(err => {
       console.log(err)
@@ -33,150 +33,20 @@ export default function AllNotifs() {
             </tr>
           </thead>
           <tbody>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
-            <tr className="">
-              <td className="p-4 text-xs text-gray-400 font-bold">نانو فان</td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                درخواست ضمانتامه به مرحله بعدی رسید .
-              </td>
-              <td className="p-4 text-xs text-gray-400 font-bold">
-                link1245.com
-              </td>
-            </tr>
+            {allnotif && allnotif.map((notif) => {
+              return (
+                <tr
+                  key={notif.id}
+                  id={notif.id}
+                >                  
+                <td className="p-4 text-xs text-gray-400 font-bold">کارشناس 2 </td>
+
+                  <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{notif.created_at} </td>
+
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -1,7 +1,7 @@
 // ***** use for set token in headers request to api ******
 //                     ************
 import axios from 'axios';
-const baseURL = import.meta.env.REACT_APP_Api_Address;
+const baseURL = "https://panel.frzddev.ir";
 // const baseURL = "http://192.168.8.123:8000/api/v1";
 const Bearertoken = localStorage.getItem("token");
 
@@ -12,6 +12,7 @@ const Axios = axios.create({
     baseURL,
     // timeout: 15000,
     headers: {
+
         'Content-Type': 'application/json',
         'Accept': 'application/json',
 
