@@ -8,7 +8,7 @@ import Verification from "./pages/Register/Verification";
 import Addexpert from "./pages/Expert/Addexpert";
 import Panel from "./pages/Panel";
 import ViewUsers from "./pages/User/ViewUsers";
-import ViewExpert from "./pages/Expert/viewExpert";
+import ViewExpert from "./pages/Expert/ViewExpert";
 import ViewTickets from "./pages/Ticket/ViewTickets";
 import AddTicket from "./pages/Ticket/AddTicket";
 import Support from "./pages/support/Support";

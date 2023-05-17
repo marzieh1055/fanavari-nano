@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
+import ViewDetailExpert from './ViewDetailExpert'
 
 export default function ViewExpert() {
   const [allExpert, setAllExpert] = useState(null)
@@ -21,6 +22,13 @@ export default function ViewExpert() {
   useEffect(() => {
     getExpert();
   }, [console.log(allExpert)]);
+
+  const tochHandler = item => {
+    setSelectedItem(item);
+    setShowDetailsUser(true)
+    console.log(item);
+  };
+  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
   return (
     <div>
@@ -51,7 +59,7 @@ export default function ViewExpert() {
                 <tr
                   key={expert.id}
                   id={expert.id}
-                  onClick={() => handleSelectRow(expert)}
+                  
                   className={
                     selectedItem?.id === expert.id
                       ? console.log(expert.id)
@@ -76,7 +84,7 @@ export default function ViewExpert() {
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>
-                  <button className="text-blue-700 border rounded-2xl p-2 ">
+                  <button onClick={() => tochHandler(expert)} className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
                   </button>
                 </div>
