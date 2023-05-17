@@ -74,6 +74,7 @@ const Dashboard = () => {
     getAllUser();
     getAllexpert();
     getAllrequest();
+    getExpert()
   }, []);
   const detailsHandler = (e) => {
     setSelectItemE(e)

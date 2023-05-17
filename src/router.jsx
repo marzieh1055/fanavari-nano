@@ -19,12 +19,7 @@ import AllNotifs from "./pages/notif/AllNotifs";
 import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
-<<<<<<< HEAD
-import DashboardUser from "./pages/Dashboard/DashboardUser";
-import DashboardExpert from "./pages/Dashboard/DashboardExpert";
-=======
 import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
->>>>>>> 69293139666e8b7d21902ab20c9eb8c3d3e46128
 
 const routes = [
   {
@@ -34,8 +29,6 @@ const routes = [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
-      { path: "dashboardUser", element: <DashboardUser /> },
-      { path: "dashboardExpert", element: <DashboardExpert /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
@@ -62,3 +55,4 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
+export default routes ;
