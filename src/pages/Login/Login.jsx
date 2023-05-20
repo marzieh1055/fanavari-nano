@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { Validation } from "../../helper/validation";
 import axios from "axios";
-
+import { UserDataContext } from "../../contexts/UserData.Provider";
 
 const Login = () => {
 
+  const { apiLogin } = useContext(UserDataContext)
   const [isLoading, setIsLoading] = useState(false);
 
   const [errRes, setErrRes] = useState(false);
@@ -39,34 +40,13 @@ const Login = () => {
     }
 
   }
-  const nextPage = useNavigate()
   const subHandler = e => {
     e.preventDefault();
     console.log(errors);
     if (!Object.keys(errors).length) {
       setIsLoading(true)
       setErrRes(false)
-      const apiLogin = (datas) => {
-        axios.post('/api/v1/login', datas, {
-          headers: {
-            Authorization: "token",
-            'Access-Control-Allow-Origin': "http://localhost:5173"
-          }
-        })
-          .then(response => {
-            console.log(response.data);
-            window.localStorage.accessToken = response.data.authorisation.token
-            nextPage("/panel/dashboard")
-
-            // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<---------------------------------------------------------------
-            setIsLoading(false)
-
-          })
-          .catch(error => {
-            setIsLoading(false)
-            setErrRes(true)
-          });
-      }
+      
       apiLogin(userData)
     } else {
       setShowErr({
@@ -78,6 +58,7 @@ const Login = () => {
   }
   useEffect(() => {
     setErrors(Validation(userData, 'login'))
+
   }, [userData])
 
   const showPassHandler = (e) => {

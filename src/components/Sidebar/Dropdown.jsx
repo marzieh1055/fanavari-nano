@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Dropdown({route , title , itemsList}) {
   const [showOption , setShowOption] = useState(false)
   return (
-    <div  className={showOption ? "-mr-2 px-6 rounded-3xl bg-c-4" : "flex items-center gap-4 h-12"} >
+    <div  className={showOption ? "-ml-4 -mr-4 px-6 rounded-3xl bg-c-4" : "flex items-center gap-4 h-12"} >
           <button onClick={() => setShowOption(!showOption)} className="w-full flex items-center justify-between h-12">
             <div className="flex items-center gap-4">
               <img

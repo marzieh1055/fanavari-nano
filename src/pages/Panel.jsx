@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Topbar from '../components/Topbar/Topbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 import { Outlet, useLocation, useParams } from 'react-router-dom'
-
+import { UserDataContext } from '../contexts/UserData.Provider'
 export default function Panel() {
-  const location = useLocation()
-  console.log(location);
-  
+  const {userDatas} = useContext(UserDataContext)
+  console.log(userDatas);
   
   return (
     <div className="w-full max-w-c mx-auto bg-c flex p-6 gap-6">
@@ -66,7 +65,7 @@ export default function Panel() {
       ]} /> 
     } */}
     {/* <Sidebar /> */}
-    <Sidebar objects={[
+    { userDatas.user.type === "genuine" && <Sidebar objects={[
         {title : "کارشناسان",
           drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
           links : ["/panel/viewExpert" , "/panel/Addexpert" ]
@@ -83,7 +82,7 @@ export default function Panel() {
           drop : [],
         },
 
-      ]} />
+      ]} />}
     {/* Left section */}
     {/* Left section */}
 
