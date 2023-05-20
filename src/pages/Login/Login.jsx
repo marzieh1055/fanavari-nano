@@ -7,10 +7,8 @@ import { UserDataContext } from "../../contexts/UserData.Provider";
 
 const Login = () => {
 
-  const { apiLogin } = useContext(UserDataContext)
-  const [isLoading, setIsLoading] = useState(false);
+  const { apiLogin , isLoading, setIsLoading , errRes, setErrRes , } = useContext(UserDataContext)
 
-  const [errRes, setErrRes] = useState(false);
   const [showResp, setShowResp] = useState(false);
 
   const [userData, setUserData] = useState({ username: "", password: "" })

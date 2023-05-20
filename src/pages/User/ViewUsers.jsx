@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "../../../axiosinstancs";
+import axios from "axios";
 import { useEffect } from "react";
 import Viewdetailuser from "./Viewdetailuser";
 export default function ViewUsers() {
@@ -49,6 +50,11 @@ export default function ViewUsers() {
     }
     )
   }
+
+  // const deleteUserHandler = (userId) => {
+  //   axios.delete(`/user/${userId}` , {headers : ["Access-Control-Allow-Origin"] })
+  //     .then((res) => console.log(res))
+  // }
 
   if (showDetailsUser) return <Viewdetailuser close={setShowDetailsUser} details={selectedItem} />
   return (
@@ -113,7 +119,7 @@ export default function ViewUsers() {
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">
-                      <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
                       <button onClick={() => handleSelectRow(GenuineUser)} className="text-blue-700 border rounded-2xl p-2 ">

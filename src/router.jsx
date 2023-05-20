@@ -20,6 +20,7 @@ import ViewRequest from "./pages/request/ViewRequest";
 import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
 import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
+import DashboardUser from "./pages/Dashboard/DashboardUser";
 
 const routes = [
   {
@@ -29,6 +30,7 @@ const routes = [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboarduser", element: <DashboardUser /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },

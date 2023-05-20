@@ -1,0 +1,13 @@
+.selectGandL {
+    border: none;
+    appearance: none;
+    outline: 0;
+}
+.selectGandL select {
+    border: 0;
+}
+.selectGandL::after {
+    border: none;
+    appearance: none;
+    outline: 0;
+}

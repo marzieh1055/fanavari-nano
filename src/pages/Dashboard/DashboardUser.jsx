@@ -6,13 +6,13 @@ import User from "../../components/User/User";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from "../Expert/ViewDetailExpert";
 import Loading from "../../components/Loading/Loading";
+
 import {UserDataContext} from "../../contexts/UserData.Provider";
 
-
-const Dashboard = () => {
+const DashboardUser = () => {
   const {userDatas} = useContext(UserDataContext)
 
-  console.log(userDatas.user.type)
+
   const [allRequest, setAllRequest] = useState(null);
   const [allExpert, setAllExpert] = useState(null)
   const [allUser, setAllUser] = useState(null)
@@ -88,7 +88,7 @@ const Dashboard = () => {
   }
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
-  return (
+  if (userDatas.user.type === "genuine" || userDatas.user.type === "legal" ) return (
     <>
       <div className="p-6 flex flex-col gap-6">
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>
@@ -141,39 +141,11 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex gap-6 px-6">
-        <div className="shadow-c rounded-2xl w-1/2 bg-white p-3.5 flex flex-col gap-7 z-10">
-          <div className="p-2 flex justify-between items-center">
-            <div className="text-lg font-bold">وضعیت کارشناسان</div>
-            <img
-              className="w-c-4 h-c-4"
-              src="/src/assets/imges/ViewRequests/Vectorx.png"
-              alt=""
-            />
-          </div>
-          {
-            Expert ? Expert.map(i => <div key={i.id} onClick={() => detailsHandler(i)}><User avatar="/src/assets/imges/user.png" date="1378/12/21" name={`${i.name} ${i.family}`}/></div> ) : <Loading />
-          }
-        </div>
-        <div className="w-1/2 flex flex-col gap-6">
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allRequest ? allRequest : ""}
-            title="تعداد درخواست"
-          />
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allExpert ? allExpert : ""}
-            title="تعداد کارشناس"
-          />
-          <Counter
-            logo="/src/assets/imges/ViewRequests/Vectora.png"
-            number={allUser ? allUser : ""}
-            title="تعداد کاربر"
-          />
-        </div>
+        
+       
       </div>
     </>
   );
 };
 
-export default Dashboard;
+export default DashboardUser;

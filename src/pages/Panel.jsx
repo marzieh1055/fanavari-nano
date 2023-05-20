@@ -3,6 +3,9 @@ import Topbar from '../components/Topbar/Topbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 import { Outlet, useLocation, useParams } from 'react-router-dom'
 import { UserDataContext } from '../contexts/UserData.Provider'
+import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
+
+
 export default function Panel() {
   const {userDatas} = useContext(UserDataContext)
   console.log(userDatas);
@@ -65,14 +68,32 @@ export default function Panel() {
       ]} /> 
     } */}
     {/* <Sidebar /> */}
-    { userDatas.user.type === "genuine" && <Sidebar objects={[
+    { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
+        {title : "خدمات",
+          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
+          links : ["/panel/guarantee" , "/panel/addFacilities" ]
+        },
+        {title : "پشتیبانی",
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" , "درخواست های جاری" , "راهنمای سایت"],
+          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
+        },
+        {title : "اطلاعات کاربری",
+          drop : [],
+        },
+
+      ]} />}
+      {/* {Inja bayad avvvvvaaaazzz Beshe Nesbat Be Naghsh Karbar} */}
+
+{/* {// ||  ||} */}
+
+          { (userDatas.user.type === "expert") && <SidebarUser objects={[
         {title : "کارشناسان",
           drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
           links : ["/panel/viewExpert" , "/panel/Addexpert" ]
         },
         {title : "کاربران",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
+          drop : [ "لیست کاربران" , "درخواست ضمانت نامه" , "درخواست تسهیلات"],
+          links : ["/panel/viewUsers" ,"/panel/guarantee" , "/panel/addFacilities" ]
         },
         {title : "پشتیبانی",
           drop : ["مشاهده تیکت ها" , "لیست درخواست ها"],
@@ -82,7 +103,7 @@ export default function Panel() {
           drop : [],
         },
 
-      ]} />}
+      ]} /> }
     {/* Left section */}
     {/* Left section */}
 

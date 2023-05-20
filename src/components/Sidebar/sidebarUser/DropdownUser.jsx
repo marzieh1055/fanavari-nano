@@ -1,8 +1,8 @@
 import React from 'react'
-import './Dropdown.css'
+import './DropdownUser.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-export default function Dropdown({route , title , itemsList}) {
+export default function DropdownUser({route , title , itemsList}) {
   const [showOption , setShowOption] = useState(false)
   return (
     <div  className={showOption ? "-ml-4 -mr-4 px-6 rounded-3xl bg-c-4" : "flex items-center gap-4 h-12"} >
@@ -21,8 +21,8 @@ export default function Dropdown({route , title , itemsList}) {
           </button>
           <div className={showOption ? "flex flex-col" : "hidden"}>
             {/* Shayad Badan Nesbat Be data haye Api Inja Avazzz Beshe */}
-            {itemsList.map((i , index) => <a key={index} className="h-12 flex items-center" href="">{i}</a>)}
-            
+            {itemsList.map((i , index) => <Link to={route[index]} key={index} className="h-12 flex items-center">{i}</Link>)}
+            {console.log(route)}
           </div>
     </div>
   )

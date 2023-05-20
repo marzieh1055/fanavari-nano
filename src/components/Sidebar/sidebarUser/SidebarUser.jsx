@@ -1,7 +1,7 @@
 import React from "react";
-import Dropdown from "./Dropdown";
+import DropdownUser from "./DropdownUser";
 
-const Sidebar = ({objects}) => {
+const SidebarUser = ({objects}) => {
   
   return (
     <section className="w-c-3 bg-c-2 h-c-5 sticky top-6 p-6 rounded-3xl">
@@ -15,10 +15,10 @@ const Sidebar = ({objects}) => {
         <h1 className="font-bold text-center">داشبورد</h1>
       </div>
         {
-          objects && objects.map((item , index) => <Dropdown key={index} title={item.title} itemsList={item.drop} />)
+          objects && objects.map((item , index) => <DropdownUser route={item.links} key={index} title={item.title} itemsList={item.drop} />)
         }
     </section>
   );
 };
 
-export default Sidebar;
+export default SidebarUser;

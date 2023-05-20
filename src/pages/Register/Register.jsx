@@ -1,21 +1,21 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState , useEffect, useContext } from 'react'
 import Input from "../../components/Input/Input";
 import axios from 'axios';
+import './Register.css'
 // Validation
 import { Validation } from '../../helper/validation';
+import { UserDataContext } from '../../contexts/UserData.Provider';
 // api 
 import { verify } from '../../services/apireq';
 import Verification from './Verification';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-
+  const { showVerify, singupG , singupL , isLoading, setIsLoading , errRes, setErrRes ,} = useContext(UserDataContext)
   const [selectedOption, setSelectedOption] = useState("genuine");
   
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [errRes, setErrRes] = useState(false);
-  const [showVerify, setShowVerify] = useState(false);
+  
   
   const [showPass, setShowPass] = useState(false);
   const [showComPass, setComShowPass] = useState(false);
@@ -96,95 +96,9 @@ const Register = () => {
       setIsLoading(true)
       setErrRes(false)
       if (selectedOption === "genuine") {
-        
-        const singup = (userData) => {
-          let datas = {}
-          if (userData.type == "genuine") {
-              datas = {
-                  "type":"genuine",
-                  "name":userData.name,
-                  "family":userData.family,
-                  "phone":userData.phone,
-                  "password":userData.password,
-                  "password_confirmation":userData.password_confirmation,
-                  "is_confirmed":true,
-                  "national_code":userData.national_code,
-                  "email":""
-              }
-          }
-          console.log(datas);
-          axios.post('/api/v1/register', datas , {
-              headers: {
-                  Authorization:"token",
-                  'Access-Control-Allow-Origin': "http://localhost:5173"
-              }
-          })
-          .then(response => {
-              console.log(response.data);
-              window.localStorage.accessToken = response.data.authorisation.token
-              setShowVerify(!showVerify)
-
-              // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
-              verify({
-                type : "genuine",
-                phone : genuine.phone
-              })
-              setUserResponse(res)
-              setErrRes(false)
-              setIsLoading(false)              
-          })
-          .catch(error =>{
-            setErrRes(true)
-            setIsLoading(false)
-          })
-
-        }
-        singup(genuine)
+        singupG(genuine)
       } else if (selectedOption === 'legal') {
-
-        const singup = (userData) => {
-          let datas = {}
-          if (userData.type == "legal") {
-              datas = {
-                  "type":"legal",
-                  "company_name":userData.company_name,
-                  "name":userData.name,
-                  "family":userData.name + "ei",
-                  "national_company":userData.national_company,
-                  "phone":userData.phone,
-                  "password":userData.password,
-                  "password_confirmation":userData.password_confirmation,
-                  "is_confirmed":true,
-                  "email":""
-              }
-          }
-          
-          console.log(datas);
-          axios.post('/api/v1/register', datas , {
-              headers: {
-                  Authorization:"token",
-                  'Access-Control-Allow-Origin': "http://localhost:5173"
-              }
-          })
-          .then(response => {
-              console.log(response.data);
-              window.localStorage.accessToken = response.data.authorisation.token
-              setShowVerify(!showVerify)
-              // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
-              verify({
-                type : "legal",
-                phone : legal.phone
-              })
-              setUserResponse(res)
-              setErrRes(false)
-              setIsLoading(false)
-          })
-          .catch(error =>{
-            setErrRes(true)
-            setIsLoading(false)
-          })
-        }
-        singup(legal)
+        singupL(legal)
       }
     } else {
       if (selectedOption === "genuine") {
@@ -250,7 +164,11 @@ const Register = () => {
             </h2>
             <div class="flex justify-start">
               <div class="mr-4 inline-block pl-[1.5rem]">
-                <input
+                <select onChange={handleChange} value={selectedOption} className='selectGandL'>
+                  <option value="genuine">حقیقی</option>
+                  <option value="legal">حقوقی</option>
+                </select>
+                {/* <input
                   class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
                   type="radio"
                   name="inlineRadioOptions"
@@ -262,10 +180,10 @@ const Register = () => {
                   class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
                   for="inlineRadio1"
                 >حقیقی</label
-                >
+                > */}
               </div>
               <div class=" mr-4 inline-block  pl-2">
-                <input
+                {/* <input
                   class="relative float-left ml-8 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
                   type="radio"
                   name="inlineRadioOptions"
@@ -276,7 +194,7 @@ const Register = () => {
                   class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
                   for="inlineRadio2"
                   >حقوقی</label
-                >
+                > */}
               </div>
             </div>
           </div>
