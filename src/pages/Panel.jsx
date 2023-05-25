@@ -8,7 +8,6 @@ import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
 
 export default function Panel() {
   const {userDatas} = useContext(UserDataContext)
-  console.log(userDatas);
   
   return (
     <div className="w-full max-w-c mx-auto bg-c flex p-6 gap-6">
@@ -68,7 +67,7 @@ export default function Panel() {
       ]} /> 
     } */}
     {/* <Sidebar /> */}
-    { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
+    { <SidebarUser objects={[
         {title : "خدمات",
           drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
           links : ["/panel/guarantee" , "/panel/addFacilities" ]
@@ -82,11 +81,25 @@ export default function Panel() {
         },
 
       ]} />}
+    {/* { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
+        {title : "خدمات",
+          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
+          links : ["/panel/guarantee" , "/panel/addFacilities" ]
+        },
+        {title : "پشتیبانی",
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" , "درخواست های جاری" , "راهنمای سایت"],
+          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
+        },
+        {title : "اطلاعات کاربری",
+          drop : [],
+        },
+
+      ]} />} */}
       {/* {Inja bayad avvvvvaaaazzz Beshe Nesbat Be Naghsh Karbar} */}
 
 {/* {// ||  ||} */}
 
-          { (userDatas.user.type === "expert") && <SidebarUser objects={[
+          {/* { (userDatas.user.type === "expert") && <SidebarUser objects={[
         {title : "کارشناسان",
           drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
           links : ["/panel/viewExpert" , "/panel/Addexpert" ]
@@ -103,7 +116,7 @@ export default function Panel() {
           drop : [],
         },
 
-      ]} /> }
+      ]} /> } */}
     {/* Left section */}
     {/* Left section */}
 

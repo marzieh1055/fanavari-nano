@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillFolder } from "react-icons/ai";
+import Axios from '../../../axiosinstancs'
 
 export default function AddTicket() {
+
+  const formData = new FormData();
+  const [data , setData] = useState({
+    title : "",
+    category : "", //"warranty" یا "other"
+    priority : "", // "high" یا "normal"
+    body : "",
+    file : null,
+  })
+  const subHandler = () => {
+    formData.append("title" , data.title)
+    formData.append("category" , data.category)
+    formData.append("priority" , data.priority)
+    formData.append("body" , data.body)
+    formData.append("file" , data.file)
+    formData.append("id" , data.id)
+    
+    Axios.post("/api/v1/ticket" , formData )
+    .then((respons) => console.log(respons))
+    .catch((error) => console.log(error))
+  }
+
+  const changeHandler = (e) => {
+    if (e.target.name === "file") {
+      setData({
+        ...data , [e.target.name] : e.target.files[0]
+      })
+    } if (e.target.name === "Priority") {
+      setData({
+        ...data , priority : e.target.value
+      })
+    } else if (e.target.name === "category") {
+      setData({
+        ...data , category : e.target.value
+      })
+    } else {
+      setData({
+        ...data , [e.target.name] : e.target.value
+      })
+    }
+    console.log(data);
+  }
   return (
     <div>
       <div className=" py-6">
         <p className="text-xl font-extrabold">ثبت تیکت </p>
       </div>
       <input
+        onChange={changeHandler}
+        value={data.title}
+        name="title"
         type="text"
         className="w-full p-4 bg-transparent rounded-2xl border-0 border-b border-gray-400  outline-none "
         placeholder="عنوان تیکت"
@@ -17,23 +63,29 @@ export default function AddTicket() {
         <p className="font-bold ">خدمات:</p>
         <input
           type="radio"
-          name="khadamat"
+          onChange={changeHandler}
+          name="category"
+          value="warranty"
           id=""
           className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
         />
         <p className="font-bold ">ضمانت نامه</p>
         <input
           type="radio"
-          name="khadamat"
+          onChange={changeHandler}
+          name="category"
+          value="facilities"
           id=""
           className="relative overflow-hidden mx-2 w-5 rounded h-full"
         />
-        <p className="font-bold ">تحصیلات</p>
+        <p className="font-bold ">تسهیلات</p>
       </div>
       <div className="relative">
         <textarea
+          onChange={changeHandler}
+          value={data.body}
+          name="body"
           placeholder="عنوان تیکت"
-          name=""
           id=""
           cols="30"
           rows="10"
@@ -55,14 +107,45 @@ export default function AddTicket() {
           انتخاب فایل
         </p>
         <input
+          onChange={changeHandler}
           type="file"
-          name=""
+          name="file"
           id=""
           className="opacity-0 w-full h-full absolute top-0"
         />
       </div>
       </div>
-      <button className="p-3 w-full bg-blue-800 rounded-xl text-white my-3">ارسال تیکت</button>
+      <div className="flex w-96 items-center m-3 text-center">
+        <p className="font-bold ">اولوییت:</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="high"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+        />
+        <p className="font-bold ">زیاد</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="normal"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 rounded h-full"
+        />
+        <p className="font-bold ">متوسط</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="low"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 rounded h-full"
+        />
+        <p className="font-bold ">کم</p>
+      </div>
+      <button onClick={subHandler} className="p-3 w-full bg-blue-800 rounded-xl text-white my-3">ارسال تیکت</button>
     </div>
   );
 }

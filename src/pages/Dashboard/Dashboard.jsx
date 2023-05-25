@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const getAllexpert = () => {
     Axios.get("/api/admin/count_experts").then(async res => {
-      console.log(res)
+      // console.log(res)
       setAllExpert(res.data)
     }
     ).catch(err => {
@@ -35,7 +35,7 @@ const Dashboard = () => {
   }
   const getAllrequest = () => {
     Axios.get("/api/admin/count_requests").then(async res => {
-      console.log(res)
+      // console.log(res)
       setAllRequest(res.data)
     }
     ).catch(err => {
@@ -45,10 +45,11 @@ const Dashboard = () => {
   }
   const getAllUser = () => {
     Axios.get("/api/admin/count_users").then(async res => {
-      console.log(res)
+      // console.log(res)
       setAllUser(res.data)
     }
     ).catch(err => {
+      
       console.log(err)
     }
     )
@@ -65,7 +66,7 @@ const Dashboard = () => {
   // }
   const getExpert = () => {
     Axios.get("/api/admin/expert").then(async res => {
-      console.log(res)
+      // console.log(res)
       setExpert(res.data)
 
     }

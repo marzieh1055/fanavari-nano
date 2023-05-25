@@ -10,6 +10,8 @@ export default function UserDataProvider({children}) {
     const [errRes, setErrRes] = useState(false);
 
     const [showVerify, setShowVerify] = useState(false);
+
+    const [rememberStory , setRememberStory] = useState(false)
     const nextPage = useNavigate()
 
     // SINGIN
@@ -111,6 +113,9 @@ export default function UserDataProvider({children}) {
           console.log(response.data);
           window.localStorage.setItem("token" , JSON.stringify(response.data.authorisation.token))
           setUserDatas(response.data)
+          if (rememberStory) {
+            window.localStorage.setItem("remember" , JSON.stringify(datas))
+          }
           // inja badan mitoonim moshakhas konim age user bood bre too dashboard khodehs age karshenas bood bre to Dashboard khodesh
           console.log(response.data.user.type);
           setIsLoading(false)
@@ -129,7 +134,7 @@ export default function UserDataProvider({children}) {
         });
     }
   return (
-    <UserDataContext.Provider value={{ showVerify, setShowVerify , singupG , singupL , isLoading, setIsLoading , errRes, setErrRes , userDatas , apiLogin }}>
+    <UserDataContext.Provider value={{ showVerify, setShowVerify , singupG , singupL , isLoading, setIsLoading , errRes, setErrRes , userDatas , apiLogin , rememberStory , setRememberStory}}>
         {children}
     </UserDataContext.Provider>
   )

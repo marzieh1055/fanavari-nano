@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import Input from "../../components/Input/Input";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Validation } from "../../helper/validation";
-import axios from "axios";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 
 const Login = () => {
 
-  const { apiLogin , isLoading, setIsLoading , errRes, setErrRes , } = useContext(UserDataContext)
+  const [mountPage , setMountPage] = useState(true)
+  const [bcInput , setBcInput] = useState(true)
+
+
+  const { apiLogin , isLoading, setIsLoading , errRes, setErrRes ,rememberStory , setRememberStory } = useContext(UserDataContext)
 
   const [showResp, setShowResp] = useState(false);
 
   const [userData, setUserData] = useState({ username: "", password: "" })
   const [showPass, setShowPass] = useState(false);
+
+  
+
   const changeHandler = (event) => {
 
     if (event.target.name === "checkbox") {
@@ -23,6 +29,7 @@ const Login = () => {
       setUserData({
         ...userData, [event.target.name]: event.target.value
       })
+      setBcInput(false)
     }
   }
 
@@ -40,8 +47,8 @@ const Login = () => {
   }
   const subHandler = e => {
     e.preventDefault();
-    console.log(errors);
     if (!Object.keys(errors).length) {
+
       setIsLoading(true)
       setErrRes(false)
       
@@ -56,12 +63,22 @@ const Login = () => {
   }
   useEffect(() => {
     setErrors(Validation(userData, 'login'))
-
+    if (mountPage) {
+      const storage = window.localStorage.getItem("remember")
+      storage && setUserData(JSON.parse(storage))
+      setMountPage(false)
+      !storage && setBcInput(false)
+    }
+    
   }, [userData])
 
   const showPassHandler = (e) => {
     e.preventDefault();
     setShowPass(!showPass)
+  }
+
+  const rememberChange = (e) => {
+    setRememberStory(e.target.checked)
   }
   return (
     <>
@@ -74,7 +91,7 @@ const Login = () => {
             }} />
           </h1>
           <form className="w-5/6 mx-auto flex flex-col gap-6">
-            <Input
+            {/* <Input
               lable={" نام کاربری (کد ملی یا شناسه ملی شرکت)*"}
               src="/src/assets/imges/account.png"
               type="text"
@@ -82,41 +99,37 @@ const Login = () => {
               changeHandler={changeHandler}
               name="username"
               onFocus={focusHandler}
-            />
+              
+            /> */}
+
+                <div class="relative">
+                    <label for="form-1"  className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
+                        {" نام کاربری (کد ملی یا شناسه ملی شرکت)*"}
+                    </label>
+                    <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/account.png" alt="" />
+                    <input style={bcInput === true && userData.password ? {paddingRight: "45px" , backgroundColor: "#f6e8c2"} : {paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.username} name="username" id="form-1" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 pl-3.5 pr-c-20" type="text" />       
+                    
+                </div>
             {errors.username && showErr.username && <span style={{ color: '#e88f19' }}>{errors.username}</span>}
             <div className="relative">
               <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                 گذرواژه*
               </label>
               <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
-              <input style={{paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.password} name='password' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
+              <input style={bcInput === true && userData.password ? {paddingRight: "45px" , backgroundColor: "#f6e8c2"} : {paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.password} name='password' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
               <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                 <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
               </button>
             </div>
             {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
-            {/* <div className="flex gap-6 items-center">
-              <div className="relative w-3/4">
-                <label for="form-3" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
-                  کد امنیتی*
-                </label>
-                <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src="/src/assets/imges/locked-computer.png" alt="" />
-                <input id="form-3" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 pr-c-20 pl-c-23" type="text" />
-                <button className="absolute h-full left-0 w-c-22">
-                  <img className="w-full h-full" src="/src/assets/imges/login/capcha.png" alt="" />
-                </button>
-              </div>
-              <button className="w-6 h-6">
-                <img className="w-full h-full" src="/src/assets/imges/refresh.png" alt="" />
-              </button>
-            </div> */}
+
             <button onClick={subHandler} className="text-sm bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">ورود</button>
             {isLoading && <span style={{ color: '#e88f19' }}>در حال ارسال اطلاعات...</span>}
             {errRes && <span style={{ color: '#a73c36' }}>اطلاعات وارد شده مطابقت ندارد</span>}
             {showResp && <span style={{ color: '#e88f19' }}>درحال انتقال به صفحه ورود...</span>}
             <div className="flex justify-between">
               <div className="flex gap-3 items-center">
-                <input type="checkbox" />
+                <input onClick={rememberChange} type="checkbox" />
                 <p className="text-sm">بخاطر بسپار</p>
               </div>
               <div className="">
