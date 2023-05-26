@@ -1,7 +1,6 @@
 // ***** use for set token in headers request to api ******
 //                     ************
 import axios from 'axios';
-import { json } from 'react-router-dom';
 const baseURL = "https://panel.frzddev.ir";
 
 const Bearertoken = localStorage.getItem("token");
@@ -13,11 +12,8 @@ const Axios = axios.create({
     baseURL,
     // timeout: 15000,
     headers: {
-
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        // "Authorization" : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BhbmVsLmZyemRkZXYuaXIvYXBpL3YxL3JlZ2lzdGVyIiwiaWF0IjoxNjg0Njk3ODIwLCJleHAiOjE2ODQ3MDE0MjAsIm5iZiI6MTY4NDY5NzgyMCwianRpIjoiRjljQ2U2MDNqWVBENW5YbyIsInN1YiI6IjI3IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9._6ssn7NnqPWQmMcAtjLzJxpXjIOi2wg1Db_y-izejuw"
-
     }
 });
 

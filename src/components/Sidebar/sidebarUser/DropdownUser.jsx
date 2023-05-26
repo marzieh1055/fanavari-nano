@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function DropdownUser({route , title , itemsList}) {
   const [showOption , setShowOption] = useState(false)
   return (
-    <div  className={showOption ? "-ml-4 -mr-4 px-6 rounded-3xl bg-c-4" : "flex items-center gap-4 h-12"} >
+    <div style={{marginBottom : "10px"}}  className={showOption ? "-ml-4 -mr-4 px-6 rounded-3xl bg-c-4" : "flex items-center gap-4 h-12"} >
           <button onClick={() => setShowOption(!showOption)} className="w-full flex items-center justify-between h-12">
             <div className="flex items-center gap-4">
               <img
@@ -22,7 +22,6 @@ export default function DropdownUser({route , title , itemsList}) {
           <div className={showOption ? "flex flex-col" : "hidden"}>
             {/* Shayad Badan Nesbat Be data haye Api Inja Avazzz Beshe */}
             {itemsList.map((i , index) => <Link to={route[index]} key={index} className="h-12 flex items-center">{i}</Link>)}
-            {console.log(route)}
           </div>
     </div>
   )

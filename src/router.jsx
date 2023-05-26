@@ -21,6 +21,10 @@ import OpenedRequests from "./pages/request/OpenedRequests";
 import UploadDoc from "./pages/UploadDoc";
 import ExpertViewRequest from "./pages/Requests/ExpertViewRequest";
 import DashboardUser from "./pages/Dashboard/DashboardUser";
+import UserInfo from "./pages/User/UserInfo";
+import LegalUserInfo from "./pages/User/LegalUserInfo";
+import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
+import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
 
 const routes = [
   {
@@ -47,6 +51,10 @@ const routes = [
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
 
+      { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
+      { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
+      { path: "userInfo", element: <UserInfo /> },
+      { path: "legaluserInfo", element: <LegalUserInfo /> },
       
     ],
   },
