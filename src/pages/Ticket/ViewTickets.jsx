@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import Support from "../support/Support";
 import Loading from "../../components/Loading/Loading";
-
+import { dateConversion } from "../../helper/dateConversion.cjs";
 
 export default function ViewTickets() {
 
@@ -60,10 +60,16 @@ export default function ViewTickets() {
                     {item.title}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    <button className="text-green-600 border border-green-600 rounded-xl p-2 px-3">✓{item.status}</button>
+                    <button className={
+                      item.status === "open" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" :
+                      item.status === "waiting" ? "text-yellow-400 border border-yellow-400 rounded-xl p-2 px-3" :
+                        item.status === "closed" ? "text-red-400 border border-green-400 rounded-xl p-2 px-3" :
+                        item.status === "resolved" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" : ""
+
+                    }>{item.status}</button>
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    {item.created_at}
+                    {dateConversion(item.updated_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">

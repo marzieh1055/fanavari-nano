@@ -1,8 +1,14 @@
-import React from "react";
+import React , { useEffect } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
+import Axios from "../../../axiosinstancs";
 
 export default function OpenedRequests() {
+  useEffect(() => {
+    Axios.get("/api/v1/request").then(async (res) => {
+      console.log(res);
+    })
+  },[])
   return (
     <div className="px-6">
       <div className=" py-6">

@@ -69,12 +69,12 @@ export default function Panel() {
     {/* <Sidebar /> */}
     { <SidebarUser objects={[
         {title : "خدمات",
-          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],
-          links : ["/panel/guarantee" , "/panel/addFacilities" ]
+          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
+          links : ["/panel/guarantee" , "/panel/addFacilities" , "/panel/openedRequests" ]
         },
         {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" , "درخواست های جاری" , "راهنمای سایت"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/openedRequests" , "/panel/siteGuide" ]
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "راهنمای سایت"],
+          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" ]
         },
         {title : "اطلاعات کاربری",
           drop : [],

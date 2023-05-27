@@ -15,14 +15,14 @@ export default function AddFacilities() {
   const textChangeHandler = (event) => {
     setTitleText(event.target.value)
   }
-
+  
   const addFacilitiesReq = () => {
     console.log(file)
     formDataFile.append('user_id', 2)
     formDataFile.append('type', 'facilities')
     formDataFile.append('title', "titleText")
     formDataFile.append('file', file)
-  
+    
     axios.post("/api/v1/request", formDataFile, 
     {
       headers: {
@@ -32,37 +32,27 @@ export default function AddFacilities() {
     ).then(res => {
       console.log(res)
       if(res.data.success == true ){
-        toast.notify(response.message)
+        toast("درخواست با موفقیت ثبت شد")
       }
       else(
         console.log("Ddd")
-      )
-    }
+        )
+      }
     ).catch(err => {
       console.log(err)
+      toast("خطا در ارسال درخواست")
     })
   }
-
+  
   const notify = ()=>{
-    <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={true}
-    newestOnTop
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss={false}
-    draggable
-    pauseOnHover
-/>
     toast("Here is the toast notification!");
 }
 
-  const fileHandler = (e) => {
-    // const selectFile = e.files[0];
-    // setFile(selectFile)
-    // fileReq = new File([selectFile] , "form.pdf" ,{ type: 'application/pdf'})
-    // formDataFile.append('file' , fileReq)
+const fileHandler = (e) => {
+  // const selectFile = e.files[0];
+  // setFile(selectFile)
+  // fileReq = new File([selectFile] , "form.pdf" ,{ type: 'application/pdf'})
+  // formDataFile.append('file' , fileReq)
 
     const temp = e.target.files[0];
     console.log(temp)
@@ -80,6 +70,17 @@ export default function AddFacilities() {
 
   return (
     <div className="px-5">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
       <div className=" py-6">
         <p className="text-xl font-extrabold">درخواست تسهیلات </p>
       </div>
@@ -111,7 +112,7 @@ export default function AddFacilities() {
               2-دانلود و آپلود به روش ما !
             </p>
           </div>
-          <button onClick={notify} className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
+          <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
             <AiOutlineDownload className="text-2xl ml-2" />
             دانلود فایل{" "}
           </button>{" "}

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
+import Axios from "../../../axiosinstancs";
 
 export default function ViewRequest() {
+
+  useEffect(() => {
+    Axios.get("/api/v1/get_check_doc/13").then(async (res) => {
+      console.log(res);
+    })
+  },[])
   return (
     <div>
       <div className=" py-6">
