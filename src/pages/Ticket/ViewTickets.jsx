@@ -63,10 +63,15 @@ export default function ViewTickets() {
                     <button className={
                       item.status === "open" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" :
                       item.status === "waiting" ? "text-yellow-400 border border-yellow-400 rounded-xl p-2 px-3" :
-                        item.status === "closed" ? "text-red-400 border border-green-400 rounded-xl p-2 px-3" :
-                        item.status === "resolved" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" : ""
+                      item.status === "closed" ? "text-red-400 border border-green-400 rounded-xl p-2 px-3" :
+                      item.status === "resolved" ? "text-green-600 border border-green-600 rounded-xl p-2 px-3" : ""
 
-                    }>{item.status}</button>
+                    }>{
+                      item.status === "open" ? "باز" :
+                      item.status === "waiting" ? "در انتظار پاسخ" :
+                      item.status === "closed" ? "بسته" :
+                      item.status === "resolved" ? "پاسخ داده شد" : ""
+                    }</button>
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     {dateConversion(item.updated_at)}
