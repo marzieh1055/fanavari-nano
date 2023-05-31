@@ -1,13 +1,14 @@
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 
+import React, { useState , useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import React, { useState } from "react";
 import { AiFillFolder, AiOutlineDownload } from "react-icons/ai";
+import { UserDataContext } from "../../contexts/UserData.Provider";
 
-export default function AddFacilities() {
-  
-  
+export default function AddFacilities() {  
+  const {userDatas} = useContext(UserDataContext)
+  console.log(userDatas);
   const formDataFile = new FormData();
   const [file , setFile] = useState(null)
   const [titleText , setTitleText] = useState("")
@@ -18,7 +19,7 @@ export default function AddFacilities() {
   
   const addFacilitiesReq = () => {
     console.log(file)
-    formDataFile.append('user_id', 2)
+    formDataFile.append('user_id', userDatas.user.id)
     formDataFile.append('type', 'facilities')
     formDataFile.append('title', "titleText")
     formDataFile.append('file', file)
