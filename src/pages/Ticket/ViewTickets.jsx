@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
-import Support from "../support/Support";
-import Loading from "../../components/Loading/Loading";
+import Loader from "../../components/Loader/Loader";
 import { dateConversion } from "../../helper/dateConversion.cjs";
+import { Link } from "react-router-dom";
 
 export default function ViewTickets() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [tickets, setTickets] = useState([])
-  const [showSupport , setShowSupport] = useState(false)
   
-  const [supportData , setSupportData] = useState({})
-
-
   useEffect(() => {
     const getTicket = () => {
       Axios.get("/api/v1/ticket").then(async (res) => {
@@ -25,12 +21,8 @@ export default function ViewTickets() {
     getTicket()
   }, [])
 
-  const supportHandler = (event) => {
-    setSupportData(event)
-    setShowSupport(true)
-  } 
+  
 
-  if (showSupport) return <Support datas={supportData} close={setShowSupport} />
   return (
     <div>
       <div className=" py-6">
@@ -47,7 +39,7 @@ export default function ViewTickets() {
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
-            {isLoading && <Loading />}
+            {isLoading && <Loader />}
           <tbody>
             {tickets && tickets.map((item) => {
               return (
@@ -79,9 +71,9 @@ export default function ViewTickets() {
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">
 
-                      <button onClick={() => supportHandler(item)} className="text-blue-700 border border-blue-700 rounded-xl p-2 px-3">
+                      <Link to={`/panel/suport/${item.id}`} className="text-blue-700 border border-blue-700 rounded-xl p-2 px-3">
                         مشاهده
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>

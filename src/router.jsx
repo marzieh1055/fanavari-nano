@@ -25,6 +25,7 @@ import UserInfo from "./pages/User/UserInfo";
 import LegalUserInfo from "./pages/User/LegalUserInfo";
 import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
+import ViewDetailRequest from './pages/request/ViewDetailRequest'
 
 const routes = [
   {
@@ -41,12 +42,12 @@ const routes = [
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "addTicket", element: <AddTicket /> },
-      { path: "suport", element: <Support /> },
+      { path: "suport/:ticket_route_id", element: <Support /> },
       { path: "siteGuide", element: <SiteGuide /> },
       { path: "guarantee", element: <Guarantee /> },
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
-      { path: "viewRequest", element: <ViewRequest /> },
+      { path: "viewRequest/:id", element: <ViewDetailRequest /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },

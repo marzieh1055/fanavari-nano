@@ -6,7 +6,7 @@ export default function AllNotifs() {
 
   useEffect(() => {
     getAllnotification()
-  }, [console.log(allnotif)]);
+  }, []);
 
   const getAllnotification = () => {
     Axios.get("/api/v1/get_all_notification").then(async res => {

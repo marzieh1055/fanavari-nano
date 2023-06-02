@@ -1,15 +1,18 @@
 import React , { useEffect, useState } from "react";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { BiErrorCircle } from "react-icons/bi";
 import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import Loader from '../../components/Loader/Loader'
+import { Link } from "react-router-dom";
 
 export default function OpenedRequests() {
   const [reqDatas , setReqDatas] = useState([])
+  const [isLoading , setIsLoading] = useState(true)
+
   useEffect(() => {
-    Axios.get("/api/v1/request").then(async (res) => {
+    Axios.get("/api/v1/get_current_request_user").then(async (res) => {
       console.log(res);
       setReqDatas(res.data)
+      setIsLoading(false)
     })
   },[])
   return (
@@ -18,60 +21,54 @@ export default function OpenedRequests() {
         <p className="text-xl font-extrabold"> درخواست های جاری</p>
       </div>
       <div className="flex flex-wrap ">
+        {isLoading && <Loader /> }
         {
           reqDatas.map(item => {
             return (
               <div key={item.id} className="p-3 w-1/3">
-              <div className="bg-white rounded-xl p-4  ">
-                <div className="flex justify-between">
-                  <div className="flex items-center">
-                    <p className="bg-blue-200 p-0.5 pt-1 px-2 rounded-lg text-blue-800 text-xs">
-                      1
+                <Link to={`/panel/viewRequest/${item.id}`}>
+                  <div className="bg-white rounded-xl p-4  ">
+                    <div className="flex justify-between">
+                      <div className="flex items-center">
+                        <p className="bg-blue-200 p-0.5 pt-1 px-2 rounded-lg text-blue-800 text-xs">
+                          وضعیت:
+                        </p>
+
+                        {/* {رنگا و اسماشون مونده} */}
+                        <p className={  item.status === "null" || item.status === null ? "text-yellow-400 font-bold mx-2 text-xs" : 
+                                        item.status === "check" ? "text-blue-800 font-bold mx-2 text-xs" : 
+                                        item.status === "assessment" ? "text-blue-800 font-bold mx-2 text-xs" : 
+                                        item.status === "committee" ? "text-blue-800 font-bold mx-2 text-xs" : 
+                                        item.status === "credit" ? "text-green-400 font-bold mx-2 text-xs" : "text-blue-800 font-bold mx-2 text-xs"
+                          }>
+                          {
+                            item.status === "null" || item.status === null ? "در انتظار بررسی" : 
+                            item.status === "check" ? "بررسی مدارک" : 
+                            item.status === "assessment" ? "شروع ارزیابی و جلسه با مشاور فنی" : 
+                            item.status === "report" ? "گزارش ارزیابی" : 
+                            item.status === "committee" ? "کمیته" : 
+                            item.status === "credit" ? "اعلام حد اعتباری" : "در حال بررسی"
+                          }
+                        </p>
+                      </div>
+                      <p className="text-sm">{onlyDateConversion(item.created_at)}</p>
+                    </div>
+                    <p className="font-bold text-sm pt-2 ">{item.type === "facilities" ? "درخواست تسهیلات" : 
+                                                            item.type === "guarantee" ? "درخواست ضمانت" : "درخواست"
+                    }</p>
+                    <p className="font-bold text-xs text-gray-400 pb-2 ">
+                        شناسه درخواست : {item.shenaseh}
                     </p>
-                    <p className="text-blue-800 font-bold mx-2 text-xs">
-                      تایید کارشناس
-                    </p>
+                    <img src="/./src/assets/imges/user.png" alt="" className="h-8" />
                   </div>
-                  <p className="text-sm">{onlyDateConversion(item.created_at)}</p>
-                </div>
-                <p className="font-bold text-sm pt-2 ">{item.type === "facilities" ? "درخواست تسهیلات" : 
-                                                        item.type === "guarantee" ? "درخواست ضمانت" : "درخواست"
-                }</p>
-                <p className="font-bold text-xs text-gray-400 pb-2 ">
-                    شناسه درخواست : {item.shenaseh}
-                </p>
-                <img src="/./src/assets/imges/user.png" alt="" className="h-8" />
+                </Link>
               </div>
-            </div>
+              
             )
           })
         }
       </div>
-      <div className="flex h- max">
-        <div className="px-2 h-60 w-1/2">
-          <div className="flex flex-col bg-white rounded-xl p-6 h-full">
-            <p className="font-bold">مدارک اصلی</p>
-            <div className="flex flex-col w-full h-full items-center justify-center">
-              <AiOutlineCheckCircle className="text-4xl text-green-500  my-2" />
-              <p className="font-bold text-3xl">با موفقیت تکمیل شد ! </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="px-2 h-60 w-1/2">
-          <div className="flex flex-col bg-white rounded-xl p-6 h-full ">
-            <p className="font-bold">اسناد</p>
-            <div className="flex text-gray-500">
-              <BiErrorCircle />
-              <p className=" text-sm mx-2">حداکثر تعداد اسناد 5 عدد می باشد</p>
-            </div>
-            <div className="flex flex-col w-full h-full items-center justify-center">
-              <AiOutlineCheckCircle className="text-4xl text-green-500  my-2 " />
-              <p className="font-bold text-3xl">با موفقیت تکمیل شد ! </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }
