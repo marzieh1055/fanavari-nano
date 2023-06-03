@@ -8,35 +8,50 @@ const Addexpert = () => {
 
       <div className="flex flex-wrap">
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">نام و نام خانوادگی</p>
+          <p className="font-bold text-sm">نام</p>
           <input
             type="text"
             placeholder="امیر حسین عابدی"
             className="outline-none placeholder:text-sm"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">محل صدور</p>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">نام خانوادگی</p>
           <input
             type="text"
-            placeholder="فارس / شیراز / ..."
+            placeholder="امیر حسین عابدی"
             className="outline-none placeholder:text-sm"
           />
         </div>
-
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">پسوورد</p>
+          <p className="font-bold text-sm">کد ملی</p>
+          <input
+            type="text"
+            placeholder="0321514687/97"
+            className="outline-none placeholder:text-sm"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">تلفن همراه</p>
+          <input
+            type="text"
+            placeholder="03298748978"
+            className="outline-none placeholder:text-sm"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+          <p className="font-bold text-sm">ایمیل</p>
+          <input
+            type="text"
+            placeholder="rangbarmohad@gmail.com"
+            className="outline-none placeholder:text-sm"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">رمز عبور</p>
           <input
             type="text"
             placeholder="12345678"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">سری و سریال شناسنامه</p>
-          <input
-            type="text"
-            placeholder="024165058410 / 306545605"
             className="outline-none placeholder:text-sm"
           />
         </div>
@@ -48,16 +63,8 @@ const Addexpert = () => {
             className="outline-none placeholder:text-sm"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">ملیت</p>
-          <input
-            type="text"
-            placeholder="ایرانی"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد ملی</p>
+          <p className="font-bold text-sm">شماره شناسنامه</p>
           <input
             type="text"
             placeholder="0321514687/97"
@@ -72,25 +79,8 @@ const Addexpert = () => {
             className="outline-none placeholder:text-sm"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">شماره شناسنامه</p>
-          <input
-            type="text"
-            placeholder="0321514687/97"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">شغل</p>
-          <input
-            type="text"
-            placeholder="طراح"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
-
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس</p>
+          <p className="font-bold text-sm">محل صدور</p>
           <input
             type="text"
             placeholder="فارس / شیراز / ..."
@@ -117,7 +107,7 @@ const Addexpert = () => {
           <p className="font-bold text-sm">زن</p>
         </div>
         <div className="flex w-96 items-center m-3">
-          <p className="font-bold text-sm">وضعیت تعهل:</p>
+          <p className="font-bold text-sm">وضعیت تاهل:</p>
           <input
             type="radio"
             name="gender"
@@ -133,6 +123,7 @@ const Addexpert = () => {
           />
           <p className="font-bold text-sm">متاهل</p>
         </div>
+        
         <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">وضعیت اقامت :</p>
           <input
@@ -153,17 +144,13 @@ const Addexpert = () => {
       </div>
       <div className="w-full">
         <p className="my-2">تحصیلات</p>
-        <div className="my-4 relative border rounded-xl w-max overflow-hidden">
-          <select
-            name=""
-            id=""
-            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500"
-          >
-            <option value="مهندسی برق" className="">
-              مهندسی برق
-            </option>
-          </select>
-          <p className="absolute top-0 pt-1 px-4 text-sm font-semibold">رشته</p>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">رشته</p>
+          <input
+            type="text"
+            placeholder=" ..."
+            className="outline-none placeholder:text-sm"
+          />
         </div>
         <div className="w-4/6">
           <input type="range" name="" id="" className="w-full" />
@@ -199,14 +186,7 @@ const Addexpert = () => {
           />
         </div>
 
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن همراه</p>
-          <input
-            type="text"
-            placeholder="03298748978"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
+
         <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
           <p className="font-bold text-sm">تلفن</p>
           <input
@@ -223,14 +203,7 @@ const Addexpert = () => {
             className="outline-none placeholder:text-sm"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">پست الکترونیک</p>
-          <input
-            type="text"
-            placeholder="rangbarmohad@gmail.com"
-            className="outline-none placeholder:text-sm"
-          />
-        </div>
+
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">آدرس محل کار</p>
           <input
