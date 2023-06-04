@@ -5,7 +5,7 @@ const WarrantyDocuments = ({details , close}) => {
     <form className="bg-white rounded-3xl mt-3 p-3">
       <div style={{display:"flex" , justifyContent:"space-between"}}>
         <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
-        <span onClick={() => close(false)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
+         <span onClick={() => close(false)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
       </div>
       <hr className="border-dashed" />
 
@@ -57,9 +57,6 @@ const WarrantyDocuments = ({details , close}) => {
                 برای بارگذاری کلیک کنید
               </a>
             </div>
-            <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
-              ذخیره{" "}
-            </button>
           </div>
         </div>
         <div className="w-1/2 px-2">
@@ -155,9 +152,6 @@ const WarrantyDocuments = ({details , close}) => {
                 برای بارگذاری کلیک کنید
               </a>
             </div>
-            <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
-              ذخیره{" "}
-            </button>
           </div>
         </div>
       </div>
