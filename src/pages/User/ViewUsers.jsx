@@ -7,6 +7,8 @@ import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 
 
 
+
+
 export default function ViewUsers() {
   const [isPerson, setIsPerson] = useState(true);
   const [allGenuineUser, setAllGenuineUser] = useState(null);
@@ -18,7 +20,7 @@ export default function ViewUsers() {
   
   useEffect(() => {
     getUserGenuine();
-    getUserLegal()
+    getUserLegal();
   }, []);
   const getUserGenuine = () => {
     Axios.get("/api/admin/get_genuine").then(async res => {
@@ -42,18 +44,20 @@ export default function ViewUsers() {
   }
   const handleSelectRow = (item) => {
     setSelectedItem(item);
-    setShowDetailsUsergenuine(true);
-    // console.log(item);
+    // setShowDetailsUsergenuine(true);
+    console.log(item);
   };
   const handleSelectRow2 = (item) => {
     setSelectedItem(item);
-    setShowDetailsUserlegal(true);
-    // console.log(item);
+    // setShowDetailsUserlegal(true);
+    console.log(item);
   };
+  // این قسمت کار نمیکنه
   const showSelectedUser = () => {
     Axios.get(`/api/admin//users/${selectedItem.id}`).then(async res => {
-      // console.log(res.data)
-      setAllGenuineUser(res.data)
+      // setAllGenuineUser(res.data)
+      console.log(res.data)
+
     }
     ).catch(err => {
       console.log(err)
