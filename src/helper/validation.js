@@ -1,5 +1,6 @@
 export const Validation = (data , type) => {
     const errors =  {}
+    const datas = data
 
     if (data.type === "genuine") {
         if (type === "singup") {
@@ -19,6 +20,8 @@ export const Validation = (data , type) => {
  
             if (!data.national_code) {
                 errors.national_code = "این فیلد نباید خالی باشد"
+            } else if (data.national_code.length !== 10) {
+                errors.national_code = "تعداد ارقام صحیح نمیباشد"
             } else {
                 delete errors.national_code
             }
@@ -77,6 +80,8 @@ export const Validation = (data , type) => {
             
             if (!data.national_company) {
                 errors.national_company = "این فیلد نباید خالی باشد"
+            } else if (data.national_company.length !== 11) {
+                errors.national_company = "تعداد ارقام صحیح نمیباشد"
             } else {
                 delete errors.national_company
             }
@@ -144,5 +149,20 @@ export const Validation = (data , type) => {
             delete errors.phone
         }
     }
+
+    if (type === "addExpert") {
+        Object.keys(data).map((item) => {
+            if (item === "national_code") {
+                if (!item) {
+                    errors.national_code = "این فیلد نباید خالی باشد"
+                } else if (item.length !== 10) {
+                    errors.national_code = "تعداد ارقام واردشده صحیح نمی باشد"
+                } else {
+                    delete errors.national_code
+                }
+            }
+        })
+    }
+
     return errors;
 }

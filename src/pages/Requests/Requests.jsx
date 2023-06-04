@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../components/Topbar/Topbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Button from "../../components/Button/Button";
 import Expert from "../../components/Expert/Expert";
+import Axios from "../../../axiosinstancs";
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import ExpertList from "../../components/modal/ExpertList";
+import Loader from "../../components/Loader/Loader";
 
 const Requests = () => {
+
+  const [requests , setRequests] = useState([])
+  const [showDetails , setShowDetails] = useState(null)
+  const [showExpertList , setShowExpertList] = useState(null)
+  const [isLoading , setIsLoading] = useState(true)
+  const [updatePage , setUpdatePage] = useState(0)
+
+  console.log(updatePage);
+  useEffect(() => {
+    setIsLoading(true)
+    Axios.get("/api/admin/view_all_request").then(async(res) => {
+      // console.log(res);
+      const newData = res.data.reverse()
+      setRequests(newData)
+      setIsLoading(false)
+    })
+  },[updatePage])
+  const detailsHandler = (ev) => {
+    if (showDetails === null) {
+      setShowDetails(ev)
+    } else {
+      setShowDetails(null)
+    }
+  }
   return (
     <>
       <div className="pr-6 py-6 flex justify-between items-center w-c-13">
@@ -98,108 +126,144 @@ const Requests = () => {
           </button>
         </div>
       </div>
+        {
+          isLoading && <Loader />
+        }
       <ul className="w-c-13 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative">
-        <div className="absolute shadow-c rounded-2xl w-c-17 top-12 text-sm right-1/2 translate-x-1/2 bg-white p-3.5 flex flex-col gap-2">
-          <div className="p-2 flex justify-between">
-            <div>لیست کارشناسان</div>
-            <Button type="close" />
-          </div>
-          <Expert name="متین موسوی" avatar="/src/assets/imges/user.png" />
-          <Expert name="مرضیه محمدی" avatar="/src/assets/imges/user.png" />
-          <Expert name="محمد رنجبر" avatar="/src/assets/imges/user.png" />
-        </div>
-        <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
-          <a className="w-1/6 text-center" href="">
-            شناسه
-          </a>
-          <a className="w-1/6 text-center" href="">
-            درخواست
-          </a>
-          <a className="w-1/6 text-center" href="">
-            درخواست‌دهنده
-          </a>
-          <a className="w-1/6 text-center" href="">
-            شناکارشناس مربوطه
-          </a>
-          <a className="w-1/6 text-center" href="">
-            تاریخ ثبت نام کارشناس
-          </a>
-          <a className="w-1/6 text-center" href="">
-            اعمال
-          </a>
-        </li>
-        <li className="flex items-center gap-3.5 py-3.5 text-c-10 text-xs">
-          <a className="w-1/6 text-center" href="">
-            12355
-          </a>
-          <a className="w-1/6 text-center" href="">
-            ضمانت نامه
-          </a>
-          <a className="w-1/6 text-center" href="">
-            امیرک
-          </a>
-          <a className="w-1/6 text-center text-sm text-c-3" href="">
-            محمد
-          </a>
-          <a className="w-1/6 text-center" href="">
-            1400/12/2
-          </a>
-          <button className="w-1/6 text-center border border-c-7 rounded-xl flex gap-2">
-            <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
-              <div className="text-c-5">مدیریت</div>
-              <div>
-                <img
-                  className="w-1.5 h-c-12"
-                  src="/src/assets/imges/ViewRequests/VectorAZ.png"
-                  alt=""
-                />
-              </div>
-            </div>
-          </button>
-        </li>
-        <li className="flex justify-between gap-3.5 p-3.5 bg-white rounded-xl text-c-3 font-bold text-xs">
-          <div className="flex flex-col gap-7">
-            <div>
-              کارشناس: <a href="">محمد</a>
-            </div>
-            <div>
-              متقاضی: <a href="">محمد</a>
-            </div>
-            <div>
-              شناسه: <a href="">محمد</a>
-            </div>
-            <div>
-              تاریخ بت درخواست: <a href="">محمد</a>
-            </div>
-          </div>
-          <div className="flex flex-col gap-7">
-            <div>
-              نوع درخواست: <a href="">محمد</a>
-            </div>
-            <div>
-              تاریخ عضویت درخواست: <a href="">محمد</a>
-            </div>
-            <div>
-              امضای کارشناس: <a href="">محمد</a>
-            </div>
-            <button
-              href=""
-              className="p-2 rounded-xl border border-c-7 text-c-9"
-            >
-              تغییر کارنشاس
-            </button>
-          </div>
-          <button className="flex justify-center items-center gap-2 p-2 border border-c-7 rounded-xl bg-c h-c-15">
-            <div className="text-c-5">کوچک کن</div>
-            <div>
-              <img
-                className="w-1.5 h-c-12 rotate-180"
-                src="/src/assets/imges/ViewRequests/VectorAZ.png"
-                alt=""
-              />
-            </div>
-          </button>
-        </li>
+
+
+
+        {
+          showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type}/> : ""
+        }
+            <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
+              <a className="w-1/6 text-center" href="">
+                شناسه
+              </a>
+              <a className="w-1/6 text-center" href="">
+                درخواست
+              </a>
+              <a className="w-1/6 text-center" href="">
+                درخواست‌دهنده
+              </a>
+              <a className="w-1/6 text-center" href="">
+                شناکارشناس مربوطه
+              </a>
+              <a className="w-1/6 text-center" href="">
+                تاریخ ثبت نام کارشناس
+              </a>
+              <a className="w-1/6 text-center" href="">
+                اعمال
+              </a>
+            </li>
+        {
+          requests && requests.map((item) => {
+            if (item.id === showDetails) {
+              console.log(item);
+              return (
+                <li key={item.id} className="flex justify-between gap-3.5 p-3.5 bg-white rounded-xl text-c-3 font-bold text-xs">
+                  <div className="flex flex-col gap-7">
+                    <div>
+                      کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.name} ${item.expert_assignment.expert.name}` : "فاقد کارشناس"} </a>
+                    </div>
+                    <div>
+                      متقاضی: <a href="">{`${item.user.name} ${item.user.family}`}</a>
+                    </div>
+                    <div>
+                      شناسه: <a href="">{item.shenaseh}</a>
+                    </div>
+                    <div>
+                      تاریخ ثبت درخواست: <a href="">{onlyDateConversion(item.created_at)}</a>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div>
+                      نوع درخواست: <a href="">{item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}</a>
+                    </div>
+                    <div>
+                      تاریخ عضویت درخواست: <a href="">محمد</a>
+                    </div>
+                    <div>
+                      امضای کارشناس: <a href="">محمد</a>
+                    </div>
+                    {
+                      <button
+                        href=""
+                        className="p-2 rounded-xl border border-c-7 text-c-9"
+                        onClick={() => setShowExpertList({id:item.id , type: "change"})}
+                      >
+                        تغییر کارنشاس
+                      </button>
+                    }
+                  </div>
+                  
+                  <button onClick={() => detailsHandler(null)} className="flex justify-center items-center gap-2 p-2 border border-c-7 rounded-xl bg-c h-c-15">
+                    <div className="text-c-5">کوچک کن</div>
+                    <div>
+                      <img
+                        className="w-1.5 h-c-12 rotate-180"
+                        src="/src/assets/imges/ViewRequests/VectorAZ.png"
+                        alt=""
+                      />
+                    </div>
+                  </button>
+                </li>
+              )
+            } else {
+              return (
+                <li key={item.id} className="flex items-center gap-3.5 py-3.5 text-c-10 text-xs">
+                  <a className="w-1/6 text-center" href="">
+                    {item.shenaseh}
+                  </a>
+                  <a className="w-1/6 text-center" href="">
+                    {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
+                  </a>
+                  <a className="w-1/6 text-center" href="">
+                    {`${item.user.name} ${item.user.family}`}
+                  </a>
+                  <a className="w-1/6 text-center text-sm text-c-3" href="">
+                    {item.expert_assignment !== null ? item.expert_assignment.user2_id : "بدون کارشناس"}
+                  </a>
+                  <a className="w-1/6 text-center" href="">
+                    {onlyDateConversion(item.created_at)}
+                  </a>
+                  {
+                    item.expert_assignment !== null ? 
+                    <button onClick={() => detailsHandler(item.id)} className=" text-center border border-c-7 rounded-xl flex gap-2">
+                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                        <div className="text-c-5">مدیریت</div>
+                        <div>
+                          <img
+                            className="w-1.5 h-c-12"
+                            src="/src/assets/imges/ViewRequests/VectorAZ.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </button> 
+                  
+                  : 
+
+                    <button onClick={() => setShowExpertList({id:item.id , type: "assign"})} className=" text-center border border-c-9 rounded-xl flex gap-2">
+                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                        <div className="border-c-7 text-c-9">مدیریت</div>
+                        <div>
+                          <img
+                            className="w-1.5 h-c-0"
+                            src="/src/assets/imges/ViewRequests/VectorAZ.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </button>
+                  }
+                </li>
+              )
+            }
+          })
+        }
+
+        
       </ul>
       <div className="p-3.5 w-c-13 flex justify-between items-center">
         <div className="text-xs font-bold text-c-8">
