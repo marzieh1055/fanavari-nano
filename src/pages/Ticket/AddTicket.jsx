@@ -59,9 +59,9 @@ export default function AddTicket() {
         placeholder="عنوان تیکت"
       />
 
-      <div className="flex flex-row w-96 items-center m-3 text-center">
-        <div className="flex w-96 items-center m-3 text-center">
-        <p className="font-bold ">اولویت:</p>
+      <div className="flex flex-row  justify-normal w-full items-center m-3 text-center">
+        <div className="flex 	items-center m-3 text-center">
+        <p className="font-bold ">خدمات:</p>
         <input
           type="radio"
           onChange={changeHandler}
@@ -90,7 +90,7 @@ export default function AddTicket() {
         />
         <p className="font-bold ">عمومی</p>
         </div>
-        <div className="flex w-96 items-center m-3 text-center">
+        <div className="flex w-28 items-center m-3 text-center">
         <p className="font-bold ">اولویت:</p>
         <input
           type="radio"
