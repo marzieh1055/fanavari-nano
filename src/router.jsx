@@ -54,7 +54,7 @@ const routes = [
 
       
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
-      { path: "expertCheckRequest", element: <ExpertCheckRequest /> },
+      { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
       
