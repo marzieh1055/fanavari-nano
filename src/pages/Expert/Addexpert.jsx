@@ -233,52 +233,52 @@ const Addexpert = () => {
           />
         </div>
         <div className="flex flex-wrap">
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">شغل</p>
-          <input
-            type="text"
-            placeholder="برنامه نویس وب"
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.job}
-            name="job"
-          />
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">شغل</p>
+            <input
+              type="text"
+              placeholder="برنامه نویس وب"
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.job}
+              name="job"
+            />
+          </div>
+
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">آدرس</p>
+            <input
+              type="text"
+              placeholder="تهران"
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.address}
+              name="address"
+            />
+          </div>
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">کد پستی</p>
+            <input
+              type="text"
+              placeholder=""
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.postal_code}
+              name="postal_code"
+            />
+          </div>
+          <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+            <p className="font-bold text-sm">تلفن ثابت</p>
+            <input
+              type="text"
+              placeholder="********021"
+              className="outline-none placeholder:text-sm"
+              onChange={changeHandler}
+              value={userDatas.home_number}
+              name="home_number"
+            />
+          </div>
         </div>
-        
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس</p>
-          <input
-            type="text"
-            placeholder="تهران"
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.address}
-            name="address"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد پستی</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.postal_code}
-            name="postal_code"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن ثابت</p>
-          <input
-            type="text"
-            placeholder="********021"
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.home_number}
-            name="home_number"
-          />
-        </div>
-      </div>
       </div>
       <div className="flex flex-wrap ">
         <div className="flex w-96 items-center m-3">
@@ -345,10 +345,9 @@ const Addexpert = () => {
           <p className="font-bold text-sm">غیر مقیم</p>
         </div>
       </div>
-
-      <div className="mx-4">
-        <button onClick={addHandler} className="p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
-          اضافه کردن
+      <div className="w-3/4 mx-auto">
+        <button onClick={addHandler} className="w-full p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
+          ثبت
         </button>
       </div>
 
