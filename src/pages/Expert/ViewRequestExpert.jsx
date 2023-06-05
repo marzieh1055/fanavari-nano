@@ -45,10 +45,7 @@ export default function ViewRequestExpert() {
     };
 
 
-<<<<<<< HEAD
     // if (showDetailsUser) return <ViewRequestExpert close={setShowDetailsUser} details={selectedItem} />
-=======
->>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
     return (
         <div>
             <div className="flex justify-between py-6">

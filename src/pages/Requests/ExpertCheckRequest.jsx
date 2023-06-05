@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import WarrantyDocuments from "./WarrantyDocuments";
-<<<<<<< HEAD
 import { useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
 import StepConfirm from "../../components/modal/StepConfirm";
 import Loader from "../../components/Loader/Loader";
-=======
->>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
 export default function ExpertCheckRequest() {
   const reqId = useParams()
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsdoc, setShowDetailsdoc] = useState(false);
-<<<<<<< HEAD
   const [reqStatus, setReqStatus] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
   const [showStepConfirm, setShowStepConfirm] = useState(null)
 
 
-=======
   //step
   // const [Checkdocument, setCheckdocument] = useState(null);
   // const [Startassessment  , setStartassessment] = useState(null);
@@ -82,7 +77,6 @@ export default function ExpertCheckRequest() {
 
   
 
->>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
 
   const handleSelectRow =()=> {
     // setSelectedItem(item);
