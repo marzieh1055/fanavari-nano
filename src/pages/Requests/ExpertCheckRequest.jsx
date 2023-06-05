@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import WarrantyDocuments from "./WarrantyDocuments";
 import { useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
@@ -12,7 +12,21 @@ export default function ExpertCheckRequest() {
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
   const [showStepConfirm, setShowStepConfirm] = useState(null)
-
+  const [fileData , setFileData] = useState({
+    file : null, 
+    request_id : reqId.id
+  })
+  
+  const step3Handler = () => {
+    
+    const formData = new FormData();
+    formData.append("request_id" , fileData.request_id)
+    formData.append("file" , fileData.file)
+    console.log(fileData);
+    Axios.post("/api/admin/evaluation_report" , formData).then(async(res) => {
+      console.log(res);
+    })
+  }
 
   //step
   // const [Checkdocument, setCheckdocument] = useState(null);
@@ -98,6 +112,15 @@ export default function ExpertCheckRequest() {
       console.log(updatePage);
     })
   }, [ updatePage ])
+
+  const changeHandler = (e) => {
+    if (e.target.name === "file") {
+      setFileData({
+        ...fileData , [e.target.name] : e.target.files[0]
+      })
+    }
+    console.log(fileData);
+  }
   if (showDetailsdoc) return <WarrantyDocuments close={setShowDetailsdoc} details={selectedItem} />
 
   return (
@@ -157,7 +180,8 @@ export default function ExpertCheckRequest() {
       }
       <div className="flex py-6">
         <div className="w-1/2 px-2">
-          <div className=" bg-white rounded-xl p-5">
+          {
+            reqStatus.assessment && reqStatus.report === false ? <div className=" bg-white rounded-xl p-5">
             <div className=" pb-4">
               <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
             </div>
@@ -168,11 +192,59 @@ export default function ExpertCheckRequest() {
               <p className="">
                 تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
               </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                fileData.file === null ? 
+                <label htmlFor="step3" className="text-blue-400 text-xs w-full justify-center">
+                  برای بارگذاری کلیک کنید
+                </label> :
+                <div>
+                  <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                  {
+                    `نام فایل : ${fileData.file.name}`
+                  }
+                  </p>
+                  <label htmlFor="step3" className="text-yellow-400 m-1 text-xs w-full justify-center">
+                  برای تغییر کلیک کنید
+                  </label>
+                </div>
+                
+              }
+              <input id="step3" style={{display : "none"}} type="file" onChange={changeHandler} name="file" />
+              <button onClick={step3Handler} className="w-full  rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">
+            ثبت{" "}
+            </button>
             </div>
           </div>
+          :
+          reqStatus.report === true ? 
+          <div className=" bg-white rounded-xl p-5">
+            <div className=" pb-4">
+              <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
+            </div>
+            <hr className="border-dashed border-gray-300" />
+
+            <hr className="border-dashed border-gray-300" />
+            <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+              <p className="">
+                کامل شده
+              </p>
+            </div>
+          </div> 
+          :
+          <div className=" bg-white rounded-xl p-5">
+            <div className=" pb-4">
+              <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
+            </div>
+            <hr className="border-dashed border-gray-300" />
+
+            <hr className="border-dashed border-gray-300" />
+            <div className="rounded-lg p-2 border text-red-700 text-xs mt-4">
+              <p className="">
+                این بخش هنوز فعال نیست
+              </p>
+            </div>
+          </div>
+          }
 
           <div className=" bg-white rounded-xl p-5 mt-2">
             <div className=" pb-4">
