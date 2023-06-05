@@ -3,7 +3,18 @@ import Axios from '../../../axiosinstancs'
 import { Validation } from "../../helper/validation";
 
 const Addexpert = () => {
+  const [bcInput, setBcInput] = useState(true)
+  const [showPass, setShowPass] = useState(false);
+  const [showComPass, setComShowPass] = useState(false);
 
+  const showPassHandler = (e) => {
+    e.preventDefault();
+    setShowPass(!showPass)
+  }
+  const showComPassHandler = (e) => {
+    e.preventDefault();
+    setComShowPass(!showComPass)
+  }
   const [userDatas, setUserData] = useState({
     name: "",
     family: "",
@@ -39,6 +50,7 @@ const Addexpert = () => {
     setErrors(Validation(userDatas, 'addExpert'))
   }, [userDatas])
 
+
   const changeHandler = (ev) => {
     if (ev.target.type === "radio") {
       setUserData({
@@ -69,7 +81,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="امیر حسین"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.name}
             name="name"
@@ -80,7 +92,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="عابدی"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.family}
             name="family"
@@ -92,53 +104,79 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="1234567890"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.national_code}
             name="national_code"
           />
-          {errors.national_code && <span style={{ color: '#e88f19' }}>{errors.national_code}</span>}
+          {/* {errors.national_code && <span style={{ color: '#e88f19' }}>{errors.national_code}</span>} */}
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">شماره تلفن</p>
           <input
             type="text"
             placeholder="09123456789"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.phone}
             name="phone"
           />
         </div>
-
-        <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
+        {/* <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
           <p className="font-bold text-sm">رمز عبور</p>
           <input
             type="text"
             placeholder="09110911aa"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.password}
             name="password"
           />
+        </div> */}
+        <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
+          <p className="font-bold text-sm"> رمز عبور</p>
+          <div className="relative">
+            <input
+              onChange={changeHandler}
+              value={userDatas.password}
+              name='password'
+              className="w-full border-none outline-none placeholder:text-sm focus:border-none "
+              type={showPass ? "text" : "password"}
+            />
+            <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+              <img className="w-full h-full" src={showPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
+            </button>
+          </div>
+          {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
+
         </div>
+
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تایید رمز عبور</p>
-          <input
+          <div className="relative">
+
+            <input onChange={changeHandler} value={userDatas.password_confirmation} name='password_confirmation' id="form-2" className="w-full border-none outline-none placeholder:text-sm" type={showComPass ? "text" : "password"} />
+            <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+              <img className="w-full h-full" src={showComPass ? "/src/assets/imges/view.png" : "/src/assets/imges/hide.png"} alt="" />
+            </button>
+          </div>
+
+          {errors.password_confirmation && showErr.password_confirmation && <span style={{ color: '#e88f19' }}>{errors.password_confirmation}</span>}
+          {/* <input
             type="text"
             placeholder="09110911aa"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.password_confirmation}
             name="password_confirmation"
-          />
+          /> */}
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام پدر</p>
           <input
             type="text"
             placeholder="حسین"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.father_name}
             name="father_name"
@@ -149,7 +187,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.number_certificate}
             name="number_certificate"
@@ -160,7 +198,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="00/02/14"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.birth_day}
             name="birth_day"
@@ -171,7 +209,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="تهران"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.place_issue}
             name="place_issue"
@@ -182,7 +220,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="amir@mail.com"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.emali}
             name="email"
@@ -204,7 +242,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder=""
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.nationality}
             name="nationality"
@@ -215,7 +253,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="لیسانس"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.education}
             name="education"
@@ -226,7 +264,7 @@ const Addexpert = () => {
           <input
             type="text"
             placeholder="مهندسی برق"
-            className="outline-none placeholder:text-sm"
+            className="w-full border-none outline-none placeholder:text-sm"
             onChange={changeHandler}
             value={userDatas.study}
             name="study"
@@ -238,7 +276,7 @@ const Addexpert = () => {
             <input
               type="text"
               placeholder="برنامه نویس وب"
-              className="outline-none placeholder:text-sm"
+              className="w-full border-none outline-none placeholder:text-sm"
               onChange={changeHandler}
               value={userDatas.job}
               name="job"
@@ -250,7 +288,7 @@ const Addexpert = () => {
             <input
               type="text"
               placeholder="تهران"
-              className="outline-none placeholder:text-sm"
+              className="w-full border-none outline-none placeholder:text-sm"
               onChange={changeHandler}
               value={userDatas.address}
               name="address"
@@ -261,7 +299,7 @@ const Addexpert = () => {
             <input
               type="text"
               placeholder=""
-              className="outline-none placeholder:text-sm"
+              className="w-full border-none outline-none placeholder:text-sm"
               onChange={changeHandler}
               value={userDatas.postal_code}
               name="postal_code"
@@ -272,7 +310,7 @@ const Addexpert = () => {
             <input
               type="text"
               placeholder="********021"
-              className="outline-none placeholder:text-sm"
+              className="w-full border-none outline-none placeholder:text-sm"
               onChange={changeHandler}
               value={userDatas.home_number}
               name="home_number"
