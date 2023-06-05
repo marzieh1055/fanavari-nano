@@ -1,19 +1,88 @@
-import React, { useState , useEffect } from "react";
+import React, { useState } from "react";
 import WarrantyDocuments from "./WarrantyDocuments";
+<<<<<<< HEAD
 import { useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
 import StepConfirm from "../../components/modal/StepConfirm";
 import Loader from "../../components/Loader/Loader";
+=======
+>>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
 export default function ExpertCheckRequest() {
   const reqId = useParams()
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsdoc, setShowDetailsdoc] = useState(false);
+<<<<<<< HEAD
   const [reqStatus, setReqStatus] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
   const [showStepConfirm, setShowStepConfirm] = useState(null)
 
 
+=======
+  //step
+  // const [Checkdocument, setCheckdocument] = useState(null);
+  // const [Startassessment  , setStartassessment] = useState(null);
+  // const [Evaluationreport  , setEvaluationreport] = useState(null);
+  // const [Getreport  , setGetreport] = useState(null);
+  // const [Getcommittee  , setGetcommittee] = useState(null);
+  // const [Credit  , setCredit] = useState(null);
+
+  // const formData = new FormData();
+  // const [Committee , setCommittee] = useState({
+  //   id : "",
+  //   file1 :null,
+  //   file2 : null, 
+  //   file3 : null
+  //   })
+  // const subHandler = () => {
+  //   formData.append("request_id" , data.هی)
+  //   formData.append("file1" , data.file1)
+  //   formData.append("file2" , data.file2)
+  //   formData.append("file3" , data.file3)
+    
+  //   Axios.post("/api/v1/committee" , formData )
+  //   .then((respons) => console.log(respons))
+  //   .catch((error) => console.log(error))
+  // }
+  // useEffect(() => {
+  //   getCheckdocument();
+  // }, []);
+  // const getCheckdocument = () => {
+  //   Axios.get(`/api/admin/check_document/${id}` ).then(async (res) => {
+  //     console.log(res.data);     
+  //     setCheckdocument(true)
+  //   }
+  //   ).catch(err => {
+  //     console.log(err)
+  //   }
+  //   )
+  // }
+  // const getStartassessment = () => {
+  //   Axios.get(`/api/admin/start_assessment${id}` ).then(async (res) => {
+  //     console.log(res.data);     
+  //     setStartassessment(true)
+  //   }
+  //   ).catch(err => {
+  //     console.log(err)
+  //   }
+  //   )
+  // }  
+  // const getcommittee = () => {
+  //   Axios.get(`/api/admin/committee${id}` ).then(async (res) => {
+  //     console.log(res.data);     
+  //     setCommittee(true)
+  //   }
+  //   ).catch(err => {
+  //     console.log(err)
+  //   }
+  //   )
+  // } 
+
+
+
+  
+
+>>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
 
   const handleSelectRow =()=> {
     // setSelectedItem(item);

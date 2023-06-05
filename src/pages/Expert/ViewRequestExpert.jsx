@@ -16,7 +16,7 @@ export default function ViewRequestExpert() {
         getCurrentRequests();
     }, []);
     const getCurrentRequests = () => {
-        Axios.get("/api/admin/get_current_requests/9").then(async res => {
+        Axios.get(`/api/admin/get_current_requests/${id}`).then(async res => {
             console.log(res.data)
             setCurrentRequests(res.data)
         }
@@ -26,7 +26,7 @@ export default function ViewRequestExpert() {
         )
     }
     const getAllRequests = () => {
-        Axios.get("/api/admin/get_request_with_expert/9").then(async res => {
+        Axios.get(`/api/admin/get_request_with_expert/${id}`).then(async res => {
             console.log(res.data)
             setAlltRequests(res.data)
         }
@@ -43,27 +43,15 @@ export default function ViewRequestExpert() {
         setShowDetailsUser(true)
         // console.log(item);
     };
-    // const showSelectedUser = () => {
-    //     Axios.get(`/api/admin//users/${selectedItem.id}`).then(async res => {
-    //         //   console.log(res.data)
-    //         setAllGenuineUser(res.data)
-    //     }
-    //     ).catch(err => {
-    //         console.log(err)
-    //     }
-    //     )
-    // }
 
-    // const deleteUserHandler = (userId) => {
-    //   axios.delete(`/user/${userId}` , {headers : ["Access-Control-Allow-Origin"] })
-    //     .then((res) => console.log(res))
-    // }
 
+<<<<<<< HEAD
     // if (showDetailsUser) return <ViewRequestExpert close={setShowDetailsUser} details={selectedItem} />
+=======
+>>>>>>> 6217e796419d73fdce8f6841dac447ec7eabd2b2
     return (
         <div>
             <div className="flex justify-between py-6">
-                <p className="text-xl font-extrabold" >مشاهده کاربران</p>
                 <div className="flex bg-white rounded-xl">
                     <button
                         className={`${!isPerson && " bg-blue-600 text-white "
@@ -145,37 +133,6 @@ export default function ViewRequestExpert() {
                 )}
             </div>
             <hr />
-            <div className="flex justify-between py-4 text-gray-600 items-center">
-                <div className="">نمایش 21-31 از 80 مورد</div>
-                <div className="">
-                    <button className="text-gray-800 text-2xl font-bold mx-2">
-                        {"<"}
-                    </button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">6</button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">5</button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">4</button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">3</button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">2</button>
-                    <button className="text-gray-800 text-lg font-bold mx-2">1</button>
-                    <button className="text-gray-800 text-2xl font-bold mx-2">
-                        {" "}
-                        {">"}{" "}
-                    </button>
-                </div>
-                <div className="flex">
-                    <select
-                        dir="ltr"
-                        name=""
-                        id=""
-                        className="rounded outline-none w-20 text-gray-800 border ml-4"
-                    >
-                        <option value="10">10</option>
-                        <option value="10">15</option>
-                        <option value="10">20</option>
-                    </select>
-                    <p>تعداد کاربر در هر صفحه</p>
-                </div>
-            </div>
         </div>
     );
 }
