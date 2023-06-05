@@ -4,8 +4,8 @@ import axios from "axios";
 import { useEffect } from "react";
 export default function ViewRequestExpert() {
     const [isPerson, setIsPerson] = useState(true);
-    const [CurrentRequests, setCurrentRequests] = useState(true);
-    const [AllRequests, setAlltRequests] = useState(true);
+    const [CurrentRequests, setCurrentRequests] = useState([]);
+    const [AllRequests, setAlltRequests] = useState([]);
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [showDetailsUser, setShowDetailsUser] = useState(false);
@@ -45,6 +45,7 @@ export default function ViewRequestExpert() {
     };
 
 
+    // if (showDetailsUser) return <ViewRequestExpert close={setShowDetailsUser} details={selectedItem} />
     return (
         <div>
             <div className="flex justify-between py-6">
