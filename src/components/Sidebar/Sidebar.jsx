@@ -6,7 +6,7 @@ const Sidebar = ({objects}) => {
   return (
     <section className="w-c-3 bg-c-2 h-c-5 sticky top-6 p-6 rounded-3xl">
       <div className="mb-6">
-        <img className="mx-auto" src="/src/assets/imges/image 2.png" alt="" />
+        <img className="mx-auto " src="/src/assets/imges/image 2.png" alt="" />
       </div>
       <div className="mb-6">
         <img className="mx-auto" src="/src/assets/imges/Line 1.png" alt="" />

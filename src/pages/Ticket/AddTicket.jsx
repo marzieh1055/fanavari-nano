@@ -59,7 +59,8 @@ export default function AddTicket() {
         placeholder="عنوان تیکت"
       />
 
-      <div className="flex w-96 items-center m-3 text-center">
+      <div className="flex flex-row  justify-normal w-full items-center m-3 text-center">
+        <div className="flex 	items-center m-3 text-center">
         <p className="font-bold ">خدمات:</p>
         <input
           type="radio"
@@ -79,6 +80,46 @@ export default function AddTicket() {
           className="relative overflow-hidden mx-2 w-5 rounded h-full"
         />
         <p className="font-bold ">تسهیلات</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="category"
+          value="other"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 rounded h-full"
+        />
+        <p className="font-bold ">عمومی</p>
+        </div>
+        <div className="flex w-28 items-center m-3 text-center">
+        <p className="font-bold ">اولویت:</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="high"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+        />
+        <p className="font-bold ">زیاد</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="normal"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 rounded h-full"
+        />
+        <p className="font-bold ">متوسط</p>
+        <input
+          type="radio"
+          onChange={changeHandler}
+          name="Priority"
+          value="low"
+          id=""
+          className="relative overflow-hidden mx-2 w-5 rounded h-full"
+        />
+        <p className="font-bold ">کم</p>
+      </div>
       </div>
       <div className="relative">
         <textarea
@@ -114,36 +155,6 @@ export default function AddTicket() {
           className="opacity-0 w-full h-full absolute top-0"
         />
       </div>
-      </div>
-      <div className="flex w-96 items-center m-3 text-center">
-        <p className="font-bold ">اولوییت:</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="high"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-        />
-        <p className="font-bold ">زیاد</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="normal"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">متوسط</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="low"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">کم</p>
       </div>
       <button onClick={subHandler} className="p-3 w-full bg-blue-800 rounded-xl text-white my-3">ارسال تیکت</button>
     </div>

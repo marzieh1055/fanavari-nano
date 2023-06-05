@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import Axios from "../../../axiosinstancs";
-import axios from "axios";
 import { useEffect } from "react";
 import Viewdetailuser from "./Viewdetailuser";
+import ViewLegalDetailUser from "./ViewLegalDetailUser";
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+
+
+
+
+
 export default function ViewUsers() {
   const [isPerson, setIsPerson] = useState(true);
   const [allGenuineUser, setAllGenuineUser] = useState(null);
   const [allLegalUser, setAllLegalUser] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showDetailsUser, setShowDetailsUser] = useState(false);
+  const [showDetailsUsergenuine, setShowDetailsUsergenuine] = useState(false);
+  const [showDetailsUserlegal, setShowDetailsUserlegal] = useState(false);
   const [selectUser, setSelectUser] = useState({});
   
   useEffect(() => {
     getUserGenuine();
-    getUserLegal()
+    getUserLegal();
   }, []);
   const getUserGenuine = () => {
     Axios.get("/api/admin/get_genuine").then(async res => {
-      console.log(res.data)
+      // console.log(res.data)
       setAllGenuineUser(res.data)
     }
     ).catch(err => {
@@ -37,13 +44,20 @@ export default function ViewUsers() {
   }
   const handleSelectRow = (item) => {
     setSelectedItem(item);
-    setShowDetailsUser(true)
+    // setShowDetailsUsergenuine(true);
     console.log(item);
   };
+  const handleSelectRow2 = (item) => {
+    setSelectedItem(item);
+    // setShowDetailsUserlegal(true);
+    console.log(item);
+  };
+  // این قسمت کار نمیکنه
   const showSelectedUser = () => {
     Axios.get(`/api/admin//users/${selectedItem.id}`).then(async res => {
+      // setAllGenuineUser(res.data)
       console.log(res.data)
-      setAllGenuineUser(res.data)
+
     }
     ).catch(err => {
       console.log(err)
@@ -55,8 +69,9 @@ export default function ViewUsers() {
   //   axios.delete(`/user/${userId}` , {headers : ["Access-Control-Allow-Origin"] })
   //     .then((res) => console.log(res))
   // }
+  if (showDetailsUserlegal) return <ViewLegalDetailUser close={setShowDetailsUserlegal} details={selectedItem} />
 
-  if (showDetailsUser) return <Viewdetailuser close={setShowDetailsUser} details={selectedItem} />
+  if (showDetailsUsergenuine) return <Viewdetailuser close={showDetailsUsergenuine} details={selectedItem} />
   return (
     <div>
       <div className="flex justify-between py-6">
@@ -115,7 +130,7 @@ export default function ViewUsers() {
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    {GenuineUser.created_at}
+                    {onlyDateConversion(GenuineUser.created_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">
@@ -132,30 +147,39 @@ export default function ViewUsers() {
             })}
           </table>
         ) : (
+
           <table className="w-full ">
             <tr className=" sticky top-0   ">
               <th className="bg-white p-3 rounded-r-xl ">نام شرکت </th>
-              <th className="bg-white p-3 ">نوع شخص حقوقی </th>
-              <th className="bg-white p-3 ">نوع درخواست </th>
               <th className="bg-white p-3 ">نام ونام خانوادگی نماینده </th>
-              <th className="bg-white p-3 rounded-l-xl">محل ثبت </th>
+              <th className="bg-white p-3 ">شناسه مالی شرکت</th>
+              <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
             {allLegalUser && allLegalUser.map((LegalUser) => {
               return (
                 <tr
-                  //  className="p-4 text-xs text-gray-400 font-bold"
-                  id={LegalUser.id}
-                  className={selectedItem?.id === LegalUser.id
+                key={LegalUser.id}
+                id={LegalUser.id}
+                
+                className={
+                  selectedItem?.id === LegalUser.id
                     ? console.log(LegalUser.id)
-                    : "p-4 text-xs text-gray-400 font-bold"
-                  }
-                >
-
+                    : null
+                }
+              >
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.company_name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_code}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.created_at}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">شیراز</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                    <div className="flex">
+                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                        حذف کاربر
+                      </button>
+                      <button onClick={() => handleSelectRow2(LegalUser)} className="text-blue-700 border rounded-2xl p-2 ">
+                        اطلاعات بیشتر
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               );
             })}

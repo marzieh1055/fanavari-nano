@@ -20,9 +20,10 @@ const Requests = () => {
   useEffect(() => {
     setIsLoading(true)
     Axios.get("/api/admin/view_all_request").then(async(res) => {
-      // console.log(res);
       const newData = res.data.reverse()
       setRequests(newData)
+      // console.log(res.data);
+      // console.log(res.data[0].expert_assignment.created_at);
       setIsLoading(false)
     })
   },[updatePage])
@@ -141,17 +142,18 @@ const Requests = () => {
                 شناسه
               </a>
               <a className="w-1/6 text-center" href="">
-                درخواست
-              </a>
-              <a className="w-1/6 text-center" href="">
                 درخواست‌دهنده
               </a>
               <a className="w-1/6 text-center" href="">
-                شناکارشناس مربوطه
+                 نوع درخواست
               </a>
               <a className="w-1/6 text-center" href="">
-                تاریخ ثبت نام کارشناس
+                تاریخ ثبت  درخواست
               </a>
+              <a className="w-1/6 text-center" href="">
+                 تاریخ اختصاص کارشناس
+              </a>
+
               <a className="w-1/6 text-center" href="">
                 اعمال
               </a>
@@ -163,36 +165,41 @@ const Requests = () => {
               return (
                 <li key={item.id} className="flex justify-between gap-3.5 p-3.5 bg-white rounded-xl text-c-3 font-bold text-xs">
                   <div className="flex flex-col gap-7">
-                    <div>
-                      کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.name} ${item.expert_assignment.expert.name}` : "فاقد کارشناس"} </a>
+                  <div>
+                      شناسه درخواست: <a href="">{item.shenaseh}</a>
                     </div>
-                    <div>
-                      متقاضی: <a href="">{`${item.user.name} ${item.user.family}`}</a>
-                    </div>
-                    <div>
-                      شناسه: <a href="">{item.shenaseh}</a>
-                    </div>
-                    <div>
-                      تاریخ ثبت درخواست: <a href="">{onlyDateConversion(item.created_at)}</a>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-7">
                     <div>
                       نوع درخواست: <a href="">{item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}</a>
                     </div>
                     <div>
-                      تاریخ عضویت درخواست: <a href="">محمد</a>
+                      نام کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.name} ${item.expert_assignment.expert.name}` : "فاقد کارشناس"} </a>
                     </div>
                     <div>
-                      امضای کارشناس: <a href="">محمد</a>
+                      درخواست‌دهنده: <a href="">{`${item.user.name} ${item.user.family}`}</a>
                     </div>
+
+                  </div>
+                  <div className="flex flex-col gap-7">
+                  <div>
+                      تاریخ ثبت درخواست: <a href="">{onlyDateConversion(item.created_at)}</a>
+                    </div>
+                    <div>
+                      تاریخ ثبت کارشناس: <a href="">{item.expert_assignment !== null ? `${onlyDateConversion(item.expert_assignment.created_at)}` : "فاقد کارشناس"}</a>
+                    </div>
+                    <div>
+                      شماره همراه کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.phone}` : "فاقد کارشناس"} </a>
+                    </div>                   
+{/* 
+                    <div>
+                      امضای کارشناس: <a href="">محمد</a>
+                    </div> */}
                     {
                       <button
                         href=""
                         className="p-2 rounded-xl border border-c-7 text-c-9"
                         onClick={() => setShowExpertList({id:item.id , type: "change"})}
                       >
-                        تغییر کارنشاس
+                        تغییر کارشناس
                       </button>
                     }
                   </div>
@@ -216,17 +223,18 @@ const Requests = () => {
                     {item.shenaseh}
                   </a>
                   <a className="w-1/6 text-center" href="">
-                    {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
-                  </a>
-                  <a className="w-1/6 text-center" href="">
                     {`${item.user.name} ${item.user.family}`}
                   </a>
-                  <a className="w-1/6 text-center text-sm text-c-3" href="">
-                    {item.expert_assignment !== null ? item.expert_assignment.user2_id : "بدون کارشناس"}
+                  <a className="w-1/6 text-center" href="">
+                    {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
                   </a>
                   <a className="w-1/6 text-center" href="">
                     {onlyDateConversion(item.created_at)}
                   </a>
+                  {/* اینجا باید تاریخ اختصاص درخواست به کارشناس باشه */}
+                  {/* <a className="w-1/6 text-center text-sm text-c-3" href="">
+                  {item.expert_assignment !== null ? `${onlyDateConversion(item.expert_assignment.id)}` : "فاقد کارشناس"} 
+                  </a>  */}
                   {
                     item.expert_assignment !== null ? 
                     <button onClick={() => detailsHandler(item.id)} className=" text-center border border-c-7 rounded-xl flex gap-2">
