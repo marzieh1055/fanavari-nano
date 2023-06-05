@@ -1,53 +1,52 @@
-import React , { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from '../../../axiosinstancs'
 import { Validation } from "../../helper/validation";
 
 const Addexpert = () => {
 
-
-  const [userDatas , setUserData] = useState({
-    name : "",
-    family : "",
-    national_code : "", //10
-    phone : "", //11
-    email : "",
-    password : "",
-    father_name : "",
-    number_certificate : "",
-    birth_day : "",
-    place_issue : "",
-    gender : "",
-    marital : "",
-    residential : "",
-    education : "",
-    study : "",
-    job : "",
-    address : "",
-    postal_code : "",
-    home_number : "", //11
-    nationality:"" ,
-    password_confirmation:"" ,
-    series_certificate:"" ,
-    work_address: "",
-    work_phone:"" ,
-    work_postal_code:"" ,
+  const [userDatas, setUserData] = useState({
+    name: "",
+    family: "",
+    national_code: "", //10
+    phone: "", //11
+    email: "",
+    password: "",
+    father_name: "",
+    number_certificate: "",
+    birth_day: "",
+    place_issue: "",
+    gender: "",
+    marital: "",
+    residential: "",
+    education: "",
+    study: "",
+    job: "",
+    address: "",
+    postal_code: "",
+    home_number: "", //11
+    nationality: "",
+    password_confirmation: "",
+    // series_certificate:"" ,
+    // work_address: "",
+    // work_phone:"" ,
+    // work_postal_code:"" ,
   })
 
-  const [errors , setErrors] = useState({});
-  const [showErr , setShowErr] = useState({});
+  const [errors, setErrors] = useState({});
+  const [showErr, setShowErr] = useState({});
 
   useEffect(() => {
-      setErrors(Validation(userDatas , 'addExpert'))
-  } , [ userDatas ])
+    setErrors(Validation(userDatas, 'addExpert'))
+  }, [userDatas])
 
   const changeHandler = (ev) => {
     if (ev.target.type === "radio") {
       setUserData({
-        ...userDatas , [ev.target.name] : ev.target.value
+        ...userDatas, [ev.target.name]: ev.target.value
       })
     } else if (ev.target.type === "text") {
       setUserData({
-        ...userDatas , [ev.target.name] : ev.target.value
+        ...userDatas, [ev.target.name]: ev.target.value
       })
     }
     console.log(userDatas);
@@ -55,7 +54,7 @@ const Addexpert = () => {
 
   const addHandler = (event) => {
     event.preventDefault()
-    Axios.post("/api/admin/expert" , userDatas).then(async(res) => {
+    Axios.post("/api/admin/expert", userDatas).then(async (res) => {
       console.log(res);
     })
   }
@@ -76,7 +75,7 @@ const Addexpert = () => {
             name="name"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام خانوادگی</p>
           <input
             type="text"
@@ -98,9 +97,9 @@ const Addexpert = () => {
             value={userDatas.national_code}
             name="national_code"
           />
-          {errors.national_code && <span style={{color:'#e88f19'}}>{errors.national_code}</span>}
+          {errors.national_code && <span style={{ color: '#e88f19' }}>{errors.national_code}</span>}
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">شماره تلفن</p>
           <input
             type="text"
@@ -111,18 +110,8 @@ const Addexpert = () => {
             name="phone"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">پست الکترونیکی</p>
-          <input
-            type="text"
-            placeholder="amir@mail.com"
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.emali}
-            name="email"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+
+        <div className="box-input mt-3 w-96 border rounded-2xl mx-3 p-2">
           <p className="font-bold text-sm">رمز عبور</p>
           <input
             type="text"
@@ -133,7 +122,7 @@ const Addexpert = () => {
             name="password"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تایید رمز عبور</p>
           <input
             type="text"
@@ -155,7 +144,7 @@ const Addexpert = () => {
             name="father_name"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">شماره شناسنامه</p>
           <input
             type="text"
@@ -177,7 +166,7 @@ const Addexpert = () => {
             name="birth_day"
           />
         </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">محل صدور</p>
           <input
             type="text"
@@ -188,8 +177,18 @@ const Addexpert = () => {
             name="place_issue"
           />
         </div>
-
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">پست الکترونیکی</p>
+          <input
+            type="text"
+            placeholder="amir@mail.com"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.emali}
+            name="email"
+          />
+        </div>
+        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">سریال شناسنامه</p>
           <input
             type="text"
@@ -199,7 +198,7 @@ const Addexpert = () => {
             value={userDatas.series_certificate}
             name="series_certificate"
           />
-        </div>
+        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کشور</p>
           <input
@@ -211,8 +210,77 @@ const Addexpert = () => {
             name="nationality"
           />
         </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">میزان تحصیلات</p>
+          <input
+            type="text"
+            placeholder="لیسانس"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.education}
+            name="education"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">رشته تحصیلی</p>
+          <input
+            type="text"
+            placeholder="مهندسی برق"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.study}
+            name="study"
+          />
+        </div>
+        <div className="flex flex-wrap">
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">شغل</p>
+          <input
+            type="text"
+            placeholder="برنامه نویس وب"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.job}
+            name="job"
+          />
+        </div>
+        
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">آدرس</p>
+          <input
+            type="text"
+            placeholder="تهران"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.address}
+            name="address"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">کد پستی</p>
+          <input
+            type="text"
+            placeholder=""
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.postal_code}
+            name="postal_code"
+          />
+        </div>
+        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+          <p className="font-bold text-sm">تلفن ثابت</p>
+          <input
+            type="text"
+            placeholder="********021"
+            className="outline-none placeholder:text-sm"
+            onChange={changeHandler}
+            value={userDatas.home_number}
+            name="home_number"
+          />
+        </div>
       </div>
-      <div className="flex flex-wrap mx-4">
+      </div>
+      <div className="flex flex-wrap ">
         <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">جنسیت:</p>
           <input
@@ -277,8 +345,21 @@ const Addexpert = () => {
           <p className="font-bold text-sm">غیر مقیم</p>
         </div>
       </div>
-      <div className="w-full">
-        <div className="w-4/6">
+
+      <div className="mx-4">
+        <button onClick={addHandler} className="p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
+          اضافه کردن
+        </button>
+      </div>
+
+    </form>
+  );
+};
+
+export default Addexpert;
+
+
+{/* <div className="w-4/6">
             <p className="font-bold text-sm">تاحصیلات :</p>
           <div className="flex justify-between">
             <p className="text-sm font-bold">سیکل</p>
@@ -345,65 +426,8 @@ const Addexpert = () => {
               onClick={changeHandler}
             />
           </div>
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">رشته تحصیلی</p>
-          <input
-            type="text"
-            placeholder="مهندسی برق"
-            className="outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.study}
-            name="study"
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-            <p className="font-bold text-sm">شغل</p>
-            <input
-              type="text"
-              placeholder="برنامه نویس وب"
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.job}
-              name="job"
-            />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-            <p className="font-bold text-sm">آدرس</p>
-            <input
-              type="text"
-              placeholder="تهران"
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.address}
-              name="address"
-            />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-            <p className="font-bold text-sm">کد پستی</p>
-            <input
-              type="text"
-              placeholder=""
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.postal_code}
-              name="postal_code"
-            />
-          </div>
-          <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-            <p className="font-bold text-sm">تلفن ثابت</p>
-            <input
-              type="text"
-              placeholder="********021"
-              className="outline-none placeholder:text-sm"
-              onChange={changeHandler}
-              value={userDatas.home_number}
-              name="home_number"
-            />
-          </div>
-          <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+        </div> */}
+{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
             <p className="font-bold text-sm">آدرس محل کار</p>
             <input
               type="text"
@@ -424,8 +448,8 @@ const Addexpert = () => {
               value={userDatas.work_phone}
               name="work_phone"
             />
-          </div>
-          <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
+          </div> */}
+{/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
             <p className="font-bold text-sm">کدپستی محل کار</p>
             <input
               type="text"
@@ -435,28 +459,4 @@ const Addexpert = () => {
               value={userDatas.work_postal_code}
               name="work_postal_code"
             />
-          </div>
-        </div>
-      
-      
-      <div className="flex items-center">
-        <p className="m-4 ">امضاء کارشناس</p>
-        <img
-          src="/./src/assets/imges/Expert/emza.png"
-          alt=""
-          className="h-20 my-5"
-        />
-      </div>
-      <div className="mx-4">
-        <button onClick={addHandler} className="p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
-          اضافه کردن
-        </button>
-        <button className="p-3 py-2 text-red-500 border-2 border-red-500 rounded-lg mx-1">
-          حذف کارشناس
-        </button>
-      </div>
-    </form>
-  );
-};
-
-export default Addexpert;
+          </div> */}

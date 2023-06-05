@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from './ViewDetailExpert'
-
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 export default function ViewExpert() {
   const [allExpert, setAllExpert] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null);
@@ -57,7 +57,6 @@ export default function ViewExpert() {
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
-          <ViewRequestExpert />
           <tbody>
           {allExpert && allExpert.map((expert) => {
               return (
