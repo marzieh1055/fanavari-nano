@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import WarrantyDocuments from "./WarrantyDocuments";
+import { useParams } from "react-router-dom";
+import Axios from "../../../axiosinstancs";
 export default function ExpertCheckRequest() {
+  const reqId = useParams()
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsdoc, setShowDetailsdoc] = useState(false);
 
@@ -9,6 +12,23 @@ export default function ExpertCheckRequest() {
     setShowDetailsdoc(true)
     console.log("item");
   };
+  useEffect(() => {
+    Axios.get(`/api/admin/check_document/${reqId.id}`).then(async (res) => {
+      console.log(res);
+      
+    })
+    // Axios.get(`/api/v1/get_all_status/${reqId.id}`).then(async (res) => {
+    //   console.log(res);
+    //   setReqStatus({
+    //     check: res.data.check,
+    //     assessment: res.data.assessment,
+    //     report: res.data.report,
+    //     commite: res.data.commite,
+    //     credit: res.data.credit,
+    //   })
+    //   setIsLoading(false)
+    // })
+  }, [])
   if (showDetailsdoc) return <WarrantyDocuments close={setShowDetailsdoc} details={selectedItem} />
 
   return (
