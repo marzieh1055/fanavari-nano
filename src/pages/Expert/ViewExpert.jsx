@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Axios from "../../../axiosinstancs";
 import ViewDetailExpert from './ViewDetailExpert'
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 
 export default function ViewExpert() {
   const [allExpert, setAllExpert] = useState(null)
@@ -28,6 +29,10 @@ export default function ViewExpert() {
     setShowDetailsUser(true)
     console.log(item);
   };
+  const requestHandler = (item) => {
+    console.log("item" , item);
+  };
+
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
   return (
@@ -74,10 +79,10 @@ export default function ViewExpert() {
                       alt=""
                     />
                   </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td onClick={() => requestHandler(expert.id)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
-                    {expert.created_at}
+                    {onlyDateConversion(expert.created_at)}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                   <div className="flex">

@@ -15,7 +15,7 @@ export default function UploadDoc() {
             <hr className="border-dashed border-gray-300" />
             <p className="text-xs py-3">
               <span className="text-green-400"> توضیحات :</span> فایل را از حالت
-              فشرده خارج کنید و هر فرم را پر کنید سپس در جای مناست بارگذاری کنید
+              فشرده خارج کنید و هر فرم را پر کنید سپس در جای مناسب بارگذاری کنید
             </p>
             <button className="w-full border rounded-lg border-green-400 text-green-400 p-2 font-bold text-sm">
               بارگیری فایل مدارک اصلی
@@ -23,7 +23,7 @@ export default function UploadDoc() {
             <hr className="border-dashed border-gray-300" />
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
+                اجازه نامه تکمیل شده استعلام رفتار اعتباری اشخاص حقیقی به تعداد اعضای هیئت مدیره
               </p>
               <a href="#" className="text-blue-400 text-xs">
                 برای بارگذاری کلیک کنید
@@ -31,7 +31,7 @@ export default function UploadDoc() {
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
+                اجازه نامه تکمیل شده استعلام رفتار اعتباری اشخاص حقوقی به نام شرکت
               </p>
               <a href="#" className="text-blue-400 text-xs">
                 برای بارگذاری کلیک کنید
@@ -39,7 +39,7 @@ export default function UploadDoc() {
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
+              	کاربرگ تکمیل شده 
               </p>
               <a href="#" className="text-blue-400 text-xs">
                 برای بارگذاری کلیک کنید
@@ -47,7 +47,7 @@ export default function UploadDoc() {
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs my-4">
               <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
+              	فرم مشخصات مشتریان 
               </p>
               <a href="#" className="text-blue-400 text-xs">
                 برای بارگذاری کلیک کنید
@@ -69,7 +69,7 @@ export default function UploadDoc() {
 
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت{" "}
+              	تصویر مجوزها و گواهی نامه های اخذ شده توسط شرکت{" "}
               </p>
               <a href="#" className="text-blue-500 text-xs">
                 برای بارگذاری کلیک کنید
@@ -85,15 +85,7 @@ export default function UploadDoc() {
               </a>
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">تصویر کارت ملی و شناسنامه اعضای هیت مدیره </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر کارت ملی و شناسنامه اعضای هیت مدیره که صاحب امضا باشند{" "}
-              </p>
+              <p className="">•	تصویر مدارک هویتی اعضای هیئت مدیره  شرکت که صاحب امضا می باشند (تصویر کارت ملی و شناسنامه) </p>
               <a href="#" className="text-blue-500 text-xs">
                 برای بارگذاری کلیک کنید
               </a>
@@ -117,7 +109,13 @@ export default function UploadDoc() {
               </a>
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">اظهارنامه مالیاتی سال 1398/1399/1400 </p>
+              <p className="">اظهارنامه مالیاتی سال 1398 ، 1399 و 1400 (در صورتی که فروش شرکت بیش از 8 میلیارد تومان بوده گزارش حسابرسی نیز باید ارسال شود)</p>
+              <a href="#" className="text-blue-500 text-xs">
+                برای بارگذاری کلیک کنید
+              </a>
+            </div>
+            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
+              <p className=""> تراز آزمایشی منتهی به تاریخ 30/11/1400 به همراه معین کلیه حسابها</p>
               <a href="#" className="text-blue-500 text-xs">
                 برای بارگذاری کلیک کنید
               </a>
