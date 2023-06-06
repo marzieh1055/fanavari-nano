@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
-
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 export default function AllNotifs() {
   const [allnotif, setAllnotif] = useState(null);
 
@@ -29,7 +29,7 @@ export default function AllNotifs() {
             <tr className=" sticky top-0   ">
               <th className="bg-white p-3 rounded-r-xl ">فرستنده </th>
               <th className="bg-white p-3 ">توضیحات </th>
-              <th className="bg-white p-3 ">پیوند</th>
+              <th className="bg-white p-3 ">تاریخ ارسال</th>
             </tr>
           </thead>
           <tbody>
@@ -42,7 +42,7 @@ export default function AllNotifs() {
                 <td className="p-4 text-xs text-gray-400 font-bold">کارشناس 2 </td>
 
                   <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{notif.created_at} </td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)} </td>
 
                 </tr>
               );

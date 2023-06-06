@@ -69,10 +69,10 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
       return (
         <div  className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
           <div className="w-96 bg-white z-10 rounded-lg p-4 shadow-lg flex flex-col gap-4">
-              <p className="text-center font-bold my-3 mb-1">آیا مایل به تایید این مرحله هستید؟</p>
+              <p className="text-center font-bold my-3 mb-1">آیا مایل به تایید  مرحله {action.step} هستید؟</p>
               <p className="text-center my-3 mb-1">
                 {
-                  action.step === 1 ? "بررسی مدارک" :
+                  action.step === 1 ? " بررسی مدارک تکمیل شد" :
                   action.step === 2 ? "شروع ارزیابی و جلسه" :
                   action.step === 3 ? "گزارش ارزیابی" :
                   action.step === 4 ? "کمیته" :
