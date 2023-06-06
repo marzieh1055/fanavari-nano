@@ -13,7 +13,19 @@ export default function UploadDoc() {
     type_w: type_w,
     file1: null,
     file2: null,
-    file3: null
+    file3: null,
+    licenses: null,
+    register_doc: null,
+    signatory: null,
+    knowledge: null,
+    resume: null,
+    loans: null,
+    statements: null,
+    balances: null,
+    catalogs: null,
+    insurances: null,
+    invoices: null,
+    bills: null,
   })
 
   const oploaddoc = () => {
@@ -26,6 +38,18 @@ export default function UploadDoc() {
     formData.append('file1', document.file1)
     formData.append('file2', document.file2)
     formData.append('file3', document.file3)
+    formData.append('licenses', document.licenses)
+    formData.append('register_doc', document.register_doc)
+    formData.append('signatory', document.signatory)
+    formData.append('knowledge', document.knowledge)
+    formData.append('resume', document.resume)
+    formData.append('loans', document.loans)
+    formData.append('statements', document.statements)
+    formData.append('balances', document.balances)
+    formData.append('catalogs', document.catalogs)
+    formData.append('insurances', document.insurances)
+    formData.append('invoices', document.invoices)
+    formData.append('bills', document.bills)
 
     axios.post("/api/v1/reqest", formData,
       {
@@ -48,19 +72,23 @@ export default function UploadDoc() {
       toast("خطا در ارسال درخواست")
     })
   }
-  
   const changeHandler = (ev) => {
     if (ev.target.type === "radio") {
       setDocment({
-        ...document, [ev.target.name]: ev.target.value
-      })
+        ...document,
+        [ev.target.name]: ev.target.value,
+      });
     } else if (ev.target.type === "text") {
       setDocment({
-        ...document, [ev.target.name]: ev.target.value
-      })
+        ...document,
+        [ev.target.name]: ev.target.value,
+      });
+    } else if (ev.target.type === "file") {
+      const file = ev.target.files[0];
+      setDocment(file);
+      console.log(document)
     }
-    console.log(userDatas);
-  }
+  };
 
 
   return (
@@ -136,7 +164,7 @@ export default function UploadDoc() {
                   </div>
 
               }
-              <input style={{ display: "none" }} className="text-blue-400 text-xs" type="file" onChange={changeHandler} name="file1" />
+              <input style={{ display: "none" }}  className="text-blue-400 text-xs " type="file" onChange={changeHandler} name="file1" />
             </div>
 
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
@@ -185,17 +213,9 @@ export default function UploadDoc() {
               }
               <input style={{ display: "none" }} className="text-blue-400 text-xs" type="file" onChange={changeHandler} name="file3" />
             </div>
-            <div className="rounded-lg p-2 border text-gray-400 text-xs my-4">
-              <p className="">
-                فرم مشخصات مشتریان
-              </p>
-              <a href="#" className="text-blue-400 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-            <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
+            {/* <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
               ذخیره{" "}
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="w-1/2 px-2">
@@ -211,85 +231,274 @@ export default function UploadDoc() {
               <p className="">
                 تصویر مجوزها و گواهی نامه های اخذ شده توسط شرکت{" "}
               </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.licenses === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.licenses.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs" type="file" onChange={changeHandler} name="licenses" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
                 مدارک ثبتی شرکت شامل اساسنامه/لیست سهامداران/روزنامه رسمی آخرین
                 تغییرات ثبتی شرکت{" "}
               </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.register_doc === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.register_doc.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs" type="file" onChange={changeHandler} name="register_doc" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">•	تصویر مدارک هویتی اعضای هیئت مدیره  شرکت که صاحب امضا می باشند (تصویر کارت ملی و شناسنامه) </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.signatory === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.signatory.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs" type="file" onChange={changeHandler} name="signatory" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">گواهی دانش بنیان شرکت </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.knowledge === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.knowledge.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="knowledge" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">رزومه شرکت به همراه مستندات قرارداد های مشابه </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.resume === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.resume.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="resume" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">لیست تسهیلات و وامهای اخذ شده شرکت </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.loans === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.loans.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="loans" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">اظهارنامه مالیاتی سال 1398 ، 1399 و 1400 (در صورتی که فروش شرکت بیش از 8 میلیارد تومان بوده گزارش حسابرسی نیز باید ارسال شود)</p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.statements === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.statements.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="statements" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className=""> تراز آزمایشی منتهی به تاریخ 30/11/1400 به همراه معین کلیه حسابها</p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.balances === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.balances.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="balances" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">مشخصات فنی و کاتالوگ محصول / خدمات </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.catalogs === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.catalogs.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="catalogs" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
               <p className="">
                 آخرین لیست بیمه شرکت به همراه فیش بیمه پرداختی در وجه تامین
                 اجتماعی{" "}
               </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.insurances === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.insurances.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="insurances" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4 ">
               <p className="">
                 پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح{" "}
               </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.invoices === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.invoices.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="invoices" />
             </div>
             <div className="rounded-lg p-2 border text-gray-400 text-xs my-4">
               <p className="">
                 قبوض اب و برق و قرداد اجاره محل اجرای طرح(در صورت استیجاری بودن){" "}
               </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
+              {
+                document.bills === null ?
+                  <label className="text-blue-400 text-xs w-full justify-center">
+                    برای بارگذاری کلیک کنید
+                  </label> :
+                  <div>
+                    <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                      {
+                        `نام فایل : ${document.bills.name}`
+                      }
+                    </p>
+                    <label className="text-yellow-400 m-1 text-xs w-full justify-center">
+                      برای تغییر کلیک کنید
+                    </label>
+                  </div>
+
+              }
+              <input style={{ display: "none" }} className="text-blue-400 text-xs"
+                type="file" onChange={changeHandler} name="bills" />
             </div>
             <button className="w-full  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
               ذخیره{" "}
