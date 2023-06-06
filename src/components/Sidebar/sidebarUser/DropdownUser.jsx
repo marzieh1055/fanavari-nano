@@ -10,8 +10,9 @@ export default function DropdownUser({route , title , itemsList}) {
             <div className="flex items-center gap-4">
               <img
                 className="w-c-4 h-c-4"
-                src="/src/assets/imges/Vector1.png"
+                src="/src/assets/imges/customer.png"
                 alt=""
+                width={20}
               />
               <span className="text-c-5" href="">
                 {title}

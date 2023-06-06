@@ -121,7 +121,7 @@ export default function Panel() {
     {/* Left section */}
 
     <section className="w-c-2 bg-c">
-      <Topbar avatar="/src/assets/imges/user.png" />
+      <Topbar avatar="/src/assets/imges/user-(2).png" />
       <Outlet />
     </section>
   </div>
