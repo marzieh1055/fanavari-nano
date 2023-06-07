@@ -10,23 +10,23 @@ import Loader from "../../components/Loader/Loader";
 
 const Requests = () => {
 
-  const [requests , setRequests] = useState([])
-  const [showDetails , setShowDetails] = useState(null)
-  const [showExpertList , setShowExpertList] = useState(null)
-  const [isLoading , setIsLoading] = useState(true)
-  const [updatePage , setUpdatePage] = useState(0)
+  const [requests, setRequests] = useState([])
+  const [showDetails, setShowDetails] = useState(null)
+  const [showExpertList, setShowExpertList] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [updatePage, setUpdatePage] = useState(0)
 
   console.log(updatePage);
   useEffect(() => {
     setIsLoading(true)
-    Axios.get("/api/admin/view_all_request").then(async(res) => {
+    Axios.get("/api/admin/view_all_request").then(async (res) => {
       const newData = res.data.reverse()
       setRequests(newData)
       // console.log(res.data);
       // console.log(res.data[0].expert_assignment.created_at);
       setIsLoading(false)
     })
-  },[updatePage])
+  }, [updatePage])
   const detailsHandler = (ev) => {
     if (showDetails === null) {
       setShowDetails(ev)
@@ -127,37 +127,34 @@ const Requests = () => {
           </button>
         </div>
       </div>
-        {
-          isLoading && <Loader />
-        }
+      {
+        isLoading && <Loader />
+      }
       <ul className="w-c-13 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative">
-
-
-
         {
-          showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type}/> : ""
+          showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type} /> : ""
         }
-            <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
-              <a className="w-1/6 text-center" href="">
-                شناسه
-              </a>
-              <a className="w-1/6 text-center" href="">
-                درخواست‌دهنده
-              </a>
-              <a className="w-1/6 text-center" href="">
-                 نوع درخواست
-              </a>
-              <a className="w-1/6 text-center" href="">
-                تاریخ ثبت  درخواست
-              </a>
-              <a className="w-1/6 text-center" href="">
-                 تاریخ اختصاص کارشناس
-              </a>
+        <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
+          <a className="w-1/6 text-center" href="">
+            شناسه
+          </a>
+          <a className="w-1/6 text-center" href="">
+            درخواست‌دهنده
+          </a>
+          <a className="w-1/6 text-center pr-8" href="">
+            نوع درخواست
+          </a>
+          <a className="w-1/6 text-center pr-8" href="">
+            تاریخ ثبت  درخواست
+          </a>
+          <a className="w-1/6 text-center pr-5" href="">
+            تاریخ اختصاص به کارشناس
+          </a>
 
-              <a className="w-1/6 text-center" href="">
-                اعمال
-              </a>
-            </li>
+          <a className="w-1/6 text-center pr-8" href="">
+            اعمال
+          </a>
+        </li>
         {
           requests && requests.map((item) => {
             if (item.id === showDetails) {
@@ -165,7 +162,7 @@ const Requests = () => {
               return (
                 <li key={item.id} className="flex justify-between gap-3.5 p-3.5 bg-white rounded-xl text-c-3 font-bold text-xs">
                   <div className="flex flex-col gap-7">
-                  <div>
+                    <div>
                       شناسه درخواست: <a href="">{item.shenaseh}</a>
                     </div>
                     <div>
@@ -180,7 +177,7 @@ const Requests = () => {
 
                   </div>
                   <div className="flex flex-col gap-7">
-                  <div>
+                    <div>
                       تاریخ ثبت درخواست: <a href="">{onlyDateConversion(item.created_at)}</a>
                     </div>
                     <div>
@@ -188,8 +185,8 @@ const Requests = () => {
                     </div>
                     <div>
                       شماره همراه کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.phone}` : "فاقد کارشناس"} </a>
-                    </div>                   
-{/* 
+                    </div>
+                    {/* 
                     <div>
                       امضای کارشناس: <a href="">محمد</a>
                     </div> */}
@@ -197,13 +194,13 @@ const Requests = () => {
                       <button
                         href=""
                         className="p-2 rounded-xl border border-c-7 text-c-9"
-                        onClick={() => setShowExpertList({id:item.id , type: "change"})}
+                        onClick={() => setShowExpertList({ id: item.id, type: "change" })}
                       >
                         تغییر کارشناس
                       </button>
                     }
                   </div>
-                  
+
                   <button onClick={() => detailsHandler(null)} className="flex justify-center items-center gap-2 p-2 border border-c-7 rounded-xl bg-c h-c-15">
                     <div className="text-c-5">کوچک کن</div>
                     <div>
@@ -232,38 +229,38 @@ const Requests = () => {
                     {onlyDateConversion(item.created_at)}
                   </a>
                   {/* اینجا باید تاریخ اختصاص درخواست به کارشناس باشه */}
-                  {/* <a className="w-1/6 text-center text-sm text-c-3" href="">
-                  {item.expert_assignment !== null ? `${onlyDateConversion(item.expert_assignment.id)}` : "فاقد کارشناس"} 
-                  </a>  */}
+                   <a className="w-1/6 text-center text-sm text-c-3" href="">
+                  {item.expert_assignment !== null ? `${onlyDateConversion(item.expert_assignment.created_at)}` : "فاقد کارشناس"} 
+                  </a>  
                   {
-                    item.expert_assignment !== null ? 
-                    <button onClick={() => detailsHandler(item.id)} className=" text-center border border-c-7 rounded-xl flex gap-2">
-                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
-                        <div className="text-c-5">مدیریت</div>
-                        <div>
-                          <img
-                            className="w-1.5 h-c-12"
-                            src="/src/assets/imges/ViewRequests/VectorAZ.png"
-                            alt=""
-                          />
+                    item.expert_assignment !== null ?
+                      <button onClick={() => detailsHandler(item.id)} className=" text-center border border-c-7 rounded-xl flex gap-2">
+                        <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                          <div className="text-c-5">مدیریت</div>
+                          <div>
+                            <img
+                              className="w-1.5 h-c-12"
+                              src="/src/assets/imges/ViewRequests/VectorAZ.png"
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </button> 
-                  
-                  : 
+                      </button>
 
-                    <button onClick={() => setShowExpertList({id:item.id , type: "assign"})} className=" text-center border border-c-9 rounded-xl flex gap-2">
-                      <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
-                        <div className="border-c-7 text-c-9">مدیریت</div>
-                        <div>
-                          <img
-                            className="w-1.5 h-c-0"
-                            src="/src/assets/imges/ViewRequests/VectorAZ.png"
-                            alt=""
-                          />
+                      :
+
+                      <button onClick={() => setShowExpertList({ id: item.id, type: "assign" })} className=" text-center border border-c-9 rounded-xl flex gap-2">
+                        <div className="flex justify-center items-center gap-2 p-2 rounded-xl border border-c-7">
+                          <div className="border-c-7 text-c-9">مدیریت</div>
+                          <div>
+                            <img
+                              className="w-1.5 h-c-0"
+                              src="/src/assets/imges/ViewRequests/x.png"
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
                   }
                 </li>
               )
@@ -271,7 +268,7 @@ const Requests = () => {
           })
         }
 
-        
+
       </ul>
       <div className="p-3.5 w-c-13 flex justify-between items-center">
         <div className="text-xs font-bold text-c-8">

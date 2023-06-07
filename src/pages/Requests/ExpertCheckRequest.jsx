@@ -251,10 +251,9 @@ export default function ExpertCheckRequest() {
                 برای بارگذاری کلیک کنید
               </a>
             </div>
-
           </div>
+          
           <div className="pt-4">
-
             <button className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
               گزارش ناقصی در مدارک{" "}
             </button>

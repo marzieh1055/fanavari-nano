@@ -50,7 +50,6 @@ export default function UploadDoc() {
     formData.append('insurances', document.insurances)
     formData.append('invoices', document.invoices)
     formData.append('bills', document.bills)
-
     axios.post("/api/v1/reqest", formData,
       {
         headers: {

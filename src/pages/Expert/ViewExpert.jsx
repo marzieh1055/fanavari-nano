@@ -54,6 +54,7 @@ export default function ViewExpert() {
               <th className="bg-white p-3 ">نام </th>
               <th className="bg-white p-3 ">نام خانوادگی</th>
               <th className="bg-white p-3 ">تاریخ ثبت نام کارشناس </th>
+              <th className="bg-white p-3 ">تعداد  پروژه </th>
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
@@ -82,6 +83,9 @@ export default function ViewExpert() {
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     {onlyDateConversion(expert.created_at)}
+                  </td>
+                  <td className="p-4 text-xs text-gray-400 font-bold">
+                    {expert.project_count}
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                   <div className="flex">

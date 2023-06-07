@@ -67,6 +67,7 @@ export default function Panel() {
       ]} /> 
     } */}
     {/* <Sidebar /> */}
+
     { <SidebarUser objects={[
         {title : "خدمات",
           drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
@@ -77,10 +78,12 @@ export default function Panel() {
           links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" ]
         },
         {title : "اطلاعات کاربری",
-          drop : [],
+        drop : ["پروفایل کاربری"  ],
+        links : ["/panel/userInfo" ]
         },
 
       ]} />}
+      
     {/* { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
         {title : "خدمات",
           drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات"],

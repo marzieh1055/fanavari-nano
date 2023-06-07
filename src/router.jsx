@@ -26,6 +26,13 @@ import LegalUserInfo from "./pages/User/LegalUserInfo";
 import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
 import ViewDetailRequest from './pages/request/ViewDetailRequest'
+import One from "./pages/Tashilat/steps/One";
+import Two from "./pages/Tashilat/steps/Two";
+import Three from "./pages/Tashilat/steps/three";
+import Four from "./pages/Tashilat/steps/Four";
+import Five from "./pages/Tashilat/steps/Five";
+import Confirm from "./pages/Tashilat/steps/Confirm";
+import Tashilat from "./pages/Tashilat/Tashilat";
 
 const routes = [
   {
@@ -57,8 +64,21 @@ const routes = [
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
+      {
+        path: "tashilat",
+        element: <Tashilat />,
+        children: [
+          { path: "1", element: <One /> },
+          { path: "2", element: <Two /> },
+          { path: "3", element: <Three /> },
+          { path: "4", element: <Four /> },
+          { path: "5", element: <Five /> },
+          { path: "confirm", element: <Confirm /> },
+        ]
+      },
       
     ],
+
   },
 
   { path: "/auth/login", element: <Login /> },

@@ -341,7 +341,7 @@ const Addexpert = () => {
           <p className="font-bold text-sm">زن</p>
         </div>
         <div className="flex w-96 items-center m-3">
-          <p className="font-bold text-sm">وضعیت تعهل:</p>
+          <p className="font-bold text-sm">وضعیت تاهل:</p>
           <input
             type="radio"
             name="marital"
