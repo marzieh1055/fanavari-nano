@@ -12,7 +12,7 @@ import {UserDataContext} from "../../contexts/UserData.Provider";
 const Dashboard = () => {
   const {userDatas} = useContext(UserDataContext)
 
-  console.log(userDatas.user.type)
+  // console.log(userDatas.user.type)
   const [allRequest, setAllRequest] = useState(null);
   const [allExpert, setAllExpert] = useState(null)
   const [allUser, setAllUser] = useState(null)
