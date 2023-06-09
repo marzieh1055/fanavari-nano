@@ -29,7 +29,7 @@ export default function Five() {
               <th className="bg-white p-3  " rowSpan={2}>
                 منتهی به تاریخ{" "}
               </th>
-              <th className="bg-white p-3  ">آخرین تراز آزمایشی </th>
+              <th className="bg-white p-3  ">آخرین تراز آزمایشی سال 1402</th>
               <th className="bg-white p-3  ">سال گذشته </th>
               <th className="bg-white p-3  ">دو سال گذشته </th>
             </tr>
