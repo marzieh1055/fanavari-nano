@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from "react";
 import WarrantyDocuments from "./WarrantyDocuments";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
 import StepConfirm from "../../components/modal/StepConfirm";
 import Loader from "../../components/Loader/Loader";
-import axios from "axios";
-
+import SendFileFirst from "../../components/ChekRequestComp/SendFileFirst";
+import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
+import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
+import CheckReport from "../../components/modal/CheckReport";
 
 export default function ExpertCheckRequest() {
   const reqId = useParams()
+  const navigate = useNavigate()
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsdoc, setShowDetailsdoc] = useState(false);
   const [reqStatus, setReqStatus] = useState({
-    check: false,
-        assessment: false,
-        report: false,
-        commite: false,
-        credit: false,
-        fileName : null,
-        fileName1 : null,
-        fileName2 : null,
-        fileName3 : null,
+        // check: false,
+        // assessment: false,
+        // report: true,
+        // commite: false,
+        // credit: false,
+        // fileName : null,
+        // file_name1 : null,
+        // file_name2 : null,
+        // file_name3 : null,
   })
   const [isLoading, setIsLoading] = useState(true)
-  const [step3SendReq, setStep3SendReq] = useState(false)
-  
   const [updatePage, setUpdatePage] = useState(0)
   const [showStepConfirm, setShowStepConfirm] = useState(null)
+  const [showCheckRep, setShowCheckRep] = useState(null)
 
-  const [fileData, setFileData] = useState({
-    request_id: reqId.id,
-    file: null,
-  })
+
   const [commiteFileData, setComiteFileData] = useState({
     request_id: reqId.id,
     file1: null,
@@ -47,81 +46,15 @@ export default function ExpertCheckRequest() {
         check: res.data.check,
         assessment: res.data.assessment,
         report: res.data.report,
+        // report: true,
         commite: res.data.commite,
+        // commite: true,
         credit: res.data.credit,
       })
       setIsLoading(false)
       console.log(updatePage);
     })
-
-    // get step 3
-    Axios.get(`/api/admin/get_report_for_admin/${reqId.id}`).then(async (res) => {
-      console.log(res);
-      setReqStatus({
-        ...reqStatus , fileName : res.data.file_name
-      })
-    }) .catch(async (err) => {
-      console.log(err.response.data);
-      if (err.response.data.success) {
-        setReqStatus({
-          ...reqStatus , file : ""
-        })
-      }
-    })
-
-    // get step 4
-    Axios.get(`/api/admin/get_committee_for_admin/${reqId.id}`).then(async (res) => {
-      console.log(res);
-      
-    }) .catch(async (err) => {
-      console.log(err.response.data);
-      
-    })
   }, [updatePage])
-
-  const step3Handler = () => {
-    const formData = new FormData();
-    formData.append("request_id", fileData.request_id)
-    formData.append("file", fileData.file)
-    console.log(formData);
-    setIsLoading(true)
-    setStep3SendReq(true)
-    axios.post("/api/admin/evaluation_report", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      }
-    })
-      .then(async (res) => {
-        console.log(res);
-        setUpdatePage(prev => prev + 1)
-        setIsLoading(false)
-        setStep3SendReq(false)
-      })
-      .catch((error) => console.log(error))
-  }
-
-  const step4Handler = () => {
-    const formData = new FormData();
-    formData.append("request_id", commiteFileData.request_id)
-    formData.append("file1", commiteFileData.file1)
-    formData.append("file2", commiteFileData.file2)
-    formData.append("file3", commiteFileData.file3)
-    setIsLoading(true)
-    setStep3SendReq(true)
-    axios.post("/api/admin/committee", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      }
-    })
-      .then(async (res) => {
-        console.log(res);
-        setUpdatePage(prev => prev + 1)
-        setIsLoading(false)
-        setStep3SendReq(false)
-      })
-      .catch((error) => console.log(error))
-  }
-
 
   const handleSelectRow = () => {
     // setSelectedItem(item);
@@ -129,25 +62,6 @@ export default function ExpertCheckRequest() {
     console.log("item");
   };
 
-  const changeHandler = (e) => {
-    if (e.target.name === "file") {
-      setFileData({
-        ...fileData, [e.target.name]: e.target.files[0]
-      }
-      )
-    }
-    console.log(fileData);
-  }
-
-  const commitechangeHandler = (e) => {
-    if (e.target.type === "file") {
-      setComiteFileData({
-        ...commiteFileData, [e.target.name]: e.target.files[0]
-      }
-      )
-    }
-    console.log(commiteFileData);
-  }
   if (showDetailsdoc) return <WarrantyDocuments close={setShowDetailsdoc} details={selectedItem} />
 
   return (
@@ -157,6 +71,9 @@ export default function ExpertCheckRequest() {
       }
       {
         showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
+      }
+      {
+        showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
       }
       {
         !isLoading &&
@@ -206,256 +123,33 @@ export default function ExpertCheckRequest() {
         </div>
       }
 
-      {/* -------------------------------------------    مرحله 3  ------------------------------------------------------ */}
+      {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
       <div className="flex py-6">
-        <div className="w-1/2 px-2">
-          {
-            
-              reqStatus.fileName !== null && reqStatus.report === false ?  
-              <div className="m-3 bg-white rounded-xl p-5">
-              <div className=" pb-4">
-                <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-              </div>
-              <hr className="border-dashed border-gray-300" />
-
-              <hr className="border-dashed border-gray-300" />
-              <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                <p className="text-yellow-500">
-                  درحال بررسی توسط مدیر
-                </p>
-              </div>
-            </div>
-              
-              :
-              reqStatus.assessment && reqStatus.report === false ? <div className=" m-3 bg-white rounded-xl p-5">
-              <div className=" pb-4">
-                <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-              </div>
-              <hr className="border-dashed border-gray-300" />
-
-              <hr className="border-dashed border-gray-300" />
-              <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-                <p className="">
-                  تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-                </p>
-                {
-                  fileData.file === null ?
-                    <label htmlFor="step3" className="text-blue-400 text-xs w-full justify-center">
-                      برای بارگذاری کلیک کنید
-                    </label> :
-                    <div>
-                      <p className="text-blue-400 text-xs w-full m-1 justify-center">
-                        {
-                          `نام فایل : ${fileData.file.name}`
-                        }
-                      </p>
-                      <label htmlFor="step3" className="text-yellow-400 m-1 text-xs w-full justify-center">
-                        برای تغییر کلیک کنید
-                      </label>
-                      {step3SendReq && <p className="text-green-400 text-xs w-full m-1 justify-center">در حال ارسال اطلاعات...</p>}
-                    </div>
-                }
-                <input id="step3" style={{ display: "none" }} type="file" onChange={changeHandler} name="file" />
-                <button onClick={step3Handler} className="w-full  rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">
-                  ثبت{" "}
-                </button>
-              </div>
-            </div>
-              :
-
-              reqStatus.report === true ?
-                <div className=" m-3 bg-white rounded-xl p-5">
-                  <div className=" pb-4">
-                    <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-                  </div>
-                  <hr className="border-dashed border-gray-300" />
-
-                  <hr className="border-dashed border-gray-300" />
-                  <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                    <p className="text-green-500">
-                      کامل شده
-                    </p>
-                  </div>
-                </div>
-                :
-                <div className=" m-3 bg-white rounded-xl p-5">
-                  <div className=" pb-4">
-                    <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-                  </div>
-                  <hr className="border-dashed border-gray-300" />
-
-                  <hr className="border-dashed border-gray-300" />
-                  <div className="rounded-lg p-2 border text-red-700 text-xs mt-4">
-                    <p className="">
-                      این بخش هنوز فعال نیست
-                    </p>
-                  </div>
-                </div>
-          }
-{/* -------------------------------------------    پایان مرحله 3 ------------------------------------------------------ */}
-
-
-{/* -------------------------------------------    مرحله 4   ------------------------------------------------------ */}
-          {
-            reqStatus.report && reqStatus.commite === false ?
-            <div className="m-3 bg-white rounded-xl p-5 mt-2">
-            <div className=" pb-4">
-              <p className=" font-bold">آپلود 3 فایل نهایی  </p>
-            </div>
-            <hr className="border-dashed border-gray-300" />
-
-            <hr className="border-dashed border-gray-300" />
-              <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-                <p className="">
-                  تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-                </p>
-                {
-                  commiteFileData.file1 === null ?
-                    <label htmlFor="file1" className="text-blue-400 text-xs w-full justify-center">
-                      برای بارگذاری کلیک کنید
-                    </label> :
-                    <div>
-                      <p className="text-blue-400 text-xs w-full m-1 justify-center">
-                        {
-                          `نام فایل : ${commiteFileData.file1.name}`
-                        }
-                      </p>
-                      <label htmlFor="file1" className="text-yellow-400 m-1 text-xs w-full justify-center">
-                        برای تغییر کلیک کنید
-                      </label>
-                    </div>
-                }
-                <input id="file1" style={{ display: "none" }} type="file" onChange={commitechangeHandler} name="file1" />
-                
-              </div>
-              <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-                <p className="">
-                  تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-                </p>
-                {
-                  commiteFileData.file2 === null ?
-                    <label htmlFor="file2" className="text-blue-400 text-xs w-full justify-center">
-                      برای بارگذاری کلیک کنید
-                    </label> :
-                    <div>
-                      <p className="text-blue-400 text-xs w-full m-1 justify-center">
-                        {
-                          `نام فایل : ${commiteFileData.file2.name}`
-                        }
-                      </p>
-                      <label htmlFor="file2" className="text-yellow-400 m-1 text-xs w-full justify-center">
-                        برای تغییر کلیک کنید
-                      </label>
-                    </div>
-                }
-                <input id="file2" style={{ display: "none" }} type="file" onChange={commitechangeHandler} name="file2" />
-                
-              </div>
-              <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-                <p className="">
-                  تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-                </p>
-                {
-                  commiteFileData.file3 === null ?
-                  <label htmlFor="step4" className="text-blue-400 text-xs w-full justify-center">
-                      برای بارگذاری کلیک کنید
-                    </label> :
-                    <div>
-                      <p className="text-blue-400 text-xs w-full m-1 justify-center">
-                        {
-                          `نام فایل : ${commiteFileData.file3.name}`
-                        }
-                      </p>
-                      <label htmlFor="step4" className="text-yellow-400 m-1 text-xs w-full justify-center">
-                        برای تغییر کلیک کنید
-                      </label>
-                    </div>
-                }
-                <input id="step4" style={{ display: "none" }} type="file" onChange={commitechangeHandler} name="file3" />
-              </div>
-                {step3SendReq && <p className="text-green-400 text-xs w-full m-1 justify-center">در حال ارسال اطلاعات...</p>}
-                <button onClick={step4Handler} className="w-full  rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">
-                  ثبت{" "}
-                </button>
-          </div> : 
-          reqStatus.commite === true ?
-            <div className=" m-3 bg-white rounded-xl p-5">
-              <div className=" pb-4">
-                <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-              </div>
-              <hr className="border-dashed border-gray-300" />
-
-              <hr className="border-dashed border-gray-300" />
-              <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                <p className="text-green-500">
-                  کامل شده
-                </p>
-              </div>
-              <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                <p className="text-green-500">
-                  کامل شده
-                </p>
-              </div>
-              <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                <p className="text-green-500">
-                  کامل شده
-                </p>
-              </div>
-            </div>
-          :
-          <div className=" m-3 bg-white rounded-xl p-5">
-            <div className=" pb-4">
-              <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-            </div>
-            <hr className="border-dashed border-gray-300" />
-
-            <hr className="border-dashed border-gray-300" />
-            <div className="rounded-lg p-2 border text-red-700 text-xs mt-4">
-              <p className="">
-                این بخش هنوز فعال نیست
-              </p>
-            </div>
+          <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
+            <SendFileFirst reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+            <SendFileSec reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           </div>
-          }
+      {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
 
-        </div>
         <div className="w-1/2 px-2">
-          <div className=" m-3 bg-white rounded-xl p-5">
-            <div className=" pb-4">
-              <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
-            </div>
-            <hr className="border-dashed border-gray-300" />
-            {/* <p className="text-xs text- gray-400 my-1 ">
-                حداکثر بارگذاری برای هر فرم 5 فایل میباشد .{" "}
-              </p> */}
-
-            <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-              <p className="">
-                تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت{" "}
-              </p>
-              <a href="#" className="text-blue-500 text-xs">
-                برای بارگذاری کلیک کنید
-              </a>
-            </div>
-          </div>
+          <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           
-          <div className="pt-4">
-            <button className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
-              گزارش ناقصی در مدارک{" "}
-            </button>
-            <button onClick={() => handleSelectRow()} className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
-              مشاهده مدارک{" "}
-            </button>
-            <button className="w-full  rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">
-              ثبت{" "}
+          <div className="pt-4 px-2">
+            <div style={{display:"flex"}} className="w-full">
+              {
+                reqStatus.check === false ?
+                <button onClick={() => setShowCheckRep(true)} className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
+                  گزارش ناقصی در مدارک{" "}
+                </button> : ""
+              }
+              <button onClick={() => handleSelectRow()} className={reqStatus.check === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+                مشاهده مدارک{" "}
+              </button>
+            </div>
+            <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
+              بازگشت
             </button>
           </div>
-
-          {/* <div className="flex">
-              <button className="w-full  rounded-lg bg-blue-700   text-white p-3 font-bold text-xs">
-                ارسال فایل 1{" "}
-              </button>
-            </div> */}
         </div>
       </div>
     </div>

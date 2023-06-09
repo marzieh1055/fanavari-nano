@@ -77,6 +77,18 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
       </div>  
       )
   
+    } else if (action.step === 5) {
+      return (
+        <div  className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
+          <div className="w-96 bg-white z-10 rounded-lg p-4 shadow-lg flex flex-col gap-4">
+              <p className="text-center font-bold my-3 mb-1">این بخش توسط مدیر تکمیل میگردد</p>
+              <div className='flex'>
+                <button onClick={() => close(null)}  className="w-full m-1 rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs" >بستن</button>
+              </div>
+          </div>
+      </div>  
+      )
+  
     } else {
       return (
         <div  className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
@@ -97,7 +109,7 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
                 <button onClick={confirmHandler} className="w-full m-1 rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs" >تایید</button>
               </div>
           </div>
-      </div>  
+        </div>  
       )
   
     }
