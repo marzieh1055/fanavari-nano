@@ -38,7 +38,14 @@ export default function CheckReport({ close , reqId}) {
         <div  className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
           <div className="w-96 bg-white z-10 rounded-lg p-4 shadow-lg flex flex-col gap-4">
               <p className="text-center font-bold my-3 mb-1">متن گزارش خود را وارد کنید</p>
-              <input type={repText} onChange={changeHandler} />
+              <textarea
+                  className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                  id=""
+                  cols="40"
+                  rows="20"
+                  type={repText} onChange={changeHandler}
+                ></textarea>
+              {/* <input type={repText} onChange={changeHandler} /> */}
               {isLoading && <Loader />}
               <div className='flex'>
                 {err && <p className="text-red-400 text-xs w-full m-1 justify-center">خطا در ارسال اطلاعات !</p>}
