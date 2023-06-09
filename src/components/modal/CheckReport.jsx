@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
+import Axios from '../../../axiosinstancs'
 export default function CheckReport({ close , reqId}) {
     const [repText , setRepText] = useState()
     const [isLoading, setIsLoading] = useState(false)
@@ -14,14 +15,16 @@ export default function CheckReport({ close , reqId}) {
         setErr(false)
         const data = {
             request_id : reqId,
-            is_accepted : 0 ,
+            is_accepted : false ,
             message : repText ,
         }
-        axios.post(`/api/admin/check_document`, data , {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
+        Axios.post(`/api/admin/check_document`, data
+        //  , {
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //     }
+        // }
+        )
         .then(async (res) => {
             console.log(res);
             setUpdatePage(prev => prev + 1)
