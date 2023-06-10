@@ -5,9 +5,9 @@ import Loader from '../Loader/Loader'
 export default function StepConfirmAdmin({action , requestId , close , setUpdatePage}) {
   const [isLoading , setIsLoading] = useState(false)
   const [isLoadingHidden , setIsLoadingHidden] = useState(false)
-  const [err, setErr] = useState(false)
   const [id_for_post, setId_for_post] = useState(null)
   const [id_for_post4, setId_for_post4] = useState(null)
+  const [err, setErr] = useState(false)
 
   useEffect(() => {
     // get step 3

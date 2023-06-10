@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
 import Loader from "../../components/Loader/Loader";
-import SendFileFirst from "../../components/ChekRequestComp/SendFileFirst";
-import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
 import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
-import CheckReport from "../../components/modal/CheckReport";
 import StepConfirmAdmin from "../../components/modal/StepConfirmAdmin";
 import DownloadStep3 from "../../components/ChekRequestComp/DownloadStep3";
+import DownloadSecStepFile from "../../components/ChekRequestComp/DownloadSecStepFile";
+import RejectAdmin from "../../components/modal/RejectAdmin";
 
 export default function AdminCheckRequest() {
   const reqId = useParams()
@@ -57,7 +56,7 @@ export default function AdminCheckRequest() {
       }
       {/* ********************* */}
       {
-        showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
+        showCheckRep !== null && <RejectAdmin reqStatus={reqStatus} close={setShowCheckRep} requestId={reqId.id} setUpdatePage={setUpdatePage} />
       }
       {
         !isLoading &&
@@ -111,8 +110,7 @@ export default function AdminCheckRequest() {
       <div className="flex py-6">
           <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
             <DownloadStep3 reqStatus={reqStatus} reqId={reqId.id} />
-            
-            <SendFileSec reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+            <DownloadSecStepFile reqStatus={reqStatus} reqId={reqId.id} />            
           </div>
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
 
@@ -122,12 +120,12 @@ export default function AdminCheckRequest() {
           <div className="pt-4 px-2">
             <div style={{display:"flex"}} className="w-full">
               {
-                reqStatus.check === false ?
+                reqStatus.assessment === true && reqStatus.credit === false ?
                 <button onClick={() => setShowCheckRep(true)} className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
                   گزارش ناقصی در مدارک{" "}
                 </button> : ""
               }
-              <Link to={`/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.check === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+              <Link to={`/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.assessment === true && reqStatus.credit === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
                 مشاهده مدارک{" "}
               </Link>
             </div>

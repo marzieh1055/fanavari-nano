@@ -3,24 +3,28 @@ import axios from 'axios';
 import Loader from '../Loader/Loader';
 import Axios from '../../../axiosinstancs';
 
-export default function DownloadStep3({ reqStatus , reqId }) {
+export default function DownloadSecStepFile({ reqStatus , reqId }) {
 
     const [rendering, setRendering] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
 
     const [fileStorage, setFileStorage ] = useState({
         file : null,
-        link : null
+        link1 : null,
+        link2 : null,
+        link3 : null,
     })
 
     useEffect(() => {
         setRendering(true)
         // get step 3
-        Axios.get(`/api/admin/get_report_for_admin/${reqId}`).then(async (res) => {
+        Axios.get(`/api/admin/get_committee_for_admin/${reqId}`).then(async (res) => {
             console.log(res);
             setFileStorage({
                 file : res.data.file_name ,
-                link : res.data.path
+                link1 : res.data.path1,
+                link2 : res.data.path2,
+                link3 : res.data.path3,
             })
             setRendering(false)
         }) .catch(async (err) => {
@@ -28,7 +32,9 @@ export default function DownloadStep3({ reqStatus , reqId }) {
             setRendering(false)
             setFileStorage({
                 file : null,
-                link : null
+                link1 : null,
+                link2 : null,
+                link3 : null,
             })
         })
     } , [ ])
@@ -50,7 +56,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
             </div>
         )
       }
-      if (reqStatus.report === true) {
+      if (reqStatus.commite === true) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -66,7 +72,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 </div>
             </div>
         )
-      } else if (reqStatus.assessment === false) {
+      } else if (reqStatus.report === false) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -82,7 +88,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 </div>
             </div>
         )
-      } else if (reqStatus.assessment === true && reqStatus.report === false && fileStorage.file === null) {
+      } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file === null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
@@ -97,10 +103,20 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                         هنوز از سمت کارشناس کامل نشده
                     </p>
                 </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    <p className="text-yellow-500">
+                        هنوز از سمت کارشناس کامل نشده
+                    </p>
+                </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    <p className="text-yellow-500">
+                        هنوز از سمت کارشناس کامل نشده
+                    </p>
+                </div>
                 
             </div>
         )
-      } else if (reqStatus.assessment === true && reqStatus.report === false && fileStorage.file !== null) {
+      } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file !== null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
@@ -111,10 +127,38 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
-                        fileStorage.link !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link}`} target='_blank'>
+                        fileStorage.link1 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link1}`} target='_blank'>
                             <p className="text-blue-500">
-                                برای دانلود فایل کلیک کنید
+                                برای دانلود فایل اول کلیک کنید
+                            </p>
+                        </a>
+                        :
+                        <p className="text-yellow-500">
+                            در حال دریافت فایل...
+                        </p>
+                    }
+                </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    {
+                        fileStorage.link2 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link2}`} target='_blank'>
+                            <p className="text-blue-500">
+                                برای دانلود فایل دوم کلیک کنید
+                            </p>
+                        </a>
+                        :
+                        <p className="text-yellow-500">
+                            در حال دریافت فایل...
+                        </p>
+                    }
+                </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    {
+                        fileStorage.link3 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link3}`} target='_blank'>
+                            <p className="text-blue-500">
+                                برای دانلود فایل سوم کلیک کنید
                             </p>
                         </a>
                         :

@@ -18,13 +18,7 @@ export default function CheckReport({ close , reqId}) {
             is_accepted : false ,
             message : repText ,
         }
-        Axios.post(`/api/admin/check_document`, data
-        //  , {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //     }
-        // }
-        )
+        Axios.post(`/api/admin/check_document`, data)
         .then(async (res) => {
             console.log(res);
             setUpdatePage(prev => prev + 1)
@@ -50,8 +44,8 @@ export default function CheckReport({ close , reqId}) {
                 ></textarea>
               {/* <input type={repText} onChange={changeHandler} /> */}
               {isLoading && <Loader />}
-              <div className='flex'>
                 {err && <p className="text-red-400 text-xs w-full m-1 justify-center">خطا در ارسال اطلاعات !</p>}
+              <div className='flex'>
                 <button onClick={() => close(null)} className="w-full m-1 rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">بستن</button>
                 <button onClick={sendReport} className="w-full m-1 rounded-lg bg-blue-700 mt-2  text-white p-3 font-bold text-xs">تایید</button>
               </div>
