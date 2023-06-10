@@ -79,8 +79,8 @@ const Topbar = ({ avatar }) => {
                     <img src="css/assets/img/Vector (2).png" alt="" />
                   </div>
                   <a class="text-xs flex-1 text-c-9">
-                    متن
-                  </a>
+
+خروج                  </a>
                 </div>
               </div>
 

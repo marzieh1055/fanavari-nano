@@ -1,7 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Axios from "../../../../axiosinstancs";
 
 export default function One() {
+  // const [reqDatas , setReqDatas] = useState({
+  //     user_id:"",
+  //     type:"facilities",
+  //     title:"",
+  //     type_f:"",
+  //     places:[
+  //         {
+  //             "scope":"test",
+  //             "address":"test",
+  //             "meterage":"10000",
+  //             "ownership":"owner",
+  //             "count":"3"
+  //         },
+  //         {
+  //           "scope":"test1",
+  //           "address":"test",
+  //           "meterage":"10000",
+  //           "ownership":"owner",
+  //           "count":"3"
+  //       },
+  //       {
+  //         "scope":"test2",
+  //         "address":"test",
+  //         "meterage":"10000",
+  //         "ownership":"owner",
+  //         "count":"3"
+  //     }
+  //     ],
+    //   history:test,
+    //   activity:"",
+    //   is_knowledge:"", //true or false
+    //   confirmation:"", //2022-10-10
+    //   expiration:"",//2022-10-10
+    //   area:""
+    // }
+  
+  // const changeHandler = (ev) => {
+  //   if (ev.target.type === "radio") {
+  //     setReqDatas({
+  //       ...reqDatas, [ev.target.name]: ev.target.value
+  //     })
+  //   } else if (ev.target.type === "text") {
+  //     setReqDatas({
+  //       ...reqDatas, [ev.target.name]: ev.target.value
+  //     })
+  //   }
+  //   console.log(reqDatas);
+  // }
+
+  // const addHandler = (event) => {
+  //   event.preventDefault()
+  //   Axios.post("/api/v1/request", reqDatas).then(async (res) => {
+  //     console.log(res);
+  //   })
+  // }
+// useEffect(() => {
+//   sendReport()
+// },[])
+
+
   return (
     <>
       <div className=" py-6 mt-4">
@@ -27,6 +88,7 @@ export default function One() {
               <td className="p-4 text-xs text-gray-600 font-bold">
                 <textarea
                   className=" text-xs h-12 border border-gray-300 rounded-xl"
+                  // onChange={changeHandler}
                   name=""
                   id=""
                   cols="30"
@@ -46,7 +108,7 @@ export default function One() {
                   className="border-gray-300 rounded-xl w-24 text-xs"
                 >
                   <option value="مالک">مالک</option>
-                  <option value="استجاری">استجاری</option>
+                  <option value="استجاری">استیجاری</option>
                 </select>
               </td>
               <td className="p-4 text-xs text-gray-600 font-bold">

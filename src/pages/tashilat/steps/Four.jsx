@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Four() {
+  const [banks, setBanks] = useState([]);
+  const [activeTashilat, setActiveTashilat] = useState([]);
+  const [garantyList, setGarantyList] = useState([]);
+
   return (
     <>
       <div className=" py-6 mt-4">
@@ -43,10 +47,41 @@ export default function Four() {
                 />
               </td>
             </tr>
+            {banks.length > 0 &&
+              banks.map((item, index) => (
+                <tr key={index} className="bg-white  border-b">
+                  <td className="p-2 text-xs text-gray-800 font-bold">
+                    {index + 2}
+                  </td>
 
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                </tr>
+              ))}
             <tr className="">
               <td className="bg-white" colSpan="12">
-                <button className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2">
+                <button
+                  className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
+                  onClick={() => {
+                    setBanks([...banks, "example"]);
+                  }}
+                >
                   {" "}
                   افزودن ردیف{" "}
                 </button>
@@ -158,10 +193,92 @@ export default function Four() {
                 />
               </td>
             </tr>
+            {activeTashilat.length > 0 &&
+              activeTashilat.map((item, index) => (
+                <tr key={index} className="bg-white  border-b">
+                  <td className="p-2 text-xs text-gray-800 font-bold">
+                    {index + 2}
+                  </td>
+
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                </tr>
+              ))}
 
             <tr className="">
               <td className="bg-white" colSpan="12">
-                <button className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2">
+                <button
+                  className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
+                  onClick={() => {
+                    setActiveTashilat([...activeTashilat, "example"]);
+                  }}
+                >
                   {" "}
                   افزودن ردیف{" "}
                 </button>
@@ -261,10 +378,77 @@ export default function Four() {
                 />
               </td>
             </tr>
+            {garantyList.length > 0 &&
+              garantyList.map((item, index) => (
+                <tr className="bg-white  border-b">
+                  <td className="p-2 text-xs text-gray-800 font-bold">1</td>
+
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                  <td className="p-2 text-xs text-gray-600 font-bold">
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-xl w-full"
+                    />
+                  </td>
+                </tr>
+              ))}
 
             <tr className="">
               <td className="bg-white" colSpan="12">
-                <button className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2">
+                <button
+                  className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
+                  onClick={() => {
+                    setGarantyList([...garantyList, "example"]);
+                  }}
+                >
                   {" "}
                   افزودن ردیف{" "}
                 </button>
@@ -823,14 +1007,14 @@ export default function Four() {
               </td>
             </tr>
 
-            <tr className="">
+            {/* <tr className="">
               <td className="bg-white" colSpan="12">
                 <button className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2">
                   {" "}
                   افزودن ردیف{" "}
                 </button>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>
