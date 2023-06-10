@@ -33,6 +33,8 @@ import Four from "./pages/Tashilat/steps/Four";
 import Five from "./pages/Tashilat/steps/Five";
 import Confirm from "./pages/Tashilat/steps/Confirm";
 import Tashilat from "./pages/Tashilat/Tashilat";
+import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
+import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
 
 const routes = [
   {
@@ -58,7 +60,9 @@ const routes = [
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
-
+      { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
+      { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
+      
       
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },

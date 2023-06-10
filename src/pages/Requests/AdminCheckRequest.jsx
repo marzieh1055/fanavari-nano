@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
-import StepConfirm from "../../components/modal/StepConfirm";
 import Loader from "../../components/Loader/Loader";
 import SendFileFirst from "../../components/ChekRequestComp/SendFileFirst";
 import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
 import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
 import CheckReport from "../../components/modal/CheckReport";
+import StepConfirmAdmin from "../../components/modal/StepConfirmAdmin";
+import DownloadStep3 from "../../components/ChekRequestComp/DownloadStep3";
 
-export default function ExpertCheckRequest() {
+export default function AdminCheckRequest() {
   const reqId = useParams()
   const navigate = useNavigate()
+
   const [reqStatus, setReqStatus] = useState({
         // check: false,
         // assessment: false,
@@ -51,8 +53,9 @@ export default function ExpertCheckRequest() {
         isLoading && <Loader />
       }
       {
-        showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
+        showStepConfirm !== null && <StepConfirmAdmin action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
       }
+      {/* ********************* */}
       {
         showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
       }
@@ -107,7 +110,8 @@ export default function ExpertCheckRequest() {
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
       <div className="flex py-6">
           <div style={{display: "flex" , flexDirection: "column"}} className="w-1/2 px-2">
-            <SendFileFirst reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+            <DownloadStep3 reqStatus={reqStatus} reqId={reqId.id} />
+            
             <SendFileSec reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
           </div>
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}

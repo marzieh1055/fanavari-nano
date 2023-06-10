@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Axios from "../../../axiosinstancs";
 
-const WarrantyDocuments = ({details , close}) => {
+const WarrantyDocuments = () => {
+  const reqId = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    Axios.get(`/api/v1/request/${reqId.id}`).then(async (res) => {
+      console.log(res.data);
+
+    })
+  } , [])
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
       <div style={{display:"flex" , justifyContent:"space-between"}}>
         <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
-         <span onClick={() => close(false)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
+         <span onClick={() => navigate(-1)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
       </div>
       <hr className="border-dashed" />
 
