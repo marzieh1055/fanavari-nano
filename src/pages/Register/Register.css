@@ -1,0 +1,19 @@
+.selectGandL {
+    /* border: none; */
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px;
+    appearance: none;
+    outline: 0;
+}
+.selectGandL select {
+    border: 0;
+}
+.selectGandL::after {
+    border: none;
+    appearance: none;
+    outline: 0;
+}
+.ff{
+    background-image: url('../../assets/imges/aa.jpg');
+
+}
