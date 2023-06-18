@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function UploadDocs({document , changeHandler}) {
+export default function UploadDocs({document , changeHandler , errors , showErr}) {
   const handelChang = (e) => {
     changeHandler(e)
   }
   return (
-<div className="w-1/2 px-2">
+    <div className="w-1/2 px-2">
           <div className=" bg-white rounded-xl p-5">
             <div className=" pb-4">
               <p className=" font-bold"> مدارک اصلی </p>
@@ -28,7 +28,7 @@ export default function UploadDocs({document , changeHandler}) {
               </p>
               {
                 document.file1 === null ?
-                  <label htmlFor='file1' className="text-blue-400 text-xs w-full justify-center">
+                <label htmlFor='file1' className="text-blue-400 text-xs w-full justify-center">
                     برای بارگذاری کلیک کنید
                   </label> :
                   <div>
@@ -44,6 +44,8 @@ export default function UploadDocs({document , changeHandler}) {
 
               }
               <input style={{ display: "none" }} id='file1' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file1" />
+              <br />
+              {errors.file1 && showErr.file1 && <span className="text-red-500 text-xs ">*{errors.file1}</span>}
             </div>
             {/* FILE 2 */}
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
@@ -68,6 +70,8 @@ export default function UploadDocs({document , changeHandler}) {
 
               }
               <input style={{ display: "none" }} id='file2' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file2" />
+              <br />
+              {errors.file2 && showErr.file2 && <span className="text-red-500 text-xs ">*{errors.file2}</span>}
             </div>
             {/* FILE 3 */}
             <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
@@ -92,6 +96,8 @@ export default function UploadDocs({document , changeHandler}) {
 
               }
               <input style={{ display: "none" }} id='file3' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file3" />
+              <br />
+              {errors.file3 && showErr.file3 && <span className="text-red-500 text-xs ">*{errors.file3}</span>}
             </div>
           </div>
         </div>  )

@@ -6,8 +6,8 @@ import Vector5 from '../../assets/imges/Vector5.png'
 import Vector6 from '../../assets/imges/Vector6.png'
 import AccImg from '../../assets/imges/account.png'
 
-import cc from `../../assets/imges/Vector (1).png`
-import c2 from `../../assets/imges/Vector (2).png`
+import cc from '../../assets/imges/Vector (1).png'
+import c2 from '../../assets/imges/Vector (2).png'
 
 const Topbar = ({ avatar }) => {
   const [showModal, setShowModal] = useState(false)

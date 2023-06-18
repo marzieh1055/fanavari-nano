@@ -164,5 +164,34 @@ export const Validation = (data , type) => {
         })
     }
 
+    // upDoc
+    if (type === "upDoc") {
+        console.log(errors);
+        Object.keys(data).map((item) => {
+            if (item === "title") {
+                if (data[item] === "") {
+                    errors.title = "این فیلد نباید خالی باشد"
+                    console.log(item);
+                } else {
+                    delete errors.title
+                }
+            }
+            if (item === "type_w") {
+                if (data[item] === "") {
+                    
+                    errors.type_w = "لطفا یک مورد را انتخاب کنید"
+                } else {
+                    delete errors.type_w
+                }
+            } else {
+                if (data[item] === null) {
+                    errors[item] = "لطفا فایلی را وارد کنید"
+                } else {
+                    delete errors[item]
+                }
+            }
+        })
+    }
+
     return errors;
 }
