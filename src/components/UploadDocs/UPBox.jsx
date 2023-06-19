@@ -17,7 +17,7 @@ export default function UPBox({SelectDocument , changeHandler , InputName , titl
                             return (
                                 <p key={keyNum} className="text-blue-400 text-xs w-full m-1 justify-center">
                                 {
-                                    `نام فایل : ${item.name}`
+                                    `نام فایل : ${item.file.name}`
                                 }
                                 </p>
                             )

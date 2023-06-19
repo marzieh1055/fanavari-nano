@@ -5,11 +5,14 @@ import ViewDetailExpert from './ViewDetailExpert'
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
+import ExpertReqs from "../../components/modal/ExpertReqs";
+
 export default function ViewExpert() {
   const {userDatas} = useContext(UserDataContext)
   const [allExpert, setAllExpert] = useState(null)
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
+  const [showReqsModal, setShowReqsModal] = useState(null);
   
 
   const getExpert = () => {
@@ -31,14 +34,13 @@ export default function ViewExpert() {
     setShowDetailsUser(true)
     console.log(item);
   };
-  const requestHandler = (item) => {
-    console.log("item" , item);
-  };
+
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
   if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
+      {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
       <div className=" py-6">
         <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
@@ -49,10 +51,10 @@ export default function ViewExpert() {
           </p>
         </div>
       </div>
-      <div className="max-h-[60vh] overflow-y-scroll">
+      <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
         <table className="w-full ">
           <thead>
-            <tr className=" sticky top-0   ">
+            <tr className="top-0">
               <th className="bg-white p-3 rounded-r-xl ">نمایه </th>
               <th className="bg-white p-3 ">نام </th>
               <th className="bg-white p-3 ">نام خانوادگی</th>
@@ -82,7 +84,7 @@ export default function ViewExpert() {
                       alt=""
                     />
                   </td>
-                  <td onClick={() => requestHandler(expert.id)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
+                  <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     {onlyDateConversion(expert.created_at)}

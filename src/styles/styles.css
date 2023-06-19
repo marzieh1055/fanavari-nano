@@ -34,19 +34,21 @@ input[type="radio"]:checked::after {
   flex-direction: column-reverse;
   
 }
-
-.scrollable-content-chat::-webkit-scrollbar-thumb {
-  background-color:#aaaaaac7;
-  border-radius: 10px;
+.scc {
+  overflow-y: auto;
 }
-.scrollable-content-chat::-webkit-scrollbar {
-  background:none;
-  resize: none;
+.scrollable-content-chat::-webkit-scrollbar-thumb , .scc::-webkit-scrollbar-thumb {
+  background-color:#aaaaaac7 !important; 
+  border-radius: 10px !important;
+}
+.scrollable-content-chat::-webkit-scrollbar , .scc::-webkit-scrollbar-thumb{
+  background:none !important;
+  resize: none !important;
   width: 3px;
 }
-.scrollable-content-chat::-webkit-scrollbar-corner {
-  background:none;
-  resize: none;
+.scrollable-content-chat::-webkit-scrollbar-corner , .scc::-webkit-scrollbar-thumb{
+  background:none !important;
+  resize: none !important;
 }
 .aaa {
   display: flex;

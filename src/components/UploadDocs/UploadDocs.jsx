@@ -15,10 +15,13 @@ export default function UploadDocs({document , changeHandler , errors , showErr}
               <span className="text-green-400"> توضیحات :</span> فایل را از حالت
               فشرده خارج کنید و هر فرم را پر کنید سپس در جای مناسب بارگذاری کنید
             </p>
+            <p className="text-xs py-3">فرمت های مجاز doc, docx, pdf, zip, png, jpg</p>
             <button
               className="w-full border rounded-lg border-green-400 text-green-400 p-2 font-bold text-sm">
               بارگیری فایل مدارک اصلی
             </button>
+            <br />
+            <br />
             <hr className="border-dashed border-gray-300" />
 
             {/* FILE 1 */}

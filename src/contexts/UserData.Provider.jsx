@@ -43,7 +43,7 @@ export default function UserDataProvider({children}) {
         "09123596789",
         type
         : 
-        "genuine",
+        "admin",
         updated_at
         : 
         "2023-04-12T04:25:59.000000Z",

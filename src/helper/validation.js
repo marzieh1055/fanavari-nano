@@ -170,10 +170,10 @@ export const Validation = (data , type) => {
         Object.keys(data).map((item) => {
             if (item === "title") {
                 if (data[item] === "") {
-                    errors.title = "این فیلد نباید خالی باشد"
+                    errors[item] = "این فیلد نباید خالی باشد"
                     console.log(item);
                 } else {
-                    delete errors.title
+                    delete errors[item]
                 }
             }
             if (item === "type_w") {
