@@ -6,6 +6,7 @@ export default function ExpertReqs({details , close}) {
   const [isLoading , setIsLoading] = useState(true)
   const [listType , setListType] = useState("allReqs") // reqs or openReqs
   const [reqs , setReqs] = useState([])
+  const [currentReqs , setCurrentReqs] = useState([])
 
 
   // console.log(details);
@@ -13,6 +14,11 @@ export default function ExpertReqs({details , close}) {
     Axios.get(`/api/admin/get_request_with_expert/${details.id}`).then(async (res) => {
       console.log(res.data);
       setReqs(res.data)
+      setIsLoading(false)
+    })
+    Axios.get(`/api/admin/get_current_requests/${details.id}`).then(async (res) => {
+      console.log(res.data);
+      setCurrentReqs(res.data)
       setIsLoading(false)
     })
   },[])
@@ -31,7 +37,21 @@ export default function ExpertReqs({details , close}) {
           <div>
             <ul role="list" class="max-h-[300px] overflow-y-auto divide-y divide-gray-100">
               {
-                reqs && reqs.map((item) => {
+                listType === "allReqs" && reqs && reqs.map((item) => {
+                  return (
+                    <li class="flex justify-between gap-x-6 py-5">
+                      <div class="flex gap-x-4">
+                        <div class="min-w-0 flex-auto">
+                          <p class="text-sm font-semibold leading-6 text-gray-900">{item.request.type === "facilities" ? "درخواست تسهیلات" : "درخواست ضمانت"}</p>
+                          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{`شناسه : ${item.request.shenaseh}`}</p>
+                        </div>
+                      </div>
+                    </li>
+                  )
+                })
+              }
+              {
+                listType === "openReqs" && currentReqs && currentReqs.map((item) => {
                   return (
                     <li class="flex justify-between gap-x-6 py-5">
                       <div class="flex gap-x-4">

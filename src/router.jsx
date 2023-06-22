@@ -36,6 +36,7 @@ import Tashilat from "./pages/Tashilat/Tashilat";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
 import DashboardExpert from "./pages/Dashboard/DashboardExpert";
+import ViewDetailExpert from "./pages/Expert/ViewDetailExpert";
 
 const routes = [
   {
@@ -65,6 +66,7 @@ const routes = [
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
+      { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       
       
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },

@@ -18,7 +18,6 @@ export default function ViewUsers() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUsergenuine, setShowDetailsUsergenuine] = useState(false);
   const [showDetailsUserlegal, setShowDetailsUserlegal] = useState(false);
-  const [selectUser, setSelectUser] = useState({});
   
   useEffect(() => {
     getUserGenuine();
@@ -56,7 +55,7 @@ export default function ViewUsers() {
   };
   // این قسمت کار نمیکنه
   const showSelectedUser = () => {
-    Axios.get(`/api/admin//users/${selectedItem.id}`).then(async res => {
+    Axios.get(`/api/admin/users/${selectedItem.id}`).then(async res => {
       // setAllGenuineUser(res.data)
       console.log(res.data)
 

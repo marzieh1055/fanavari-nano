@@ -6,6 +6,7 @@ import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
 import ExpertReqs from "../../components/modal/ExpertReqs";
+import { Link } from "react-router-dom";
 
 export default function ViewExpert() {
   const {userDatas} = useContext(UserDataContext)
@@ -35,8 +36,6 @@ export default function ViewExpert() {
     console.log(item);
   };
 
-
-  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectedItem} />
 
   if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
@@ -97,9 +96,9 @@ export default function ViewExpert() {
                   <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>
-                  <button onClick={() => tochHandler(expert)} className="text-blue-700 border rounded-2xl p-2 ">
+                  <Link to={`/panel/ViewDetailExpert/${expert.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                     اطلاعات بیشتر
-                  </button>
+                  </Link>
                 </div>
                   </td>
                 </tr>
