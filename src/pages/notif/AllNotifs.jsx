@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
+import Loader from "../../components/Loader/Loader";
 export default function AllNotifs() {
+  const [IsLoading, setIsLoading] = useState(true);
   const [allnotif, setAllnotif] = useState(null);
   const [unreadNotif, setUnreadNotif] = useState([
     // {
@@ -35,17 +37,21 @@ export default function AllNotifs() {
     Axios.get(`/api/v1/get_all_notification`).then(async res => {
       console.log(res.data)
       setAllnotif(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
     Axios.get(`/api/v1/get_unread_notification`).then(async res => {
       console.log(res.data)
       setUnreadNotif(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
@@ -55,6 +61,7 @@ export default function AllNotifs() {
 
   // حذف عناصر مشترک از آرایه دوم
   const filteredArray2 = allnotif && unreadNotif ? allnotif.filter(item2 => !commonElements.some(item1 => item1.id === item2.id)) : []
+  if (IsLoading) return <Loader />
   return (
     <div>
       <div className="flex justify-between py-6">
@@ -69,7 +76,7 @@ export default function AllNotifs() {
               <th className="bg-white p-3 ">تاریخ ارسال</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style={{display : 'flex' , flexDirection : "column-reverse"}}>
             {unreadNotif && unreadNotif.map((notif) => {
               return (
                 <tr
@@ -84,9 +91,9 @@ export default function AllNotifs() {
                 </tr>
               );
             })}
-            {
-              
-            }
+            </tbody>
+            <tbody style={{display : 'flex' , flexDirection : "column-reverse"}}>
+
             {filteredArray2 && filteredArray2.map((notif) => {
               return (
                 <tr
@@ -103,6 +110,9 @@ export default function AllNotifs() {
             })}
           </tbody>
         </table>
+          { allnotif && allnotif.length === 0 &&
+            <div style={{display: "flex" , justifyContent : "center"}} className="w-full"><p className="p-5">اعلانی وجود ندارد</p></div>
+          }
       </div>
       <hr />
       <div className="flex justify-between py-4 text-gray-600 items-center">
