@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "../../../axiosinstancs";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
-const Viewdetailuser = ({details , close}) => {
+const Viewdetailuser = () => {
+  const [details, setDetails] = useState([]);
+  const [IsLoading, setIsLoading] = useState(true);
+  const reqId = useParams()
+  const navigate = useNavigate();
+    useEffect(() => {
+      Axios.get(`/api/admin/users/${reqId.id}`).then(async res => {
+        console.log(res.data)
+        setDetails(res.data)
+        setIsLoading(false)
+      }
+      ).catch(err => {
+        console.log(err)
+        setIsLoading(false)
+      }
+      )
+    } , [])
+    if (IsLoading) return <Loader />
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
       <div style={{display:"flex" , justifyContent:"space-between"}}>
         <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
-        <span onClick={() => close(false)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
+        <span onClick={() => navigate(-1)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
       </div>
       <hr className="border-dashed" />
 

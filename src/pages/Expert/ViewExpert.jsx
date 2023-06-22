@@ -7,6 +7,7 @@ import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
 import ExpertReqs from "../../components/modal/ExpertReqs";
 import { Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 export default function ViewExpert() {
   const {userDatas} = useContext(UserDataContext)
@@ -14,29 +15,26 @@ export default function ViewExpert() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
   const [showReqsModal, setShowReqsModal] = useState(null);
+  const [IsLoading, setIsLoading] = useState(true);
   
+  useEffect(() => {
+    getExpert();
+  }, []);
 
   const getExpert = () => {
     Axios.get("/api/admin/expert").then(async res => {
       console.log(res)
       setAllExpert(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
-  useEffect(() => {
-    getExpert();
-  }, [console.log(allExpert)]);
 
-  const tochHandler = item => {
-    setSelectedItem(item);
-    setShowDetailsUser(true)
-    console.log(item);
-  };
-
-
+  if (IsLoading) return <Loader />
   if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
       {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}

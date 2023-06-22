@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
-import { useParams } from "react-router-dom";
 export default function AllNotifs() {
   const [allnotif, setAllnotif] = useState(null);
   const [unreadNotif, setUnreadNotif] = useState([

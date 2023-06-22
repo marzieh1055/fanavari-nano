@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { useEffect } from "react";
-import Viewdetailuser from "./Viewdetailuser";
-import ViewLegalDetailUser from "./ViewLegalDetailUser";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
+import { Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 
 
@@ -16,9 +16,8 @@ export default function ViewUsers() {
   const [allGenuineUser, setAllGenuineUser] = useState(null);
   const [allLegalUser, setAllLegalUser] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showDetailsUsergenuine, setShowDetailsUsergenuine] = useState(false);
-  const [showDetailsUserlegal, setShowDetailsUserlegal] = useState(false);
-  
+  const [IsLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     getUserGenuine();
     getUserLegal();
@@ -27,9 +26,11 @@ export default function ViewUsers() {
     Axios.get("/api/admin/get_genuine").then(async res => {
       // console.log(res.data)
       setAllGenuineUser(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
@@ -37,42 +38,19 @@ export default function ViewUsers() {
     Axios.get("/api/admin/get_legal").then(async res => {
       console.log(res.data)
       setAllLegalUser(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   }
-  const handleSelectRow = (item) => {
-    setSelectedItem(item);
-    // setShowDetailsUsergenuine(true);
-    console.log(item);
-  };
-  const handleSelectRow2 = (item) => {
-    setSelectedItem(item);
-    // setShowDetailsUserlegal(true);
-    console.log(item);
-  };
-  // این قسمت کار نمیکنه
-  const showSelectedUser = () => {
-    Axios.get(`/api/admin/users/${selectedItem.id}`).then(async res => {
-      // setAllGenuineUser(res.data)
-      console.log(res.data)
-
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
-
   // const deleteUserHandler = (userId) => {
   //   axios.delete(`/user/${userId}` , {headers : ["Access-Control-Allow-Origin"] })
   //     .then((res) => console.log(res))
   // }
-  if (showDetailsUserlegal) return <ViewLegalDetailUser close={setShowDetailsUserlegal} details={selectedItem} />
-
-  if (showDetailsUsergenuine) return <Viewdetailuser close={showDetailsUsergenuine} details={selectedItem} />
+  if (IsLoading) return <Loader />
   if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
       <div className="flex justify-between py-6">
@@ -138,9 +116,9 @@ export default function ViewUsers() {
                       <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
-                      <button onClick={() => handleSelectRow(GenuineUser)} className="text-blue-700 border rounded-2xl p-2 ">
+                      <Link to={`/panel/Viewdetailuser/${GenuineUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                         اطلاعات بیشتر
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
@@ -176,9 +154,9 @@ export default function ViewUsers() {
                       <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
-                      <button onClick={() => handleSelectRow2(LegalUser)} className="text-blue-700 border rounded-2xl p-2 ">
+                      <Link to={`/panel/Viewdetailuser/${LegalUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
                         اطلاعات بیشتر
-                      </button>
+                      </Link>
                     </div>
                   </td>
                 </tr>

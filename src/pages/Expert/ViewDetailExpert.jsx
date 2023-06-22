@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const ViewDetailExpert = () => {
   const reqId = useParams()
   const navigate = useNavigate()
   const [details, setDetails] = useState([])
+  const [IsLoading, setIsLoading] = useState(true);
   useEffect(() => {
     Axios.get(`/api/admin/expert/${reqId.id}`).then(async res => {
       console.log(res)
       setDetails(res.data)
+      setIsLoading(false)
     }
     ).catch(err => {
       console.log(err)
+      setIsLoading(false)
     }
     )
   } , [])
+  if (IsLoading) return <Loader />
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
       <div style={{display:"flex" , justifyContent:"space-between"}}>

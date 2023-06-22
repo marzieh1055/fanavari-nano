@@ -37,6 +37,7 @@ import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
 import DashboardExpert from "./pages/Dashboard/DashboardExpert";
 import ViewDetailExpert from "./pages/Expert/ViewDetailExpert";
+import Viewdetailuser from "./pages/User/Viewdetailuser";
 
 const routes = [
   {
@@ -61,6 +62,7 @@ const routes = [
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "viewRequest/:id", element: <ViewDetailRequest /> },
+      { path: "Viewdetailuser/:id", element: <Viewdetailuser /> },
       { path: "openedRequests", element: <OpenedRequests /> },
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
