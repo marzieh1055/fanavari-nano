@@ -14,8 +14,9 @@ export default function ViewTickets() {
     const getTicket = () => {
       Axios.get("/api/v1/ticket").then(async (res) => {
         console.log(res.data);
-        
-        setTickets(res.data)
+        const oldMessage = res.data.reverse()
+
+        setTickets(oldMessage)
         setIsLoading(false)
       })
     }

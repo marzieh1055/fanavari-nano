@@ -1,11 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillFolder } from "react-icons/ai";
 import Axios from '../../../axiosinstancs'
 import { UserDataContext } from "../../contexts/UserData.Provider";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import { Validation } from "../../helper/validation";
+import Loader from "../../components/Loader/Loader";
 
 export default function AddTicket() {
   const {userDatas} = useContext(UserDataContext)
+  const navigate = useNavigate();
   const formData = new FormData();
+
+  const [errors, setErrors] = useState({});
+  const [showErr, setShowErr] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
+
+  
   const [data , setData] = useState({
     title : "",
     category : "", //"warranty" یا "other"
@@ -14,17 +25,46 @@ export default function AddTicket() {
     file : null,
   })
   const subHandler = () => {
-    formData.append("title" , data.title)
-    formData.append("category" , data.category)
-    formData.append("priority" , data.priority)
-    formData.append("body" , data.body)
-    formData.append("file" , data.file)
-    formData.append("id" , data.id)
+    if (!Object.keys(errors).length) {
+      setIsLoading(true)
+      formData.append("title" , data.title)
+      formData.append("category" , data.category)
+      formData.append("priority" , data.priority)
+      formData.append("body" , data.body)
+      formData.append("file" , data.file)
+      formData.append("id" , data.id)
+      
+      Axios.post("/api/v1/ticket" , formData )
+      .then((respons) => {
+        navigate("/panel/viewTickets")
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        toast("!خطا در ثبت تیکت")
+        toast("لطفا مجددا امتحان کنید")
+        setIsLoading(false)
+      })
+    } else {
+      setShowErr({
+        title : true,
+        category : true, //"warranty" یا "other"
+        priority : true, // "high" یا "normal"
+        body : true,
+      })
+    }
     
-    Axios.post("/api/v1/ticket" , formData )
-    .then((respons) => console.log(respons))
-    .catch((error) => console.log(error))
   }
+
+  const focusHandler = e => {
+    if (e.target.name !== "checkbox") {
+      setShowErr({ ...showErr, [e.target.name]: true })
+
+    }
+  }
+  useEffect(() => {
+    setErrors(Validation(data, 'tiket'))
+    console.log(errors);
+  } , [data])
 
   const changeHandler = (e) => {
     if (e.target.name === "file") {
@@ -48,83 +88,95 @@ export default function AddTicket() {
   }
   if ((userDatas.user.type === "expert" || userDatas.user.type === "genuine" || userDatas.user.type === "legal")) return (
     <div>
+      {isLoading && <Loader />}
+      <ToastContainer />
       <div className=" py-6">
         <p className="text-xl font-extrabold">ثبت تیکت </p>
       </div>
       <input
         onChange={changeHandler}
+        onFocus={focusHandler}
         value={data.title}
         name="title"
         type="text"
         className="w-full p-4 bg-transparent rounded-2xl border-0 border-b border-gray-400  outline-none "
         placeholder="عنوان تیکت"
       />
-
+      {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}
       <div className="flex flex-row  justify-normal w-full items-center m-3 text-center">
-        <div className="flex 	items-center m-3 text-center">
-        <p className="font-bold ">خدمات:</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="category"
-          value="warranty"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-        />
-        <p className="font-bold ">ضمانت نامه</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="category"
-          value="facilities"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">تسهیلات</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="category"
-          value="other"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">عمومی</p>
+        <div style={{display : "flex" , flexDirection : "column" , alignContent:"flex-start"}}>
+
+          <div className="flex 	items-center m-3 text-center">
+            <p className="font-bold ">*خدمات:</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="category"
+              value="warranty"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+            />
+            <p className="font-bold ">ضمانت نامه</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="category"
+              value="facilities"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            />
+            <p className="font-bold ">تسهیلات</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="category"
+              value="other"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            />
+            <p className="font-bold ">عمومی</p>
+          </div>
+          {errors.category && showErr.category && <span style={{ color: '#e88f19' }}>{errors.category}</span>}
         </div>
-        <div className="flex w-28 items-center m-3 text-center">
-        <p className="font-bold ">اولویت:</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="high"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-        />
-        <p className="font-bold ">زیاد</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="normal"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">متوسط</p>
-        <input
-          type="radio"
-          onChange={changeHandler}
-          name="Priority"
-          value="low"
-          id=""
-          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-        />
-        <p className="font-bold ">کم</p>
-      </div>
+        <div style={{display : "flex" , flexDirection : "column"}}>
+          <div className="flex items-center m-3 text-center">
+
+            <p className="font-bold ">*اولویت:</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="Priority"
+              value="high"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+            />
+            <p className="font-bold ">زیاد</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="Priority"
+              value="normal"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            />
+            <p className="font-bold ">متوسط</p>
+            <input
+              type="radio"
+              onChange={changeHandler}
+              name="Priority"
+              value="low"
+              id=""
+              className="relative overflow-hidden mx-2 w-5 rounded h-full"
+            />
+            <p className="font-bold ">کم</p>
+          </div>
+          {errors.priority && showErr.priority && <span style={{ color: '#e88f19' }}>{errors.priority}</span>}
+        </div>
       </div>
       <div className="relative">
         <textarea
           onChange={changeHandler}
+          onFocus={focusHandler}
           value={data.body}
           name="body"
           placeholder="عنوان تیکت"
@@ -133,6 +185,7 @@ export default function AddTicket() {
           rows="10"
           className="w-full p-4 bg-transparent rounded-2xl border border-gray-400  outline-none  "
         ></textarea>
+        {errors.body && showErr.body && <span style={{ color: '#e88f19' }}>{errors.body}</span>}
         <p className="absolute text-gray-400 top-0 left-0 p-4">0/2000</p>
       </div>
       <div className="p-6 mt-3  bg-white rounded-xl">

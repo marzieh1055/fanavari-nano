@@ -193,5 +193,32 @@ export const Validation = (data , type) => {
         })
     }
 
+    // tiket
+    if (type === "tiket") {
+        if (!data.title.trim()) {
+            errors.title = "این فیلد نباید خالی باشد";
+        } else if (data.title) {
+            delete errors.title;
+        }
+        
+        if (!data.category.trim()) {
+            errors.category = "این فیلد نباید خالی باشد";
+        } else if (data.category) {
+            delete errors.category;
+        }
+
+        if (!data.priority.trim()) {
+            errors.priority = "این فیلد نباید خالی باشد";
+        } else if (data.priority) {
+            delete errors.priority;
+        }
+
+        if (!data.body.trim()) {
+            errors.body = "این فیلد نباید خالی باشد";
+        } else if (data.body) {
+            delete errors.body;
+        }
+    }
+
     return errors;
 }
