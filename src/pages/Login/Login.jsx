@@ -125,9 +125,9 @@ const Login = () => {
               </label>
               <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
               <input style={bcInput === true && userData.password ? {paddingRight: "45px" , backgroundColor: "#f6e8c2"} : {paddingRight: "45px"}} onFocus={focusHandler} onChange={changeHandler} value={userData.password} name='password' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
-              <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
+              <span onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                 <img className="w-full h-full" src={showPass ? view : hide} alt="" />
-              </button>
+              </span>
             </div>
             {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
 

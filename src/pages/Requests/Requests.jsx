@@ -43,7 +43,7 @@ const Requests = () => {
       setShowDetails(null)
     }
   }
-  if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+  if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
       <div className="pr-6 py-6 flex justify-between items-center w-c-13">
         <h2 className="text-2xl font-bold">مشاهده درخواست‌ها</h2>

@@ -1,19 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Topbar from '../components/Topbar/Topbar'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { Outlet, useLocation, useParams } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { UserDataContext } from '../contexts/UserData.Provider'
 import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
 import user2 from "../assets/imges/user-(2).png"
 
 export default function Panel() {
   const {userDatas} = useContext(UserDataContext)
-  
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!userDatas) {
+      navigate("/auth/login")
+    }
+  } , [])
   return (
     <div className="w-full max-w-c mx-auto bg-c flex p-6 gap-6">
     {/* Sidebar section */}
-    
-      { (userDatas.user.type === "admin" || userDatas.user.type === "Admin") && <SidebarUser objects={[
+      { userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin") && <SidebarUser objects={[
           {title : "کارشناسان",
             drop : ["لیست کارشناسان" , "اضافه کردن کارشناس"],
             links : ["/panel/viewExpert" , "/panel/Addexpert" ]
@@ -36,7 +40,7 @@ export default function Panel() {
           },
           
       ]} /> }
-      { (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
+      { userDatas && (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
         {title : "خدمات",
           drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
           links : ["/panel/guarantee" , "/panel/tashilat/1" , "/panel/openedRequests" ]
@@ -57,7 +61,7 @@ export default function Panel() {
       ]} /> }
 
 
-      { (userDatas.user.type === "expert") && <SidebarUser objects={[
+      { userDatas && (userDatas.user.type === "expert") && <SidebarUser objects={[
           {title : "درخواست ها",
             drop : ["درخواست های جاری"],
             links : ["/panel/expertViewAllRequest"]

@@ -95,7 +95,7 @@ const DashboardExpert = () => {
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
 
-  if ((userDatas.user.type === "expert")) return (
+  if (userDatas && (userDatas.user.type === "expert")) return (
     <>
       <div className="p-6 flex flex-col gap-6">
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>

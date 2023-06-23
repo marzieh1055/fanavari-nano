@@ -51,7 +51,7 @@ export default function ViewUsers() {
   //     .then((res) => console.log(res))
   // }
   if (IsLoading) return <Loader />
-  if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+  if (userDatas && userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
       <div className="flex justify-between py-6">
         <p className="text-xl font-extrabold" >مشاهده کاربران</p>

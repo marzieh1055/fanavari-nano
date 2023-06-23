@@ -86,7 +86,7 @@ export default function AddTicket() {
     }
     console.log(data);
   }
-  if ((userDatas.user.type === "expert" || userDatas.user.type === "genuine" || userDatas.user.type === "legal")) return (
+  if (userDatas && (userDatas.user.type === "expert" || userDatas.user.type === "genuine" || userDatas.user.type === "legal")) return (
     <div>
       {isLoading && <Loader />}
       <ToastContainer />

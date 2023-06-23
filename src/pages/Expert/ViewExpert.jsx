@@ -35,7 +35,7 @@ export default function ViewExpert() {
   }
 
   if (IsLoading) return <Loader />
-  if ((userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+  if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
       {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
       <div className=" py-6">

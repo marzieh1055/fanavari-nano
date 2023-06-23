@@ -17,7 +17,7 @@ export default function ExpertviewAllRequest() {
       setIsLoading(false)
     })
   },[])
-  if ((userDatas.user.type === "expert")) return (
+  if (userDatas && (userDatas.user.type === "expert")) return (
     <div>
       <div className=" py-6">
         <p className="text-xl font-extrabold"> درخواست های جاری</p>
