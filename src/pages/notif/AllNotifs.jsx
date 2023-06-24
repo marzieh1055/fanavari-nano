@@ -76,14 +76,14 @@ export default function AllNotifs() {
               <th className="bg-white p-3 ">تاریخ ارسال</th>
             </tr>
           </thead>
-          <tbody style={{display : 'flex' , flexDirection : "column-reverse"}}>
+          <tbody >
             {unreadNotif && unreadNotif.map((notif) => {
               return (
                 <tr
                   key={notif.id}
                   id={notif.id}
                 >                  
-                <td className="p-4 text-xs text-red-400 font-bold">کارشناس 2 </td>
+                <td className="p-4 text-xs text-red-400 font-bold">{notif.data.sender}</td>
 
                   <td className="p-4 text-xs text-red-400 font-bold">{notif.data.message}</td>
                   <td className="p-4 text-xs text-red-400 font-bold">{onlyDateConversion(notif.created_at)} </td>
@@ -92,7 +92,7 @@ export default function AllNotifs() {
               );
             })}
             </tbody>
-            <tbody style={{display : 'flex' , flexDirection : "column-reverse"}}>
+            <tbody >
 
             {filteredArray2 && filteredArray2.map((notif) => {
               return (
@@ -100,7 +100,7 @@ export default function AllNotifs() {
                   key={notif.id}
                   id={notif.id}
                 >                  
-                <td className="p-4 text-xs text-gray-400 font-bold">کارشناس 2 </td>
+                <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
 
                   <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)} </td>

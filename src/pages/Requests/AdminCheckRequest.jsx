@@ -7,6 +7,7 @@ import StepConfirmAdmin from "../../components/modal/StepConfirmAdmin";
 import DownloadStep3 from "../../components/ChekRequestComp/DownloadStep3";
 import DownloadSecStepFile from "../../components/ChekRequestComp/DownloadSecStepFile";
 import RejectAdmin from "../../components/modal/RejectAdmin";
+import DownloadStep5 from "../../components/ChekRequestComp/DownloadStep5.jsx";
 
 export default function AdminCheckRequest() {
   const reqId = useParams()
@@ -115,7 +116,8 @@ export default function AdminCheckRequest() {
       {/* ------------------------------------------   آپلود فایل مرحله 4 و 3  ------------------------------------------------------ */}
 
         <div className="w-1/2 px-2">
-          <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} />
+          {/* <SendEvaluationReportFile reqStatus={reqStatus} reqId={reqId.id} setUpdatePage={setUpdatePage} /> */}
+          <DownloadStep5 reqStatus={reqStatus} reqId={reqId.id} />
           
           <div className="pt-4 px-2">
             <div style={{display:"flex"}} className="w-full">

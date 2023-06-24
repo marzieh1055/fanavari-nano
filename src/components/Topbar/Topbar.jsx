@@ -62,7 +62,7 @@ const Topbar = ({ avatar }) => {
             <h2>اعلانات</h2>
           </div>
         </button>
-        {showUnreade && <ViewNotif close={setShowUnreade} />}
+        {showUnreade && <ViewNotif unreadNotif={unreadNotif} trashHandler={setUnreadNotif} close={setShowUnreade} />}
         <div>
           <button className="flex items-center gap-4" onClick={() => setShowModal(!showModal)}>
             <div>

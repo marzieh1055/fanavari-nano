@@ -57,12 +57,17 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
             formData.append("file1", fileData.file1)
             formData.append("file2", fileData.file2)
             formData.append("file3", fileData.file3)
+            const token = localStorage.getItem('token');
+            const isLoggedIn = token ? true : false;
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
             axios.post("/api/admin/committee", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
+                ...(isLoggedIn && {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                })
             }
             })
             .then(async (res) => {

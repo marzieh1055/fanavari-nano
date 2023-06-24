@@ -51,12 +51,17 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
             const formData = new FormData();
             formData.append("request_id", fileData.request_id)
             formData.append("file", fileData.file)
+            const token = localStorage.getItem('token');
+            const isLoggedIn = token ? true : false;
             setErr(false)
             setIsLoading(true)
             setStepSendReq(true)
             axios.post("/api/admin/evaluation_report", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
+                ...(isLoggedIn && {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                })
               }
             })
               .then(async (res) => {

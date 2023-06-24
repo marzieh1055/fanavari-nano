@@ -15,6 +15,7 @@ import Line from "../../assets/imges/ViewRequests/Line 1.png"
 import VectorAZ from "../../assets/imges/ViewRequests/VectorAZ.png"
 import x from "../../assets/imges/ViewRequests/x.png"
 import Left from "../../assets/imges/ViewRequests/Left.png"
+import { Link } from "react-router-dom";
 
 
 const Requests = () => {
@@ -225,15 +226,15 @@ const Requests = () => {
             } else {
               return (
                 <li key={item.id} className="flex items-center gap-3.5 py-3.5 text-c-10 text-xs">
-                  <a className="w-1/6 text-center" href="">
+                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {item.shenaseh}
-                  </a>
-                  <a className="w-1/6 text-center" href="">
+                  </Link>
+                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {`${item.user.name} ${item.user.family}`}
-                  </a>
-                  <a className="w-1/6 text-center" href="">
+                  </Link>
+                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
-                  </a>
+                  </Link>
                   <a className="w-1/6 text-center" href="">
                     {onlyDateConversion(item.created_at)}
                   </a>

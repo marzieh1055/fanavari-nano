@@ -2,23 +2,13 @@ import React, { useEffect, useState } from 'react'
 import bellAlert from '../../assets/svg/bellAlert.svg'
 import Bell from '../../assets/svg/Bell.svg'
 import back from '../../assets/svg/back.svg'
+import trash from '../../assets/svg/trash.svg'
 import { Link } from 'react-router-dom'
 import Axios from '../../../axiosinstancs'
 
 
-export default function ViewNotif({close}) {
+export default function ViewNotif({unreadNotif , trashHandler , close}) {
 
-  const [unreadNotif, setUnreadNotif] = useState([]);
-  useEffect(() => {
-    Axios.get(`/api/v1/get_unread_notification`).then(async res => {
-      console.log(res.data)
-      setUnreadNotif(res.data)
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  } , [])
   return (
     <div class="relative left-1/2 top-8">
       <div class="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
@@ -51,7 +41,13 @@ export default function ViewNotif({close}) {
               <img src={Bell} alt="" class="h-5 w-5 flex-none text-gray-400" />
               همه اعلان ها
             </Link>
-            <p onClick={() => close(false)} class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+            <p onClick={() => trashHandler([])} class="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+              <img src={trash} alt="" class="h-5 w-5 flex-none text-gray-400" />
+              پاک کردن همه
+            </p>
+          </div>
+          <div class="grid grid-cols-1 divide-x divide-gray-900/5 bg-gray-50">
+            <p onClick={() => close(false)} class="flex w-full items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
               <img src={back} alt="" class="h-5 w-5 flex-none text-gray-400" />
               بستن
             </p>

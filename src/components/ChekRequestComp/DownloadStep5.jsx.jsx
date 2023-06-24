@@ -16,7 +16,7 @@ export default function DownloadStep5({ reqStatus , reqId }) {
     useEffect(() => {
         setRendering(true)
         // get step 3
-        Axios.get(`/api/admin/credit/${reqId}`).then(async (res) => {
+        Axios.get(`/api/v1/get_credit/${reqId}`).then(async (res) => {
             console.log(res);
             setFileStorage({
                 file : res.data.file_name ,

@@ -91,7 +91,7 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
       return (
         <div  className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
           <div className="w-96 bg-white z-10 rounded-lg p-4 shadow-lg flex flex-col gap-4">
-              <p className="text-center font-bold my-3 mb-1">این بخش با آپلود فایل گزارش ارزیابی تکمیل میگردد</p>
+              <p className="text-center font-bold my-3 mb-1">این بخش با آپلود فایل گزارش نهایی تکمیل میگردد</p>
               <div className='flex'>
                 <button onClick={() => close(null)}  className="w-full m-1 rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs" >بستن</button>
               </div>
