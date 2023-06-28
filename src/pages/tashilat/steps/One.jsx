@@ -127,8 +127,8 @@ export default function One() {
       Axios.post("/api/v1/request", stepOne)
         .then((res) => {
           console.log(res.data)
+          navigate(`/panel/Tashilat/2?last_id=${res.data.last_id}`)
           setIsLoading(false)
-          // navigate("/panel/Tashilat/2")
         })
         .catch((err) => {
           console.log(err)
@@ -138,6 +138,8 @@ export default function One() {
       setShowErr(errorsA)
     }
   }
+
+  if (isLoading) return <Loader />
   return (
     <>
       {/* <div >
@@ -176,7 +178,6 @@ export default function One() {
 
 
       <> 
-        {isLoading && <Loader />}
         <div className=" ">
           {showErr.title && <span className="text-sm pr-2 text-c-9">*{showErr.title}</span>}
 
@@ -211,12 +212,12 @@ export default function One() {
                     className="border-gray-300 rounded-md  text-xs w-[200px]"
 
                   >
-                    <option value="lizing">لیزینگ</option>
-                    <option value="eshbah">اشباع</option>
-                    <option value="sarmaye-dar-gardesh">سرمایه در گردش</option>
-                    <option value="nemoone-sazi">نمونه سازی</option>
-                    <option value="tolid-sanati">تولید صنعتی</option>
-                    <option value="ghabl-tolid-sanati">قبل از تولید صنعتی</option>
+                    <option value="leasing">لیزینگ</option>
+                    <option value="saturation">اشباع</option>
+                    <option value="fund">سرمایه در گردش</option>
+                    <option value="prototyping">نمونه سازی</option>
+                    <option value="industrial">تولید صنعتی</option>
+                    <option value="pre_industrial">قبل از تولید صنعتی</option>
                   </select>
                   {showErr.type_f && <span className="text-sm text-c-9">*{showErr.type_f}</span>}
 

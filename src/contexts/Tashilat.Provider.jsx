@@ -17,21 +17,21 @@ export default function TashilatProvider({ children }) {
         scope: "workHouse",
         address: "",
         meterage: "",
-        ownership: "",
+        ownership: "owner",
         count: "",
       },
       {
         scope: "factory",
         address: "",
         meterage: "",
-        ownership: "",
+        ownership: "owner",
         count: "",
       },
       {
         scope: "storeHouse",
         address: "",
         meterage: "",
-        ownership: "",
+        ownership: "owner",
         count: "",
       },
     ],
@@ -58,11 +58,6 @@ export default function TashilatProvider({ children }) {
           education:"test"
         },
       ],
-      sum_count:"44",
-      sum_percent:"55",
-      sum_cost:"66",
-      number:"77",
-      date:"2022-04-05",
       residences:[
         {
           name:"test",
@@ -83,13 +78,18 @@ export default function TashilatProvider({ children }) {
       ],
       educational:[
           {
-              name:"test",
-              university:"test",
-              study:"test",
-              position:"test",
-              records:"test"
+              name:"",
+              university:"",
+              study:"",
+              position:"",
+              records:""
           }
-      ]
+      ],
+      sum_count:0,
+      sum_percent:0,
+      sum_cost:0,
+      number:"77",
+      date:"2022-04-05",
   });
   const [stepThree, setStepThree] = useState({});
   const [stepFour, setStepFour] = useState({});
