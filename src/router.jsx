@@ -26,13 +26,13 @@ import LegalUserInfo from "./pages/User/LegalUserInfo";
 import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
 import ViewDetailRequest from './pages/request/ViewDetailRequest'
-import One from "./pages/Tashilat/steps/One";
+import Tashilat from "./pages/tashilat/Tashilat";
+import One from "./pages/tashilat/steps/One";
 import Two from "./pages/Tashilat/steps/Two";
 import Three from "./pages/Tashilat/steps/three";
 import Four from "./pages/Tashilat/steps/Four";
 import Five from "./pages/Tashilat/steps/Five";
 import Confirm from "./pages/Tashilat/steps/Confirm";
-import Tashilat from "./pages/Tashilat/Tashilat";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
 import DashboardExpert from "./pages/Dashboard/DashboardExpert";
