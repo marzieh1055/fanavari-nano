@@ -91,7 +91,21 @@ export default function TashilatProvider({ children }) {
           }
       ]
   });
-  const [stepThree, setStepThree] = useState({});
+  const [stepThree, setStepThree] = useState({
+    
+      facilities_id:1,
+      products:[
+          {
+              name:"",
+              customer:"",
+              specifications:"",
+              competitor:"",
+              sales_amount:"",
+              is_confirmation:true
+          }
+      ]
+  
+  });
   const [stepFour, setStepFour] = useState({});
   const [stepFive, setStepFive] = useState({});
 
