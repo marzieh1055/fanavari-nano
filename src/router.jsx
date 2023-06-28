@@ -27,8 +27,8 @@ import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
 import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
 import ViewDetailRequest from './pages/request/ViewDetailRequest'
 import Tashilat from "./pages/tashilat/Tashilat";
+import Two from "./pages/tashilat/steps/Two";
 import One from "./pages/tashilat/steps/One";
-import Two from "./pages/Tashilat/steps/Two";
 import Three from "./pages/Tashilat/steps/three";
 import Four from "./pages/Tashilat/steps/Four";
 import Five from "./pages/Tashilat/steps/Five";

@@ -162,12 +162,12 @@ export default function One() {
               className="border-gray-300 rounded-md  text-xs w-[100px]"
 
             >
-              <option value="lizing">لیزینگ</option>
-              <option value="eshbah">اشباع</option>
-              <option value="sarmaye-dar-gardesh">سرمایه در گردش</option>
-              <option value="nemoone-sazi">نمونه سازی</option>
-              <option value="tolid-sanati">تولید صنعتی</option>
-              <option value="ghabl-tolid-sanati">قبل از تولید صنعتی</option>
+              <option value="leasing">لیزینگ</option>
+              <option value="saturation">اشباع</option>
+              <option value="fund">سرمایه در گردش</option>
+              <option value="prototyping">نمونه سازی</option>
+              <option value="industrial">تولید صنعتی</option>
+              <option value="pre_industrial">قبل از تولید صنعتی</option>
             </select>
             {showErr.type_f && <span className="text-sm text-c-9">*{showErr.type_f}</span>}
           </div>

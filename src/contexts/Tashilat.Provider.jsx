@@ -42,7 +42,55 @@ export default function TashilatProvider({ children }) {
     expiration: "",
     area: "",
   });
-  const [stepTwo, setStepTwo] = useState({});
+  const [stepTwo, setStepTwo] = useState(
+    //shareholder
+  {
+      facilities_id:1,
+      shareholders:[
+        {
+          name:"test",
+          type:"genuine",
+          n_certificate:"test",
+          n_national:"test",
+          count:"4",
+          percent:"5",
+          cost:"12",
+          education:"test"
+        },
+      ],
+      sum_count:"44",
+      sum_percent:"55",
+      sum_cost:"66",
+      number:"77",
+      date:"2022-04-05",
+      residences:[
+        {
+          name:"test",
+          position:"test",
+          address:"test"
+        }
+      ],
+      manpowers:[
+          {
+              name:"test",
+              position:"test",
+              level_education:"test",
+              study:"test",
+              type_contract:"full",
+              work_experience:"44",
+              important:"test"
+          }
+      ],
+      educational:[
+          {
+              name:"test",
+              university:"test",
+              study:"test",
+              position:"test",
+              records:"test"
+          }
+      ]
+  });
   const [stepThree, setStepThree] = useState({});
   const [stepFour, setStepFour] = useState({});
   const [stepFive, setStepFive] = useState({});
