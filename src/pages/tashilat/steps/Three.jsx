@@ -1,8 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { TashilatContext } from "../../../contexts/Tashilat.Provider";
+import Axios from "../../../../axiosinstancs";
 
 export default function Three() {
+  const { stepThree, setStepThree } = useContext(TashilatContext)
   const [serviceInfo, setServiceInfo] = useState([]);
+
+  const changeHandler = (e) => {
+    setStepThree(prevState => {
+      const updatedPlaces = prevState.products.map((item, index) => {
+        if (index === parseInt(e.target.id)) {
+          return {
+            ...item,
+            [e.target.name]: e.target.value
+          };
+        }
+        return item;
+      });
+      return {
+        ...prevState,
+        products: updatedPlaces
+      };
+    });
+    console.log(stepThree.products[e.target.id]);
+  }
+  
+  Axios.post("/api/v1/product", stepThree)
+  .then((res) => {
+    console.log(res.data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
   return (
     <>
       <div className=" py-6 mt-4">
@@ -27,47 +58,86 @@ export default function Three() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white  border-b">
-              <td className="p-4 text-xs text-gray-800 font-bold">1</td>
+            {stepThree.products.length > 0 &&
+              stepThree.products.map((item, index) => {
+                return (
+                  <tr key={index} className="bg-white  border-b">
+                    <td className="p-4 text-xs text-gray-800 font-bold">
+                      {index}
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold">
+                      <input
+                        type="text"
+                        className="border border-gray-300 rounded-xl w-full"
+                        onChange={changeHandler}
+                        value={stepThree.products[index].name}
+                        name="name"
+                        id={index}
+                      />
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold">
+                      <input
+                        type="text"
+                        className="border border-gray-300 rounded-xl w-full"
+                        onChange={changeHandler}
+                        value={stepThree.products[index].customer}
+                        name="customer"
+                        id={index}
+                      />
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold">
+                      <input
+                        type="text"
+                        className="border border-gray-300 rounded-xl w-full"
+                        onChange={changeHandler}
+                        value={stepThree.products[index].specifications}
+                        name="specifications"
+                        id={index}
+                      />
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold">
+                      <input
+                        type="text"
+                        className="border border-gray-300 rounded-xl w-full"
+                        onChange={changeHandler}
+                        value={stepThree.products[index].competitor}
+                        name="competitor"
+                        id={index}
+                      />
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold">
+                      <input
+                        type="!"
+                        className="border border-gray-300 rounded-xl w-full"
+                        onChange={changeHandler}
+                        value={stepThree.products[index].sales_amount}
+                        name="sales_amount"
+                        id={index}
+                      />
+                    </td>
+                    <td className="p-4 text-xs text-gray-600 font-bold text-center">
+                      <input
+                        type="checkbox"
+                        className="border border-gray-300 rounded-xl "
+                        onChange={changeHandler}
+                        value={stepThree.products[index].is_confirmation}
+                        name="is_confirmation"
+                        id={index}
+                      />
+                    </td>
+                  </tr>
+                )
+              })
+            }
 
-              <td className="p-4 text-xs text-gray-600 font-bold">
-                <input
-                  type="text"
-                  className="border border-gray-300 rounded-xl w-full"
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-600 font-bold">
-                <input
-                  type="text"
-                  className="border border-gray-300 rounded-xl w-full"
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-600 font-bold">
-                <input
-                  type="text"
-                  className="border border-gray-300 rounded-xl w-full"
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-600 font-bold">
-                <input
-                  type="text"
-                  className="border border-gray-300 rounded-xl w-full"
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-600 font-bold">
-                <input
-                  type="!"
-                  className="border border-gray-300 rounded-xl w-full"
-                />
-              </td>
-              <td className="p-4 text-xs text-gray-600 font-bold text-center">
-                <input
-                  type="checkbox"
-                  className="border border-gray-300 rounded-xl "
-                />
-              </td>
-            </tr>
-            {serviceInfo.length > 0 &&
+
+
+
+
+
+
+            {/* {
+              serviceInfo.length > 0 &&
               serviceInfo.map((item, index) => (
                 <tr key={index} className="bg-white  border-b">
                   <td className="p-4 text-xs text-gray-800 font-bold">
@@ -111,15 +181,35 @@ export default function Three() {
                     />
                   </td>
                 </tr>
-              ))}
+              ))
+            } */}
 
             <tr className="">
               <td className="bg-white" colSpan="9">
                 <button
                   className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
+                  // onClick={() => {
+                    
+                  //   setServiceInfo([...serviceInfo, "example"]);
+                  // }}
                   onClick={() => {
-                    setServiceInfo([...serviceInfo, "example"]);
-                  }}
+                    setStepThree(prev => (
+                        {
+                            ...prev ,
+                            products : [
+                                ...prev.products,
+                                {
+                                    name:"",
+                                    customer:"",
+                                    specifications:"",
+                                    competitor:"",
+                                    sales_amount:"",
+                                    is_confirmation:""
+                                },
+                            ]
+                        }
+                    ));
+                }}
                 >
                   {" "}
                   افزودن ردیف{" "}
