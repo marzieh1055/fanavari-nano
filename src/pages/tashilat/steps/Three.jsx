@@ -1,20 +1,43 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from "query-string";
 import { TashilatContext } from "../../../contexts/Tashilat.Provider";
 import Axios from "../../../../axiosinstancs";
+import Loader from "../../../components/Loader/Loader";
 
 export default function Three() {
+  const navigate = useNavigate()
+  const location = useLocation();
+  const values = queryString.parse(location.search);
+
   const { stepThree, setStepThree } = useContext(TashilatContext)
-  const [serviceInfo, setServiceInfo] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  useState(() => {
+    setStepThree((prev) => {
+      return ({
+        ...prev,
+        facilities_id : parseInt(values.last_id),
+      })
+    })
+  } , [])
 
   const changeHandler = (e) => {
     setStepThree(prevState => {
       const updatedPlaces = prevState.products.map((item, index) => {
         if (index === parseInt(e.target.id)) {
-          return {
-            ...item,
-            [e.target.name]: e.target.value
-          };
+          if (e.target.type === "checkbox") {
+            return {
+              ...item,
+              [e.target.name]: e.target.checked
+            };
+          } else {
+            return {
+              ...item,
+              [e.target.name]: e.target.value
+            };
+          }
         }
         return item;
       });
@@ -23,17 +46,24 @@ export default function Three() {
         products: updatedPlaces
       };
     });
-    console.log(stepThree.products[e.target.id]);
+    console.log(stepThree);
   }
   
-  Axios.post("/api/v1/product", stepThree)
-  .then((res) => {
-    console.log(res.data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+  const sendHandler = () => {
+    setIsLoading(true)
+    Axios.post("/api/v1/product", stepThree)
+    .then((res) => {
+      console.log(res.data)
+      navigate(`/panel/Tashilat/4?last_id=${parseInt(values.last_id)}`)
+      setIsLoading(false)
+    })
+    .catch((err) => {
+      console.log(err)
+      setIsLoading(false)
+    })
+  }
 
+  if (isLoading) return <Loader />
   return (
     <>
       <div className=" py-6 mt-4">
@@ -120,7 +150,7 @@ export default function Three() {
                         type="checkbox"
                         className="border border-gray-300 rounded-xl "
                         onChange={changeHandler}
-                        value={stepThree.products[index].is_confirmation}
+                        value={true}
                         name="is_confirmation"
                         id={index}
                       />
@@ -130,68 +160,10 @@ export default function Three() {
               })
             }
 
-
-
-
-
-
-
-            {/* {
-              serviceInfo.length > 0 &&
-              serviceInfo.map((item, index) => (
-                <tr key={index} className="bg-white  border-b">
-                  <td className="p-4 text-xs text-gray-800 font-bold">
-                    {index + 2}
-                  </td>
-
-                  <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                      type="!"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-600 font-bold text-center">
-                    <input
-                      type="checkbox"
-                      className="border border-gray-300 rounded-xl "
-                    />
-                  </td>
-                </tr>
-              ))
-            } */}
-
             <tr className="">
               <td className="bg-white" colSpan="9">
                 <button
                   className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
-                  // onClick={() => {
-                    
-                  //   setServiceInfo([...serviceInfo, "example"]);
-                  // }}
                   onClick={() => {
                     setStepThree(prev => (
                         {
@@ -219,13 +191,11 @@ export default function Three() {
           </tbody>
         </table>
       </div>
-      <Link to="/panel/Tashilat/4">
         <div className=" text-left mt-2">
-          <button className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+          <button onClick={sendHandler} className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
             مرحله بعد
           </button>
         </div>
-      </Link>
     </>
   );
 }

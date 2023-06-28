@@ -45,7 +45,7 @@ export default function TashilatProvider({ children }) {
   const [stepTwo, setStepTwo] = useState(
     //shareholder
   {
-      facilities_id:1,
+      facilities_id:"",
       shareholders:[
         {
           name:"test",
@@ -93,7 +93,7 @@ export default function TashilatProvider({ children }) {
   });
   const [stepThree, setStepThree] = useState({
     
-      facilities_id:1,
+      facilities_id:"",
       products:[
           {
               name:"",

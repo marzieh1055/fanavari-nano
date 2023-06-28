@@ -326,7 +326,7 @@ export default function One() {
                     className="border-gray-300 rounded-xl w-24 text-xs"
                   >
                     <option value="owner">مالک</option>
-                    <option value="rental">استیجاری</option>
+                    <option value="tenant">استیجاری</option>
                   </select>
                 </td>
                 <td className="p-4 text-xs text-gray-600 font-bold">
