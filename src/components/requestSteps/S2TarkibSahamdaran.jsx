@@ -3,7 +3,6 @@ import { TashilatContext } from '../../contexts/Tashilat.Provider';
 
 export default function S2TarkibSahamdaran() {
    const {stepTwo, setStepTwo} = useContext(TashilatContext)
-
     const changeHandler = (e) => {
         setStepTwo(prevState => {
             const updatedPlaces = prevState.shareholders.map((item, index) => {
