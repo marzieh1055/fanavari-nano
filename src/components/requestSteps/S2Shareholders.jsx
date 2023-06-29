@@ -1,11 +1,30 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 
-export default function S2TarkibSahamdaran() {
+export default function S2Shareholders() {
    const {stepTwo, setStepTwo} = useContext(TashilatContext)
+    const [up , setUp] = useState(0)
+   useEffect(() => {
+        const jam = {sum_count : 0 , sum_percent : 0 , sum_cost : 0}
+        stepTwo.shareholders.map((item) => {
+            jam.sum_cost = jam.sum_cost + parseInt(item.cost)
+            jam.sum_count = jam.sum_count + parseInt(item.count)
+            jam.sum_percent = jam.sum_percent + parseInt(item.percent)
+        })
+
+        setStepTwo(prev => (
+            {
+                ...prev,
+                sum_cost : jam.sum_cost,
+                sum_percent : jam.sum_percent,
+                sum_count : jam.sum_count,
+            }
+        ))
+        console.log(stepTwo);
+   } , [up])
     const changeHandler = (e) => {
         setStepTwo(prevState => {
-            const updatedPlaces = prevState.shareholders.map((item, index) => {
+            const updated = prevState.shareholders.map((item, index) => {
               if (index === parseInt(e.target.id)) {
                 return {
                   ...item,
@@ -16,11 +35,14 @@ export default function S2TarkibSahamdaran() {
             });
             return {
               ...prevState,
-              shareholders: updatedPlaces
+              shareholders: updated
             };
           });
-          console.log(stepTwo.shareholders[e.target.id]);
+          setUp(p => p + 1)
+          console.log(stepTwo);
     }
+
+    // جمع کل موند
   return (
     <>
         <div className=" py-6 mt-4">
@@ -45,13 +67,11 @@ export default function S2TarkibSahamdaran() {
             <tbody>
                 {stepTwo.shareholders.length > 0 &&
                     stepTwo.shareholders.map((item, index) => {
-                        {console.log(index)}
                             return (
                                 <tr key={index} className="bg-white  border-b">
                                 <td className="p-4 text-xs text-gray-800 font-bold">
                                     {index}
                                 </td>
-                                {console.log(stepTwo.shareholders)}
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <input
                                         type="text"
@@ -156,9 +176,9 @@ export default function S2TarkibSahamdaran() {
                 <td className="p-4 text-xs text-gray-800 font-bold" colSpan="5">
                     جمع کل :
                 </td>
-                <td className="p-4 text-sm text-gray-800 font-bold">10000</td>
-                <td className="p-4 text-sm text-gray-800 font-bold">100%</td>
-                <td className="p-4 text-sm text-gray-800 font-bold">3/199/000</td>
+                <td className="p-4 text-sm text-gray-800 font-bold">{stepTwo.sum_count}</td>
+                <td className="p-4 text-sm text-gray-800 font-bold">{stepTwo.sum_percent}%</td>
+                <td className="p-4 text-sm text-gray-800 font-bold">{stepTwo.sum_cost}</td>
                 <td className="p-4 text-sm text-gray-800 font-bold"></td>
                 </tr>
                 <tr className="">
@@ -176,15 +196,16 @@ export default function S2TarkibSahamdaran() {
                                         type:"genuine",
                                         n_certificate:"",
                                         n_national:"",
-                                        count:"1",
-                                        percent:"1",
-                                        cost:"1",
+                                        count:0,
+                                        percent:0,
+                                        cost:0,
                                         education:""
                                     },
                                 ]
                             }
                         ));
-                    }}
+                    }
+                }
                     >
                     {" "}
                     افزودن ردیف{" "}

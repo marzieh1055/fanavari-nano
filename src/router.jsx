@@ -29,7 +29,7 @@ import ViewDetailRequest from './pages/request/ViewDetailRequest'
 import Tashilat from "./pages/tashilat/Tashilat";
 import Two from "./pages/tashilat/steps/Two";
 import One from "./pages/tashilat/steps/One";
-import Three from "./pages/Tashilat/steps/three";
+import Three from "./pages/tashilat/steps/Three"
 import Four from "./pages/Tashilat/steps/Four";
 import Five from "./pages/Tashilat/steps/Five";
 import Confirm from "./pages/Tashilat/steps/Confirm";
