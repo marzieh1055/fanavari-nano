@@ -655,27 +655,27 @@ export default function TashilatProvider({ children }) {
       ],
       contracts:[
           {
-              subject:"test",
-              name:"test",
-              amount:"test",
-              start:"2022-02-02",
-              end:"2022-02-02",
-              progress:"test"
+              subject:"",
+              name:"",
+              amount:"",
+              start:"",
+              end:"",
+              progress:""
           }
       ],
       pledges:[
           {
-              type:"test",
-              cost:"test",
-              description:"test"
+              type:"",
+              cost:"",
+              description:""
           }
       ],
       estates:[
           {
-              type:"test",
-              owner:"test",
-              cost:"test",
-              description:"test"
+              type:"",
+              owner:"",
+              cost:"",
+              description:""
           }
       ]
   });

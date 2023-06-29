@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState , useRef  } from "react";
 import { confirmAlert } from "react-confirm-alert";
+import SignatureCanvas from 'react-signature-canvas';
+ 
 
 export default function Confirm() {
   const [userInfo, setUserInfo] = useState({
@@ -9,7 +11,23 @@ export default function Confirm() {
     tamin: "",
   });
 
+  const signatureRef = useRef();
+  const handleSave = () => {
+    const canvas = signatureRef.current.getCanvas();
 
+    // تبدیل canvas به تصویر با استفاده از html2canvas
+    html2canvas(canvas)
+      .then((canvas) => {
+        // تبدیل canvas به فایل JPG
+        const dataURL = canvas.toDataURL('image/jpeg');
+console.log(dataURL)
+        // ارسال فایل JPG به سمت بک‌اند
+        // اینجا کد ارسال فایل به سمت بک‌اند خودتان را قرار دهید
+      })
+      .catch((error) => {
+        console.error('خطا در تبدیل canvas به تصویر:', error);
+      });
+  };
 
 
   const submitHandler = (e) => {
@@ -75,7 +93,7 @@ export default function Confirm() {
           }}
           value={userInfo.name}
           type="text"
-          className="rounded-2xl bg-transparent border-0 border-b border-gray-600 my-2 shadow-lg   "
+          className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg "
         />
         <span className="font-semibold text-sm text-gray-600    ">
           مبلغ درخواستی{" "}
@@ -88,8 +106,8 @@ export default function Confirm() {
             }));
           }}
           value={userInfo.price}
-          type="number"
-          className="rounded-2xl bg-transparent border-0 border-b border-gray-600 my-2 shadow-lg   "
+          type="text"
+          className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg   "  //border-0
         />
         <span className="font-semibold text-sm text-gray-600    ">
           عنوان تسهیلات
@@ -103,7 +121,7 @@ export default function Confirm() {
           }}
           value={userInfo.title}
           type="text"
-          className="rounded-2xl bg-transparent border-0 border-b border-gray-600 my-2 shadow-lg   "
+          className="rounded-2xl bg-transparent border-b border-gray-600 my-2 shadow-lg   "
         />
         <span className="font-semibold text-sm text-gray-600    ">
           منظور از درخواست
@@ -117,8 +135,12 @@ export default function Confirm() {
           }}
           value={userInfo.tamin}
           type="text"
-          className="rounded-2xl bg-transparent border-0 border-b border-gray-600 my-2 shadow-lg   "
+          className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg   "
         />
+            <div>
+      <SignatureCanvas ref={signatureRef} />
+      <button onClick={handleSave}>ذخیره</button>
+    </div>
         <input
           type="submit"
           className="rounded-2xl bg-blue-700 text-white p-2 text-center mt-8 shadow-lg  w-40 cursor-pointer  "
