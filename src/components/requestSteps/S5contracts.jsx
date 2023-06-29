@@ -23,17 +23,24 @@ export default function S5contracts() {
       });
       console.log(stepFive);
     }
-    const datechangeHandler = (e, InIndex) => {
+    const datechangeHandler = (e, InIndex , keyName) => {
       const day = e.value.getDate()
       const mouth = e.value.getMonth()
       const year = e.value.getFullYear()
       setStepFive(prevState => {
         const updated = prevState.contracts.map((item, index) => {
           if (index === parseInt(InIndex)) {
-            return {
-              ...item,
-              date: `${year}-${mouth + 1}-${day}`
-            };
+            if (keyName === "start") {
+              return {
+                ...item,
+                start: `${year}-${mouth + 1}-${day}`
+              };
+            } else if (keyName === "end") {
+              return {
+                ...item,
+                end: `${year}-${mouth + 1}-${day}`
+              };
+            }
           }
           return item;
         });
@@ -107,7 +114,7 @@ export default function S5contracts() {
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <DatePicker
-                        onChange={(e) => datechangeHandler(e, index)}
+                        onChange={(e) => datechangeHandler(e, index ,"start")}
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
                         format="jYYYY/jMM/jDD"
@@ -116,7 +123,7 @@ export default function S5contracts() {
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <DatePicker
-                        onChange={(e) => datechangeHandler(e, index)}
+                        onChange={(e) => datechangeHandler(e, index , "end")}
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
                         format="jYYYY/jMM/jDD"
