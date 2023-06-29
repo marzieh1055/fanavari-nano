@@ -158,92 +158,10 @@ export default function S4Activewarranty() {
                                 )
                             })
                         }
-
-                        {/* {activeTashilat.length > 0 &&
-              activeTashilat.map((item, index) => (
-                <tr key={index} className="bg-white  border-b">
-                  <td className="p-2 text-xs text-gray-800 font-bold">
-                    {index + 2}
-                  </td>
-
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                  <td className="p-2 text-xs text-gray-600 font-bold">
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-xl w-full"
-                    />
-                  </td>
-                </tr>
-              ))} */}
-
                         <tr className="">
                             <td className="bg-white" colSpan="12">
                                 <button
                                     className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
-                                    // onClick={() => {
-                                    //     setActiveTashilat([...activeTashilat, "example"]);
-                                    // }}
                                     onClick={() => {
                                         setStepFour(prev => (
                                             {
