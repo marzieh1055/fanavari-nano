@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserDataContext } from "./UserData.Provider";
 
 export const TashilatContext = React.createContext();
 
@@ -679,6 +678,14 @@ export default function TashilatProvider({ children }) {
           }
       ]
   });
+  const [confirm, setConfirm] = useState({
+    facilities_id : 1,
+    name : "",
+    amount : "",
+    title : "",
+    supply : "",
+    signature : null,
+  })
 
   return (
     <TashilatContext.Provider
@@ -693,6 +700,8 @@ export default function TashilatProvider({ children }) {
         setStepFour,
         stepFive,
         setStepFive,
+        confirm,
+        setConfirm
       }}
     >
       {children}

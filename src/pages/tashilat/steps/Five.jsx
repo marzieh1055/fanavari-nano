@@ -17,6 +17,15 @@ export default function Five() {
   const {stepFive, setStepFive} = useContext(TashilatContext)
 
   const [isLoading, setIsLoading] = useState(false)
+
+  useState(() => {
+    setStepFive((prev) => {
+      return ({
+        ...prev,
+        facilities_id : parseInt(values.last_id),
+      })
+    })
+  } , [])
   const sendHandler = () => {
     setIsLoading(true)
     Axios.post("/api/v1/approvals", stepFive)
@@ -39,7 +48,7 @@ export default function Five() {
       <S5pledges />
       <S5estates />
         <div className=" text-left mt-2">
-          <button onClick={sendHandler} className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+          <button onClick={sendHandler} className="bg-blue-700 text-white rounded-xl p-4 font-bold text-sm">
             مرحله بعد
           </button>
         </div>

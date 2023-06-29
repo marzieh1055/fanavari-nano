@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 
 export default function Tashilat() {
   let { pathname: pass } = useLocation();

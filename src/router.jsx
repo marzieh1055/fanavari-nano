@@ -32,7 +32,7 @@ import One from "./pages/tashilat/steps/One";
 import Three from "./pages/tashilat/steps/Three"
 import Four from "./pages/tashilat/steps/Four";
 import Five from "./pages/tashilat/steps/Five";
-import Confirm from "./pages/Tashilat/steps/Confirm";
+import Confirm from "./pages/tashilat/steps/Confirm";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
 import DashboardExpert from "./pages/Dashboard/DashboardExpert";

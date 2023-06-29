@@ -19,6 +19,16 @@ export default function Four() {
   const {stepFour, setStepFour} = useContext(TashilatContext)
 
   const [isLoading, setIsLoading] = useState(false)
+
+  useState(() => {
+    setStepFour((prev) => {
+      return ({
+        ...prev,
+        facilities_id : parseInt(values.last_id),
+      })
+    })
+  } , [])
+  
   const sendHandler = () => {
     setIsLoading(true)
     Axios.post("/api/v1/bank", stepFour)

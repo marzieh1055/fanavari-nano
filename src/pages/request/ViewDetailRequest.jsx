@@ -91,7 +91,7 @@ export default function ViewDetailRequest() {
 
 
       <div className="flex pt-4">
-        <div className="w-1/2 px-2">
+        <div className="w-1/2 px-2 ">
           <div className=" bg-white rounded-xl p-5">
           <DownloadStep5 reqStatus={reqStatus} reqId={reqId.id} />
           </div>
