@@ -1,0 +1,1195 @@
+import React, { useContext, useState } from 'react'
+import { TashilatContext } from '../../contexts/Tashilat.Provider';
+
+export default function S4Assets() {
+    const { stepFour, setStepFour } = useContext(TashilatContext)
+    const changeHandler = (e) => {
+        setStepFour(prevState => {
+            const updatedPlaces = prevState.assets.map((item, index) => {
+                if (index === parseInt(e.target.id)) {
+                    return {
+                        ...item,
+                        [e.target.name]: e.target.value
+                    };
+                }
+                return item;
+            });
+            return {
+                ...prevState,
+                assets: updatedPlaces
+            };
+        });
+        console.log(stepFour.assets[e.target.id]);
+    }
+    return (
+        <>
+            {/* //بدهی ها */}
+
+            <div className=" py-6 mt-4">
+                <p className="text-lg font-extrabold">
+                    صورت حساب سود و زیان (ارقام به میلیون ریال){" "}
+                </p>
+            </div>
+            <div className="mt-6 ">
+                <table className="w-full rounded-xl overflow-hidden">
+                    <thead>
+                        <tr className="bg-white  border-b">
+                            <th
+                                className="p-2 text-lg text-gray-800 font-bold text-center"
+                                colSpan={6}
+                            >
+                                بدهی ها
+                            </th>
+                        </tr>
+                        <tr className=" sticky top-0 text-xs border-b ">
+                            <th className="bg-white p-3  " rowSpan={2}>
+                                شرح حساب{" "}
+                            </th>
+
+                            <th className="bg-white p-3  " rowSpan={2}>
+                                منتهی به تاریخ{" "}
+                            </th>
+                            <th className="bg-white p-3  ">آخرین تراز آزمایشی سال 1402</th>
+                            <th className="bg-white p-3  ">سال 1401 </th>
+                            <th className="bg-white p-3  "> سال 1400 </th>
+                            <th className="bg-white p-3  "> سال 1399 </th>
+
+                        </tr>
+                        <tr className=" sticky top-0 text-xs border-b ">
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {stepFour.assets.length > 0 && 
+                            stepFour.assets.map((item, index) => {
+                                return (
+                                    <>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                اسناد و حسابهای پرداختنی{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سایر اسناد و حساب های پرداختنی{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold " colSpan={2}>
+                                                تسهیلات کوتاه مدت{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                پیش دریافتها{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سایر بدهی های جاری{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع بدهی های جاری{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                بدهی های بلندمدت{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جاری شرکا{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع کل بدهی ها
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                اندوخته و ذخایر{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سرمایه{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سود و زیان انباشته{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع حقوق صاحبان سهام{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع کل بدهی ها و حقوق صاحبان سهام{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                    </>
+                                )
+                            })
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+            {/* دارایی ها */}
+
+            <div className=" py-6 mt-4">
+                <p className="text-lg font-extrabold">
+                    صورت حساب سود و زیان (ارقام به میلیون ریال){" "}
+                </p>
+            </div>
+            <div className=" ">
+                <table className="w-full rounded-xl overflow-hidden">
+                    <thead>
+                        <tr className="bg-white  border-b">
+                            <th
+                                className="p-2 text-lg text-gray-800 font-bold text-center"
+                                colSpan={6}
+                            >
+                                دارایی ها
+                            </th>
+                        </tr>
+                        <tr className=" sticky top-0 text-xs border-b ">
+                            <th className="bg-white p-3  " rowSpan={2}>
+                                شرح حساب{" "}
+                            </th>
+
+                            <th className="bg-white p-3  " rowSpan={2}>
+                                منتهی به تاریخ{" "}
+                            </th>
+                            <th className="bg-white p-3  ">آخرین تراز آزمایشی سال 1402</th>
+                            <th className="bg-white p-3  ">سال 1401 </th>
+                            <th className="bg-white p-3  "> سال 1400 </th>
+                            <th className="bg-white p-3  "> سال1399    </th>
+
+                        </tr>
+                        <tr className=" sticky top-0 text-xs border-b ">
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+                            <th className="bg-white p-3  ">مقدار قید شود </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {stepFour.assets.length > 0 && 
+                            stepFour.assets.map((item, index)  =>{
+                                return (
+                                    <>
+
+
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                موجودی نقد و بانک{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    cols="30"
+                                                    rows="10"
+                                                    onChange={changeHandler}
+                                                    value={stepFour.assets[index].CashBalanceBank}
+                                                    name="CashBalanceBank"
+                                                    id={index}
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    cols="30"
+                                                    rows="10"
+                                                    onChange={changeHandler}
+                                                    value={stepFour.assets[index].ShortTermInvestments}
+                                                    name="ShortTermInvestments"
+                                                    id={index}
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    
+                                                    cols="30"
+                                                    rows="10"
+                                                    onChange={changeHandler}
+                                                    value={stepFour.assets[index].DocumentsAndAccountsReceivable}
+                                                    name="DocumentsAndAccountsReceivable"
+                                                    id={index}
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    
+                                                    cols="30"
+                                                    rows="10"
+                                                    onChange={changeHandler}
+                                                    value={stepFour.assets[index].OtherDocumentsAndAccountsReceivable}
+                                                    name="OtherDocumentsAndAccountsReceivable"
+                                                    id={index}
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سرمایه گذاری های کوتاه مدت{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    
+                                                    cols="30"
+                                                    rows="10"
+                                                    onChange={changeHandler}
+                                                    value={stepFour.assets[index].OtherDocumentsAndAccountsReceivable}
+                                                    name="OtherDocumentsAndAccountsReceivable"
+                                                    id={index}
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold " colSpan={2}>
+                                                اسناد و حسابهای دریافتی{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سایر اسناد و حسابهای دریافتی{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                موجودی کالا
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                پیش پرداختها
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سایر دارایی های جاری + جاری شرکا
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع دارایی های جاری{" "}
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                دارایی های ثابت مشهود
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                دارایی های ثابت نامشهود
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سرمایه گذاری ها و مشارکت های بلندمدت
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-white  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                سایر دارایی های غیر جاری
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع دارایی های ثابت
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr className="bg-gray-50  border-b">
+                                            <td className="p-2 text-xs text-gray-800 font-bold" colSpan={2}>
+                                                جمع کل دارایی ها
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                            <td className="p-2">
+                                                <textarea
+                                                    className="w-full h-12 border border-gray-300 rounded-xl my -2"
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </td>
+                                        </tr>
+                                    </>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </>
+    )
+}
