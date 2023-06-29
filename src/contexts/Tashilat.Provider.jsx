@@ -107,7 +107,45 @@ export default function TashilatProvider({ children }) {
   
   });
   const [stepFour, setStepFour] = useState({});
-  const [stepFive, setStepFive] = useState({});
+  const [stepFive, setStepFive] = useState(
+    //approvals
+  {
+      facilities_id:1,
+      approvals:[
+          {
+              license:"test",
+              reference:"test",
+              date:"2022-02-02",
+              validity:"test",
+              description:"test"
+          }
+      ],
+      contracts:[
+          {
+              subject:"test",
+              name:"test",
+              amount:"test",
+              start:"2022-02-02",
+              end:"2022-02-02",
+              progress:"test"
+          }
+      ],
+      pledges:[
+          {
+              type:"test",
+              cost:"test",
+              description:"test"
+          }
+      ],
+      estates:[
+          {
+              type:"test",
+              owner:"test",
+              cost:"test",
+              description:"test"
+          }
+      ]
+  });
 
   return (
     <TashilatContext.Provider

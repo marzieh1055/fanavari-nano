@@ -31,7 +31,7 @@ import Two from "./pages/tashilat/steps/Two";
 import One from "./pages/tashilat/steps/One";
 import Three from "./pages/tashilat/steps/Three"
 import Four from "./pages/Tashilat/steps/Four";
-import Five from "./pages/Tashilat/steps/Five";
+import Five from "./pages/tashilat/steps/Five";
 import Confirm from "./pages/Tashilat/steps/Confirm";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
