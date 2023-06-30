@@ -25,6 +25,7 @@ export default function ViewTickets() {
 
   
   //public
+  if (isLoading) return <Loader />
   return (
     <div>
       <div className=" py-6">
@@ -41,7 +42,6 @@ export default function ViewTickets() {
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
-            {isLoading && <Loader />}
           <tbody>
             {tickets && tickets.map((item) => {
               return (

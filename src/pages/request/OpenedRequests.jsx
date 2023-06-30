@@ -11,7 +11,8 @@ export default function OpenedRequests() {
   useEffect(() => {
     Axios.get("/api/v1/get_current_request_user").then(async (res) => {
       console.log(res);
-      setReqDatas(res.data)
+      const newArr = res.data.reverse()
+      setReqDatas(newArr)
       setIsLoading(false)
     })
   },[])

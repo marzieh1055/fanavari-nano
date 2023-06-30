@@ -44,6 +44,7 @@ const Requests = () => {
       setShowDetails(null)
     }
   }
+  if (isLoading) return <Loader />
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
       <div className="pr-6 py-6 flex justify-between items-center w-c-13">
@@ -137,13 +138,10 @@ const Requests = () => {
           </button>
         </div>
       </div>
-      {
-        isLoading && <Loader />
-      }
-      <ul className="w-c-13 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative">
         {
           showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type} /> : ""
         }
+      <ul className="w-c-14 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative max-h-[60vh] overflow-y-scroll">
         <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
           <a className="w-1/6 text-center" href="">
             شناسه

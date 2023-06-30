@@ -45,11 +45,10 @@ export default function ExpertCheckRequest() {
     })
   }, [updatePage])
 
+  if (isLoading) return <Loader />
   return (
     <div className="px-5">
-      {
-        isLoading && <Loader />
-      }
+      
       {
         showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
       }

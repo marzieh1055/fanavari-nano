@@ -23,6 +23,7 @@ const WarrantyDocuments = () => {
     })
     .catch((err) => {
       setErrore(true)
+      navigate(`/panel/404`)
     })
   } , [])
 
