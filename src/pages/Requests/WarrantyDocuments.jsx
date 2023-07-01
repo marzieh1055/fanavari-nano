@@ -38,10 +38,10 @@ const WarrantyDocuments = () => {
       
       <div className="px-5">
         <div className="flex">
-          <p className="text-ms font-bold p-4 py-4">عنوان درخواست : <span className="text-gray-500 font-normal mr-1">{reqData.warranty[0].title}</span></p>
+          {Boolean(reqData.warranty[0]) && <p className="text-ms font-bold p-4 py-4">عنوان درخواست : <span className="text-gray-500 font-normal mr-1">{reqData.warranty[0].title}</span></p>}
           <p className="text-ms font-bold p-4 py-4">
             نوع درخواست : 
-            {<span className="text-gray-500 font-normal mr-2">
+            {Boolean(reqData.warranty[0]) && <span className="text-gray-500 font-normal mr-2">
               {
                 reqData.warranty[0].type_w === "job" ? "حسن انجام کار" :
                 reqData.warranty[0].type_w === "commitments" ? "حسن انجام تعهدات" :

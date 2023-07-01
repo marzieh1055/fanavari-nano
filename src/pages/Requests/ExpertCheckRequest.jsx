@@ -26,6 +26,7 @@ export default function ExpertCheckRequest() {
   const [updatePage, setUpdatePage] = useState(0)
   const [showStepConfirm, setShowStepConfirm] = useState(null)
   const [showCheckRep, setShowCheckRep] = useState(null)
+  const [reqType, setReqType] = useState("")
 
   useEffect(() => {
     setIsLoading(true)
@@ -40,6 +41,7 @@ export default function ExpertCheckRequest() {
         // commite: true,
         credit: res.data.credit,
       })
+      setReqType(res.data.type)
       setIsLoading(false)
       console.log(updatePage);
     })
@@ -122,9 +124,9 @@ export default function ExpertCheckRequest() {
                   گزارش ناقصی در مدارک{" "}
                 </button> : ""
               }
-              <Link to={`/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.check === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+              {reqType && <Link to={reqType === "facilities" ? `/panel/FacilitiesDocuments/${reqId.id}` : `/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.check === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
                 مشاهده مدارک{" "}
-              </Link>
+              </Link>}
             </div>
             <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
               بازگشت

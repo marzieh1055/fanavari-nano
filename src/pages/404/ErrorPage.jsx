@@ -10,7 +10,7 @@ export default function ErrorPage() {
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">خطا</h1>
         <p className="mt-6 text-base leading-7 text-gray-600">متاسفانه پردازش اطلاعات با خطا مواجه شد!</p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
-          <button onClick={() => navigate(-1)} className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">بازگشت</button>
+          <button onClick={() => navigate(-1)} className="rounded-md bg-yellow-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">امتحان دوباره</button>
           <Link to={`/panel/addTicket`} className="text-sm font-semibold text-gray-900">تماس با پشتیبانی</Link>
         </div>
       </div>

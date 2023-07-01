@@ -142,41 +142,6 @@ export default function One() {
   if (isLoading) return <Loader />
   return (
     <>
-      {/* <div >
-
-        <div class="sm:col-span-2">
-          <label for="title" className="text-lg font-extrabold">عنوان درخواست</label>
-          {showErr.title && <span className="text-sm pr-2 text-c-9">*{showErr.title}</span>}
-          <div class="mt-2.5 flex">
-            <input
-              type="text"
-              id="title"
-              placeholder="متن عنوان..."
-              className="block w-1/2 rounded-md ml-4 border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-              onChange={changeHandler}
-              value={stepOne.title}
-              name="title"
-            />
-            <select
-              name="type_f"
-              onChange={changeHandler}
-              id=""
-              className="border-gray-300 rounded-md  text-xs w-[100px]"
-
-            >
-              <option value="leasing">لیزینگ</option>
-              <option value="saturation">اشباع</option>
-              <option value="fund">سرمایه در گردش</option>
-              <option value="prototyping">نمونه سازی</option>
-              <option value="industrial">تولید صنعتی</option>
-              <option value="pre_industrial">قبل از تولید صنعتی</option>
-            </select>
-            {showErr.type_f && <span className="text-sm text-c-9">*{showErr.type_f}</span>}
-          </div>
-        </div>
-      </div> */}
-
-
       <> 
         <div className=" ">
           {showErr.title && <span className="text-sm pr-2 text-c-9">*{showErr.title}</span>}

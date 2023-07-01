@@ -39,6 +39,7 @@ import DashboardExpert from "./pages/Dashboard/DashboardExpert";
 import ViewDetailExpert from "./pages/Expert/ViewDetailExpert";
 import Viewdetailuser from "./pages/User/Viewdetailuser";
 import ErrorPage from "./pages/404/ErrorPage";
+import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
 
 const routes = [
   {
@@ -68,6 +69,7 @@ const routes = [
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
+      { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       { path: "404", element: <ErrorPage /> },

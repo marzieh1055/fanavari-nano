@@ -13,7 +13,8 @@ export default function ExpertviewAllRequest() {
   useEffect(() => {
     Axios.get("/api/admin/get_request_with_expert/12").then(async (res) => {
       console.log(res.data);
-      setReqDatas(res.data)
+      const newA = res.data.reverse()
+      setReqDatas(newA)
       setIsLoading(false)
     })
   },[])
