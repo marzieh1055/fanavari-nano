@@ -54,7 +54,7 @@ export default function Panel() {
         },
         {title : "اطلاعات کاربری",
         drop : ["پروفایل کاربری"  ],
-        links : ["/panel/userInfo" ]
+        links : ["/panel/genuineUserInfo" ]
         },
 
       ]} /> }

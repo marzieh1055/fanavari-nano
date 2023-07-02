@@ -93,12 +93,10 @@ export default function GenuineUserInfo() {
         Axios.get("/api/v1/is_profile_genuine")
         .then((res) => {
             console.log(res);
-            setIsLoading(false)
             setEditStatus(res.data)
         })
         .catch((err) =>{
             console.log(err);
-            setIsLoading(false)
         })
 
     } , [])
@@ -159,7 +157,6 @@ export default function GenuineUserInfo() {
           <label htmlFor="aks" className="text-yellow-500 text-xs">تغییر عکس پروفایل</label>
           <input onChange={imageHandler} style={{display:"none"}} id="aks" type="file"  />
         </div>
-
       </div>
       <div className="flex flex-wrap">
         {

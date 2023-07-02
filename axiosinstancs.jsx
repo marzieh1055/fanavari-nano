@@ -1,7 +1,7 @@
 // ***** use for set token in headers request to api ******
 //                     ************
 import axios from 'axios';
-const baseURL = "https://panel.frzddev.ir";
+const baseURL = "https://backend.nanotf.ir/";
 
 const Bearertoken = localStorage.getItem("token");
 

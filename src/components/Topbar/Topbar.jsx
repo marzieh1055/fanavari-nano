@@ -32,21 +32,10 @@ const Topbar = ({ avatar }) => {
   }, [])
   return (
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
-      <form className="flex items-center w-c-7 h-14 p-4 gap-4 bg-white rounded-c border border-c-7">
-        <div>
-          <img
-            className="w-3.5 h-3.5"
-            src={Vector3}
-            alt=""
-          />
+        <div className="flex">
+          <p className="p-1 font-bold">کاربر : </p>
+          <p className="p-1">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
         </div>
-        <div className="flex-1 h-full">
-          <input
-            placeholder="جست و جو..."
-            className="w-full h-full focus:outline-none"
-          ></input>
-        </div>
-      </form>
       <div className="flex gap-10">
         <button onClick={() => setShowUnreade(!showUnreade)} className="flex items-center gap-4">
           <div className="relative">
@@ -87,7 +76,7 @@ const Topbar = ({ avatar }) => {
                 </div>
                 <div class="flex items-center gap-4">
                   <div>
-                    <img src={Vector5} alt="" />
+                    <img style={{width : "15px" , height : "15px"}} src={Bell} alt="" />
                   </div>
                   <Link  class="text-xs flex-1">
                     اعلانات
@@ -97,7 +86,7 @@ const Topbar = ({ avatar }) => {
                   <div>
                     <img src={cc} alt="" />
                   </div>
-                  <Link to={"/panel/userInfo"} class="text-xs flex-1">
+                  <Link to={userDatas.user.type === "genuine" ? "/panel/genuineUserInfo" : userDatas.user.type === "legal" ? "/panel/legaluserInfo" : ""} class="text-xs flex-1">
                     اطلاعات کاربری
                   </Link>
                 </div>

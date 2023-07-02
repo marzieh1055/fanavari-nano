@@ -57,12 +57,10 @@ export default function LegalUserInfo() {
         Axios.get("/api/v1/is_profile_legal")
         .then((res) => {
             console.log(res);
-            setIsLoading(false)
             setEditStatus(res.data)
         })
         .catch((err) =>{
             console.log(err);
-            setIsLoading(false)
         })
       } , [])
 
