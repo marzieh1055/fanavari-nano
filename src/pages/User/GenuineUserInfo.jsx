@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { inputTitle } from "../../helper/inputTitles";
 import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../../contexts/UserData.Provider";
+import UISelectInput from "../../components/Input/UISelectInput";
 
 export default function GenuineUserInfo() {
 
@@ -16,46 +17,28 @@ export default function GenuineUserInfo() {
     const navigate = useNavigate()
     const [sendDatas , setSendDatas] = useState({
         father_name:"",
-        number_certificate:"981320005",
-        birth_day:"2000-01-01",
+        number_certificate:"",
+        birth_day:"",
         study : "",
-        place_issue:"قم",
-        series_certificate:"98654",
-        nationality:"ایرانی",
-        gender:"female",
-        marital:"single",
-        residential:"resident",
-        education:" کامپیوتر لیسانس",
-        job:"برنامه نویس",
-        address:"شهرک قدس آوینی جنوبی8",
-        postal_code:"1234854",
-        phone:"02532859562",
+        place_issue:"",
+        series_certificate:"",
+        nationality:"",
+        gender:"",
+        marital:"",
+        residential:"",
+        education:"",
+        job:"",
+        address:"",
+        postal_code:"",
+        phone:"",
         namabar:"",
-        work_address:"عطاران سعدی 3 پلاک 13",
-        work_postal_code:"98549495",
-        work_phone:"02548754598",
-        work_home:"11111111111",
-        home_number : "12345678900",
+        work_address:"",
+        work_postal_code:"",
+        work_phone:"",
+        work_home:"",
+        home_number : "",
         work_namabar:"",
     })
-//   useEffect(() => {
-//     Axios.get("/api/v1/is_profile_legal")
-//     .then((res) => {
-//       console.log(res);
-
-//     })
-//     .catch((err) =>{
-//       console.log(err);
-//     })
-//     Axios.get("/api/v1/is_profile_genuine")
-//     .then((res) => {
-//       console.log(res);
-//     })
-//     .catch((err) =>{
-//       console.log(err);
-//     })
-
-//   } , [])
 
   const sendHandler = () => {
     Axios.post("/api/v1/profile_genuine" , sendDatas)
@@ -98,7 +81,7 @@ export default function GenuineUserInfo() {
             Object.keys(sendDatas).map((item , index) => {
                 if (item === "birth_day") {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputDate value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -106,9 +89,19 @@ export default function GenuineUserInfo() {
                             </div>
                         </div>
                     )
+                } if (["gender" , "marital" , "residential"].includes(item)) {
+                    return(
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                            <p className="font-bold text-xs">{inputTitle(item)}</p>
+                                <UISelectInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
+                            <div className="absolute top-7 left-5">
+                                <RiPencilFill />
+                            </div>
+                        </div>
+                    )
                 } else if (["number_certificate" , "series_certificate" , "postal_code" , "phone" , "work_phone" , "work_postal_code" , "work_namabar"].includes(item)) {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputNumber value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -118,7 +111,7 @@ export default function GenuineUserInfo() {
                     )
                 } else {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">

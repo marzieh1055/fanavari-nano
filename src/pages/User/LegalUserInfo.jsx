@@ -14,36 +14,19 @@ export default function LegalUserInfo() {
   const navigate = useNavigate()
   const {userDatas} = useContext(UserDataContext)
     const [sendDatas , setSendDatas] = useState({
-        type_legal:"تست",
-        place_registration:"2تست",
-        establishment:"2000-11-11",
-        signed_right:"تست",
-        initial_investment:"تست",
-        fund:"تست",
-        subject_activity:"تست",
-        name_representative:"تست",
-        landline_phone:"تست",
-        phone:"تست",
-        email:"تست",
+        type_legal:"",
+        place_registration:"",
+        establishment:"",
+        signed_right:"",
+        initial_investment:"",
+        fund:"",
+        subject_activity:"",
+        name_representative:"",
+        landline_phone:"",
+        phone:"",
+        email:"",
         site:""
       })
-  // useEffect(() => {
-  //   Axios.get("/api/v1/is_profile_legal")
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) =>{
-  //     console.log(err);
-  //   })
-  //   Axios.get("/api/v1/is_profile_genuine")
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) =>{
-  //     console.log(err);
-  //   })
-
-  // } , [])
 
   const sendHandler = () => {
     Axios.post("/api/v1/profile_legal" , sendDatas)
@@ -85,7 +68,7 @@ export default function LegalUserInfo() {
             Object.keys(sendDatas).map((item , index) => {
                 if (item === "establishment") {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputDate value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -95,7 +78,7 @@ export default function LegalUserInfo() {
                     )
                 } else if (["number_certificate" , "series_certificate" , "postal_code" , "phone" , "work_phone" , "work_postal_code" , "work_namabar"].includes(item)) {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputNumber value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -105,7 +88,7 @@ export default function LegalUserInfo() {
                     )
                 } else {
                     return(
-                        <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">

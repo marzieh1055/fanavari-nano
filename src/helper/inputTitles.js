@@ -18,7 +18,7 @@ export const inputTitle = (name) => {
     }  else if (name === "marital") {
         return "وضعیت تعهل"
     }  else if (name === "residential") {
-        return "ٍErrrorrrr"
+        return "وضعیت اقامت"
     }  else if (name === "education") {
         return "رشته تحصیلی"
     }  else if (name === "job") {
@@ -44,39 +44,28 @@ export const inputTitle = (name) => {
     }  else if (name === "work_namabar") {
         return "نمابر محل کار"
     }  else if (name === "type_legal") {
-        return "Errrror"
-    }  else if (name === "") {
-        return ""
+        return "نوع شخصیت حقوقی"
+    }  else if (name === "place_registration") {
+        return "محل ثبت"
     }  else if (name === "establishment") {
-        return "تاسیس"
-    }  else if (name === "") {
-        return ""
-    }  else if (name === "") {
-        return ""
-    }  else if (name === "") {
-        return ""
-    }  else if (name === "") {
-        return ""
-    }  else if (name === "") {
-        return ""
-    }  else if (name === "") {
-        return ""
+        return "تاریخ تاسیس"
+    }  else if (name === "signed_right") {
+        return "دارندگان حق امضا"
+    }  else if (name === "initial_investment") {
+        return "سرمایه اولیه (میلیون ریال)"
+    }  else if (name === "fund") {
+        return "سرمایه فعلی (میلیون ریال)"
+    }  else if (name === "subject_activity") {
+        return "موضوع فعالیت (مطابق اساس نامه)"
+    }  else if (name === "name_representative") {
+        return "نام و نام خانوادگی نماینده شرکت"
+    }  else if (name === "landline_phone") {
+        return "تلفن ثابت"
+    }  else if (name === "email") {
+        return "پست الکترونیکی"
+    }  else if (name === "site") {
+        return "سایت"
     }  else {
         return name
     }
-
 }
-// {
-//     type_legal:"تست",
-//     place_registration:"2تست",
-//     :"2000-11-11",
-//     signed_right:"تست",
-//     initial_investment:"تست",
-//     fund:"تست",
-//     subject_activity:"تست",
-//     name_representative:"تست",
-//     landline_phone:"تست",
-//     phone:"تست",
-//     email:"تست",
-//     site:""
-//   }
