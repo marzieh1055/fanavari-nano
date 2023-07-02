@@ -9,10 +9,13 @@ import UIInput from "../../components/Input/UIInput";
 import { ToastContainer, toast } from 'react-toastify';
 import { inputTitle } from "../../helper/inputTitles";
 import { UserDataContext } from "../../contexts/UserData.Provider";
+import Loader from "../../components/Loader/Loader";
 
 export default function LegalUserInfo() {
   const navigate = useNavigate()
   const {userDatas} = useContext(UserDataContext)
+  const [isLoading , setIsLoading] = useState(true)
+  const [editStatus , setEditStatus] = useState(false)
     const [sendDatas , setSendDatas] = useState({
         type_legal:"",
         place_registration:"",
@@ -28,38 +31,73 @@ export default function LegalUserInfo() {
         site:""
       })
 
+      useEffect(() => {
+        Axios.get("/api/v1/profile_legal")
+        .then((res) => {
+          setIsLoading(false)
+          const newArr = res.data.reverse()
+            Object.keys(sendDatas).map((item , index) => {
+                Object.keys(newArr[0]).map(ires => {
+                  if (item === ires) {
+                    setSendDatas(prev => {
+                      return({
+                          ...prev,
+                          [ires] : newArr[0][ires] 
+                      })
+                  })
+                  }
+                })
+            })
+        })
+        .catch((err) => {
+          console.log(err);
+          navigate(`/panel/404`)
+        })
+
+        Axios.get("/api/v1/is_profile_legal")
+        .then((res) => {
+            console.log(res);
+            setIsLoading(false)
+            setEditStatus(res.data)
+        })
+        .catch((err) =>{
+            console.log(err);
+            setIsLoading(false)
+        })
+      } , [])
+
   const sendHandler = () => {
+    setIsLoading(true)
     Axios.post("/api/v1/profile_legal" , sendDatas)
     .then((res) => {
       console.log(res.data);
       if (res.data.success) {
         toast("اطلاعات با موفقیت ثبت شد")
       }
-      setTimeout(() => {
-          navigate(`/panel/userInfo`)
-      } , 1000)
-        
+      setIsLoading(false)
+              
     })
     .catch((err) => {
         console.log(err.response.data.errors);
+        setIsLoading(false)
         Object.keys(err.response.data.errors).map((item) => {
             toast(err.response.data.errors[item][0])
         })
     })
   }
+  if (isLoading) return <Loader />
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
       <div className=" p-6">
         <p className="text-xl font-extrabold">اطلاعات کاربر حقوقی </p>
-        <p className="text-ms mt-3 font-ms">برای استفاده از امکانات سایت ابتدا مشخصات خود را کامل نمایید</p>
+        {!editStatus && <p className="text-ms mt-3 font-ms">برای استفاده از امکانات سایت ابتدا مشخصات خود را کامل نمایید</p>}
       </div>
       <hr />
       <ToastContainer />
       <div className="flex mt-6 items-center">
-        <img src={user} alt="" className="w-16" />
         <div className=" pr-4">
+          <p className="text-gray-500 text-xs">نام کاربر :</p>
           <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
-          <p className="text-gray-500 text-xs">عکس پروفایل </p>
         </div>
 
       </div>

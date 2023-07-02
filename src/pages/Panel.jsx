@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Topbar from '../components/Topbar/Topbar'
-import Sidebar from '../components/Sidebar/Sidebar'
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { UserDataContext } from '../contexts/UserData.Provider'
 import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
@@ -40,7 +39,27 @@ export default function Panel() {
           },
           
       ]} /> }
-      { userDatas && (userDatas.user.type === "genuine" || userDatas.user.type === "legal") && <SidebarUser objects={[
+      { userDatas && (userDatas.user.type === "genuine") && <SidebarUser objects={[
+        {title : "خدمات",
+          drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
+          links : ["/panel/guarantee" , "/panel/tashilat/1" , "/panel/openedRequests" ]
+        },
+        {title : "پشتیبانی",
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "راهنمای سایت" , "اعلانات"],
+          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" , "/panel/allNotifs" ]
+        },
+        {title : "راهنمای سایت",
+        drop : [  "راهنمای سایت" ],
+        links : ["/panel/siteGuide"  ]
+        },
+        {title : "اطلاعات کاربری",
+        drop : ["پروفایل کاربری"  ],
+        links : ["/panel/userInfo" ]
+        },
+
+      ]} /> }
+
+      { userDatas && (userDatas.user.type === "legal") && <SidebarUser objects={[
         {title : "خدمات",
           drop : ["درخواست ضمانت نامه" , "درخواست تسهیلات" , "درخواست های جاری" ,],
           links : ["/panel/guarantee" , "/panel/tashilat/1" , "/panel/openedRequests" ]
@@ -55,7 +74,7 @@ export default function Panel() {
       },
         {title : "اطلاعات کاربری",
         drop : ["پروفایل کاربری"  ],
-        links : ["/panel/userInfo" ]
+        links : ["/panel/legaluserInfo" ]
         },
 
       ]} /> }

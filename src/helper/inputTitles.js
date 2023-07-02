@@ -40,7 +40,7 @@ export const inputTitle = (name) => {
     }  else if (name === "work_home") {
         return "محل کار"
     }  else if (name === "home_number") {
-        return "تلفن ثابت"
+        return "تلفن"
     }  else if (name === "work_namabar") {
         return "نمابر محل کار"
     }  else if (name === "type_legal") {

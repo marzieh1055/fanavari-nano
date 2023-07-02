@@ -1,5 +1,6 @@
 import React from 'react'
 import { DatePicker } from 'zaman';
+import { onlyDateConversion } from '../../helper/dateConversion.cjs';
 
 export default function UIInputDate({name , value , ph , setSendDatas}) {
 
@@ -15,11 +16,17 @@ export default function UIInputDate({name , value , ph , setSendDatas}) {
         })
     }
   return (
-    <DatePicker
-        onChange={(e) => datechangeHandler(e)}
-        locale="fa"
-        placeholder="تاریخ را انتخاب کنید"
-        format="jYYYY/jMM/jDD"
-    />
+    <div className='flex'>
+        {value && <p>{onlyDateConversion(value)}</p>}
+        <div style={{opacity : 0, cursor : "pointer"}}>
+            <DatePicker
+                onChange={(e) => datechangeHandler(e)}
+                locale="fa"
+                placeholder="تاریخ را انتخاب کنید"
+                format="jYYYY/jMM/jDD"
+                id="1"
+            />
+        </div>
+    </div>
   )
 }
