@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
-import WboxR from "../../components/viewDoc/WboxR";
 import { useState } from "react";
-import WboxL from "../../components/viewDoc/WboxL";
 import Loader from "../../components/Loader/Loader"
 import S1Places from "../../components/modal/ViewDocFModals/S1Places";
 import { dateConversion } from "../../helper/dateConversion.cjs";

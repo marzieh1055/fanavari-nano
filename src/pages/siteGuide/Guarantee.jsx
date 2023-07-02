@@ -1,9 +1,43 @@
-import React from "react";
-import { FcDocument } from "react-icons/fc";
+import React, { useContext, useEffect, useState } from "react";
 import { MdPayment } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserDataContext } from "../../contexts/UserData.Provider";
+import Axios from "../../../axiosinstancs";
+import Loader from "../../components/Loader/Loader";
 
 export default function Guarantee() {
+  const {userDatas} = useContext(UserDataContext)
+  const navigate = useNavigate()
+  const [isLoading , setIsLoading] = useState(true)
+  useEffect(() => {
+    Axios.get("/api/v1/is_profile_legal")
+    .then((res) => {
+      console.log(res);
+      setIsLoading(false)
+      if (!res.data && userDatas.user.type === "genuine") {
+        navigate(`/panel/genuineUserInfo`)
+      }
+    })
+    .catch((err) =>{
+      console.log(err);
+      navigate(`/panel/404`)
+    })
+    Axios.get("/api/v1/is_profile_genuine")
+    .then((res) => {
+      console.log(res);
+      setIsLoading(false)
+      if (!res.data && userDatas.user.type === "legal") {
+        navigate(`/panel/legaluserInfo`)
+      }
+    })
+    .catch((err) =>{
+      console.log(err);
+      navigate(`/panel/404`)
+    })
+
+  } , [])
+
+  if (isLoading) return <Loader />
   return (
     <div className="px-5 py-5 text-justify">
       {/* <div className=" py-6">

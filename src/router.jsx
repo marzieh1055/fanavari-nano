@@ -40,6 +40,7 @@ import ViewDetailExpert from "./pages/Expert/ViewDetailExpert";
 import Viewdetailuser from "./pages/User/Viewdetailuser";
 import ErrorPage from "./pages/404/ErrorPage";
 import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
+import GenuineUserInfo from "./pages/User/GenuineUserInfo";
 
 const routes = [
   {
@@ -79,6 +80,7 @@ const routes = [
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
+      { path: "genuineUserInfo", element: <GenuineUserInfo /> },
       {
         path: "tashilat",
         element: <Tashilat />,

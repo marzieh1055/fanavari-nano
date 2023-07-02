@@ -29,7 +29,7 @@ export default function UploadDoc() {
     file2: null,
     file3: null,
     licenses: null, // inja
-    user_id : 6,
+    user_id : userDatas.user.id,
     register_doc: null,
     signatory: null,
     knowledge: null,
@@ -37,10 +37,10 @@ export default function UploadDoc() {
     loans: null, // ta inja felan mish
     statements: null,
     balances: null,
-    catalogs: null,
-    insurances: null,
-    invoices: null,
-    bills: null,
+    // catalogs: null,
+    // insurances: null,
+    // invoices: null,
+    // bills: null,
   })
   
   useEffect(() => {

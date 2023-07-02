@@ -2,59 +2,71 @@ import React, { useContext, useEffect, useState } from "react";
 import { RiPencilFill } from "react-icons/ri";
 import user from "../../assets/imges/user.png"
 import Axios from "../../../axiosinstancs";
-import { useNavigate } from "react-router-dom";
-import UIInputDate from "../../components/Input/UIInputDate";
-import UIInputNumber from "../../components/Input/UIInputNumber";
 import UIInput from "../../components/Input/UIInput";
+import UIInputNumber from "../../components/Input/UIInputNumber";
+import UIInputDate from "../../components/Input/UIInputDate";
 import { ToastContainer, toast } from 'react-toastify';
 import { inputTitle } from "../../helper/inputTitles";
+import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 
-export default function LegalUserInfo() {
-  const navigate = useNavigate()
-  const {userDatas} = useContext(UserDataContext)
-    const [sendDatas , setSendDatas] = useState({
-        type_legal:"تست",
-        place_registration:"2تست",
-        establishment:"2000-11-11",
-        signed_right:"تست",
-        initial_investment:"تست",
-        fund:"تست",
-        subject_activity:"تست",
-        name_representative:"تست",
-        landline_phone:"تست",
-        phone:"تست",
-        email:"تست",
-        site:""
-      })
-  // useEffect(() => {
-  //   Axios.get("/api/v1/is_profile_legal")
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) =>{
-  //     console.log(err);
-  //   })
-  //   Axios.get("/api/v1/is_profile_genuine")
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((err) =>{
-  //     console.log(err);
-  //   })
+export default function GenuineUserInfo() {
 
-  // } , [])
+    const {userDatas} = useContext(UserDataContext)
+    const navigate = useNavigate()
+    const [sendDatas , setSendDatas] = useState({
+        father_name:"",
+        number_certificate:"981320005",
+        birth_day:"2000-01-01",
+        study : "",
+        place_issue:"قم",
+        series_certificate:"98654",
+        nationality:"ایرانی",
+        gender:"female",
+        marital:"single",
+        residential:"resident",
+        education:" کامپیوتر لیسانس",
+        job:"برنامه نویس",
+        address:"شهرک قدس آوینی جنوبی8",
+        postal_code:"1234854",
+        phone:"02532859562",
+        namabar:"",
+        work_address:"عطاران سعدی 3 پلاک 13",
+        work_postal_code:"98549495",
+        work_phone:"02548754598",
+        work_home:"11111111111",
+        home_number : "12345678900",
+        work_namabar:"",
+    })
+//   useEffect(() => {
+//     Axios.get("/api/v1/is_profile_legal")
+//     .then((res) => {
+//       console.log(res);
+
+//     })
+//     .catch((err) =>{
+//       console.log(err);
+//     })
+//     Axios.get("/api/v1/is_profile_genuine")
+//     .then((res) => {
+//       console.log(res);
+//     })
+//     .catch((err) =>{
+//       console.log(err);
+//     })
+
+//   } , [])
 
   const sendHandler = () => {
-    Axios.post("/api/v1/profile_legal" , sendDatas)
+    Axios.post("/api/v1/profile_genuine" , sendDatas)
     .then((res) => {
-      console.log(res.data);
-      if (res.data.success) {
-        toast("اطلاعات با موفقیت ثبت شد")
-      }
-      setTimeout(() => {
-          navigate(`/panel/userInfo`)
-      } , 1000)
+        console.log(res);
+        if (res.data.success) {
+            toast("اطلاعات با موفقیت ثبت شد")
+        }
+        setTimeout(() => {
+            navigate(`/panel/userInfo`)
+        } , 1000)
         
     })
     .catch((err) => {
@@ -64,26 +76,27 @@ export default function LegalUserInfo() {
         })
     })
   }
+  
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
       <div className=" p-6">
-        <p className="text-xl font-extrabold">اطلاعات کاربر حقوقی </p>
+        <p className="text-xl font-extrabold">اطلاعات کاربر حقیقی </p>
         <p className="text-ms mt-3 font-ms">برای استفاده از امکانات سایت ابتدا مشخصات خود را کامل نمایید</p>
       </div>
-      <hr />
       <ToastContainer />
+      <hr />
       <div className="flex mt-6 items-center">
         <img src={user} alt="" className="w-16" />
         <div className=" pr-4">
-          <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
+        <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
           <p className="text-gray-500 text-xs">عکس پروفایل </p>
         </div>
 
       </div>
       <div className="flex flex-wrap">
-      {
+        {
             Object.keys(sendDatas).map((item , index) => {
-                if (item === "establishment") {
+                if (item === "birth_day") {
                     return(
                         <div className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
@@ -116,12 +129,12 @@ export default function LegalUserInfo() {
                 }
             })
         }
+      </div>
         <div className="py-3 ">
-        <button onClick={sendHandler} className=" p-3 px-10 border bg-green-500 text-white rounded-xl mr-3">
+          <button onClick={sendHandler} className=" p-3 px-10 border bg-green-500 text-white rounded-xl mr-3">
             ذخیره
           </button>
         </div>
-      </div>
     </div>
   );
 }
