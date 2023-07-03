@@ -34,7 +34,7 @@ export default function Panel() {
             links : ["/panel/viewTickets"  ]
           },
           {title : "اطلاعات کاربری",
-            drop : ["مشاهده اطلاعات" ],
+            drop : [" پروفایل کاربری" ],
             links : ["/panel/userInfo"  ]
           },
           
@@ -45,8 +45,8 @@ export default function Panel() {
           links : ["/panel/guarantee" , "/panel/tashilat/1" , "/panel/openedRequests" ]
         },
         {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "راهنمای سایت" , "اعلانات"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" , "/panel/allNotifs" ]
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,   "اعلانات"],
+          links : ["/panel/viewTickets" , "/panel/addTicket"  , "/panel/allNotifs" ]
         },
         {title : "راهنمای سایت",
         drop : [  "راهنمای سایت" ],
@@ -65,8 +65,8 @@ export default function Panel() {
           links : ["/panel/guarantee" , "/panel/tashilat/1" , "/panel/openedRequests" ]
         },
         {title : "پشتیبانی",
-          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "راهنمای سایت" , "اعلانات"],
-          links : ["/panel/viewTickets" , "/panel/addTicket" , "/panel/siteGuide" , "/panel/allNotifs" ]
+          drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ,  "اعلانات"],
+          links : ["/panel/viewTickets" , "/panel/addTicket" ,  "/panel/allNotifs" ]
         },
         {title : "راهنمای سایت",
         drop : [  "راهنمای سایت" ],
