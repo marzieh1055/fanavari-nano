@@ -33,8 +33,10 @@ const Topbar = ({ avatar }) => {
   return (
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
         <div className="flex">
-          <p className="p-1 font-bold">کاربر : </p>
-          <p className="p-1">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
+          <p className="p-1 font-bold">کاربر عزیز </p>
+          <p className="p-1">{`${userDatas.user.name} ${userDatas.user.family}`} </p>
+          <p className="p-1 font-bold">گرامی </p>
+
         </div>
       <div className="flex gap-10">
         <button onClick={() => setShowUnreade(!showUnreade)} className="flex items-center gap-4">

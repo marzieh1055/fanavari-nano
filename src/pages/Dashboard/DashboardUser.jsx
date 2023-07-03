@@ -114,7 +114,7 @@ const DashboardUser = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کارشناسان</div>
+            <div>راهنمای سایت</div>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
@@ -129,7 +129,7 @@ const DashboardUser = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کاربران</div>
+            <div>ثبت تیکت </div>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
