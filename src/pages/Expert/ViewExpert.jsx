@@ -88,6 +88,7 @@ export default function ViewExpert() {
                     {expert.profilegenuine && expert.profilegenuine.image !== null && <img className="w-10" src={`https://panel.frzddev.ir/storage/app/${expert.profilegenuine.image}`} alt=""/> }
                     {expert.profilegenuine && expert.profilegenuine.image !== null && console.log(expert.profilegenuine.image)}
                     {(expert.profilegenuine === null || expert.profilegenuine.image === null) && <img className="w-10" src={user} alt=""/>}
+                    
                   </td>
                   <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
