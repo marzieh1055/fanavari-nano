@@ -19,22 +19,7 @@ export default function AddTicketE() {
   const [errors, setErrors] = useState({});
   const [showErr, setShowErr] = useState({});
   const [isLoading, setIsLoading] = useState(false)
-  
-  // {
-  //       // برای ایجاد تیکت:
-  // request_id : ""
-  //       "user_id":1,
-  //       "title":"تست",
-  //       "category":"facilities", //"warranty" یا "other"
-  //       "priority":"low", // "high" یا "normal"
-  //       "body":"تست",
-  //       "file":""
-  
-  //       // get : تیکت های کارشناس را برمیگرداند.
-  //       // put: ویرایش ایتم های title و category و priority
-  //       //  get/id : نمایش یک تیکت
-  //       // delete : حذف تیکت
-  //   }
+
   const [data , setData] = useState({
     request_id : null,
     user_id : userDatas.user.id ,
