@@ -116,7 +116,7 @@ const DashboardExpert = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کارشناسان</div>
+            <div>مشاهده تیکت ها</div>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
@@ -131,7 +131,7 @@ const DashboardExpert = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کاربران</div>
+            <div>ثیت تیکت</div>
             <div>
               <img
                 className="absolute left-1 inset-y-0"

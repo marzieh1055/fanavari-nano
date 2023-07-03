@@ -43,6 +43,7 @@ import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
 import GenuineUserInfo from "./pages/User/GenuineUserInfo";
 import AddTicketE from "./pages/Ticket/AddTicketE";
 import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
+import Changepass from "./pages/Register/Changepass";
 
 const routes = [
   {
@@ -78,7 +79,7 @@ const routes = [
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       { path: "404", element: <ErrorPage /> },
-      
+      {path:"changePass" , element: <Changepass />},
       
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },

@@ -278,7 +278,7 @@ const Requests = () => {
 
 
       </ul>
-      <div className="p-3.5 w-c-13 flex justify-between items-center">
+      {/* <div className="p-3.5 w-c-13 flex justify-between items-center">
         <div className="text-xs font-bold text-c-8">
           <p>نمایش مورد فلان از فلان</p>
         </div>
@@ -336,8 +336,8 @@ const Requests = () => {
             <span>10</span>
           </button>
           <p className="text-c-8">تعداد در خواست در هر صفحه</p>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </>
   );
 };
