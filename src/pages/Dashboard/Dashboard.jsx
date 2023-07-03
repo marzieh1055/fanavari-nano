@@ -16,6 +16,7 @@ import Ellipse5 from "../../assets/imges/Ellipse 5.png"
 import Vectora from "../../assets/imges/ViewRequests/Vectora.png"
 import Vectorx from "../../assets/imges/ViewRequests/Vectorx.png"
 import user from "../../assets/imges/user.png"
+import { Link } from "react-router-dom";
 const Dashboard = () => {
   const {userDatas} = useContext(UserDataContext)
 
@@ -102,7 +103,7 @@ const Dashboard = () => {
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>
         <div className="flex gap-6 text-white">
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده درخواست ها</div>
+            <Link to="/panel/requests">مشاهده درخواست ها</Link>
             <div>
               <img
                 className="absolute left-0 inset-y-0"
@@ -117,7 +118,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کارشناسان</div>
+            <Link to="/panel/viewExpert">مشاهده کارشناسان</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
@@ -132,7 +133,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده کاربران</div>
+            <Link to="/panel/viewUsers">مشاهده کاربران</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"

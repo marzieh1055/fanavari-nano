@@ -87,7 +87,7 @@ export default function ViewTickets() {
         </table>
       </div>
       <hr />
-      <div className="flex justify-between py-4 text-gray-600 items-center">
+      {/* <div className="flex justify-between py-4 text-gray-600 items-center">
         <div className="">نمایش 21-31 از 80 مورد</div>
         <div className="">
           <button className="text-gray-800 text-2xl font-bold mx-2">
@@ -109,7 +109,7 @@ export default function ViewTickets() {
             <span className="text-3xl">+</span> اضافه کردن کارشناس
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

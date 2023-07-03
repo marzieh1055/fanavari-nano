@@ -44,7 +44,7 @@ export default function AddTicketE() {
       
       const token = localStorage.getItem('token');
       const isLoggedIn = token ? true : false;
-      axios.post("/api/v1/ticket", data, {
+      axios.post("/api/admin/ticket_expert", data, {
         headers: {
           "Content-Type": "multipart/form-data",
           ...(isLoggedIn && {
@@ -58,9 +58,9 @@ export default function AddTicketE() {
       })
       .catch((err) => {
         toast("!خطا در ثبت تیکت")
-        Object.keys(err.response.data.message).map((item) => {
-          toast(err.response.data.message[item][0])
-        })
+        // Object.keys(err.response.data.message).map((item) => {
+        //   toast(err.response.data.message[item][0])
+        // })
         setIsLoading(false)
       })
     } else {

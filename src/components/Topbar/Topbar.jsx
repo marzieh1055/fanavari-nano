@@ -33,8 +33,8 @@ const Topbar = ({ avatar }) => {
   return (
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
         <div className="flex">
-          <p className="p-1 font-bold">کاربر عزیز </p>
-          <p className="p-1">{`${userDatas.user.name} ${userDatas.user.family}`} </p>
+          {/* <p className="p-1 font-bold">کاربر عزیز </p> */}
+          <p className="p-1 font-bold">{`${userDatas.user.name} ${userDatas.user.family}`} </p>
           <p className="p-1 font-bold">گرامی </p>
 
         </div>
@@ -80,7 +80,7 @@ const Topbar = ({ avatar }) => {
                   <div>
                     <img style={{width : "15px" , height : "15px"}} src={Bell} alt="" />
                   </div>
-                  <Link  class="text-xs flex-1">
+                  <Link to="/panel/allNotifs" class="text-xs flex-1">
                     اعلانات
                   </Link>
                 </div>
@@ -88,7 +88,7 @@ const Topbar = ({ avatar }) => {
                   <div>
                     <img src={cc} alt="" />
                   </div>
-                  <Link to={userDatas.user.type === "genuine" ? "/panel/genuineUserInfo" : userDatas.user.type === "legal" ? "/panel/legaluserInfo" : ""} class="text-xs flex-1">
+                  <Link to={userDatas.user.type === "genuine" ? "/panel/genuineUserInfo" : userDatas.user.type === "legal" ? "/panel/legaluserInfo" : userDatas.user.type === "admin"? "/panel/userInfo" :"" } class="text-xs flex-1">
                     اطلاعات کاربری
                   </Link>
                 </div>

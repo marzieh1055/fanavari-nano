@@ -13,6 +13,7 @@ import Ellipse4 from "../../assets/imges/Ellipse 4.png"
 import Ellipse3 from "../../assets/imges/Ellipse 3.png"
 import Ellipse6 from "../../assets/imges/Ellipse 6.png"
 import Ellipse5 from "../../assets/imges/Ellipse 5.png"
+import { Link } from "react-router-dom";
 
 const DashboardExpert = () => {
   const {userDatas} = useContext(UserDataContext)
@@ -101,7 +102,7 @@ const DashboardExpert = () => {
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>
         <div className="flex gap-6 text-white">
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده درخواست ها</div>
+            <Link to="/panel/expertViewAllRequest">مشاهده درخواست ها</Link>
             <div>
               <img
                 className="absolute left-0 inset-y-0"
@@ -116,7 +117,7 @@ const DashboardExpert = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>مشاهده تیکت ها</div>
+          <Link to="/panel/ViewTicketsExpert">مشاهده تیکت ها</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
@@ -131,7 +132,7 @@ const DashboardExpert = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <div>ثیت تیکت</div>
+          <Link to="/panel/addTicketE">ثیت تیکت</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
