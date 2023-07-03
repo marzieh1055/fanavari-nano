@@ -36,14 +36,14 @@ const Addexpert = () => {
     place_issue: "",
     gender: "",
     marital: "",
-    residential: "",
+    residential: "resident",
     education: "",
     study: "",
     job: "",
     address: "",
     postal_code: "",
     home_number: "", //11
-    nationality: "",
+    nationality: "iran",
     password_confirmation: "",
     image : null,
     // series_certificate:"" ,
@@ -116,7 +116,7 @@ const Addexpert = () => {
       <div className="flex mt-6 p-2 items-center">
         {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-16" /> : <img src={user} alt="" className="w-16" />}
         <div className=" pr-4">
-          <label htmlFor="aks" className="text-yellow-500 text-xs">تغییر عکس پروفایل</label>
+          <label htmlFor="aks" className="text-yellow-500 text-xs">تنظیم عکس پروفایل</label>
           <input onChange={imageHandler} style={{display:"none"}} id="aks" type="file"  />
         </div>
       </div>
@@ -282,7 +282,7 @@ const Addexpert = () => {
             name="series_certificate"
           />
         </div> */}
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کشور</p>
           <input
             type="text"
@@ -292,7 +292,7 @@ const Addexpert = () => {
             value={userDatas.nationality}
             name="nationality"
           />
-        </div>
+        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">میزان تحصیلات</p>
           <input
@@ -317,7 +317,7 @@ const Addexpert = () => {
         </div>
         <div className="flex flex-wrap">
           <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-            <p className="font-bold text-sm">شغل</p>
+            <p className="font-bold text-sm">سمت</p>
             <input
               type="text"
               placeholder="برنامه نویس وب"
@@ -406,7 +406,7 @@ const Addexpert = () => {
           />
           <p className="font-bold text-sm">متاهل</p>
         </div>
-        <div className="flex w-96 items-center m-3">
+        {/* <div className="flex w-96 items-center m-3">
           <p className="font-bold text-sm">وضعیت اقامت :</p>
           <input
             type="radio"
@@ -426,7 +426,7 @@ const Addexpert = () => {
             onClick={changeHandler}
           />
           <p className="font-bold text-sm">غیر مقیم</p>
-        </div>
+        </div> */}
       </div>
       <div className="w-3/4 mx-auto">
         <button onClick={addHandler} className="w-full p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">

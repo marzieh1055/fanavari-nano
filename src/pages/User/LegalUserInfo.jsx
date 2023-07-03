@@ -98,8 +98,8 @@ export default function LegalUserInfo() {
       <ToastContainer />
       <div className="flex mt-6 items-center">
         <div className=" pr-4">
-          <p className="text-gray-500 text-xs">نام کاربر :</p>
-          <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
+          <p className="text-gray-500 text-md font-bold">نام کاربر : {`${userDatas.user.name} ${userDatas.user.family}`}</p>
+          <p className="font-bold"></p>
         </div>
 
       </div>
@@ -108,7 +108,7 @@ export default function LegalUserInfo() {
             Object.keys(sendDatas).map((item , index) => {
                 if (item === "establishment") {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputDate value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -118,7 +118,7 @@ export default function LegalUserInfo() {
                     )
                 } else if (["number_certificate" , "series_certificate" , "postal_code" , "phone" , "work_phone" , "work_postal_code" , "work_namabar"].includes(item)) {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputNumber value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -128,7 +128,7 @@ export default function LegalUserInfo() {
                     )
                 } else {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -139,12 +139,13 @@ export default function LegalUserInfo() {
                 }
             })
         }
-        <div className="py-3 ">
+
+      </div>
+      <div className="py-3 ">
         <button onClick={sendHandler} className=" p-3 px-10 border bg-green-500 text-white rounded-xl mr-3">
             ذخیره
           </button>
         </div>
-      </div>
     </div>
   );
 }

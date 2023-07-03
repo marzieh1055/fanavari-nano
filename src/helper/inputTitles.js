@@ -4,19 +4,19 @@ export const inputTitle = (name) => {
     }  else if (name === "number_certificate") {
         return "شماره شناسنامه"
     }  else if (name === "birth_day") {
-        return "تولد"
+        return "تاریخ تولد"
     }  else if (name === "study") {
         return "تحصیلات"
     }  else if (name === "place_issue") {
-        return "محل زندگی"
+        return "محل صدور"
     }  else if (name === "series_certificate") {
-        return "سریال شناسنامه"
+        return "شماره سریال شناسنامه"
     }  else if (name === "nationality") {
         return "ملیت"
     }  else if (name === "gender") {
         return "جنسیت"
     }  else if (name === "marital") {
-        return "وضعیت تعهل"
+        return "وضعیت تاهل"
     }  else if (name === "residential") {
         return "وضعیت اقامت"
     }  else if (name === "education") {
@@ -34,15 +34,16 @@ export const inputTitle = (name) => {
     }  else if (name === "work_address") {
         return "آدرس محل کار"
     }  else if (name === "work_postal_code") {
-        return "آدرس محل کار"
+        return "کدپستی محل کار"
     }  else if (name === "work_phone") {
         return "شماره محل کار"
     }  else if (name === "work_home") {
         return "محل کار"
     }  else if (name === "home_number") {
-        return "تلفن"
+        return "تلفن ثابت"
     }  else if (name === "work_namabar") {
         return "نمابر محل کار"
+
     }  else if (name === "type_legal") {
         return "نوع شخصیت حقوقی"
     }  else if (name === "place_registration") {
@@ -64,7 +65,7 @@ export const inputTitle = (name) => {
     }  else if (name === "email") {
         return "پست الکترونیکی"
     }  else if (name === "site") {
-        return "سایت"
+        return "آدرس سایت"
     }  else {
         return name
     }

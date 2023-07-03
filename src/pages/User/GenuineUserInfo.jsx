@@ -82,7 +82,7 @@ export default function GenuineUserInfo() {
                 })
             })
             if (newArr[0].image !== null) {
-                setProfilePic(`https://panel.frzddev.ir/storage/app/${newArr[0].image}`)
+                setProfilePic(`https://backend.nanotf.ir/storage/app/${newArr[0].image}`)
             }
         })
         .catch((err) => {
@@ -155,7 +155,7 @@ export default function GenuineUserInfo() {
       <ToastContainer />
       <hr />
       <div className="flex mt-6 items-center">
-        {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-16" /> : <img src={user} alt="" className="w-16" />}
+        {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-17" /> : <img src={user} alt="" className="w-16" />}
         <div className=" pr-4">
         <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
           <label htmlFor="aks" className="text-yellow-500 text-xs">تغییر عکس پروفایل</label>
@@ -167,7 +167,7 @@ export default function GenuineUserInfo() {
             Object.keys(sendDatas).map((item , index) => {
                 if (item === "birth_day") {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputDate value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -177,7 +177,7 @@ export default function GenuineUserInfo() {
                     )
                 } if (["gender" , "marital" , "residential"].includes(item)) {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UISelectInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -187,7 +187,7 @@ export default function GenuineUserInfo() {
                     )
                 } else if (["number_certificate" , "series_certificate" , "postal_code" , "phone" , "work_phone" , "work_postal_code" , "work_namabar"].includes(item)) {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInputNumber value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
@@ -197,7 +197,7 @@ export default function GenuineUserInfo() {
                     )
                 } else if (item !== "image") {
                     return(
-                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-16 ">
+                        <div key={index} className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 ">
                             <p className="font-bold text-xs">{inputTitle(item)}</p>
                                 <UIInput value={sendDatas[item]} setSendDatas={setSendDatas} name={item} ph={inputTitle(item)} />
                             <div className="absolute top-7 left-5">
