@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = 'https://panel.frzddev.ir';
+axios.defaults.baseURL = 'https://backend.nanotf.ir/';
 // axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 
 // verify 1 just phone

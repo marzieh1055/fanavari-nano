@@ -8,8 +8,9 @@ import { Validation } from "../../helper/validation";
 import Loader from "../../components/Loader/Loader";
 import ViewReqs from "./ViewReqs";
 import axios from "axios";
+import ViewReqsE from "./ViewReqsE";
 
-export default function AddTicket() {
+export default function AddTicketE() {
   const {userDatas} = useContext(UserDataContext)
   const navigate = useNavigate();
   const [showReqs, setShowReqs] = useState(false);
@@ -132,7 +133,7 @@ export default function AddTicket() {
     <div>
       
       <ToastContainer />
-      {showReqs && <ViewReqs setRequest_data={setRequest_data} close={setShowReqs} setData={setData} />}
+      {showReqs && <ViewReqsE setRequest_data={setRequest_data} close={setShowReqs} setData={setData} />}
       <div className=" py-6">
         <p className="text-xl font-extrabold">ثبت تیکت </p>
       </div>
@@ -151,7 +152,7 @@ export default function AddTicket() {
           </span>
           <span class="ml-3 sm:block">
             <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-              شناسه درخواست : {request_data.shenaseh}
+              شناسه درخواست : {request_data.request.shenaseh}
             </button>
           </span>
         </div>

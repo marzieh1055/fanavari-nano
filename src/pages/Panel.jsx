@@ -87,7 +87,7 @@ export default function Panel() {
           },
           {title : "پشتیبانی",
             drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ],
-            links : ["/panel/viewTickets" , "/panel/addTicket"]
+            links : ["/panel/viewTickets" , "/panel/addTicketE"]
           },
           {title : "اطلاعات کاربری",
             drop : [ "پروفایل کاربری"  ],

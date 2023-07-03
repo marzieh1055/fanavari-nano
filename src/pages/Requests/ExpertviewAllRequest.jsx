@@ -7,11 +7,11 @@ import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
 export default function ExpertviewAllRequest() {
   const {userDatas} = useContext(UserDataContext)
-  const [reqDatas , setReqDatas] = useState([])
   const [isLoading , setIsLoading] = useState(true)
-
+  
+  const [reqDatas , setReqDatas] = useState([])
   useEffect(() => {
-    Axios.get("/api/admin/get_request_with_expert/12").then(async (res) => {
+    Axios.get(`/api/admin/get_request_with_expert/${userDatas.user.id}`).then(async (res) => {
       console.log(res.data);
       const newA = res.data.reverse()
       setReqDatas(newA)
