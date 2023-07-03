@@ -95,7 +95,6 @@ export default function UploadDoc() {
             toast(err.response.data.message[item][0])
           })
         }
-
         
         setIsLoading(false)
       })

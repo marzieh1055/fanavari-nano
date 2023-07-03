@@ -93,9 +93,13 @@ const Addexpert = () => {
     })
     .catch((err) => {
       setIsLoading(false)
-      Object.keys(err.response.data.message).map((item) => {
-        toast(err.response.data.message[item][0])
-      })
+      if (typeof(err.response.data.message) === "string") {
+        toast(err.response.data.message)
+      } else {
+        Object.keys(err.response.data.message).map((item) => {
+          toast(err.response.data.message[item][0])
+        })
+      }
     })
   }
   const imageHandler = (e) => {
