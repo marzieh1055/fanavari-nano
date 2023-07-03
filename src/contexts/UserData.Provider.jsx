@@ -21,7 +21,7 @@ export default function UserDataProvider({children}) {
         national_company: null,
         password_confirmation: "$2y$10$oZ/j05SHFTYU/YAwPXsai.KiimYvAJWg1va9zIwacDvHBlH/In9W6",
         phone: "09123596789",
-        type: "legal",
+        type: "genuine",
         updated_at: "2023-04-12T04:25:59.000000Z",
       }}
     )

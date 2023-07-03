@@ -14,7 +14,7 @@ export default function Tashilat() {
   const [isLoading , setIsLoading] = useState(true)
 
   useEffect(() => {
-    Axios.get("/api/v1/is_profile_legal")
+    Axios.get("/api/v1/is_profile_genuine")
     .then((res) => {
       console.log(res);
       setIsLoading(false)
@@ -26,7 +26,7 @@ export default function Tashilat() {
       console.log(err);
       navigate(`/panel/404`)
     })
-    Axios.get("/api/v1/is_profile_genuine")
+    Axios.get("/api/v1/is_profile_legal")
     .then((res) => {
       console.log(res);
       setIsLoading(false)

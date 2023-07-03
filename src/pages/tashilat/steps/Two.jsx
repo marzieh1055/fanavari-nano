@@ -10,6 +10,7 @@ import queryString from "query-string";
 import Axios from "../../../../axiosinstancs";
 import { UserDataContext } from "../../../contexts/UserData.Provider";
 import Loader from "../../../components/Loader/Loader";
+import S2Boards from "../../../components/requestSteps/S2Boards";
 
 export default function Two() {  
   // url
@@ -58,6 +59,7 @@ export default function Two() {
       {/* <S2TarkibHeyatmodire /> */}
       <S2Residences />
       <S2Manpowers />
+      <S2Boards />
       <S2Educational />
 
         <div className=" text-left mt-2">

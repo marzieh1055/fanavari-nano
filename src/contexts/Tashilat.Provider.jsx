@@ -57,6 +57,17 @@ export default function TashilatProvider({ children }) {
           education:"test"
         },
       ],
+      boards:[ 
+        { 
+            name:"", 
+            type:"genuine", 
+            position:"", 
+            n_national:"", 
+            birth_date:"", 
+            education:"", 
+            study:"" 
+        } ,
+      ],
       residences:[
         {
           name:"test",

@@ -85,7 +85,7 @@ export default function ViewExpert() {
                 >
                   <td>
                     {" "}
-                    {expert.profilegenuine && expert.profilegenuine.image !== null && <img className="w-10" src={`https://panel.frzddev.ir/storage/app/${expert.profilegenuine.image}`} alt=""/> }
+                    {expert.profilegenuine && expert.profilegenuine.image !== null && <img className="w-10 h-10 " style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${expert.profilegenuine.image}`} alt=""/> }
                     {expert.profilegenuine && expert.profilegenuine.image !== null && console.log(expert.profilegenuine.image)}
                     {(expert.profilegenuine === null || expert.profilegenuine.image === null) && <img className="w-10" src={user} alt=""/>}
                     
