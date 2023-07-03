@@ -133,11 +133,15 @@ export default function GenuineUserInfo() {
         setIsLoading(false)
     })
     .catch((err) => {
-        console.log(err.response.data.errors);
-        Object.keys(err.response.data.errors).map((item) => {
-            toast(err.response.data.errors[item][0])
-        })
         setIsLoading(false)
+        console.log(err.response.data.message);
+        if (typeof(err.response.data.message) === "string") {
+            toast(err.response.data.message)
+        } else {
+            Object.keys(err.response.data.message).map((item) => {
+                toast(err.response.data.message[item][0])
+            })
+        }
     })
   }
   

@@ -20,7 +20,7 @@ export default function Guarantee() {
     })
     .catch((err) =>{
       console.log(err);
-      // navigate(`/panel/404`)
+      navigate(`/panel/404`)
     })
     Axios.get("/api/v1/is_profile_legal")
     .then((res) => {
@@ -32,7 +32,7 @@ export default function Guarantee() {
     })
     .catch((err) =>{
       console.log(err);
-      // navigate(`/panel/404`)
+      navigate(`/panel/404`)
     })
 
   } , [])

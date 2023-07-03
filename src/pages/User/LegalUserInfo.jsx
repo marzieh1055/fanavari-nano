@@ -51,7 +51,7 @@ export default function LegalUserInfo() {
         })
         .catch((err) => {
           console.log(err);
-          navigate(`/panel/404`)
+          // navigate(`/panel/404`)
         })
 
         Axios.get("/api/v1/is_profile_legal")
@@ -76,11 +76,15 @@ export default function LegalUserInfo() {
               
     })
     .catch((err) => {
-        console.log(err.response.data.errors);
+        console.log(err.response.data.message);
         setIsLoading(false)
-        Object.keys(err.response.data.errors).map((item) => {
-            toast(err.response.data.errors[item][0])
-        })
+        if (typeof(err.response.data.message) === "string") {
+          toast(err.response.data.message)
+        } else {
+          Object.keys(err.response.data.message).map((item) => {
+              toast(err.response.data.message[item][0])
+          })
+        }
     })
   }
   if (isLoading) return <Loader />

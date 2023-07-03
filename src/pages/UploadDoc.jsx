@@ -37,10 +37,10 @@ export default function UploadDoc() {
     loans: null, // ta inja felan mish
     statements: null,
     balances: null,
-    // catalogs: null,
-    // insurances: null,
-    // invoices: null,
-    // bills: null,
+    catalogs: null,
+    insurances: null,
+    invoices: null,
+    bills: null,
   })
   
   useEffect(() => {
@@ -87,6 +87,16 @@ export default function UploadDoc() {
       ).catch(err => {
         console.log(err)
         toast("خطا در ارسال درخواست")
+        console.log();
+        if (typeof(err.response.data.message) === "string") {
+          toast(err.response.data.message)
+        } else {
+          Object.keys(err.response.data.message).map((item) => {
+            toast(err.response.data.message[item][0])
+          })
+        }
+
+        
         setIsLoading(false)
       })
     }
