@@ -6,6 +6,7 @@ import { UserDataContext } from "../../contexts/UserData.Provider";
 import user from "../../assets/imges/user.png"
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import DeleteUser from "../../components/modal/DeleteUser";
 
 
 
@@ -17,11 +18,12 @@ export default function ViewUsers() {
   const [allLegalUser, setAllLegalUser] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [IsLoading, setIsLoading] = useState(true);
+  const [showDelete, setShowDelete] = useState(null);
 
   useEffect(() => {
     getUserGenuine();
     getUserLegal();
-  }, []);
+  }, [showDelete]);
   const getUserGenuine = () => {
     Axios.get("/api/admin/get_genuine").then(async res => {
       // console.log(res.data)
@@ -71,11 +73,12 @@ export default function ViewUsers() {
             onClick={() => {
               setIsPerson(!isPerson);
             }}
-          >
+            >
             حقیقی
           </button>
         </div>
       </div>
+            {showDelete !== null && <DeleteUser close={setShowDelete} userDataaa={showDelete} />}
       <div className="max-h-[60vh] overflow-y-scroll">
         {isPerson ? (
           <table className="w-full ">
@@ -94,17 +97,17 @@ export default function ViewUsers() {
                   
                   className={
                     selectedItem?.id === GenuineUser.id
-                      ? console.log(GenuineUser.id)
-                      : null
+                    ? console.log(GenuineUser.id)
+                    : null
                   }
-                >
+                  >
                   <td>
                     {" "}
                     <img
                       className="w-10"
                       src={user}
                       alt=""
-                    />
+                      />
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
@@ -113,7 +116,7 @@ export default function ViewUsers() {
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">
-                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                      <button onClick={() => setShowDelete(GenuineUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
                       <Link to={`/panel/Viewdetailuser/${GenuineUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
@@ -151,7 +154,7 @@ export default function ViewUsers() {
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                     <div className="flex">
-                      <button  className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                      <button onClick={() => setShowDelete(LegalUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                         حذف کاربر
                       </button>
                       <Link to={`/panel/Viewdetailuser/${LegalUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">

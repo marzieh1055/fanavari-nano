@@ -42,6 +42,7 @@ import ErrorPage from "./pages/404/ErrorPage";
 import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
 import GenuineUserInfo from "./pages/User/GenuineUserInfo";
 import AddTicketE from "./pages/Ticket/AddTicketE";
+import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
 
 const routes = [
   {
@@ -59,6 +60,7 @@ const routes = [
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "viewTickets", element: <ViewTickets /> },
+      { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },
