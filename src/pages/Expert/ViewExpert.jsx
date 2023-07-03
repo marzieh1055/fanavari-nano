@@ -77,7 +77,7 @@ export default function ViewExpert() {
                     {" "}
                     <img
                       className="w-10"
-                      src={user}
+                      // src={expert.profilegenuine.image}
                       alt=""
                     />
                   </td>

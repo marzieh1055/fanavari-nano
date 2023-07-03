@@ -43,19 +43,19 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">محل صدور</p>
           <input
             type="text"
-            placeholder={`${details.place_issue}`}
+            placeholder={`${details.profilegenuine.place_issue}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
 
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
+        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">پسوورد</p>
           <input
             type="text"
             placeholder={`${details.password}`}
             className="outline-none border-none placeholder:text-sm"
           />
-        </div>
+        </div> */}
         {/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
           <p className="font-bold text-sm">سری و سریال شناسنامه</p>
           <input
@@ -68,7 +68,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">نام پدر</p>
           <input
             type="text"
-            placeholder={`${details.father_name}`}
+            placeholder={`${details.profilegenuine.father_name}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -92,7 +92,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">تاریخ تولد</p>
           <input
             type="text"
-            placeholder={`${details.birth_day}`}
+            placeholder={`${details.profilegenuine.birth_day}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -100,7 +100,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">شماره شناسنامه</p>
           <input
             type="text"
-            placeholder={`${details.number_certificate}`}
+            placeholder={`${details.profilegenuine.number_certificate}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -108,7 +108,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">سمت</p>
           <input
             type="text"
-            placeholder={`${details.job}`}
+            placeholder={`${details.profilegenuine.job}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -125,7 +125,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">میزان تحصیلات</p>
           <input
             type="text"
-            placeholder={`${details.education}`}
+            placeholder={`${details.profilegenuine.education}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -133,7 +133,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">رشته تحصیلی</p>
           <input
             type="text"
-            placeholder={`${details.study}`}
+            placeholder={`${details.profilegenuine.study}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -226,7 +226,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">تلفن ثابت</p>
           <input
             type="text"
-            placeholder={`${details.home_number}`}
+            placeholder={`${details.profilegenuine.home_number}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -234,7 +234,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">آدرس</p>
           <input
             type="text"
-            placeholder={`${details.address}`}
+            placeholder={`${details.profilegenuine.address}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -243,7 +243,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">کد پستی</p>
           <input
             type="text"
-            placeholder={`${details.postal_code}`}
+            placeholder={`${details.profilegenuine.postal_code}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
