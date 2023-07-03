@@ -8,6 +8,7 @@ import user from "../../assets/imges/user.png"
 import ExpertReqs from "../../components/modal/ExpertReqs";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import DeleteExpert from "../../components/modal/DeleteExpert";
 
 export default function ViewExpert() {
   const {userDatas} = useContext(UserDataContext)
@@ -15,17 +16,25 @@ export default function ViewExpert() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDetailsUser, setShowDetailsUser] = useState(false);
   const [showReqsModal, setShowReqsModal] = useState(null);
+  const [showDelete, setShowDelete] = useState(null);
+  // const [up, setUp] = useState(0);
+
   const [IsLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     getExpert();
-  }, []);
+  }, [showDelete]);
 
   const getExpert = () => {
     Axios.get("/api/admin/expert").then(async res => {
       console.log(res)
       setAllExpert(res.data)
       setIsLoading(false)
+      // if (expert.profilegenuine) {
+      //   if (expert.profilegenuine.image !== null) {
+      //     setPImage(`https://panel.frzddev.ir/storage/app/${expert.profilegenuine.image}`)
+      //   }
+      // }
     }
     ).catch(err => {
       console.log(err)
@@ -60,6 +69,7 @@ export default function ViewExpert() {
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
           </thead>
+            {showDelete !== null && <DeleteExpert close={setShowDelete} expertData={showDelete} />}
           <tbody>
           {allExpert && allExpert.map((expert) => {
               return (
@@ -75,11 +85,9 @@ export default function ViewExpert() {
                 >
                   <td>
                     {" "}
-                    <img
-                      className="w-10"
-                      src={user}
-                      alt=""
-                    />
+                    {expert.profilegenuine && expert.profilegenuine.image !== null && <img className="w-10" src={`https://panel.frzddev.ir/storage/app/${expert.profilegenuine.image}`} alt=""/> }
+                    {expert.profilegenuine && expert.profilegenuine.image !== null && console.log(expert.profilegenuine.image)}
+                    {(expert.profilegenuine === null || expert.profilegenuine.image === null) && <img className="w-10" src={user} alt=""/>}
                   </td>
                   <td onClick={() => setShowReqsModal(expert)}  className="p-4 text-xs text-gray-400 font-bold">{expert.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{expert.family}</td>
@@ -91,7 +99,7 @@ export default function ViewExpert() {
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">
                   <div className="flex">
-                  <button className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
+                  <button onClick={() => setShowDelete(expert)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
                     حذف کارشناس
                   </button>
                   <Link to={`/panel/ViewDetailExpert/${expert.id}`} className="text-blue-700 border rounded-2xl p-2 ">

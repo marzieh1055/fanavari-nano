@@ -29,6 +29,7 @@ export default function AddTicketE() {
     body : "",
     file : null,
   })
+  
   const subHandler = () => {
     if (!Object.keys(errors).length) {
       // const formData = new FormData();
@@ -52,7 +53,7 @@ export default function AddTicketE() {
         }
       })
       .then((respons) => {
-        navigate("/panel/viewTickets")
+        navigate(`/panel/ViewTicketsExpert`)
         setIsLoading(false)
       })
       .catch((err) => {

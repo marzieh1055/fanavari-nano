@@ -265,7 +265,7 @@ const Register = () => {
                   گذرواژه*
                 </label>
                 <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
-                <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password} name='password' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
+                <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password} name='password' id="form-2" className="border rounded-md pr-[45px] border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
                 <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                   <img className="w-full h-full" src={showPass ? view : hide} alt="" />
                 </button>
@@ -276,7 +276,7 @@ const Register = () => {
                   تکرار گذرواژه*
                 </label>
                 <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
-                <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password_confirmation} name='password_confirmation' id="form-2" className="border rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
+                <input onFocus={focusHandler} onChange={changeHandler} value={genuine.password_confirmation} name='password_confirmation' id="form-2" className="border pr-[45px] rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
                 <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                   <img className="w-full h-full" src={showComPass ? view : hide} alt="" />
                 </button>
