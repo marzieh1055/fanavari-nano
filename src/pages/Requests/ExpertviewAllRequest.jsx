@@ -36,7 +36,7 @@ export default function ExpertviewAllRequest() {
                       <p className="text-sm">{onlyDateConversion(item.created_at)}</p>
                     </div>
                     <p className="font-bold text-sm pt-2 ">{item.request.type === "facilities" ? "درخواست تسهیلات" : 
-                                                            item.request.type === "guarantee" ? "درخواست ضمانت" : "درخواست"
+                                                            item.request.type === "guarantee" ? "درخواست ضمانت" : "درخواست"  //` ${item.request.warranty.title}`
                     }</p>
                     <p className="font-bold text-xs text-gray-400 pb-2 ">
                         شناسه درخواست : {item.request.shenaseh}
