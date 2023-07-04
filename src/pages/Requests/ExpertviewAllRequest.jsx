@@ -26,8 +26,8 @@ export default function ExpertviewAllRequest() {
       <div className="flex flex-wrap ">
       {isLoading && <Loader /> }
       {
-          reqDatas.map(item => {
-            console.log(item);
+          reqDatas && reqDatas.map(item => {
+            // console.log(item);
             return (
               <div key={item.id} className="p-3 w-1/3">
                 <Link to={`/panel/expertCheckRequest/${item.request.id}`}>
@@ -35,9 +35,11 @@ export default function ExpertviewAllRequest() {
                     <div className="flex justify-flex-end">
                       <p className="text-sm">{onlyDateConversion(item.created_at)}</p>
                     </div>
-                    <p className="font-bold text-sm pt-2 ">{item.request.type === "facilities" ? "درخواست تسهیلات" : 
-                                                            item.request.type === "guarantee" ? "درخواست ضمانت" : "درخواست"  //` ${item.request.warranty.title}`
+                    <p className="text-blue-500 text-sm pt-2 ">{item.request.type === "facilities" ? "درخواست تسهیلات" : 
+                                                            item.request.type === "warranty" ? "درخواست ضمانت" : "درخواست"  //` ${item.request.warranty.title}`
                     }</p>
+                    {item.request.facilities[0] !== undefined && (<p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.facilities[0].title}`}</p>)}
+                    {item.request.warranty[0] !== undefined && (<p className="font-bold text-sm pt-2 ">{`عنوان : ${item.request.warranty[0].title}`}</p>)}
                     <p className="font-bold text-xs text-gray-400 pb-2 ">
                         شناسه درخواست : {item.request.shenaseh}
                     </p>

@@ -45,6 +45,8 @@ import AddTicketE from "./pages/Ticket/AddTicketE";
 import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
 import ViewTicketsAdmin from "./pages/Ticket/ViewTicketsAdmin"
 import Changepass from "./pages/Register/Changepass";
+import Testticket from "./pages/Ticket/Testticket";
+import TestticketExpert from "./pages/Ticket/TestticketExpert";
 
 const routes = [
   {

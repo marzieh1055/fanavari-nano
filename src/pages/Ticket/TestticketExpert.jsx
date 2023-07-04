@@ -11,7 +11,7 @@ import ItemInTesttikets from "./Comp/ItemInTesttikets";
 
 
 
-export default function Testticket() {
+export default function TestticketExpert() {
     const { userDatas } = useContext(UserDataContext)
     const [isPerson, setIsPerson] = useState(true);
     const [archiveticket, setarchiveticket] = useState([]);
@@ -32,7 +32,7 @@ export default function Testticket() {
     console.log(selectedItem);
     // نمایش تیکت های بسته شده
     const getarchiveticket = () => {
-        Axios.get("/api/admin/archive_ticket").then(async res => {
+        Axios.get("/api/admin/archive_ticket_expert").then(async res => {
             // console.log(res.data)
             setarchiveticket(res.data)
             setIsLoading(false)
@@ -46,7 +46,7 @@ export default function Testticket() {
     // مشاهده تیکت های باز
 
     const getopenedticket = () => {
-        Axios.get("/api/admin/opened_ticket").then(async res => {
+        Axios.get("/api/admin/opened_ticket_expert").then(async res => {
             // console.log(res.data)
             setopenedticket(res.data)
             setIsLoading(false)
@@ -60,7 +60,7 @@ export default function Testticket() {
     // مشاهده تیکت های پاسخ داده نشده
 
     const getunresolvedticket = () => {
-        Axios.get("/api/admin/unresolved_ticket").then(async res => {
+        Axios.get("/api/admin/unresolved_ticket_expert").then(async res => {
             // console.log(res.data)
             setunresolvedticket(res.data)
             setIsLoading(false)
@@ -72,7 +72,7 @@ export default function Testticket() {
         )
     }
     const getAllticket = () => {
-        Axios.get("/api/admin/ticket_admin").then(async res => {
+        Axios.get("/api/admin/ticket_expert").then(async res => {
             console.log(res.data)
             setAllticket(res.data)
             setIsLoading(false)
@@ -90,7 +90,7 @@ export default function Testticket() {
     }
     
     if (IsLoading) return <Loader />
-    if (userDatas && userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
+    if (userDatas && (userDatas.user.type === "expert")) return (
         <div>
         <div className=" py-6">
           <p className="text-xl font-extrabold">مشاهده تیکت ها</p>

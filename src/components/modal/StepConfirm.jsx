@@ -18,7 +18,8 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
         setUpdatePage(prev => prev + 1)
         close(null)
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setErr(true)
         setIsLoading(false)
       })
