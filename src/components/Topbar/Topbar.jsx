@@ -52,7 +52,7 @@ const Topbar = ({ avatar }) => {
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
         <div className="flex">
           {/* <p className="p-1 font-bold">کاربر عزیز </p> */}
-          <p className="p-1 font-bold">{`${userDatas.user.name} ${userDatas.user.family}`} </p>
+          {userDatas && <p className="p-1 font-bold">{`${userDatas.user.name} ${userDatas.user.family}`} </p>}
           <p className="p-1 font-bold">گرامی </p>
 
         </div>
