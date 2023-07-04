@@ -12,7 +12,7 @@ import DeleteUser from "../../components/modal/DeleteUser";
 
 
 export default function ViewUsers() {
-  const {userDatas} = useContext(UserDataContext)
+  const { userDatas } = useContext(UserDataContext)
   const [isPerson, setIsPerson] = useState(true);
   const [allGenuineUser, setAllGenuineUser] = useState(null);
   const [allLegalUser, setAllLegalUser] = useState(null);
@@ -73,12 +73,13 @@ export default function ViewUsers() {
             onClick={() => {
               setIsPerson(!isPerson);
             }}
-            >
+          >
             حقیقی
           </button>
+          
         </div>
       </div>
-            {showDelete !== null && <DeleteUser close={setShowDelete} userDataaa={showDelete} />}
+      {showDelete !== null && <DeleteUser close={setShowDelete} userDataaa={showDelete} />}
       <div className="max-h-[60vh] overflow-y-scroll">
         {isPerson ? (
           <table className="w-full ">
@@ -94,20 +95,20 @@ export default function ViewUsers() {
                 <tr
                   key={GenuineUser.id}
                   id={GenuineUser.id}
-                  
+
                   className={
                     selectedItem?.id === GenuineUser.id
-                    ? console.log(GenuineUser.id)
-                    : null
+                      ? console.log(GenuineUser.id)
+                      : null
                   }
-                  >
+                >
                   <td>
                     {" "}
                     <img
                       className="w-10"
                       src={user}
                       alt=""
-                      />
+                    />
                   </td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
@@ -140,15 +141,15 @@ export default function ViewUsers() {
             {allLegalUser && allLegalUser.map((LegalUser) => {
               return (
                 <tr
-                key={LegalUser.id}
-                id={LegalUser.id}
-                
-                className={
-                  selectedItem?.id === LegalUser.id
-                    ? console.log(LegalUser.id)
-                    : null
-                }
-              >
+                  key={LegalUser.id}
+                  id={LegalUser.id}
+
+                  className={
+                    selectedItem?.id === LegalUser.id
+                      ? console.log(LegalUser.id)
+                      : null
+                  }
+                >
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.company_name}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
                   <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>

@@ -12,7 +12,7 @@ export default function ViewTickets() {
   
   useEffect(() => {
     const getTicket = () => {
-      Axios.get("/api/admin/ticket_admin").then(async (res) => {
+      Axios.get("/api/v1/ticket").then(async (res) => {
         console.log(res.data);
         const oldMessage = res.data.reverse()
 
