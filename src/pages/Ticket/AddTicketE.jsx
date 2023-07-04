@@ -229,7 +229,7 @@ export default function AddTicketE() {
           onFocus={focusHandler}
           value={data.body}
           name="body"
-          placeholder="عنوان تیکت"
+          placeholder="بدنه تیکت"
           id=""
           cols="30"
           rows="10"

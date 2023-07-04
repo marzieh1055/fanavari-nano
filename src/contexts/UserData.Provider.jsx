@@ -1,5 +1,7 @@
 import React , { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+
 import axios from 'axios'
 
 export const UserDataContext = React.createContext()
@@ -70,9 +72,16 @@ export default function UserDataProvider({children}) {
           setErrRes(false)
           setIsLoading(false)              
       })
-      .catch(error =>{
-        setErrRes(true)
+      .catch(err =>{
+        console.log(err)
         setIsLoading(false)
+        if (typeof(err.response.data.message) === "string") {
+          toast(err.response.data.message)
+        } else {
+          Object.keys(err.response.data.message).map((item) => {
+            toast(err.response.data.message[item][0])
+          })
+        }
       })
 
     }
@@ -114,9 +123,15 @@ export default function UserDataProvider({children}) {
           setErrRes(false)
           setIsLoading(false)
       })
-      .catch(error =>{
-        setErrRes(true)
+      .catch(err =>{
         setIsLoading(false)
+        if (typeof(err.response.data.message) === "string") {
+          toast(err.response.data.message)
+        } else {
+          Object.keys(err.response.data.message).map((item) => {
+            toast(err.response.data.message[item][0])
+          })
+        }
       })
     }
 
@@ -155,8 +170,12 @@ export default function UserDataProvider({children}) {
         });
     }
   return (
+    <>
+    <ToastContainer />
+
     <UserDataContext.Provider value={{ showVerify, setShowVerify , singupG , singupL , isLoading, setIsLoading , errRes, setErrRes , userDatas , apiLogin , rememberStory , setRememberStory}}>
         {children}
     </UserDataContext.Provider>
+    </>
   )
 }

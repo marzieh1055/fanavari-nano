@@ -3,6 +3,8 @@ import Vector from '../../assets/imges/Vector.png'
 import Vector3 from '../../assets/imges/Vector3.png'
 import Vector4 from '../../assets/imges/Vector4.png'
 import Vector5 from '../../assets/imges/Vector5.png'
+import user from "../../assets/imges/user.png"
+
 import Vector6 from '../../assets/imges/Vector6.png'
 import AccImg from '../../assets/imges/account.png'
 import ViewNotif from '../../components/modal/ViewNotif'
@@ -18,7 +20,23 @@ const Topbar = ({ avatar }) => {
   const {userDatas} = useContext(UserDataContext)
   const [showModal, setShowModal] = useState(false)
   const [showUnreade, setShowUnreade] = useState(false)
-
+  const [details , setDetails] = useState()
+  useEffect(() => {
+    Axios.get("/api/v1/profile_genuine")
+    .then((res) => {
+      console.log(res);
+      const newA = res.data.reverse()
+      newA.map((item) => {
+        if(item.user.id === userDatas.user.id) {
+          setDetails(item)
+          console.log(item);
+        }
+      })
+    })
+    .catch((err) => {
+     console.log(err); 
+    })
+  } , [])
   const [unreadNotif, setUnreadNotif] = useState([])
   useEffect(() => {
     Axios.get(`/api/v1/get_unread_notification`).then(async res => {
@@ -58,11 +76,15 @@ const Topbar = ({ avatar }) => {
         <div>
           <button className="flex items-center gap-4" onClick={() => setShowModal(!showModal)}>
             <div>
-              <img
+            {
+              details && details.image && <img style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${details.image}`} alt="عکس پروفایل" className="w-16 h-16" />
+            }
+            {(!details || !details.image) && <img src={avatar}  alt="" className="w-16 h-16 " />}
+              {/* <img
                 className="w-10 h-10"
                 src={avatar}
                 alt="avatar"
-              />
+              /> */}
             </div>
             <div>
               <img src={Vector6} alt="" />
@@ -72,7 +94,11 @@ const Topbar = ({ avatar }) => {
               <div onClick={() => setShowModal(!showModal)}
                 class="absolute w-80 h-c-9 py-4 px-6 left-7 top-full bg-white z-10 rounded-lg flex flex-col gap-4">
                 <div class="text-center bg-c-2 rounded-lg py-3">
-                  <img class="w-16 h-16 mx-auto" src={AccImg} alt="" />
+                {
+              details && details.image && <img style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${details.image}`} alt="عکس پروفایل" className="w-16 h-16 mx-auto" />
+            }
+            {(!details || !details.image) && <img src={AccImg}  alt="" className="w-16 h-16 mx-auto" />}
+                  {/* <img class="w-16 h-16 mx-auto" src={AccImg} alt="" /> */}
                   <h2 class="font-bold my-3 mb-1">{`${userDatas.user.name} ${userDatas.user.family}`}</h2>
                   <a class="text-xs text-c-8 font-semibold">{userDatas.user.email !== null && userDatas.user.email !== "" ? userDatas.user.email : "فاقد پست الکترونیکی"}</a>
                 </div>

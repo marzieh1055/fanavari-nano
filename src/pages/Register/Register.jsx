@@ -160,7 +160,9 @@ const Register = () => {
 
   { if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} /> }
   return (
+
     <div class="flex">
+      
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
         <h1 class="mt-c-19 mb-c-20">
           <img className="mx-auto" src={logofarsi} alt="" style={{
