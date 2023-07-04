@@ -45,6 +45,7 @@ import AddTicketE from "./pages/Ticket/AddTicketE";
 import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
 import Changepass from "./pages/Register/Changepass";
 import Testticket from "./pages/Ticket/Testticket";
+import TestticketExpert from "./pages/Ticket/TestticketExpert";
 
 const routes = [
   {
@@ -63,6 +64,7 @@ const routes = [
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "testtikets", element: <Testticket /> },
+      { path: "testtiketsexpert", element: <TestticketExpert /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
