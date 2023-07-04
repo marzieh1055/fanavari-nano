@@ -43,6 +43,7 @@ import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
 import GenuineUserInfo from "./pages/User/GenuineUserInfo";
 import AddTicketE from "./pages/Ticket/AddTicketE";
 import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
+import ViewTicketsAdmin from "./pages/Ticket/ViewTicketsAdmin"
 import Changepass from "./pages/Register/Changepass";
 
 const routes = [
@@ -60,7 +61,7 @@ const routes = [
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
-      { path: "viewTickets", element: <ViewTickets /> },
+      { path: "ViewTicketsAdmin", element: <ViewTicketsAdmin /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },

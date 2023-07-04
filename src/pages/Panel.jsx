@@ -31,7 +31,7 @@ export default function Panel() {
           },
           {title : "پشتیبانی",
             drop : ["مشاهده تیکت ها" ],
-            links : ["/panel/viewTicketsAdmin"  ]
+            links : ["/panel/ViewTicketsAdmin"  ]
           },
           {title : "اطلاعات کاربری",
             drop : [" پروفایل کاربری" ],
