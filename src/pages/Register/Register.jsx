@@ -185,10 +185,13 @@ const Register = () => {
 
 
   // { if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} /> }
-  if (isLoading) return <Loader />
   return (
 
     <div class="flex">
+      {
+          isLoading && <Loader />
+
+      }
       <ToastContainer />
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
         <h1 class="mt-c-19 mb-c-20">
@@ -341,22 +344,22 @@ const Register = () => {
               {errors.national_company && showErr.national_company && <span style={{ color: '#e88f19' }}>{errors.national_company}</span>}
               {/* passwords */}
               <div className="relative">
-                <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
+              <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   گذرواژه*
                 </label>
                 <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
-                <input onFocus={focusHandler} onChange={changeHandler} value={legal.password} name='password' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
+                <input onFocus={focusHandler} onChange={changeHandler} value={legal.password} name='password' id="form-2" className="border rounded-md pr-[45px] border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showPass ? "text" : "password"} />
                 <button onClick={showPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                   <img className="w-full h-full" src={showPass ? view : hide} alt="" />
                 </button>
               </div>
               {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
               <div className="relative">
-                <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
+              <label for="form-2" className="absolute top-0 -translate-y-1/2 right-3 bg-white text-sm text-c-16 px-1">
                   تکرار گذرواژه*
                 </label>
                 <img className="absolute top-1/2 -translate-y-1/2 right-3 w-6 h-6" src={lockedcomputer} alt="" />
-                <input onFocus={focusHandler} onChange={changeHandler} value={legal.password_confirmation} name='password_confirmation' id="form-2" className="border border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
+                <input onFocus={focusHandler} onChange={changeHandler} value={legal.password_confirmation} name='password_confirmation' id="form-2" className="border pr-[45px] rounded-md border-gray-300 focus-within:outline-none focus-within:border-black bg-white w-full py-4 px-c-20" type={showComPass ? "text" : "password"} />
                 <button onClick={showComPassHandler} className="absolute top-1/2 -translate-y-1/2 left-3 w-6 h-6">
                   <img className="w-full h-full" src={showComPass ? view : hide} alt="" />
                 </button>
@@ -375,7 +378,23 @@ const Register = () => {
                 name="name"
                 onFocus={focusHandler}
               />
+              
               {errors.name && showErr.name && <span style={{ color: '#e88f19' }}>{errors.name}</span>}
+
+              <Input
+                lable={"نام خانوادگی رابط (شما)*"}
+                src={account}
+                type="text"
+                changeHandler={changeHandler}
+                value={legal.family}
+                name="family"
+                onFocus={focusHandler}
+
+              />
+              {errors.family && showErr.family && <span style={{ color: '#e88f19' }}>{errors.family}</span>}
+
+
+
               <Input
                 lable={"شماره موبایل (شما)*"}
                 src={phone}
