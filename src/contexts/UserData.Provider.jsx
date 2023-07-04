@@ -1,6 +1,5 @@
 import React , { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
 
 import axios from 'axios'
 
@@ -35,105 +34,6 @@ export default function UserDataProvider({children}) {
     const [rememberStory , setRememberStory] = useState(false)
     const nextPage = useNavigate()
 
-    // SINGIN
-    const singupG = (userData) => {
-      let datas = {}
-      if (userData.type == "genuine") {
-          datas = {
-              "type":"genuine",
-              "name":userData.name,
-              "family":userData.family,
-              "phone":userData.phone,
-              "password":userData.password,
-              "password_confirmation":userData.password_confirmation,
-              "is_confirmed":true,
-              "national_code":userData.national_code,
-              "email":""
-          }
-      }
-      console.log(datas);
-      axios.post('/api/v1/register', datas , {
-          headers: {
-              Authorization:"token",
-              'Access-Control-Allow-Origin': "http://localhost:5173"
-          }
-      })
-      .then(response => {
-          console.log(response.data);
-          window.localStorage.accessToken = response.data.authorisation.token
-          setShowVerify(!showVerify)
-
-          // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
-          verify({
-            type : "genuine",
-            phone : genuine.phone
-          })
-          setUserResponse(res)
-          setErrRes(false)
-          setIsLoading(false)              
-      })
-      .catch(err =>{
-        console.log(err)
-        setIsLoading(false)
-        if (typeof(err.response.data.message) === "string") {
-          toast(err.response.data.message)
-        } else {
-          Object.keys(err.response.data.message).map((item) => {
-            toast(err.response.data.message[item][0])
-          })
-        }
-      })
-
-    }
-
-    const singupL = (userData) => {
-      let datas = {}
-      if (userData.type == "legal") {
-          datas = {
-              "type":"legal",
-              "company_name":userData.company_name,
-              "name":userData.name,
-              "family":userData.name + "ei",
-              "national_company":userData.national_company,
-              "phone":userData.phone,
-              "password":userData.password,
-              "password_confirmation":userData.password_confirmation,
-              "is_confirmed":true,
-              "email":""
-          }
-      }
-      
-      console.log(datas);
-      axios.post('/api/v1/register', datas , {
-          headers: {
-              Authorization:"token",
-              'Access-Control-Allow-Origin': "http://localhost:5173"
-          }
-      })
-      .then(response => {
-          console.log(response.data);
-          window.localStorage.accessToken = response.data.authorisation.token
-          setShowVerify(!showVerify)
-          // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
-          verify({
-            type : "legal",
-            phone : legal.phone
-          })
-          setUserResponse(res)
-          setErrRes(false)
-          setIsLoading(false)
-      })
-      .catch(err =>{
-        setIsLoading(false)
-        if (typeof(err.response.data.message) === "string") {
-          toast(err.response.data.message)
-        } else {
-          Object.keys(err.response.data.message).map((item) => {
-            toast(err.response.data.message[item][0])
-          })
-        }
-      })
-    }
 
     // LOGIN
     const apiLogin = (datas) => {
@@ -171,9 +71,9 @@ export default function UserDataProvider({children}) {
     }
   return (
     <>
-    <ToastContainer />
+    
 
-    <UserDataContext.Provider value={{ showVerify, setShowVerify , singupG , singupL , isLoading, setIsLoading , errRes, setErrRes , userDatas , apiLogin , rememberStory , setRememberStory}}>
+    <UserDataContext.Provider value={{ isLoading, setIsLoading , errRes, setErrRes , userDatas , apiLogin , rememberStory , setRememberStory}}>
         {children}
     </UserDataContext.Provider>
     </>
