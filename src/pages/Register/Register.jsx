@@ -8,7 +8,9 @@ import { UserDataContext } from '../../contexts/UserData.Provider';
 // api 
 import { verify } from '../../services/apireq';
 import Verification from './Verification';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import logofarsi from "../../assets/imges/Login/logofarsi.png"
 import account from "../../assets/imges/account.png"
@@ -18,13 +20,15 @@ import view from "../../assets/imges/view.png"
 import hide from "../../assets/imges/hide.png"
 import lockedcomputer from "../../assets/imges/locked-computer.png"
 import building from "../../assets/imges/building.png"
+import Loader from '../../components/Loader/Loader';
 
 
 const Register = () => {
-  const { showVerify, singupG, singupL, isLoading, setIsLoading, errRes, setErrRes, } = useContext(UserDataContext)
+  const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState("genuine");
 
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [errRes, setErrRes] = useState(false);
 
 
   const [showPass, setShowPass] = useState(false);
@@ -59,9 +63,37 @@ const Register = () => {
     email: ""
   })
 
+  const sendHandler = () => {
+    let datas = selectedOption === "genuine" ? genuine : legal;
+    setIsLoading(true)
+    setErrRes(false)
+    axios.post('/api/v1/register', datas , {
+      headers: {
+          Authorization:"token",
+          'Access-Control-Allow-Origin': "http://localhost:5173"
+      }
+  })
+  .then(response => {
+      console.log(response.data);
+      window.localStorage.accessToken = response.data.authorisation.token
 
-
-
+      // badan inja bayad etelaato bedim be CONTEXT    <<<<<<<<<<<<-------------------------------------------
+      
+      setErrRes(false)
+      setIsLoading(false)
+      navigate(`/auth/Verification/${datas.phone}`)
+  })
+  .catch(err =>{
+    setIsLoading(false)
+    if (typeof(err.response.data.message) === "string") {
+      toast(err.response.data.message)
+    } else {
+      Object.keys(err.response.data.message).map((item) => {
+        toast(err.response.data.message[item][0])
+      })
+    }
+  })
+  }
 
   const [errors, setErrors] = useState({});
   const [showErr, setShowErr] = useState({});
@@ -103,13 +135,7 @@ const Register = () => {
     e.preventDefault();
 
     if (!Object.keys(errors).length) {
-      setIsLoading(true)
-      setErrRes(false)
-      if (selectedOption === "genuine") {
-        singupG(genuine)
-      } else if (selectedOption === 'legal') {
-        singupL(legal)
-      }
+      sendHandler()
     } else {
       if (selectedOption === "genuine") {
         setShowErr({
@@ -158,11 +184,12 @@ const Register = () => {
 
 
 
-  { if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} /> }
+  // { if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} /> }
+  if (isLoading) return <Loader />
   return (
 
     <div class="flex">
-      
+      <ToastContainer />
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
         <h1 class="mt-c-19 mb-c-20">
           <img className="mx-auto" src={logofarsi} alt="" style={{

@@ -1,19 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/Input/Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import logofarsi from "../../assets/imges/Login/logofarsi.png"
 import "../Login/Login.css"
+import Axios from "../../../axiosinstancs";
+import Loader from "../../components/Loader/Loader";
+import { ToastContainer, toast } from 'react-toastify';
+
+
 const Verification = ({ datas }) => {
+
+    const userNumber = useParams()
     const nextPage = useNavigate()
+    const [isLoading, setIsLoading] = useState(true);
+    const [errRes, setErrRes] = useState(false);
+
     const [formData, setFormData] = useState({
-        phone: datas.phone,
+        phone: "",
         code: ""
     })
+    useEffect(() => {
 
+        Axios.post("/api/v1/verify" , {phone : userNumber.number})
+        .then((res) => {
+            console.log(res);
+            setIsLoading(false)
+            toast(`پیامک تایید به شماره ${userNumber.number} ارسال گردید`)
+        })
+        .catch((err) => {
+            console.log(res);
+            setIsLoading(false)
+            if (typeof(err.response.data.message) === "string") {
+            toast(err.response.data.message)
+            } else {
+            Object.keys(err.response.data.message).map((item) => {
+                toast(err.response.data.message[item][0])
+            })
+            }
+        })
+    } , [])
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [errRes, setErrRes] = useState(false);
 
     const changeHandler = (e) => {
         setFormData({
@@ -24,34 +51,44 @@ const Verification = ({ datas }) => {
         e.preventDefault();
         setIsLoading(true)
         setErrRes(false)
-        const verifyTwo = (data) => {
-            let datasVerify = {
-                "phone": data.phone,
-                "code": data.code
-            }
-            console.log(datasVerify);
-            axios.post('/api/v1/confirm_verify', datasVerify, {
-                headers: {
-                    Authorization: "token",
-                    'Access-Control-Allow-Origin': "http://localhost:5173"
-                }
-            })
-                .then(response => {
-                    console.log(response.data);
-                    nextPage("/panel/dashboard")
-                    setIsLoading(false)
-                })
-                .catch(error => {
-                    setIsLoading(false)
-                    setErrRes(true)
-                });
+        let datasVerify = {
+            phone: userNumber.number,
+            code: formData.code
         }
-        verifyTwo(formData)
+        console.log(datasVerify);
+        axios.post('/api/v1/confirm_verify', datasVerify, {
+            headers: {
+                Authorization: "token",
+                'Access-Control-Allow-Origin': "http://localhost:5173"
+            }
+        })
+        .then(response => {
+            console.log(response.data);
+            toast("ثبت نام با موفقیت انجام شد")
+            toast("درحال انتقال به صفحه ورود...")
+            setTimeout(() => {
+                nextPage("/auth/login")
+            } , 2000)
+            setIsLoading(false)
+        })
+        .catch(err => {
+            setIsLoading(false)
+            setErrRes(true)
+            if (typeof(err.response.data.message) === "string") {
+            toast(err.response.data.message)
+            } else {
+            Object.keys(err.response.data.message).map((item) => {
+                toast(err.response.data.message[item][0])
+            })
+            }
+        });
     }
 
     return (
         <>
             <div className="h-screen flex">
+                <ToastContainer />
+                {isLoading && <Loader />}
                 <div className="w-1/3 bg-cover bg-center bg-no-repeat">
                     <h1 className="mt-c-15 mb-c-20">
                         <img className="mx-auto" src={logofarsi} alt="" style={{

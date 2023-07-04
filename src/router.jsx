@@ -106,7 +106,7 @@ const routes = [
 
   { path: "/auth/login", element: <Login /> },
   { path: "/auth/register", element: <Register /> },
-  { path: "/auth/Verification", element: <Verification /> },
+  { path: "/auth/Verification/:number", element: <Verification /> },
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
