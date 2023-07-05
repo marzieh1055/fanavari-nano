@@ -8,9 +8,15 @@ import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
 import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
 import CheckReport from "../../components/modal/CheckReport";
 
+import queryString from "query-string";
+import { ToastContainer, toast } from "react-toastify";
+
 export default function ExpertCheckRequest() {
   const reqId = useParams()
   const navigate = useNavigate()
+
+  const [ExUrl, setExUrl] = useState(null)
+
   const [reqStatus, setReqStatus] = useState({
         // check: false,
         // assessment: false,
@@ -45,6 +51,20 @@ export default function ExpertCheckRequest() {
       setIsLoading(false)
       console.log(updatePage);
     })
+
+    Axios.get(`/api/v1/request/${reqId.id}`).then(async (res) => {
+      console.log(res);
+      if ((res.data.facilities[0]) || (res.data.warranty[0])) {
+        const params = {
+          title : res.data.type === "facilities" ? res.data.facilities[0].title : res.data.warranty[0].title
+        }
+        const queryString2 = queryString.stringify(params)
+        const url = res.data.type === "facilities" ? `https://backend.nanotf.ir/api/facilityExcel?${queryString2}` : `https://backend.nanotf.ir/api/warrantyExcel?${queryString2}`;
+        setExUrl(url)
+      }
+      setIsLoading(false)
+      
+    })
   }, [updatePage])
 
   if (isLoading) return <Loader />
@@ -54,6 +74,7 @@ export default function ExpertCheckRequest() {
       {
         showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
       }
+      <ToastContainer />
       {
         showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
       }
@@ -128,9 +149,18 @@ export default function ExpertCheckRequest() {
                 مشاهده مدارک{" "}
               </Link>}
             </div>
-            <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
-              بازگشت
-            </button>
+            <div className="w-full" style={{display : "flex" , justifyContent : "space-between"}}>
+              {
+                ExUrl !== null && <a href={ExUrl}>
+                <button onClick={() => toast("بارگیری به زودی انجام میشود")} className="w-[215px] rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">
+                  خروجی اکسل
+                </button>
+              </a>
+              }
+              <button onClick={() => navigate(-1)} className={ExUrl !== null ? "w-[215px] rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs" : "w-full  rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs"}>
+                بازگشت
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -115,6 +115,10 @@ export default function ViewExpert() {
         </table>
       </div>
       <hr />
+      <a href="https://backend.nanotf.ir/api/expertExcel">
+        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">خروجی اکسل</button>
+        
+      </a>
       {/* <div className="flex justify-between py-4 text-gray-600 items-center">
         <div className="">نمایش 21-31 از 80 مورد</div>
         <div className="">
