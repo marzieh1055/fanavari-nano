@@ -25,6 +25,7 @@ const Requests = () => {
   const [showExpertList, setShowExpertList] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
+  const [searchText, setSearchText] = useState("")
 
   console.log(updatePage);
   useEffect(() => {
@@ -44,136 +45,57 @@ const Requests = () => {
       setShowDetails(null)
     }
   }
+
+  const newReqsList = requests && requests.filter(item => {
+    if (item.shenaseh) {
+      return item.shenaseh.toString().includes(searchText);
+    }
+  });
   if (isLoading) return <Loader />
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
       <div className="pr-6 py-6 flex justify-between items-center w-c-13">
         <h2 className="text-2xl font-bold">مشاهده درخواست‌ها</h2>
         <div className="flex gap-6">
-          <button className="relative">
-            <div className="flex gap-2 items-center px-4 py-2 rounded-lg border border-c-7 bg-white">
-              <img
-                className="w-c-10 h-c-11"
-                src={Vector}
-                alt=""
-              />
-              <div className="font-bold">مرتب کردن</div>
-              <img
-                className="w-1.5 h-c-12"
-                src={Vector1}
-                alt=""
-              />
-            </div>
-            <div
-              className="absolute bg-white inset-x-0 top-full p-4 rounded-lg flex flex-col items-center gap-4"
-              style={{ display: "none" }}
-            >
-              <div className="flex gap-2">
-                <img
-                  className="w-4 h-4"
-                  src={check}
-                  alt=""
-                />
-                <div className="font-bold">جدیدترین</div>
-              </div>
-              <div>
-                <img
-                  className="w-20"
-                  src={Line}
-                  alt=""
-                />
-              </div>
-              <div className="flex gap-2">
-                <img
-                  className="w-4 h-4"
-                  src={check}
-                  alt=""
-                />
-                <div className="font-bold">جدیدترین</div>
-              </div>
-            </div>
-          </button>
-          <button className="relative">
-            <div className="flex gap-2 items-center px-4 py-2 rounded-lg border border-c-7 bg-white">
-              <img
-                className="w-c-10 h-c-11"
-                src={Vector}
-                alt=""
-              />
-              <div className="font-bold">مرتب کردن</div>
-              <img
-                className="w-1.5 h-c-12"
-                src={Vector1}
-                alt=""
-              />
-            </div>
-            <div
-              className="absolute bg-white inset-x-0 top-full p-4 rounded-lg flex flex-col items-center gap-4"
-              style={{ display: "none" }}
-            >
-              <div className="flex gap-2">
-                <img
-                  className="w-4 h-4"
-                  src={check} 
-                  alt=""
-                />
-                <div className="font-bold">جدیدترین</div>
-              </div>
-              <div>
-                <img
-                  className="w-20"
-                  src={Line}
-                  alt=""
-                />
-              </div>
-              <div className="flex gap-2">
-                <img
-                  className="w-4 h-4"
-                  src={check} 
-                  alt=""
-                />
-                <div className="font-bold">جدیدترین</div>
-              </div>
-            </div>
-          </button>
+          <input type="text" name="search" value={searchText} onChange={(e) => setSearchText(e.target.value) } placeholder="جست و جو شناسه ..." className="border border-gray-300 rounded-xl" />
         </div>
       </div>
+        <p className="p-2 pr-7">تعداد کل درخواست ها : {requests.length}</p>
         {
           showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type} /> : ""
         }
       <ul className="w-c-14 flex flex-col gap-c-14 whitespace-nowrap border-b border-c-11 relative max-h-[60vh] overflow-y-scroll">
         <li className="text-sm flex gap-3.5 rounded-2xl bg-c-2 py-3.5">
-          <a className="w-1/6 text-center" href="">
+          <p className="w-1/6 text-center" >
             شناسه
-          </a>
-          <a className="w-1/6 text-center" href="">
+          </p>
+          <p className="w-1/6 text-center" >
             درخواست‌دهنده
-          </a>
-          <a className="w-1/6 text-center pr-8" href="">
+          </p>
+          <p className="w-1/6 text-center pr-8" >
             نوع درخواست
-          </a>
-          <a className="w-1/6 text-center pr-8" href="">
+          </p>
+          <p className="w-1/6 text-center pr-8" >
             تاریخ ثبت  درخواست
-          </a>
-          <a className="w-1/6 text-center pr-5" href="">
+          </p>
+          <p className="w-1/6 text-center pr-5" >
             تاریخ اختصاص به کارشناس
-          </a>
+          </p>
 
-          <a className="w-1/6 text-center pr-8" href="">
+          <p className="w-1/6 text-center pr-8" >
             اعمال
-          </a>
+          </p>
         </li>
         {
-          requests && requests.map((item) => {
+          newReqsList && newReqsList.map((item) => {
             if (item.id === showDetails) {
-              console.log(item);
               return (
                 <li key={item.id} className="flex justify-between gap-3.5 p-3.5 bg-white rounded-xl text-c-3 font-bold text-xs">
                   <div className="flex flex-col gap-7">
-                    <div>
+                    <div >
                       شناسه درخواست: <a href="">{item.shenaseh}</a>
                     </div>
-                    <div>
+                    <div >
                       نوع درخواست: <a href="">{item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}</a>
                     </div>
                     <div>
@@ -224,22 +146,22 @@ const Requests = () => {
             } else {
               return (
                 <li key={item.id} className="flex items-center gap-3.5 py-3.5 text-c-10 text-xs">
-                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
+                  <Link title="برای دیدن جزئیات کلیک کنید" to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {item.shenaseh}
                   </Link>
-                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
+                  <Link title="برای دیدن جزئیات کلیک کنید" to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {`${item.user.name} ${item.user.family}`}
                   </Link>
-                  <Link to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
+                  <Link title="برای دیدن جزئیات کلیک کنید" to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
                   </Link>
-                  <a className="w-1/6 text-center" href="">
+                  <p className="w-1/6 text-center" href="">
                     {onlyDateConversion(item.created_at)}
-                  </a>
+                  </p>
                   {/* اینجا باید تاریخ اختصاص درخواست به کارشناس باشه */}
-                   <a className="w-1/6 text-center text-sm text-c-3" href="">
+                   <p className="w-1/6 text-center text-sm text-c-3" href="">
                   {item.expert_assignment !== null ? `${onlyDateConversion(item.expert_assignment.created_at)}` : "فاقد کارشناس"} 
-                  </a>  
+                  </p>  
                   {
                     item.expert_assignment !== null ?
                       <button onClick={() => detailsHandler(item.id)} className=" text-center border border-c-7 rounded-xl flex gap-2">

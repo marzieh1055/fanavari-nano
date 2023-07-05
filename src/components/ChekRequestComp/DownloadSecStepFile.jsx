@@ -60,16 +60,56 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
         return (
             <div className=" m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
-                    <p className=" font-bold"> دانلود فایل گزارش ارزیابی </p>
+                    <p className=" font-bold"> دانلود فایل گزارش کمیته </p>
                 </div>
                 <hr className="border-dashed border-gray-300" />
 
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                    <p className="text-green-500">
+                    {
+                        fileStorage.link1 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link1}`} target='_blank'>
+                            <p className="text-blue-500">
+                                برای دانلود فایل اول کلیک کنید
+                            </p>
+                        </a>
+                        :
+                        <p className="text-yellow-500">
+                            در حال دریافت فایل...
+                        </p>
+                    }
+                </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    {
+                        fileStorage.link2 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link2}`} target='_blank'>
+                            <p className="text-blue-500">
+                                برای دانلود فایل دوم کلیک کنید
+                            </p>
+                        </a>
+                        :
+                        <p className="text-yellow-500">
+                            در حال دریافت فایل...
+                        </p>
+                    }
+                </div>
+                <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+                    {
+                        fileStorage.link3 !== null ?
+                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link3}`} target='_blank'>
+                            <p className="text-blue-500">
+                                برای دانلود فایل سوم کلیک کنید
+                            </p>
+                        </a>
+                        :
+                        <p className="text-yellow-500">
+                            در حال دریافت فایل...
+                        </p>
+                    }
+                </div>
+                    <p className="text-green-500 p-3">
                         کامل شده
                     </p>
-                </div>
             </div>
         )
       } else if (reqStatus.report === false) {
