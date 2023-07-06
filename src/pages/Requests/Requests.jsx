@@ -17,6 +17,8 @@ import x from "../../assets/imges/ViewRequests/x.png"
 import Left from "../../assets/imges/ViewRequests/Left.png"
 import { Link } from "react-router-dom";
 
+import queryString from "query-string";
+import { ToastContainer, toast } from "react-toastify";
 
 const Requests = () => {
   const {userDatas} = useContext(UserDataContext)
@@ -27,12 +29,15 @@ const Requests = () => {
   const [updatePage, setUpdatePage] = useState(0)
   const [searchText, setSearchText] = useState("")
 
+  const [ExFilter , setExFilter] = useState("warrantyExcel")
+
   console.log(updatePage);
   useEffect(() => {
     setIsLoading(true)
     Axios.get("/api/admin/view_all_request").then(async (res) => {
       const newData = res.data.reverse()
       setRequests(newData)
+
       // console.log(res.data);
       // console.log(res.data[0].expert_assignment.created_at);
       setIsLoading(false)
@@ -46,15 +51,38 @@ const Requests = () => {
     }
   }
 
+  const downloadHandler = () => {
+    let url = ""
+    if (ExFilter === "warrantyExcel") {
+      url = `https://backend.nanotf.ir/api/warrantyExcel`;
+    } else if (ExFilter === "facilityExcel") {
+      url = `https://backend.nanotf.ir/api/facilityExcel`;
+    }
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'users.xlsx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast("بارگیری به زودی شروع میشود")
+  }
   const newReqsList = requests && requests.filter(item => {
     if (item.shenaseh) {
       return item.shenaseh.toString().includes(searchText);
     }
   });
+
+  const newTitleList = requests && requests.filter(item => {
+    if (item.shenaseh) {
+      return item.shenaseh.toString().includes(searchText);
+    }
+  });
+
   if (isLoading) return <Loader />
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
-      <div className="pr-6 py-6 flex justify-between items-center w-c-13">
+        <ToastContainer />
+      <div className="pr-6 py-6 pb-2 flex justify-between items-center w-c-13">
         <h2 className="text-2xl font-bold">مشاهده درخواست‌ها</h2>
         <div className="flex gap-6">
           <input type="text" name="search" value={searchText} onChange={(e) => setSearchText(e.target.value) } placeholder="جست و جو شناسه ..." className="border border-gray-300 rounded-xl" />
@@ -200,66 +228,15 @@ const Requests = () => {
 
 
       </ul>
-      {/* <div className="p-3.5 w-c-13 flex justify-between items-center">
-        <div className="text-xs font-bold text-c-8">
-          <p>نمایش مورد فلان از فلان</p>
+      <div className="w-1/2 flex items-center p-2">
+        <button className="rounded-lg bg-green-700  text-white p-2 font-bold text-xs" onClick={downloadHandler}>خروجی اکسل</button>
+        <div >
+          <select className="mr-10 rounded-lg border-gray-300 text-xs" onClick={(e) => setExFilter(e.target.value)}>
+            <option value="warrantyExcel">درخواست های ضمانت</option>
+            <option value="facilityExcel">درخواست های تسهیلات</option>
+          </select>
         </div>
-        <div className="">
-          <ul className="font-bold flex gap-7">
-            <li>
-              <a href="">
-                <img
-                  className="rotate-180"
-                  src={Left}
-                  alt=""
-                />
-              </a>
-            </li>
-            <li>
-              <a href="text-c-12">6</a>
-            </li>
-            <li>
-              <a href="text-c-12">5</a>
-            </li>
-            <li>
-              <a href="text-c-12">4</a>
-            </li>
-            <li>
-              <a href="text-c-12">3</a>
-            </li>
-            <li>
-              <a href="text-c-12">2</a>
-            </li>
-            <li>
-              <a className="text-c-5" href="">
-                1
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img
-                  className=""
-                  src={Left}
-                  alt=""
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="text-xs font-bold flex gap-3.5 items-center">
-          <button className="flex items-center gap-2 p-2 border border-c-7 rounded-xl font-bold">
-            <div>
-              <img
-                className="w-1.5 h-c-12"
-                src={Vector1}
-                alt=""
-              />
-            </div>
-            <span>10</span>
-          </button>
-          <p className="text-c-8">تعداد در خواست در هر صفحه</p>
-        </div> */}
-      {/* </div> */}
+      </div>
     </>
   );
 };

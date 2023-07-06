@@ -62,7 +62,7 @@ export default function DownloadStep3({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                 {
                     fileStorage.link !== null ?
-                    <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link}`} target='_blank'>
+                    <a href={`https://backend.nanotf.ir/${fileStorage.link}`} target='_blank'>
                         <p className="text-blue-500">
                             برای دانلود فایل کلیک کنید
                         </p>

@@ -90,8 +90,8 @@ export default function Panel() {
             links : ["/panel/testtiketsexpert" , "/panel/addTicketE"]
           },
           {title : "اطلاعات کاربری",
-            drop : [ "پروفایل کاربری"  ],
-            links : [ "/panel/userInfo" ]
+            drop : [ "پروفایل کاربری" ,  "vvvv"],
+            links : [ "/panel/expertInfo" , "/panel/changePass"]
           },
       ]} /> }
 

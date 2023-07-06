@@ -47,6 +47,8 @@ import ViewTicketsAdmin from "./pages/Ticket/ViewTicketsAdmin"
 import Changepass from "./pages/Register/Changepass";
 import Testticket from "./pages/Ticket/Testticket";
 import TestticketExpert from "./pages/Ticket/TestticketExpert";
+import ExpertInfo from "./pages/Expert/ExpertInfo";
+import ChangepassE from "./pages/Register/ChangepassE";
 
 const routes = [
   {
@@ -87,6 +89,8 @@ const routes = [
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "userInfo", element: <UserInfo /> },
+      { path: "expertInfo", element: <ExpertInfo /> },
+      { path: "expertChangePassword/:id", element: <ChangepassE /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "genuineUserInfo", element: <GenuineUserInfo /> },
       {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 
 const ViewDetailExpert = () => {
@@ -27,8 +27,9 @@ const ViewDetailExpert = () => {
         <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
         <span onClick={() => navigate(-1)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
       </div>
+        {details && <Link to={`/panel/expertChangePassword/${details.id}?name=${details.name}_${details.family}`} style={{cursor : "pointer" }} className="text-yellow-500 p-4 py-6">تغییر رمز عبور</Link>}
 
-      <hr className="border-dashed" />
+      <hr className="border-dashed mt-3" />
 
       <div className="flex flex-wrap">
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
@@ -48,22 +49,6 @@ const ViewDetailExpert = () => {
           />
         </div>
 
-        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">پسوورد</p>
-          <input
-            type="text"
-            placeholder={`${details.password}`}
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div> */}
-        {/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">سری و سریال شناسنامه</p>
-          <input
-            type="text"
-            placeholder={details.national_code}
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">نام پدر</p>
           <input
@@ -72,14 +57,6 @@ const ViewDetailExpert = () => {
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
-        {/* <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">ملیت</p>
-          <input
-            type="text"
-            placeholder="ایرانی"
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">کد ملی</p>
           <input
@@ -138,86 +115,6 @@ const ViewDetailExpert = () => {
           />
         </div>
       </div>
-      {/* <div className="flex flex-wrap mx-4">
-        <div className="flex w-96 items-center m-3">
-          <p className="font-bold text-sm">جنسیت:</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-          />
-          <p className="font-bold text-sm">مرد</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 rounded h-full"
-          />
-          <p className="font-bold text-sm">زن</p>
-        </div>
-        <div className="flex w-96 items-center m-3">
-          <p className="font-bold text-sm">وضعیت تعهل:</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-          />
-          <p className="font-bold text-sm">مجرد</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 rounded h-full"
-          />
-          <p className="font-bold text-sm">متاهل</p>
-        </div>
-        <div className="flex w-96 items-center m-3">
-          <p className="font-bold text-sm">وضعیت اقامت :</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-          />
-          <p className="font-bold text-sm">مقیم</p>
-          <input
-            type="radio"
-            name="gender"
-            id=""
-            className="relative overflow-hidden mx-2 w-5 rounded h-full"
-          />
-          <p className="font-bold text-sm">غیر مقیم</p>
-        </div>
-      </div> */}
-      {/* <div className="w-full">
-        <p className="my-2">تحصیلات</p>
-        <div className="my-4 relative border rounded-xl w-max overflow-hidden">
-          <select
-            name=""
-            id=""
-            className="relative w-96 pt-5 p-2 outline-none text-sm text-gray-500"
-          >
-            <option value="مهندسی برق" className="">
-              مهندسی برق
-            </option>
-          </select>
-          <p className="absolute top-0 pt-1 px-4 text-sm font-semibold">رشته</p>
-        </div>
-        <div className="w-4/6">
-          <input type="range" name="" id="" className="w-full" />
-          <div className="flex justify-between">
-            <p className="text-sm font-bold">سیکل</p>
-            <p className="text-sm font-bold">دیپلم</p>
-            <p className="text-sm font-bold">کادانی</p>
-            <p className="text-sm font-bold">لیسانس</p>
-            <p className="text-sm font-bold">فوق لیسانس</p>
-            <p className="text-sm font-bold">دکتری</p>
-            <p className="text-sm font-bold">فوق دکتری</p>
-          </div>
-        </div>
-      </div> */}
       <p className="text-xl font-bold p-4 py-6">محل سکونت</p>
       <hr className="border-dashed" />
 
@@ -226,7 +123,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">تلفن ثابت</p>
           <input
             type="text"
-            placeholder={`${details.profilegenuine.home_number}`}
+            placeholder={`${details.profilegenuine.address.home_number}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -234,7 +131,7 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">آدرس</p>
           <input
             type="text"
-            placeholder={`${details.profilegenuine.address}`}
+            placeholder={`${details.profilegenuine.address.address}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
@@ -243,18 +140,10 @@ const ViewDetailExpert = () => {
           <p className="font-bold text-sm">کد پستی</p>
           <input
             type="text"
-            placeholder={`${details.profilegenuine.postal_code}`}
+            placeholder={`${details.profilegenuine.address.postal_code}`}
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
-        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">نمابر</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div> */}
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">پست الکترونیک</p>
           <input
@@ -263,55 +152,7 @@ const ViewDetailExpert = () => {
             className="outline-none border-none placeholder:text-sm"
           />
         </div>
-        {/* <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">آدرس محل کار</p>
-          <input
-            type="text"
-            placeholder="فارس / شیراز / ..."
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">کد پستی محل کار</p>
-          <input
-            type="text"
-            placeholder="03498180798"
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
-          <p className="font-bold text-sm">تلفن محل کار</p>
-          <input
-            type="text"
-            placeholder="32498748978"
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div>
-        <div className="mt-3 w-96 border rounded-2xl p-2 overflow-hidden">
-          <p className="font-bold text-sm">نمابر محل کار</p>
-          <input
-            type="text"
-            placeholder=""
-            className="outline-none border-none placeholder:text-sm"
-          />
-        </div> */}
       </div>
-      {/* <div className="flex items-center">
-        <p className="m-4 ">امضاء کارشناس</p>
-        <img
-          src="/./src/assets/imges/Expert/emza.png"
-          alt=""
-          className="h-20 my-5"
-        />
-      </div>
-      <div className="mx-4">
-        <button className="p-3 py-2 text-white bg-blue-700 border border-blue-700 rounded-lg">
-          اضافه کردن
-        </button>
-        <button className="p-3 py-2 text-red-500 border-2 border-red-500 rounded-lg mx-1">
-          حذف کارشناس
-        </button> */}
-      {/* </div> */}
     </form>
   );
 };

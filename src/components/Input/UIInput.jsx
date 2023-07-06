@@ -17,7 +17,7 @@ export default function UIInput({name , value , ph , setSendDatas}) {
         name={name}
         onChange={changeHandler}
         placeholder={ph}
-        className="outline-none placeholder:text-xs border-0 w-full"
+        className="outline-none focus:border-none focus:outline-none placeholder:text-xs border-0 w-full"
     />
   )
 }

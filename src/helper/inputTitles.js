@@ -15,7 +15,7 @@ export const inputTitle = (name) => {
         return "ملیت"
     }  else if (name === "gender") {
         return "جنسیت"
-    }  else if (name === "marital") {
+    }  else if (name === "marital" || name === "gendermarital") {
         return "وضعیت تاهل"
     }  else if (name === "residential") {
         return "وضعیت اقامت"
@@ -25,11 +25,11 @@ export const inputTitle = (name) => {
         return "شغل"
     }  else if (name === "address") {
         return "آدرس"
-    }  else if (name === "postal_code") {
+    }  else if (name === "postal_code" || name === "addresspostal_code") {
         return "کدپستی"
     }  else if (name === "phone") {
         return "شماره موبایل"
-    }  else if (name === "namabar") {
+    }  else if (name === "namabar" || name === "phonenamabar") {
         return "نمابر"
     }  else if (name === "work_address") {
         return "آدرس محل کار"
@@ -66,6 +66,10 @@ export const inputTitle = (name) => {
         return "پست الکترونیکی"
     }  else if (name === "site") {
         return "آدرس سایت"
+    }  else if (name === "work_phonework_namabar") {
+        return "نمابر محل کار"
+    }  else if (name === "studyeducation") {
+        return "تحصیلات"
     }  else {
         return name
     }

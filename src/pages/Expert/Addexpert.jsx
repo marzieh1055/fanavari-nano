@@ -6,8 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import user from "../../assets/imges/user.png"
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Addexpert = () => {
+  const navigate = useNavigate()
   const [bcInput, setBcInput] = useState(true)
   const [showPass, setShowPass] = useState(false);
   const [showComPass, setComShowPass] = useState(false);
@@ -86,11 +88,17 @@ const Addexpert = () => {
         })
       }
     })
+
     .then(async (res) => {
       console.log(res);
       setIsLoading(false)
       toast("اطلاعات با موفقیت ثبت شد")
+      toast("در حال انتقال به لیست کارشناسان...")
+      setTimeout(() => {
+        navigate("/panel/viewExpert")
+      } , 2000)
     })
+
     .catch((err) => {
       setIsLoading(false)
       if (typeof(err.response.data.message) === "string") {
