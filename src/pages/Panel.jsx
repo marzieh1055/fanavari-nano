@@ -53,8 +53,8 @@ export default function Panel() {
         links : ["/panel/siteGuide"  ]
         },
         {title : "اطلاعات کاربری",
-        drop : ["پروفایل کاربری"  ],
-        links : ["/panel/genuineUserInfo" ]
+        drop : ["پروفایل کاربری" , "تغییر رمز عبور" ],
+        links : ["/panel/genuineUserInfo" , "/panel/changePass" ]
         },
 
       ]} /> }
@@ -73,8 +73,8 @@ export default function Panel() {
         links : ["/panel/siteGuide"  ]
       },
         {title : "اطلاعات کاربری",
-        drop : ["پروفایل کاربری"  ],
-        links : ["/panel/legaluserInfo" ]
+        drop : ["پروفایل کاربری" , "تغییر رمز عبور"  ],
+        links : ["/panel/legaluserInfo" , "/panel/changePass"]
         },
 
       ]} /> }

@@ -86,11 +86,11 @@ const routes = [
       { path: "404", element: <ErrorPage /> },
       {path:"changePass" , element: <Changepass />},
       
+      { path: "expertChangePassword/:id", element: <ChangepassE /> },
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "expertInfo", element: <ExpertInfo /> },
-      { path: "expertChangePassword/:id", element: <ChangepassE /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "genuineUserInfo", element: <GenuineUserInfo /> },
       {
