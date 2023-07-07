@@ -17,6 +17,7 @@ import Vectora from "../../assets/imges/ViewRequests/Vectora.png"
 import Vectorx from "../../assets/imges/ViewRequests/Vectorx.png"
 import user from "../../assets/imges/user.png"
 import { Link } from "react-router-dom";
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 const Dashboard = () => {
   const {userDatas} = useContext(UserDataContext)
 
@@ -96,7 +97,6 @@ const Dashboard = () => {
 
   }
 
-  if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <>
       <div className="p-6 flex flex-col gap-6">
@@ -160,11 +160,12 @@ const Dashboard = () => {
             />
           </div>
           {
-            Expert ? Expert.map(i => <div key={i.id} onClick={() => detailsHandler(i)}><User avatar={
-              Expert.profilegenuine && Expert.profilegenuine.image !== null && <img className="w-10 h-10 " style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${Expert.profilegenuine.image}`} alt=""/> 
-
-
-            } date="1378/12/21" name={`${i.name} ${i.family}`}/></div> ) : <Loading />
+            Expert ? Expert.map(i => {
+              console.log(i);
+              return (
+                <User avatar={(i.profilegenuine) && (i.profilegenuine.image !== null) ? `https://backend.nanotf.ir/${i.profilegenuine.image}` : "22"} date={onlyDateConversion(i.profilegenuine.created_at)} name={`${i.name} ${i.family}`}/>
+              )
+            } ) : <Loading />
           }
         </div>
         <div className="w-1/2 flex flex-col gap-6">
