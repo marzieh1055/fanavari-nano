@@ -53,8 +53,8 @@ export default function Panel() {
         links : ["/panel/siteGuide"  ]
         },
         {title : "اطلاعات کاربری",
-        drop : ["پروفایل کاربری"  ],
-        links : ["/panel/genuineUserInfo" ]
+        drop : ["پروفایل کاربری" , "تغییر رمز عبور" ],
+        links : ["/panel/genuineUserInfo" , "/panel/changePass" ]
         },
 
       ]} /> }
@@ -73,8 +73,8 @@ export default function Panel() {
         links : ["/panel/siteGuide"  ]
       },
         {title : "اطلاعات کاربری",
-        drop : ["پروفایل کاربری"  ],
-        links : ["/panel/legaluserInfo" ]
+        drop : ["پروفایل کاربری" , "تغییر رمز عبور"  ],
+        links : ["/panel/legaluserInfo" , "/panel/changePass"]
         },
 
       ]} /> }
@@ -90,8 +90,8 @@ export default function Panel() {
             links : ["/panel/TestticketExpert" , "/panel/addTicketE"]
           },
           {title : "اطلاعات کاربری",
-            drop : [ "پروفایل کاربری"  ],
-            links : [ "/panel/userInfo" ]
+            drop : [ "پروفایل کاربری" ,  "vvvv"],
+            links : [ "/panel/expertInfo" , "/panel/changePass"]
           },
       ]} /> }
 

@@ -30,11 +30,7 @@ export default function ViewExpert() {
       console.log(res)
       setAllExpert(res.data)
       setIsLoading(false)
-      // if (expert.profilegenuine) {
-      //   if (expert.profilegenuine.image !== null) {
-      //     setPImage(`https://panel.frzddev.ir/storage/app/${expert.profilegenuine.image}`)
-      //   }
-      // }
+      
     }
     ).catch(err => {
       console.log(err)
@@ -115,29 +111,10 @@ export default function ViewExpert() {
         </table>
       </div>
       <hr />
-      {/* <div className="flex justify-between py-4 text-gray-600 items-center">
-        <div className="">نمایش 21-31 از 80 مورد</div>
-        <div className="">
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {"<"}
-          </button>
-          <button className="text-gray-800 text-lg font-bold mx-2">6</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">5</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">4</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">3</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">2</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">1</button>
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {" "}
-            {">"}{" "}
-          </button>
-        </div>
-        <div className="flex">
-          <button className="text-blue-700   p-2 font-bold text-sm">
-            <span className="text-3xl">+</span> اضافه کردن کارشناس
-          </button>
-        </div>
-      </div> */}
+      <a href="https://backend.nanotf.ir/api/expertExcel">
+        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">خروجی اکسل</button>
+        
+      </a>
     </div>
   );
 }

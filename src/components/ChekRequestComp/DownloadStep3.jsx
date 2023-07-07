@@ -60,7 +60,19 @@ export default function DownloadStep3({ reqStatus , reqId }) {
 
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
-                    <p className="text-green-500">
+                {
+                    fileStorage.link !== null ?
+                    <a href={`https://backend.nanotf.ir/${fileStorage.link}`} target='_blank'>
+                        <p className="text-blue-500">
+                            برای دانلود فایل کلیک کنید
+                        </p>
+                    </a>
+                    :
+                    <p className="text-yellow-500">
+                        در حال دریافت فایل...
+                    </p>
+                }
+                    <p className="text-green-500 p-3">
                         کامل شده
                     </p>
                 </div>

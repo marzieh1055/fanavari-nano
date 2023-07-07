@@ -8,9 +8,13 @@ import SendFileSec from "../../components/ChekRequestComp/SendFileSec";
 import SendEvaluationReportFile from "../../components/ChekRequestComp/SendEvaluationReportFile";
 import CheckReport from "../../components/modal/CheckReport";
 
+import queryString from "query-string";
+import { ToastContainer, toast } from "react-toastify";
+
 export default function ExpertCheckRequest() {
   const reqId = useParams()
   const navigate = useNavigate()
+
   const [reqStatus, setReqStatus] = useState({
         // check: false,
         // assessment: false,
@@ -45,6 +49,7 @@ export default function ExpertCheckRequest() {
       setIsLoading(false)
       console.log(updatePage);
     })
+
   }, [updatePage])
 
   if (isLoading) return <Loader />
@@ -54,6 +59,7 @@ export default function ExpertCheckRequest() {
       {
         showStepConfirm !== null && <StepConfirm action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
       }
+      <ToastContainer />
       {
         showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
       }
@@ -128,9 +134,11 @@ export default function ExpertCheckRequest() {
                 مشاهده مدارک{" "}
               </Link>}
             </div>
-            <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
-              بازگشت
-            </button>
+            <div className="w-full" style={{display : "flex" , justifyContent : "space-between"}}>
+              <button onClick={() => navigate(-1)} className={"w-full  rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs"}>
+                بازگشت
+              </button>
+            </div>
           </div>
         </div>
       </div>

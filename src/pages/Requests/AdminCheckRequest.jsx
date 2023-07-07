@@ -9,9 +9,15 @@ import DownloadSecStepFile from "../../components/ChekRequestComp/DownloadSecSte
 import RejectAdmin from "../../components/modal/RejectAdmin";
 import DownloadStep5 from "../../components/ChekRequestComp/DownloadStep5.jsx";
 
+import queryString from "query-string";
+import { ToastContainer, toast } from "react-toastify";
+
 export default function AdminCheckRequest() {
   const reqId = useParams()
   const navigate = useNavigate()
+  
+
+  const [ExUrl, setExUrl] = useState(null)
 
   const [reqStatus, setReqStatus] = useState({
         // check: false,
@@ -42,20 +48,36 @@ export default function AdminCheckRequest() {
         // commite: true,
         credit: res.data.credit,
       })
-      setIsLoading(false)
       console.log(updatePage);
     })
+    .catch((err) => {
+      navigate(`/panel/404`)
+    })
+
+    Axios.get(`/api/v1/request/${reqId.id}`).then(async (res) => {
+      console.log(res);
+      if ((res.data.facilities[0]) || (res.data.warranty[0])) {
+        const params = {
+          title : res.data.type === "facilities" ? res.data.facilities[0].title : res.data.warranty[0].title
+        }
+        const queryString2 = queryString.stringify(params)
+        const url = res.data.type === "facilities" ? `https://backend.nanotf.ir/api/facilityExcel?${queryString2}` : `https://backend.nanotf.ir/api/warrantyExcel?${queryString2}`;
+        setExUrl(url)
+      }
+      setIsLoading(false)
+      
+    })
+
   }, [updatePage])
 
+  if (isLoading) return <Loader />
   return (
     <div className="px-5">
-      {
-        isLoading && <Loader />
-      }
       {
         showStepConfirm !== null && <StepConfirmAdmin action={showStepConfirm} requestId={reqId.id} close={setShowStepConfirm} setUpdatePage={setUpdatePage} />
       }
       {/* ********************* */}
+      <ToastContainer />
       {
         showCheckRep !== null && <RejectAdmin reqStatus={reqStatus} close={setShowCheckRep} requestId={reqId.id} setUpdatePage={setUpdatePage} />
       }
@@ -131,9 +153,19 @@ export default function AdminCheckRequest() {
                 مشاهده مدارک{" "}
               </Link>
             </div>
-            <button onClick={() => navigate(-1)} className="w-full rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs">
-              بازگشت
-            </button>
+            <div className="w-full" style={{display : "flex" , justifyContent : "space-between"}}>
+              {
+                ExUrl !== null && <a href={ExUrl}>
+                <button onClick={() => toast("بارگیری به زودی انجام میشود")} className="w-[215px] rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">
+                  خروجی اکسل
+                </button>
+              </a>
+              }
+              <button onClick={() => navigate(-1)} className={ExUrl !== null ? "w-[215px] rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs" : "w-full  rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs"}>
+                بازگشت
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

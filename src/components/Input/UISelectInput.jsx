@@ -10,7 +10,7 @@ export default function UISelectInput({name , value , ph , setSendDatas}) {
             })
         })
     }
-    if (name === "gender") {
+    if (name === "gender" || name === "gendermarital") {
         return(
             <select style={{border : 0}} name={name} id="" onChange={changeHandler}>
                 <option value="female">زن</option>
