@@ -12,7 +12,7 @@ export default function UIInputNumber({name , value , ph , setSendDatas}) {
     }
   return (
     <input
-        type="number"
+        type="text"
         value={value}
         name={name}
         onChange={changeHandler}

@@ -28,6 +28,7 @@ export default function UploadDoc() {
     file1: null,
     file2: null,
     file3: null,
+    file4: null,
     licenses: null, // inja
     user_id : userDatas.user.id,
     register_doc: null,
@@ -165,7 +166,7 @@ export default function UploadDoc() {
             value={document.title}
             onChange={changeHandler}
             className="w-full my-3 p-3 bg-transparent rounded-2xl  border-b border-gray-400 "
-            placeholder="اسم درخواست و توضیحات (توضیحات الزامی است)"
+            placeholder="نام درخواست"
             onFocus={focusHandler}
           />
           {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}
@@ -174,7 +175,7 @@ export default function UploadDoc() {
           <div class="relative">
           {/* 'job','commitments','deduction','prepayment','commitment_pay','tender_offer','credit' */}
             <select value={document.type_w} onFocus={focusHandler} onChange={handleChange} class="block appearance-none w-full bg-transparent border-b border-gray-400  my-3 p-3.5 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" >
-              <option value="" disabled selected>  نوع ضمانت نامه درخواست شده را انتخاب کنید</option>
+              <option value="" disabled selected>  نوع ضمانت نامه  را انتخاب کنید</option>
               <option value="job">حسن انجام کار </option>
               <option value="commitments">حسن انجام تعهدات</option>
               <option value="deduction">کسور وجه الضمان</option>

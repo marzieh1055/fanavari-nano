@@ -160,7 +160,11 @@ const Dashboard = () => {
             />
           </div>
           {
-            Expert ? Expert.map(i => <div key={i.id} onClick={() => detailsHandler(i)}><User avatar={user} date="1378/12/21" name={`${i.name} ${i.family}`}/></div> ) : <Loading />
+            Expert ? Expert.map(i => <div key={i.id} onClick={() => detailsHandler(i)}><User avatar={
+              Expert.profilegenuine && Expert.profilegenuine.image !== null && <img className="w-10 h-10 " style={{borderRadius : "50%"}} src={`https://backend.nanotf.ir/${Expert.profilegenuine.image}`} alt=""/> 
+
+
+            } date="1378/12/21" name={`${i.name} ${i.family}`}/></div> ) : <Loading />
           }
         </div>
         <div className="w-1/2 flex flex-col gap-6">
