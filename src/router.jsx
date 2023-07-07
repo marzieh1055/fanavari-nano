@@ -68,6 +68,10 @@ const routes = [
       { path: "ViewTicketsAdmin", element: <ViewTicketsAdmin /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
       { path: "viewTickets", element: <ViewTickets /> },
+
+      { path: "TestticketExpert", element: <TestticketExpert /> },
+      { path: "Testticket", element: <Testticket /> },
+
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },

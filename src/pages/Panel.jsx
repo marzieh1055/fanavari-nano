@@ -31,7 +31,7 @@ export default function Panel() {
           },
           {title : "پشتیبانی",
             drop : ["مشاهده تیکت ها" ],
-            links : ["/panel/ViewTicketsAdmin"  ]
+            links : ["/panel/Testticket"  ]
           },
           {title : "اطلاعات کاربری",
             drop : [" پروفایل کاربری" ],
@@ -87,7 +87,7 @@ export default function Panel() {
           },
           {title : "پشتیبانی",
             drop : ["مشاهده تیکت ها" , "ثبت تیکت ها" ],
-            links : ["/panel/testtiketsexpert" , "/panel/addTicketE"]
+            links : ["/panel/TestticketExpert" , "/panel/addTicketE"]
           },
           {title : "اطلاعات کاربری",
             drop : [ "پروفایل کاربری" ],

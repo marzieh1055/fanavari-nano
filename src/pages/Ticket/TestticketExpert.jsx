@@ -90,7 +90,7 @@ export default function TestticketExpert() {
     }
     
     if (IsLoading) return <Loader />
-    if (userDatas && (userDatas.user.type === "expert")) return (
+    return (
         <div>
         <div className=" py-6">
           <p className="text-xl font-extrabold">مشاهده تیکت ها</p>

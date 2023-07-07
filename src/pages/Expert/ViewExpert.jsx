@@ -43,7 +43,8 @@ export default function ViewExpert() {
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
     <div>
       {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
-      <div className=" py-6">
+      <div className=" py-6 flex justify-between	">
+        <div>
         <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
 
         <div className="flex items-center pt-2">
@@ -52,6 +53,13 @@ export default function ViewExpert() {
             برای مشاهده درخواست های جاری هر کارشناس روی کارشناس مربوطه کلیک کنید
           </p>
         </div>
+        </div>
+        <div>
+        <a href="https://backend.nanotf.ir/api/expertExcel">
+        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">خروجی اکسل</button>
+        
+      </a>
+      </div>
       </div>
       <div className="max-h-[60vh] overflow-y-scroll scrollable-content-chat">
         <table className="w-full ">
@@ -111,10 +119,7 @@ export default function ViewExpert() {
         </table>
       </div>
       <hr />
-      <a href="https://backend.nanotf.ir/api/expertExcel">
-        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs">خروجی اکسل</button>
-        
-      </a>
+
     </div>
   );
 }
