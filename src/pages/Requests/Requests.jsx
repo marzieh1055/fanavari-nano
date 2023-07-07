@@ -28,6 +28,7 @@ const Requests = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
   const [searchText, setSearchText] = useState("")
+  const [filterType, setFilterType] = useState("ALL")
 
   const [ExFilter , setExFilter] = useState("warrantyExcel")
 
@@ -35,6 +36,7 @@ const Requests = () => {
   useEffect(() => {
     setIsLoading(true)
     Axios.get("/api/admin/view_all_request").then(async (res) => {
+      console.log(res.data);
       const newData = res.data.reverse()
       setRequests(newData)
 
@@ -66,17 +68,14 @@ const Requests = () => {
     document.body.removeChild(link);
     toast("بارگیری به زودی شروع میشود")
   }
-  const newReqsList = requests && requests.filter(item => {
+  const reqsList = requests && requests.filter(item => {
     if (item.shenaseh) {
       return item.shenaseh.toString().includes(searchText);
     }
   });
-
-  const newTitleList = requests && requests.filter(item => {
-    if (item.shenaseh) {
-      return item.shenaseh.toString().includes(searchText);
-    }
-  });
+  const newReqsList = filterType === "ALL" ? reqsList :
+                      filterType === "FINISHED" ? reqsList.filter(i => i.is_finished === 1) :
+                      filterType === "NOT_FINISHED" ? reqsList.filter(i => i.is_finished === 0) : ""
 
   if (isLoading) return <Loader />
   if (userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (
@@ -85,10 +84,15 @@ const Requests = () => {
       <div className="pr-6 py-6 pb-2 flex justify-between items-center w-c-13">
         <h2 className="text-2xl font-bold">مشاهده درخواست‌ها</h2>
         <div className="flex gap-6">
+          <select className="mr-10 rounded-lg border-gray-300 text-xs" onClick={(e) => setFilterType(e.target.value)}>
+            <option value="ALL">همه</option>
+            <option value="FINISHED">کامل شده</option>
+            <option value="NOT_FINISHED">کامل نشده</option>
+          </select>
           <input type="text" name="search" value={searchText} onChange={(e) => setSearchText(e.target.value) } placeholder="جست و جو شناسه ..." className="border border-gray-300 rounded-xl" />
         </div>
       </div>
-        <p className="p-2 pr-7">تعداد کل درخواست ها : {requests.length}</p>
+        <p className="p-2 pr-7">تعداد کل درخواست ها : {newReqsList.length}</p>
         {
           showExpertList !== null ? <ExpertList setUpdatePage={setUpdatePage} close={setShowExpertList} reqId={showExpertList.id} type={showExpertList.type} /> : ""
         }

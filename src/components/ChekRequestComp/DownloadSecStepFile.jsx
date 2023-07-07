@@ -68,7 +68,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link1 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link1}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link1}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل اول کلیک کنید
                             </p>
@@ -82,7 +82,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link2 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link2}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link2}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل دوم کلیک کنید
                             </p>
@@ -96,7 +96,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link3 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link3}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link3}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل سوم کلیک کنید
                             </p>
@@ -168,7 +168,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link1 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link1}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link1}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل اول کلیک کنید
                             </p>
@@ -182,7 +182,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link2 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link2}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link2}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل دوم کلیک کنید
                             </p>
@@ -196,7 +196,7 @@ export default function DownloadSecStepFile({ reqStatus , reqId }) {
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
                     {
                         fileStorage.link3 !== null ?
-                        <a href={`https://panel.frzddev.ir/storage/app/${fileStorage.link3}`} target='_blank'>
+                        <a href={`https://backend.nanotf.ir/${fileStorage.link3}`} target='_blank'>
                             <p className="text-blue-500">
                                 برای دانلود فایل سوم کلیک کنید
                             </p>

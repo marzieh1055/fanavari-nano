@@ -2,6 +2,7 @@ import React , { useEffect, useState } from 'react'
 import axios from 'axios';
 import Loader from '../Loader/Loader';
 import Axios from '../../../axiosinstancs';
+import SendFileFirstModule from './module/SendFileFirstModule';
 
 export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
 
@@ -11,6 +12,8 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
     const [fileErr, setFileErr] = useState(false)
     const [stepSendReq, setStepSendReq] = useState(false)
     const [up, setUp] = useState(0)
+    const [updateModule, setUpdateModule] = useState(false)
+
 
     const [fileStorage, setFileStorage ] = useState({
         file : null,
@@ -175,6 +178,7 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
       } else if (reqStatus.assessment === true && reqStatus.report === false && fileStorage.file !== null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
+                {updateModule && <SendFileFirstModule close={setUpdateModule} reqId={reqId} setUpdatePage={setUpdatePage} />}
                 <div className=" pb-4">
                   <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
                 </div>
@@ -182,9 +186,14 @@ export default function SendFileFirst({ reqStatus , reqId , setUpdatePage }) {
 
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+
+                  <p className="text-gray-400">
+                    نام فایل : {fileStorage.file}
+                  </p>
                   <p className="text-yellow-500">
                     درحال بررسی توسط مدیر
                   </p>
+                  <p onClick={() => setUpdateModule(true)} className='text-blue-400 pt-2 cursor-pointer hover:text-blue-500'>تغییر و بارگذاری دوباره فایل</p>
                 </div>
             </div>
         )

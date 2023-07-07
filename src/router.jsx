@@ -67,6 +67,7 @@ const routes = [
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "ViewTicketsAdmin", element: <ViewTicketsAdmin /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
+      { path: "viewTickets", element: <ViewTickets /> },
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },

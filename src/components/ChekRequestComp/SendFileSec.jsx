@@ -2,6 +2,7 @@ import React , { useEffect, useState } from 'react'
 import Axios from '../../../axiosinstancs'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
+import SendFileSecModule from './module/SendFileSecModule'
 
 export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
 
@@ -11,9 +12,12 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
     const [stepSendReq, setStepSendReq] = useState(false)
     const [err, setErr] = useState(false)
     const [up, setUp] = useState(0)
+    const [updateModule, setUpdateModule] = useState(null)
 
     const [fileStorage, setFileStorage ] = useState({
-        file : null,
+        file1 : null,
+        file2 : null,
+        file3 : null,
     })
     const [fileData, setFileData] = useState({
         request_id: reqId,
@@ -28,7 +32,9 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
         Axios.get(`/api/admin/get_committee_for_admin/${reqId}`).then(async (res) => {
             console.log(res);
             setFileStorage({
-                file : res.data.file_name1
+                file1 : res.data.file_name1,
+                file2 : res.data.file_name2,
+                file3 : res.data.file_name3,
             })
             setRendering(false)
         }) .catch(async (err) => {
@@ -157,7 +163,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
               </div>
             </div>
         )
-    } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file === null) {
+    } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file1 === null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
@@ -249,29 +255,44 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
                 </button>
             </div>
         )
-    } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file !== null) {
+    } else if (reqStatus.report === true && reqStatus.commite === false && fileStorage.file1 !== null) {
         return (
             <div className="m-3 bg-white rounded-xl p-5">
                 <div className=" pb-4">
                   <p className=" font-bold">آپلود 3 فایل نهایی</p>
                 </div>
                 <hr className="border-dashed border-gray-300" />
-
+                {updateModule !== null && <SendFileSecModule showName={updateModule} close={setUpdateModule} reqId={reqId} setUpdatePage={setUpdatePage} />}
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+
+                  <p className="text-gray-400">
+                    نام فایل : {fileStorage.file1}
+                  </p>
                   <p className="text-yellow-500">
                     درحال بررسی توسط مدیر
                   </p>
+                  <p onClick={() => setUpdateModule({name : "file1"})} className='text-blue-400 pt-2 cursor-pointer hover:text-blue-500'>تغییر و بارگذاری دوباره فایل</p>
                 </div>
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+
+                  <p className="text-gray-400">
+                    نام فایل : {fileStorage.file2}
+                  </p>
                   <p className="text-yellow-500">
                     درحال بررسی توسط مدیر
                   </p>
+                  <p onClick={() => setUpdateModule({name : "file2"})} className='text-blue-400 pt-2 cursor-pointer hover:text-blue-500'>تغییر و بارگذاری دوباره فایل</p>
                 </div>
                 <div className="rounded-lg p-2 border text-green-700 text-xs mt-4">
+
+                  <p className="text-gray-400">
+                    نام فایل : {fileStorage.file3}
+                  </p>
                   <p className="text-yellow-500">
                     درحال بررسی توسط مدیر
                   </p>
+                  <p onClick={() => setUpdateModule({name : "file3"})} className='text-blue-400 pt-2 cursor-pointer hover:text-blue-500'>تغییر و بارگذاری دوباره فایل</p>
                 </div>
             </div>
         )

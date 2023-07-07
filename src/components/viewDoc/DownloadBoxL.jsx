@@ -23,7 +23,7 @@ export default function DownloadBoxL({ item , i }) {
         return(
           <div key={index}>
             <span className="ml-2">نام فایل : {box.file_name}</span>
-            <a href={`https://panel.frzddev.ir/storage/app/${box.path}`} className="text-blue-500 text-xs" target='_blank'>
+            <a href={`https://backend.nanotf.ir/${box.path}`} className="text-blue-500 text-xs" target='_blank'>
               دانلود
             </a>
           </div>

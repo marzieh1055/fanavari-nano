@@ -10,7 +10,7 @@ export default function DownloadBoxR({path , title , fn}) {
             نام فایل : {fn}
         </span>
 
-        <a href={`https://panel.frzddev.ir/storage/app/${path}`} target='_blank' className="text-blue-400 text-xs">
+        <a href={`https://backend.nanotf.ir/${path}`} target='_blank' className="text-blue-400 text-xs">
         برای بارگیری کلیک کنید
         </a>
     </div>

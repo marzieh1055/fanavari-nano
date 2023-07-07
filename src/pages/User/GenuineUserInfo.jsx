@@ -48,42 +48,106 @@ export default function GenuineUserInfo() {
     })
     console.log(sendDatas);
     useEffect(() => {
-        Axios.get("/api/v1/profile_genuine")
+        Axios.get(`/api/v1/show_user/${userDatas.user.id}`)
         .then((res) => {
             console.log(res.data);
             setIsLoading(false)
-            const newArr = res.data.reverse()
-            Object.keys(sendDatas).map((item , index) => {
-                Object.keys(newArr[0]).map(ires => {
-                    if (item === ires && ires !== "address" && ires !== "image") {
-                        if (newArr[0][ires] !== null) {
-                            setSendDatas(prev => {
-                                return({
-                                    ...prev,
-                                    [ires] : newArr[0][ires] 
-                                })
-                            })
-                        }
-                    } else if (item === ires && ires === "address") {
-                        Object.keys(newArr[0][ires]).map( j => {
-
-                            if (!["profile_genuine_id" , "id" , "created_at" , "updated_at"].includes(j)) {
-                                if (newArr[0][ires][j] !== null) {
-                                    setSendDatas(prev => {
-                                        return({
-                                            ...prev,
-                                            [j] : newArr[0][ires][j]
-                                        })
+            const newObj = res.data
+            if ((newObj.profilegenuine !== null) || (newObj.profilelagal !== null)) {
+                Object.keys(sendDatas).map(item => {
+                    Object.keys(newObj).map(pi => {
+                        if ((pi === "profilegenuine") && (newObj.type === "genuine")) {
+                            Object.keys(newObj.profilegenuine).map(i => {
+                                if (i === "address") {
+                                    Object.keys(newObj.profilegenuine.address).map(j => {
+                                        if (item === j) {
+                                            setSendDatas(prev => ({
+                                                ...prev ,
+                                                [item] : newObj.profilegenuine.address[item]
+                                            }))                                
+                                        }
                                     })
+                                } else {
+                                    if (item === i) {
+                                        setSendDatas(prev => ({
+                                            ...prev ,
+                                            [item] : newObj.profilegenuine[item]
+                                        }))
+                                    }
                                 }
+                            })
+                        } else if ((pi === "profilelagal") && (newObj.type === "legal")) {
+                            Object.keys(newObj.profilelagal).map(i => {
+                                if (i === "address") {
+                                    Object.keys(newObj.profilelagal.address).map(j => {
+                                        if (item === j) {
+                                            setSendDatas(prev => ({
+                                                ...prev ,
+                                                [item] : newObj.profilelagal.address[item]
+                                            }))                                
+                                        }
+                                    })
+                                } else {
+                                    if (item === i) {
+                                        setSendDatas(prev => ({
+                                            ...prev ,
+                                            [item] : newObj.profilelagal[item]
+                                        }))
+                                    }
+                                }
+                            })
+                        } else {
+                            if (item === pi) {
+                                setSendDatas(prev => ({
+                                    ...prev ,
+                                    [item] : newObj[item]
+                                }))
                             }
-                        })
-                    }
+                        }
+                    })
                 })
-            })
-            if (newArr[0].image !== null) {
-                setProfilePic(`https://backend.nanotf.ir/storage/app/${newArr[0].image}`)
+                if (newObj.profilegenuine.image !== null) {
+                    setProfilePic(`https://backend.nanotf.ir/${newObj.profilegenuine.image}`)
+                } else if (newObj.profilelagal.image !== null) {
+                    setProfilePic(`https://backend.nanotf.ir/${newObj.profilelagal.image}`)
+                }
             }
+
+
+
+
+            // const newArr = res.data.reverse()
+            // Object.keys(sendDatas).map((item , index) => {
+            //     Object.keys(newArr[0]).map(ires => {
+            //         if (item === ires && ires !== "address" && ires !== "image") {
+            //             if (newArr[0][ires] !== null) {
+            //                 setSendDatas(prev => {
+            //                     return({
+            //                         ...prev,
+            //                         [ires] : newArr[0][ires] 
+            //                     })
+            //                 })
+            //             }
+            //         } else if (item === ires && ires === "address") {
+            //             Object.keys(newArr[0][ires]).map( j => {
+
+            //                 if (!["profile_genuine_id" , "id" , "created_at" , "updated_at"].includes(j)) {
+            //                     if (newArr[0][ires][j] !== null) {
+            //                         setSendDatas(prev => {
+            //                             return({
+            //                                 ...prev,
+            //                                 [j] : newArr[0][ires][j]
+            //                             })
+            //                         })
+            //                     }
+            //                 }
+            //             })
+            //         }
+            //     })
+            // })
+            // if (newArr[0].image !== null) {
+            //     setProfilePic(`https://backend.nanotf.ir/storage/app/${newArr[0].image}`)
+            // }
         })
         .catch((err) => {
             console.log(err);
@@ -155,7 +219,7 @@ export default function GenuineUserInfo() {
       <ToastContainer />
       <hr />
       <div className="flex mt-6 items-center">
-        {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-17" /> : <img src={user} alt="" className="w-16" />}
+        {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-16" /> : <img src={user} alt="" className="w-16" />}
         <div className=" pr-4">
         <p className="font-bold">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
           <label htmlFor="aks" className="text-yellow-500 text-xs">تغییر عکس پروفایل</label>

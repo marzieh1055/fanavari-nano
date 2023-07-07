@@ -7,6 +7,8 @@ import user from "../../assets/imges/user.png"
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { DatePicker } from 'zaman';
+import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 
 const Addexpert = () => {
   const navigate = useNavigate()
@@ -34,7 +36,7 @@ const Addexpert = () => {
     password: "",
     father_name: "",
     number_certificate: "",
-    birth_day: "",
+    birth_day: "2022-4-9",
     place_issue: "",
     gender: "",
     marital: "",
@@ -74,6 +76,17 @@ const Addexpert = () => {
     }
     console.log(userDatas);
   }
+  const datechangeHandler = (e, name) => {
+    const day = e.value.getDate()
+    const mouth = e.value.getMonth()
+    const year = e.value.getFullYear()
+    setUserData(prev => {
+        return({
+            ...prev,
+            [name] : `${year}-${mouth + 1}-${day}`
+        })
+    })
+}
 
   const addHandler = (event) => {
     event.preventDefault()
@@ -252,14 +265,19 @@ const Addexpert = () => {
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">تاریخ تولد</p>
-          <input
-            type="text"
-            placeholder="00/02/14"
-            className="w-full border-none outline-none placeholder:text-sm"
-            onChange={changeHandler}
-            value={userDatas.birth_day}
-            name="birth_day"
-          />
+          <div className="flex items-center">
+            <p>{onlyDateConversion(userDatas.birth_day)}</p>
+            <div className="opacity-0 cursor-pointer">
+              <DatePicker
+                onChange={(e) => datechangeHandler(e , "birth_day")}
+                locale="fa"
+                name="birth_day"
+                placeholder="تاریخ را انتخاب کنید"
+                format="jYYYY/jMM/jDD"
+                id="1"
+                />
+            </div>
+          </div>
         </div>
         <div className="mt-3 w-96 border rounded-2xl mx-3 p-2 overflow-hidden">
           <p className="font-bold text-sm">محل صدور</p>
