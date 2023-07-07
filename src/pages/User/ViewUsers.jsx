@@ -188,7 +188,7 @@ export default function ViewUsers() {
         )}
       </div>
       <hr />
-        <button className="rounded-lg bg-green-700 mt-2   text-white p-3 font-bold text-xs" onClick={downloadHandler}>خروجی اکسل</button>
+        <button className="rounded-lg bg-green-700 mt-2 text-white p-3 font-bold text-xs " onClick={downloadHandler}>خروجی اکسل</button>
       {/* <div className="flex justify-between py-4 text-gray-600 items-center">
         <div className="">نمایش 21-31 از 80 مورد</div>
         <div className="">
