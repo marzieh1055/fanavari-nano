@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 export default function AdminCheckRequest() {
   const reqId = useParams()
   const navigate = useNavigate()
+  const [reqType, setReqType] = useState("")
   
 
   const [ExUrl, setExUrl] = useState(null)
@@ -48,6 +49,7 @@ export default function AdminCheckRequest() {
         // commite: true,
         credit: res.data.credit,
       })
+      setReqType(res.data.type)
       console.log(updatePage);
     })
     .catch((err) => {
@@ -149,9 +151,9 @@ export default function AdminCheckRequest() {
                   گزارش ناقصی در مدارک{" "}
                 </button> : ""
               }
-              <Link to={`/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.assessment === true && reqStatus.credit === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+              {reqType && <Link to={reqType === "facilities" ? `/panel/FacilitiesDocuments/${reqId.id}` : `/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.assessment === true && reqStatus.credit === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
                 مشاهده مدارک{" "}
-              </Link>
+              </Link>}
             </div>
             <div className="w-full" style={{display : "flex" , justifyContent : "space-between"}}>
               {

@@ -23,6 +23,14 @@ export default function Two() {
   const {stepTwo, setStepTwo} = useContext(TashilatContext)
   // is loading
   const [isLoading, setIsLoading] = useState(false)
+  const [showAllErr , setShowAllErr] = useState(false)
+  const [sendAccept , setSendAccept] = useState({
+    shareholders : [{name : ""}] ,
+    // boards : false ,
+    // residences : false ,
+    // manpowers : false ,
+    // educational : false ,
+  })
 
   const dateYear = new Date().getFullYear()
   const dateMouth = new Date().getMonth()
@@ -36,10 +44,17 @@ export default function Two() {
         date : `${dateYear}-${dateMouth}-${dateDay}`
       })
     })
-  } , [])
+    Object.keys(sendAccept).map(i => {
+      sendAccept[i].map(j => {
+        console.log(j);
+      })
+    })
+
+  } , [sendAccept])
   
   const sendHandler = () => {
     setIsLoading(true)
+    if (Object.keys(sendAccept) )
     Axios.post("/api/v1/shareholder", stepTwo)
         .then((res) => {
           console.log(res.data)
@@ -54,7 +69,7 @@ export default function Two() {
   if (isLoading) return <Loader />
   return (
     <>
-      <S2Shareholders />
+      <S2Shareholders showAllErr={showAllErr} setSendAccept={setSendAccept}/>
       {/* ای پی آی نداشت باید اضافه شه */}
       {/* <S2TarkibHeyatmodire /> */}
       <S2Residences />
@@ -63,9 +78,17 @@ export default function Two() {
       <S2Educational />
 
         <div className=" text-left mt-2">
-          <button onClick={sendHandler} className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
-            مرحله بعد
-          </button>
+          {console.log(sendAccept.shareholders)}
+          {
+            sendAccept.shareholders ? 
+            <button onClick={sendHandler}  className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+              مرحله بعد
+            </button> :
+            <button onClick={() => setShowAllErr(true)}  className="bg-gray-500  text-white rounded-xl p-4 font-bold text-sm">
+              مرحله بعدd
+            </button>
+            
+          }
         </div>
     </>
   );

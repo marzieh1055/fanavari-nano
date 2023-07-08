@@ -36,10 +36,10 @@ export default function TashilatProvider({ children }) {
     ],
     history: "",
     activity: "",
-    is_knowledge: true,
-    confirmation: "",
-    expiration: "",
-    area: "",
+    is_knowledge: false,
+    // confirmation: "",
+    // expiration: "",
+    // area: "",
   });
   const [stepTwo, setStepTwo] = useState(
     //shareholder
@@ -47,14 +47,14 @@ export default function TashilatProvider({ children }) {
       facilities_id:"",
       shareholders:[
         {
-          name:"test",
+          name:"",
           type:"genuine",
-          n_certificate:"test",
-          n_national:"test",
-          count:"4",
-          percent:"5",
-          cost:"12",
-          education:"test"
+          n_certificate:"",
+          n_national:"",
+          count:"",
+          percent:"",
+          cost:"",
+          education:""
         },
       ],
       boards:[ 

@@ -6,11 +6,15 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import ExpertModal from "../../components/modal/ExpertModal";
 import DownloadStep5 from "../../components/ChekRequestComp/DownloadStep5.jsx";
+import DeleteReq from "../../components/modal/DeleteReq";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function ViewDetailRequest() {
   const reqId = useParams()
   const [isLoading, setIsLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
+  const [showDeleteReq, setShowDeleteReq] = useState(false)
   const [expertData, setExpertData] = useState(null)
   const [reqStatus, setReqStatus] = useState({})
 
@@ -98,12 +102,16 @@ export default function ViewDetailRequest() {
           {
             showModal && <ExpertModal expertData={expertData ? expertData : null} close={setShowModal} />
           }
+          {
+            showDeleteReq && <DeleteReq close={setShowDeleteReq} id={reqId.id} toast={toast}/>
+          }
+          {<ToastContainer />}
           <div className="pt-4">
             <div className="flex">
               <button onClick={() => setShowModal(true)} className="w-full  rounded-lg bg-blue-700 mt-2 ml-2  text-white p-3 font-bold text-xs">
                 اطلاعات کارشناس{" "}
               </button>
-              <button className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
+              <button onClick={() => setShowDeleteReq(true)} className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
                 لغو درخواست{" "}
               </button>
             </div>
