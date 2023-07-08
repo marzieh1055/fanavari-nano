@@ -25,7 +25,7 @@ const Topbar = ({ avatar }) => {
     Axios.get("/api/v1/profile_genuine")
     .then((res) => {
       console.log(res);
-      const newA = res.data.reverse()
+      const newA = res.data
       newA.map((item) => {
         if(item.user.id === userDatas.user.id) {
           setDetails(item)

@@ -39,9 +39,6 @@ const Requests = () => {
       console.log(res.data);
       const newData = res.data.reverse()
       setRequests(newData)
-
-      // console.log(res.data);
-      // console.log(res.data[0].expert_assignment.created_at);
       setIsLoading(false)
     })
   }, [updatePage])

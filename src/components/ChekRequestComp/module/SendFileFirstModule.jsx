@@ -63,7 +63,7 @@ export default function SendFileFirstModule({ close , reqId , setUpdatePage }) {
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
                 <div className=" flex justify-between p-3 pb-4 ">
-                    <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
+                    <p className=" font-bold"> تغییر فایل گزارش ارزیابی </p>
                     <p onClick={() => close(false)} className=" cursor-pointer">بستن</p>
                 </div>
                 <hr className="border-dashed border-gray-300" />

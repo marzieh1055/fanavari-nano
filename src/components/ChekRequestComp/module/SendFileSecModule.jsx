@@ -63,16 +63,13 @@ export default function SendFileSecModule({ showName , close , reqId , setUpdate
             <div className="m-3 bg-white rounded-xl p-5">
                 {isLoading && <Loader />}
                 <div className=" flex justify-between p-3 pb-4 ">
-                    <p className=" font-bold"> آپلود فایل گزارش ارزیابی </p>
+                    <p className=" font-bold">تغییر 3 فایل نهایی </p>
                     <p onClick={() => close(null)} className=" cursor-pointer">بستن</p>
                 </div>
                 <hr className="border-dashed border-gray-300" />
         
                 <hr className="border-dashed border-gray-300" />
                 <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-                    <p className="">
-                        تصویر مجوز ها و گواهی نامه های اخذ شده توسط شرکت
-                    </p>
                     {
                         fileData.file === null ?
                         <label htmlFor="step3" className="text-blue-400 text-xs w-full justify-center">

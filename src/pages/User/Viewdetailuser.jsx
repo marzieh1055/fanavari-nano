@@ -23,9 +23,9 @@ const Viewdetailuser = () => {
     if (IsLoading) return <Loader />
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
-      <div style={{display:"flex" , justifyContent:"space-between"}}>
+      <div className="flex items-center justify-between p-6">
         <p className="text-xl font-bold p-4 py-6">اطلاعات کاربر</p>
-        <span onClick={() => navigate(-1)} className="text-xl p-4 py-6" style={{fontSize:"15px" , cursor:"pointer"}}>بازگشت</span>
+        <p onClick={() => navigate(-1)} className="cursor-pointer hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
       </div>
       <hr className="border-dashed" />
 

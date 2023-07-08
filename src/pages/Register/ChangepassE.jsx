@@ -65,11 +65,12 @@ export default function ChangepassE() {
     return (
         <div className="bg-white rounded-2xl mt-6 p-6">
           <ToastContainer />
-          <div className=" p-6">
+          <div className="flex items-center justify-between p-6">
             <p className="text-xl font-extrabold">تغییر رمز عبور</p>
+            <p onClick={() => navigate(-1)} className="cursor-pointer hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
           </div>
-            <p className="flex pr-6 pb-6">نام کاربری : <p className="text-blue-400 pr-2">{`${nameAndF[0]} ${nameAndF[1]}`}</p></p>
           <hr />
+            <p className="flex pr-6 pt-6">نام کاربری : <p className="text-blue-400 pr-2">{`${nameAndF[0]} ${nameAndF[1]}`}</p></p>
           <div className="">
             <div className="w-1/2 mx-auto">
               <div className="mt-6">

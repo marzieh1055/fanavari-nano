@@ -161,7 +161,6 @@ const Dashboard = () => {
           </div>
           {
             Expert ? Expert.map(i => {
-              console.log(i);
               return (
                 <User avatar={(i.profilegenuine) && (i.profilegenuine.image !== null) ? `https://backend.nanotf.ir/${i.profilegenuine.image}` : "22"} date={onlyDateConversion(i.profilegenuine.created_at)} name={`${i.name} ${i.family}`}/>
               )

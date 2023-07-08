@@ -3,30 +3,37 @@ import { RiPencilLine } from "react-icons/ri";
 import user from "../../assets/imges/user.png"
 import Axios from "../../../axiosinstancs";
 import { UserDataContext } from "../../contexts/UserData.Provider";
+import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 export default function UserInfo() {
   const [details , setDetails] = useState()
+  const navigate = useNavigate()
   const { userDatas } = useContext(UserDataContext)
+  const [isLoading , setIsLoading] = useState(true)
   useEffect(() => {
-    Axios.get("/api/v1/profile_genuine")
+    Axios.get(`/api/v1/profile_genuine`)
     .then((res) => {
-      console.log(res);
-      const newA = res.data.reverse()
+      console.log(res.data);
+      const newA = res.data
       newA.map((item) => {
         if(item.user.id === userDatas.user.id) {
           setDetails(item)
           console.log(item);
         }
       })
+      setIsLoading(false)
     })
     .catch((err) => {
      console.log(err); 
     })
   } , [])
 
+  if (isLoading) return <Loader />
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
-      <div className=" p-6">
+      <div className="flex items-center justify-between p-6">
         <p className="text-xl font-extrabold">اطلاعات کاربری</p>
+        <p onClick={() => navigate(-1)} className="cursor-pointer hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
       </div>
       <hr />
       <div className="">
