@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TashilatContext } from "../../../contexts/Tashilat.Provider";
 import S2TarkibHeyatmodire from "../../../components/requestSteps/S2TarkibHeyatmodire";
@@ -31,12 +31,13 @@ export default function Two() {
     // manpowers : false ,
     // educational : false ,
   })
+  const [ok , setOk] = useState(false)
 
   const dateYear = new Date().getFullYear()
   const dateMouth = new Date().getMonth()
   const dateDay = new Date().getDate()
 
-  useState(() => {
+  useEffect(() => {
     setStepTwo((prev) => {
       return ({
         ...prev,
@@ -44,12 +45,21 @@ export default function Two() {
         date : `${dateYear}-${dateMouth}-${dateDay}`
       })
     })
+  } , [])
+  useEffect(() => {
+    let yesNumber = 0
     Object.keys(sendAccept).map(i => {
       sendAccept[i].map(j => {
-        console.log(j);
+        if (Object.keys(j).length > 0) {
+          setOk(false)
+          yesNumber += 1
+        }
+
       })
     })
-
+    if (yesNumber === 0) {
+      setOk(true)
+    }
   } , [sendAccept])
   
   const sendHandler = () => {
@@ -69,7 +79,7 @@ export default function Two() {
   if (isLoading) return <Loader />
   return (
     <>
-      <S2Shareholders showAllErr={showAllErr} setSendAccept={setSendAccept}/>
+      <S2Shareholders showAllErr={showAllErr} setSendAccept={setSendAccept} />
       {/* ای پی آی نداشت باید اضافه شه */}
       {/* <S2TarkibHeyatmodire /> */}
       <S2Residences />
@@ -78,14 +88,14 @@ export default function Two() {
       <S2Educational />
 
         <div className=" text-left mt-2">
-          {console.log(sendAccept.shareholders)}
+          {/* {console.log(sendAccept)} */}
           {
-            sendAccept.shareholders ? 
+            ok ? 
             <button onClick={sendHandler}  className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
               مرحله بعد
             </button> :
             <button onClick={() => setShowAllErr(true)}  className="bg-gray-500  text-white rounded-xl p-4 font-bold text-sm">
-              مرحله بعدd
+              مرحله بعد
             </button>
             
           }

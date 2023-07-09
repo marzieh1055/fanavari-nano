@@ -11,7 +11,7 @@ export const  VS2shareholders = (data) => {
         })
         errArry.push(errObj)
         
-        console.log(errObj);
+        // console.log(errObj);
     })
 
     return errArry

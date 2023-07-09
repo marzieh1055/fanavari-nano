@@ -27,7 +27,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
             }
         ))
         
-        console.log(stepTwo);
+        console.log("C1");
    } , [up])
 
    useEffect(() => {
@@ -44,13 +44,12 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                     education:true
                 }
                 arr[index] = newObj
-                console.log(arr);
+                // console.log(arr);
                 setShowErr(arr)
             })
         }
         setErr(VS2shareholders(stepTwo.shareholders))
         setSendAccept(prev => ({...prev , shareholders : VS2shareholders(stepTwo.shareholders)}))
-        
     } , [stepTwo , showAllErr])
 
     const changeHandler = (e) => {
@@ -73,7 +72,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
         console.log(stepTwo);
     }
     const focusHandler = (e , index) => {
-        console.log(showErr);
+        // console.log(showErr);
         if (showErr[index]) {
             const arr = showErr
             arr[index] = {...arr[index] , [e.target.name] : true}

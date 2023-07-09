@@ -22,7 +22,7 @@ export default function ViewDetailRequest() {
 
   useEffect(() => {
     Axios.get(`/api/v1/request/${reqId.id}`).then(async (res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.expert_assignment !== null && res.data.expert_assignment !== "null") {
         setExpertData(res.data.expert_assignment.expert)
       }
