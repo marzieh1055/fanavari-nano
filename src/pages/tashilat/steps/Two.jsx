@@ -27,10 +27,11 @@ export default function Two() {
   const [sendAccept , setSendAccept] = useState({
     shareholders : [{name : ""}] ,
     // boards : false ,
-    // residences : false ,
+    residences : [{name : ""}] ,
     // manpowers : false ,
     // educational : false ,
   })
+
   const [ok , setOk] = useState(false)
 
   const dateYear = new Date().getFullYear()
@@ -45,7 +46,8 @@ export default function Two() {
         date : `${dateYear}-${dateMouth}-${dateDay}`
       })
     })
-  } , [])
+  } , [showAllErr])
+
   useEffect(() => {
     let yesNumber = 0
     Object.keys(sendAccept).map(i => {
@@ -82,7 +84,7 @@ export default function Two() {
       <S2Shareholders showAllErr={showAllErr} setSendAccept={setSendAccept} />
       {/* ای پی آی نداشت باید اضافه شه */}
       {/* <S2TarkibHeyatmodire /> */}
-      <S2Residences />
+      <S2Residences showAllErr={showAllErr} setSendAccept={setSendAccept} />
       <S2Manpowers />
       <S2Boards />
       <S2Educational />

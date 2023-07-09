@@ -5,11 +5,13 @@ import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 export default function S2Shareholders({showAllErr , setSendAccept}) {
     const {stepTwo, setStepTwo} = useContext(TashilatContext)
     const [up , setUp] = useState(0)
+
+    // for Validation
     const [err , setErr] = useState([{name : "پر کنید"}])
     const [showErr , setShowErr] = useState([])
     
     
-    console.log(showErr);
+    // console.log(showErr);
    useEffect(() => {
         const jam = {sum_count : 0 , sum_percent : 0 , sum_cost : 0}
         stepTwo.shareholders.map((item) => {
@@ -30,6 +32,7 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
         console.log("C1");
    } , [up])
 
+   // for Validation
    useEffect(() => {
         if (showAllErr) {
             showErr.map((i , index)=> {
@@ -71,6 +74,8 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
         setUp(p => p + 1)
         console.log(stepTwo);
     }
+
+    // for Validation
     const focusHandler = (e , index) => {
         // console.log(showErr);
         if (showErr[index]) {

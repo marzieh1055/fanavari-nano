@@ -49,6 +49,7 @@ import Testticket from "./pages/Ticket/Testticket";
 import TestticketExpert from "./pages/Ticket/TestticketExpert";
 import ExpertInfo from "./pages/Expert/ExpertInfo";
 import ChangepassE from "./pages/Register/ChangepassE";
+import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
 
 const routes = [
   {
@@ -68,6 +69,7 @@ const routes = [
       { path: "ViewTicketsAdmin", element: <ViewTicketsAdmin /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
       { path: "viewTickets", element: <ViewTickets /> },
+      { path: "ViewDeleteReqs", element: <ViewDeleteReqs /> },
 
       { path: "TestticketExpert", element: <TestticketExpert /> },
       { path: "Testticket", element: <Testticket /> },

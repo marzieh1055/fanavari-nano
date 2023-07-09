@@ -144,14 +144,14 @@ export default function AdminCheckRequest() {
           <DownloadStep5 reqStatus={reqStatus} reqId={reqId.id} />
           
           <div className="pt-4 px-2">
-            <div style={{display:"flex"}} className="w-full">
+            <div className="w-full flex justify-between">
               {
                 reqStatus.assessment === true && reqStatus.credit === false ?
-                <button onClick={() => setShowCheckRep(true)} className="w-1/2  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
+                <button onClick={() => setShowCheckRep(true)} className="w-[215px]  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs hover:text-white hover:bg-red-700 transition">
                   گزارش ناقصی در مدارک{" "}
                 </button> : ""
               }
-              {reqType && <Link to={reqType === "facilities" ? `/panel/FacilitiesDocuments/${reqId.id}` : `/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.assessment === true && reqStatus.credit === false ? "w-1/2 rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+              {reqType && <Link to={reqType === "facilities" ? `/panel/FacilitiesDocuments/${reqId.id}` : `/panel/WarrantyDocuments/${reqId.id}`} style={{textAlign : "center"}} className={reqStatus.assessment === true && reqStatus.credit === false ? "w-[215px] rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs hover:text-white hover:bg-blue-700 transition" : "w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
                 مشاهده مدارک{" "}
               </Link>}
             </div>

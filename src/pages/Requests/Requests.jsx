@@ -19,12 +19,14 @@ import { Link } from "react-router-dom";
 
 import queryString from "query-string";
 import { ToastContainer, toast } from "react-toastify";
+import DeleteReqAdmin from "../../components/modal/DeleteReqAdmin";
 
 const Requests = () => {
   const {userDatas} = useContext(UserDataContext)
   const [requests, setRequests] = useState([])
   const [showDetails, setShowDetails] = useState(null)
   const [showExpertList, setShowExpertList] = useState(null)
+  const [showDeleteReq, setShowDeleteReq] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [updatePage, setUpdatePage] = useState(0)
   const [searchText, setSearchText] = useState("")
@@ -32,7 +34,6 @@ const Requests = () => {
 
   const [ExFilter , setExFilter] = useState("warrantyExcel")
 
-  console.log(updatePage);
   useEffect(() => {
     setIsLoading(true)
     Axios.get("/api/admin/view_all_request").then(async (res) => {
@@ -42,6 +43,7 @@ const Requests = () => {
       setIsLoading(false)
     })
   }, [updatePage])
+
   const detailsHandler = (ev) => {
     if (showDetails === null) {
       setShowDetails(ev)
@@ -145,19 +147,23 @@ const Requests = () => {
                     <div>
                       شماره همراه کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.phone}` : "فاقد کارشناس"} </a>
                     </div>
-                    {/* 
-                    <div>
-                      امضای کارشناس: <a href="">محمد</a>
-                    </div> */}
-                    {
+                      {showDeleteReq && <DeleteReqAdmin close={setShowDeleteReq} id={item.id} toast={toast}/>}
+                    <div className="flex ">
                       <button
                         href=""
-                        className="p-2 rounded-xl border border-c-7 text-c-9"
+                        className="p-2 m-1 rounded-xl border border-c-7 text-c-9 hover:text-white hover:bg-red-600 transition"
                         onClick={() => setShowExpertList({ id: item.id, type: "change" })}
                       >
                         تغییر کارشناس
                       </button>
-                    }
+                      <button
+                        href=""
+                        className="p-2 m-1 rounded-xl border border-c-7 text-c-9 hover:text-white hover:bg-red-600 transition"
+                        onClick={() => setShowDeleteReq(true)}
+                      >
+                        حذف درخواست
+                      </button>
+                    </div>
                   </div>
 
                   <button onClick={() => detailsHandler(null)} className="flex justify-center items-center gap-2 p-2 border border-c-7 rounded-xl bg-c h-c-15">

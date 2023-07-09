@@ -135,6 +135,7 @@ const fileHandler = (e) => {
               </p>
               <input
                 type="file"
+                accept="application/pdf"
                 name=""
                 id=""
                 onChange={fileHandler}

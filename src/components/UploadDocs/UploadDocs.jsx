@@ -46,7 +46,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
               </div>
 
           }
-          <input style={{ display: "none" }} id='file1' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file1" />
+          <input style={{ display: "none" }} id='file1' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file1" />
           <br />
           {errors.file1 && showErr.file1 && <span className="text-red-500 text-xs ">*{errors.file1}</span>}
         </div>
@@ -72,7 +72,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
               </div>
 
           }
-          <input style={{ display: "none" }} id='file2' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file2" />
+          <input style={{ display: "none" }} id='file2' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file2" />
           <br />
           {errors.file2 && showErr.file2 && <span className="text-red-500 text-xs ">*{errors.file2}</span>}
         </div>
@@ -98,7 +98,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
               </div>
 
           }
-          <input style={{ display: "none" }} id='file3' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file3" />
+          <input style={{ display: "none" }} id='file3' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file3" />
           <br />
           {errors.file3 && showErr.file3 && <span className="text-red-500 text-xs ">*{errors.file3}</span>}
         </div>
@@ -124,7 +124,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
               </div>
 
           }
-          <input style={{ display: "none" }} id='file4' className="text-blue-400 text-xs " type="file" onChange={handelChang} name="file4" />
+          <input style={{ display: "none" }} id='file4' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file4" />
           <br />
           {errors.file4 && showErr.file4 && <span className="text-red-500 text-xs ">*{errors.file4}</span>}
         </div>

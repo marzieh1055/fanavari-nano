@@ -1,8 +1,52 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 
-export default function S2Residences() {
+export default function S2Residences({showAllErr , setSendAccept}) {
     const {stepTwo, setStepTwo} = useContext(TashilatContext)
+
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+       // for Validation
+       console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                name:true,
+                position:true,
+                address:true
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepTwo.residences))
+      setSendAccept(prev => ({...prev , residences : VS2shareholders(stepTwo.residences)}))
+    } , [showAllErr , stepTwo])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepTwo.residences))
+      setSendAccept(prev => ({...prev , residences : VS2shareholders(stepTwo.residences)}))
+  }
+
     const changeHandler = (e) => {
         setStepTwo(prevState => {
             const updated = prevState.residences.map((item, index) => {
@@ -48,28 +92,36 @@ export default function S2Residences() {
                   </td>
 
                   <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                        type="text"
-                        className="border border-gray-300 rounded-xl w-28"
-                        onChange={changeHandler}
-                        value={stepTwo.residences[index].name}
-                        name="name"
-                        id={index}
-                    />
+                    <div className='flex flex-col items-center'>
+                      <input
+                          type="text"
+                          className="border border-gray-300 rounded-xl w-28"
+                          onChange={changeHandler}
+                          value={stepTwo.residences[index].name}
+                          name="name"
+                          id={index}
+                          onFocus={(e) => focusHandler(e , index)}
+                      />
+                      {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
+                    </div>
                   </td>
 
                   <td className="p-4 text-xs text-gray-600 font-bold">
-                    <input
-                        type="text"
-                        className="border border-gray-300 rounded-xl w-28 text-left"
-                        onChange={changeHandler}
-                        value={stepTwo.residences[index].position}
-                        name="position"
-                        id={index}
-                    />
+                    <div className='flex flex-col items-center'>
+                      <input
+                          type="text"
+                          className="border border-gray-300 rounded-xl w-28"
+                          onChange={changeHandler}
+                          value={stepTwo.residences[index].position}
+                          name="position"
+                          id={index}
+                          onFocus={(e) => focusHandler(e , index)}
+                      />
+                      {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
+                    </div>
                   </td>
                   <td className="p-4 text-xs text-gray-600 font-bold">
-                    <div className="flex">
+                    <div className="flex flex-col items-center">
                       <textarea
                         type="text"
                         className="border border-gray-300 rounded-xl w-full"
@@ -77,7 +129,9 @@ export default function S2Residences() {
                         value={stepTwo.residences[index].address}
                         name="address"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
                       />
+                      {err[index] && err[index].address && showErr[index] && showErr[index].address && <span className='text-red-500 font-thin text-xs p-2'>{err[index].address}</span> }
                     </div>
                   </td>
                 </tr>

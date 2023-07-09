@@ -51,9 +51,9 @@ export default function TashilatProvider({ children }) {
           type:"genuine",
           n_certificate:"",
           n_national:"",
-          count:"",
-          percent:"",
-          cost:"",
+          count:"0",
+          percent:"0",
+          cost:"0",
           education:""
         },
       ],
@@ -70,9 +70,9 @@ export default function TashilatProvider({ children }) {
       ],
       residences:[
         {
-          name:"test",
-          position:"test",
-          address:"test"
+          name:"",
+          position:"",
+          address:""
         }
       ],
       manpowers:[

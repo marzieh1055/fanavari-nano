@@ -30,7 +30,7 @@ export default function UPBox({SelectDocument , changeHandler , InputName , titl
                 </div>
 
 }
-        <input style={{ display: "none" }} id={InputName} className="text-blue-400 text-xs " onChange={(e) => changeHandler(e)} type="file" name={InputName} multiple />
+        <input style={{ display: "none" }} id={InputName} className="text-blue-400 text-xs " onChange={(e) => changeHandler(e)} accept="application/pdf" type="file" name={InputName} multiple />
         <br />
         {errors && showErr && <span className="text-red-500 text-xs ">*{errors}</span>}
     </div>

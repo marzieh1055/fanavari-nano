@@ -26,8 +26,8 @@ export default function Panel() {
             links : ["/panel/viewUsers"   ]
           },
           {title : "درخواست ها",
-            drop : [ "لیست درخواست ها"],
-            links : [ "/panel/requests" ]
+            drop : [ "لیست درخواست ها" , "درخواست های حذف"],
+            links : [ "/panel/requests" , "/panel/ViewDeleteReqs"]
           },
           {title : "پشتیبانی",
             drop : ["مشاهده تیکت ها" ],

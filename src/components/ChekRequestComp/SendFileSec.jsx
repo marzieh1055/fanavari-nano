@@ -196,7 +196,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
                         </div>
                     }
                     {fileErr && fileData.file1 === null && <p className="text-yellow-400 text-xs w-full m-1 justify-center">*فایلی انتخاب کنید</p>}
-                    <input id="file1" style={{ display: "none" }} type="file" onChange={changeHandler} name="file1" />
+                    <input id="file1" style={{ display: "none" }} accept="application/pdf" type="file" onChange={changeHandler} name="file1" />
                 </div>
                 {/*----------------------------------- FILE 2 -----------------------------------*/}
                 <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
@@ -221,7 +221,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
                         </div>
                     }
                     {fileErr && fileData.file2 === null && <p className="text-yellow-400 text-xs w-full m-1 justify-center">*فایلی انتخاب کنید</p>}
-                    <input id="file2" style={{ display: "none" }} type="file" onChange={changeHandler} name="file2" />
+                    <input id="file2" style={{ display: "none" }} accept="application/pdf" type="file" onChange={changeHandler} name="file2" />
                 </div>
                 {/*----------------------------------- FILE 3 -----------------------------------*/}
                 <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
@@ -246,7 +246,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
                         </div>
                     }
                     {fileErr && fileData.file3 === null && <p className="text-yellow-400 text-xs w-full m-1 justify-center">*فایلی انتخاب کنید</p>}
-                    <input id="file3" style={{ display: "none" }} type="file" onChange={changeHandler} name="file3" />
+                    <input id="file3" style={{ display: "none" }} accept="application/pdf" type="file" onChange={changeHandler} name="file3" />
                 </div>
                 {stepSendReq && <p className="text-green-400 text-xs w-full m-1 justify-center">در حال ارسال اطلاعات...</p>}
                 {err && <p className="text-red-400 text-xs w-full m-1 justify-center">خطا در ارسال اطلاعات !</p>}
