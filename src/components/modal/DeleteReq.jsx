@@ -35,7 +35,7 @@ export default function DeleteReq({ close , id , toast }) {
     })
     .catch((err) => {
         setIsLoading(false)
-        
+        toast("عملیات با خطا مواجه شد")
     })
   }
   if (IsLoading) return <Loader />
