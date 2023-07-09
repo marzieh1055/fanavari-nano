@@ -37,13 +37,13 @@ export default function DeleteReq({ close , id , toast }) {
       const token = localStorage.getItem('token');
       const isLoggedIn = token ? true : false;
       axios.post("/api/v1/request_delete", sendData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            ...(isLoggedIn && {
-                Authorization: `Bearer ${JSON.parse(token)}`
-            })
-          }
-        })
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(isLoggedIn && {
+              Authorization: `Bearer ${JSON.parse(token)}`
+          })
+        }
+      })
       .then((res) => {
           console.log(res);
           setIsLoading(false)
@@ -52,7 +52,7 @@ export default function DeleteReq({ close , id , toast }) {
       })
       .catch((err) => {
           setIsLoading(false)
-          
+          toast("عملیات با خطا مواجه شد")
       })
     } else {
       setShowErr(true)
