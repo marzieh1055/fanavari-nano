@@ -95,14 +95,13 @@ export default function S2Residences({showAllErr , setSendAccept}) {
                     <div className='flex flex-col items-center'>
                       <input
                           type="text"
-                          className="border border-gray-300 rounded-xl w-28"
+                          className={err[index] && err[index].name && showErr[index] && showErr[index].name?"border border-red-300 rounded-xl w-28" :"border border-gray-300 rounded-xl w-28"}
                           onChange={changeHandler}
                           value={stepTwo.residences[index].name}
                           name="name"
                           id={index}
                           onFocus={(e) => focusHandler(e , index)}
                       />
-                      {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
                     </div>
                   </td>
 
@@ -110,28 +109,26 @@ export default function S2Residences({showAllErr , setSendAccept}) {
                     <div className='flex flex-col items-center'>
                       <input
                           type="text"
-                          className="border border-gray-300 rounded-xl w-28"
+                          className={err[index] && err[index].position && showErr[index] && showErr[index].position?"border border-red-300 rounded-xl w-28" :"border border-gray-300 rounded-xl w-28"}
                           onChange={changeHandler}
                           value={stepTwo.residences[index].position}
                           name="position"
                           id={index}
                           onFocus={(e) => focusHandler(e , index)}
                       />
-                      {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                     </div>
                   </td>
                   <td className="p-4 text-xs text-gray-600 font-bold">
                     <div className="flex flex-col items-center">
                       <textarea
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].address && showErr[index] && showErr[index].address ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepTwo.residences[index].address}
                         name="address"
                         id={index}
                         onFocus={(e) => focusHandler(e , index)}
                       />
-                      {err[index] && err[index].address && showErr[index] && showErr[index].address && <span className='text-red-500 font-thin text-xs p-2'>{err[index].address}</span> }
                     </div>
                   </td>
                 </tr>

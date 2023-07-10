@@ -98,50 +98,46 @@ export default function S2Educational({showAllErr , setSendAccept}) {
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={ err[index] && err[index].name && showErr[index] && showErr[index].name?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.educational[index].name}
                             name="name"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].university && showErr[index] && showErr[index].university?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.educational[index].university}
                             name="university"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].university && showErr[index] && showErr[index].university && <span className='text-red-500 font-thin text-xs p-2'>{err[index].university}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={ err[index] && err[index].study && showErr[index] && showErr[index].study?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.educational[index].study}
                             name="study"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].study && showErr[index] && showErr[index].study && <span className='text-red-500 font-thin text-xs p-2'>{err[index].study}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].position && showErr[index] && showErr[index].position?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.educational[index].position}
                             name="position"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                         </td>
                     </tr>
 
@@ -149,7 +145,7 @@ export default function S2Educational({showAllErr , setSendAccept}) {
                         <td>سوابق:</td>
                         <td colSpan="5" className="p-2">
                         <textarea
-                            className="w-full h-16 border border-gray-300 rounded-xl my -2"
+                            className={err[index] && err[index].records && showErr[index] && showErr[index].records ?"w-full h-16 border border-red-300 rounded-xl my-2" :"w-full h-16 border border-gray-300 rounded-xl my-2"}
                             onChange={changeHandler}
                             value={stepTwo.educational[index].records}
                             name="records"
@@ -158,7 +154,6 @@ export default function S2Educational({showAllErr , setSendAccept}) {
                             rows="10"
                             onFocus={(e) => focusHandler(e , index)}
                         ></textarea>
-                        {err[index] && err[index].records && showErr[index] && showErr[index].records && <span className='text-red-500 font-thin text-xs p-2'>{err[index].records}</span> }
                         </td>
                     </tr>
                     </>
