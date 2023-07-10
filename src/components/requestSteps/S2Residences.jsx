@@ -77,10 +77,10 @@ export default function S2Residences({showAllErr , setSendAccept}) {
         <table className="w-full rounded-xl overflow-hidden text-center">
           <thead>
             <tr className=" sticky top-0 text-sm border-b ">
-              <th className="bg-white p-3  ">رديف </th>
-              <th className="bg-white p-3  ">نام و نام خانوادگي</th>
-              <th className="bg-white p-3  ">سمت </th>
-              <th className="bg-white p-3  ">نشاني محل سکونت</th>
+              <th className="bg-white p-3 ">رديف </th>
+              <th className="bg-white p-3 ">نام و نام خانوادگي</th>
+              <th className="bg-white p-3 ">سمت </th>
+              <th className="bg-white p-3 ">نشاني محل سکونت</th>
             </tr>
           </thead>
           <tbody>
@@ -95,7 +95,7 @@ export default function S2Residences({showAllErr , setSendAccept}) {
                     <div className='flex flex-col items-center'>
                       <input
                           type="text"
-                          className={err[index] && err[index].name && showErr[index] && showErr[index].name?"border border-red-300 rounded-xl w-28" :"border border-gray-300 rounded-xl w-28"}
+                          className={err[index] && err[index].name && showErr[index] && showErr[index].name?"border border-red-300 rounded-xl w-32" :"border border-gray-300 rounded-xl w-32"}
                           onChange={changeHandler}
                           value={stepTwo.residences[index].name}
                           name="name"
@@ -109,7 +109,7 @@ export default function S2Residences({showAllErr , setSendAccept}) {
                     <div className='flex flex-col items-center'>
                       <input
                           type="text"
-                          className={err[index] && err[index].position && showErr[index] && showErr[index].position?"border border-red-300 rounded-xl w-28" :"border border-gray-300 rounded-xl w-28"}
+                          className={err[index] && err[index].position && showErr[index] && showErr[index].position?"border border-red-300 rounded-xl w-32" :"border border-gray-300 rounded-xl w-32"}
                           onChange={changeHandler}
                           value={stepTwo.residences[index].position}
                           name="position"
@@ -122,7 +122,7 @@ export default function S2Residences({showAllErr , setSendAccept}) {
                     <div className="flex flex-col items-center">
                       <textarea
                         type="text"
-                        className={err[index] && err[index].address && showErr[index] && showErr[index].address ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-full"}
+                        className={err[index] && err[index].address && showErr[index] && showErr[index].address ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepTwo.residences[index].address}
                         name="address"

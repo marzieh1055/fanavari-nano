@@ -36,7 +36,7 @@ export default function AssetsLine({title , mapIndex}) {
                 title === "TotalCurrentAssets" ? "جمع دارايي هاي جاري" :
                 title === "TangibleFixedAssets" ? "دارايي هاي ثابت مشهود" :
                 title === "IntangibleFixedAssets" ? "دارايي هاي ثابت  نامشهود" :
-                title === "LongtermInvestmentsAndPartnerships" ? "سرمايهگذاري ها و مشاركت هاي بلندمدت" :
+                title === "LongtermInvestmentsAndPartnerships" ? "سرمايه گذاري ها و مشاركت هاي بلندمدت" :
                 title === "OtherNoncurrentAssets" ? "ساير دارايي هاي غير جاري" :
                 title === "TotalFixedAssets" ? "جمع دارايي هاي ثابت" :
                 title === "TotalAssets" ? "جمع كل دارايي ها" :
@@ -53,7 +53,7 @@ export default function AssetsLine({title , mapIndex}) {
                 title === "Fund" ? "سرمايه" :
                 title === "RetainedEarnings" ? "سود و زيان انباشته" :
                 title === "Equities" ? "جمع حقوق صاحبان سهام" :
-                title === "totalSumOfLiabilitiesAndEquity" ? "جمع كل بدهيها و حقوق صاحبان سهام" : ""
+                title === "totalSumOfLiabilitiesAndEquity" ? "جمع كل بدهي ها و حقوق صاحبان سهام" : ""
             }
         </td>
         <td className="p-2">

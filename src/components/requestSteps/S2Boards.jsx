@@ -143,7 +143,7 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                                 onChange={changeHandler}
                                 name="type"
                                 id={index}
-                                className="border-gray-300 rounded-xl w-32 text-xs"
+                                className="border-gray-300 rounded-xl w-28 text-xs"
                             >
                             <option value="genuine">حقیقی</option>
                             <option value="legal">حقوقی</option>
@@ -163,7 +163,7 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="number"
-                            className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-20"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].n_national}
                             name="n_national"
@@ -181,7 +181,7 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                             locale="fa"
                             placeholder="تاریخ را انتخاب کنید"
                             format="jYYYY/jMM/jDD"
-                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-20"}
                         />
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">

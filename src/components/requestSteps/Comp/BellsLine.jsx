@@ -29,11 +29,11 @@ export default function AssetsLine({title , mapIndex}) {
               title === "NetSales" ? "فروش خالص و درآمد ارائه خدمات و ساير درآمدها" :
               title === "CostOfgoodssold" ? "بهاي تمام شده كالاي فروش رفته و خدمات" :
               title === "GrossProfit" ? "سود ناخالص " :
-              title === "SellingAdministrativeAndGeneralExpenses" ? "هزينههاي فروش، اداري و عمومي " :
-              title === "OtherOperatingExpenses" ? "ساير هزينههاي عملياتي" :
+              title === "SellingAdministrativeAndGeneralExpenses" ? "هزينه هاي فروش، اداري و عمومي " :
+              title === "OtherOperatingExpenses" ? "ساير هزينه هاي عملياتي" :
               title === "OperatingProfit" ? "سود عملياتي" :
-              title === "financialCosts" ? "هزينههاي مالي" :
-              title === "NonOperatingExpenses" ? "هزينههاي غيرعملياتي " :
+              title === "financialCosts" ? "هزينه هاي مالي" :
+              title === "NonOperatingExpenses" ? "هزينه هاي غيرعملياتي " :
               title === "NonOperatingIncome" ? "درآمدهاي غيرعملياتي" :
               title === "ProfitBeforeTax" ? "سود قبل از ماليات" :
               title === "incomeTax" ? "ماليات بر درآمد" :
