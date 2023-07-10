@@ -130,14 +130,13 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].name && showErr[index] && showErr[index].name ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].name}
                             name="name"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                             <select
@@ -153,26 +152,24 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].position && showErr[index] && showErr[index].position ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].position}
                             name="position"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="number"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].n_national}
                             name="n_national"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].n_national && showErr[index] && showErr[index].n_national && <span className='text-red-500 font-thin text-xs p-2'>{err[index].n_national}</span> }
                         </td>
 
 
@@ -184,32 +181,30 @@ export default function S2Boards({showAllErr , setSendAccept}) {
                             locale="fa"
                             placeholder="تاریخ را انتخاب کنید"
                             format="jYYYY/jMM/jDD"
+                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                         />
-                        {err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date && <span className='text-red-500 font-thin text-xs p-2'>{err[index].birth_date}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].education && showErr[index] && showErr[index].education ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].education}
                             name="education"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].education && showErr[index] && showErr[index].education && <span className='text-red-500 font-thin text-xs p-2'>{err[index].education}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
-                            className="border border-gray-300 rounded-xl w-full"
+                            className={err[index] && err[index].study && showErr[index] && showErr[index].study ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                             onChange={changeHandler}
                             value={stepTwo.boards[index].study}
                             name="study"
                             id={index}
                             onFocus={(e) => focusHandler(e , index)}
                         />
-                        {err[index] && err[index].study && showErr[index] && showErr[index].study && <span className='text-red-500 font-thin text-xs p-2'>{err[index].study}</span> }
                         </td>
                     </tr>
                     </>
