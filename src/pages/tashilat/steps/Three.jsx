@@ -42,11 +42,9 @@ export default function Three() {
     if (yesNumber === 0) {
       setOk(true)
     }
-  } , [err])
+  } , [err , stepThree])
   useEffect(() => {
-    setErr(VS2shareholders(stepThree.products))
-    setSendAccept(prev => ({...prev , products : VS2shareholders(stepThree.products)}))
-
+    
     
     if (showAllErr) {
         showErr.map((i , index)=> {
@@ -61,11 +59,13 @@ export default function Three() {
             arr[index] = newObj
             // console.log(arr);
             setShowErr(arr)
-        })
-    }
-    // console.log("hhhhhhhh");
-    console.log(showErr);
-
+          })
+        }
+        // console.log("hhhhhhhh");
+        console.log(showErr);
+        
+        setErr(VS2shareholders(stepThree.products))
+        setSendAccept(prev => ({...prev , products : VS2shareholders(stepThree.products)}))
   } , [showAllErr , stepThree])
 
   // for Validation

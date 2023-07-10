@@ -37,8 +37,8 @@ export default function S4Bills() {
                         </tr>
                     </thead>
                     <tbody>
-                        {stepFour.bills &&
-                            stepFour.bills.map((item, index) => {
+                        {stepFour.benefits &&
+                            stepFour.benefits.map((item, index) => {
                                 return (
                                     <BellsLine title={item.account} mapIndex={index} />
                                 )

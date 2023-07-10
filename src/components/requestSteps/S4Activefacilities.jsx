@@ -1,8 +1,60 @@
 import React, { useContext, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
+import { useEffect } from 'react';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 
-export default function S4Activefacilities() {
+
+export default function S4Activefacilities({showAllErr , setSendAccept}) {
     const { stepFour, setStepFour } = useContext(TashilatContext)
+        // for Validation
+        const [err , setErr] = useState([{name : "پر کنید"}])
+        const [showErr , setShowErr] = useState([])
+        // for Validation
+        console.log(err);
+        useEffect(() => {
+          if (showAllErr) {
+              showErr.map((i , index)=> {
+                  const arr = showErr
+                  const newObj = {
+                    year:true,
+                    name:true,
+                    amount_f:true,
+                    type_f:true,
+                    rate:true,
+                    type_collateral:true,
+                    n_refunds:true,
+                    n_remaining:true,
+                    amount_installment:true,
+                    remaining_f:true,
+                  }
+                  arr[index] = newObj
+                  // console.log(arr);
+                  setShowErr(arr)
+              })
+          }
+          // console.log("hhhhhhhh");
+          console.log(showErr);
+    
+          setErr(VS2shareholders(stepFour.active_facilities))
+          setSendAccept(prev => ({...prev , active_facilities : VS2shareholders(stepFour.active_facilities)}))
+        } , [showAllErr , stepFour])
+    
+        // for Validation
+        const focusHandler = (e , index) => {
+          if (showErr[index]) {
+              const arr = showErr
+              arr[index] = {...arr[index] , [e.target.name] : true}
+              setShowErr(arr)
+              
+          } else if (showErr[index] === undefined) {
+              const arr = showErr
+              arr[arr.length] = {[e.target.name] : true}
+              setShowErr(arr)
+          }
+          setErr(VS2shareholders(stepFour.active_facilities))
+          setSendAccept(prev => ({...prev , active_facilities : VS2shareholders(stepFour.active_facilities)}))
+        }
+    
     const changeHandler = (e) => {
         setStepFour(prevState => {
             const updatedPlaces = prevState.active_facilities.map((item, index) => {
@@ -28,8 +80,8 @@ export default function S4Activefacilities() {
                     فهرست تسهیلات فعال شرکت - فهرست تسهیلات تسویه شده (3 سال اخیر){" "}
                 </p>
             </div>
-
-            <div className=" ">
+            <span className='p-2 text-sm'>* فیلد های زمان تسویه حساب نهایی با فرمت : 9-10-1399 پر شود</span>
+            <div className=" mt-2">
                 <table className="w-full rounded-xl overflow-hidden">
                     <thead>
                         <tr className=" sticky top-0 text-xs border-b ">
@@ -63,106 +115,117 @@ export default function S4Activefacilities() {
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].year && showErr[index] && showErr[index].year ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].year}
                                                 name="year"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].name}
                                                 name="name"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].amount_f && showErr[index] && showErr[index].amount_f ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].amount_f}
                                                 name="amount_f"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
 
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].type_f && showErr[index] && showErr[index].type_f ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].type_f}
                                                 name="type_f"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
 
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].rate && showErr[index] && showErr[index].rate ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].rate}
                                                 name="rate"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].type_collateral && showErr[index] && showErr[index].type_collateral ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].type_collateral}
                                                 name="type_collateral"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].n_refunds && showErr[index] && showErr[index].n_refunds ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].n_refunds}
                                                 name="n_refunds"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].n_remaining && showErr[index] && showErr[index].n_remaining ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].n_remaining}
                                                 name="n_remaining"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].amount_installment && showErr[index] && showErr[index].amount_installment ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].amount_installment}
                                                 name="amount_installment"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                type="number"
+                                                className={ err[index] && err[index].remaining_f && showErr[index] && showErr[index].remaining_f ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_facilities[index].remaining_f}
                                                 name="remaining_f"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
+                                        {/* .................................................... */}
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
@@ -171,6 +234,7 @@ export default function S4Activefacilities() {
                                                 value={stepFour.active_facilities[index].settlement_time}
                                                 name="settlement_time"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                     </tr>
@@ -198,7 +262,7 @@ export default function S4Activefacilities() {
                                                         n_remaining:"",
                                                         amount_installment:"",
                                                         remaining_f:"",
-                                                        settlement_time:"" //2022-03-03
+                                                        settlement_time:"2022-03-03" //2022-03-03
                                                     },
                                                 ]
                                             }
