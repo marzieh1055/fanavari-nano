@@ -125,14 +125,13 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                 <td className="p-4 flex flex-col text-xs text-gray-600 font-bold">
                                     <input
                                         type="text"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].name}
                                         name="name"
                                         id={index}   
                                     />
-                                    {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs'>{err[index].name}</span> }
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <select
@@ -149,84 +148,78 @@ export default function S2Shareholders({showAllErr , setSendAccept}) {
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].n_certificate && showErr[index] && showErr[index].n_certificate ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].n_certificate}
                                         name="n_certificate"
                                         id={index}
                                     />
-                                    {err[index] && err[index].n_certificate && showErr[index] && showErr[index].n_certificate && <span className='text-red-500 font-thin text-xs'>{err[index].n_certificate}</span> }
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].n_national && showErr[index] && showErr[index].n_national ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].n_national}
                                         name="n_national"
                                         id={index}
                                     />
-                                    {err[index] && err[index].n_national && showErr[index] && showErr[index].n_national && <span className='text-red-500 font-thin text-xs'>{err[index].n_national}</span> }
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].count && showErr[index] && showErr[index].count ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].count}
                                         name="count"
                                         id={index}
                                     />
-                                    {err[index] && err[index].count && showErr[index] && showErr[index].count && <span className='text-red-500 font-thin text-xs'>{err[index].count}</span> }
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].percent && showErr[index] && showErr[index].percent ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].percent}
                                         name="percent"
                                         id={index}
                                     />
-                                    {err[index] && err[index].percent && showErr[index] && showErr[index].percent && <span className='text-red-500 font-thin text-xs'>{err[index].percent}</span> }
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="number"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].cost && showErr[index] && showErr[index].cost ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].cost}
                                         name="cost"
                                         id={index}
                                     />
-                                    {err[index] && err[index].cost && showErr[index] && showErr[index].cost && <span className='text-red-500 font-thin text-xs'>{err[index].cost}</span> }
                                     </div>
                                 </td>
                                 <td className="p-4 text-xs text-gray-600 font-bold">
                                     <div className="flex flex-col">
                                     <input
                                         type="text"
-                                        className="border border-gray-300 rounded-xl w-20"
+                                        className={err[index] && err[index].education && showErr[index] && showErr[index].education ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                                         onChange={changeHandler}
                                         onFocus={(e) => focusHandler(e , index)}
                                         value={stepTwo.shareholders[index].education}
                                         name="education"
                                         id={index}
                                     />
-                                    {err[index] && err[index].education && showErr[index] && showErr[index].education && <span className='text-red-500 font-thin text-xs'>{err[index].education}</span> }
                                     </div>
                                 </td>
                                 </tr>
