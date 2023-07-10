@@ -6,6 +6,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import Loader from "../../../components/Loader/Loader";
+import { ToastContainer, toast } from "react-toastify";
  
 
 export default function Confirm() {
@@ -87,6 +88,7 @@ export default function Confirm() {
       .catch((error) => {
         console.log(error);
         setIsLoading(false)
+        toast("مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید")
       })
   }
 
@@ -143,6 +145,7 @@ export default function Confirm() {
         action=" "
         className="tashilat-submit-form flex flex-col w-1/3 items-center mx-auto my-6 bg-white rounded-xl p-6"
       >
+        <ToastContainer />
         <span className="font-semibold text-sm text-gray-600    ">
           نام و نام خانوادگی مدیر عامل
         </span>

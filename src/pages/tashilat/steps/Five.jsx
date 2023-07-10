@@ -8,6 +8,7 @@ import queryString from "query-string";
 import { TashilatContext } from "../../../contexts/Tashilat.Provider";
 import Axios from "../../../../axiosinstancs";
 import Loader from "../../../components/Loader/Loader";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Five() {
   const navigate = useNavigate();
@@ -37,12 +38,14 @@ export default function Five() {
     .catch((err) => {
       console.log(err)
       setIsLoading(false)
+      toast("مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید")
     })
   }
 
   if (isLoading) return <Loader />
   return (
     <>
+    <ToastContainer />
       <S5Approvals />
       <S5contracts />
       <S5pledges />

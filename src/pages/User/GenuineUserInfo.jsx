@@ -113,41 +113,6 @@ export default function GenuineUserInfo() {
                 }
             }
 
-
-
-
-            // const newArr = res.data.reverse()
-            // Object.keys(sendDatas).map((item , index) => {
-            //     Object.keys(newArr[0]).map(ires => {
-            //         if (item === ires && ires !== "address" && ires !== "image") {
-            //             if (newArr[0][ires] !== null) {
-            //                 setSendDatas(prev => {
-            //                     return({
-            //                         ...prev,
-            //                         [ires] : newArr[0][ires] 
-            //                     })
-            //                 })
-            //             }
-            //         } else if (item === ires && ires === "address") {
-            //             Object.keys(newArr[0][ires]).map( j => {
-
-            //                 if (!["profile_genuine_id" , "id" , "created_at" , "updated_at"].includes(j)) {
-            //                     if (newArr[0][ires][j] !== null) {
-            //                         setSendDatas(prev => {
-            //                             return({
-            //                                 ...prev,
-            //                                 [j] : newArr[0][ires][j]
-            //                             })
-            //                         })
-            //                     }
-            //                 }
-            //             })
-            //         }
-            //     })
-            // })
-            // if (newArr[0].image !== null) {
-            //     setProfilePic(`https://backend.nanotf.ir/storage/app/${newArr[0].image}`)
-            // }
         })
         .catch((err) => {
             console.log(err);
@@ -212,11 +177,11 @@ export default function GenuineUserInfo() {
   if (isLoading) return <Loader />
   return (
     <div className="bg-white rounded-2xl mt-6 p-6">
+      <ToastContainer />
       <div className=" p-6">
         <p className="text-xl font-extrabold">اطلاعات کاربر حقیقی </p>
         {!editStatus && <p className="text-ms mt-3 font-ms">برای استفاده از امکانات سایت ابتدا مشخصات خود را کامل نمایید</p>}
       </div>
-      <ToastContainer />
       <hr />
       <div className="flex mt-6 items-center">
         {profilePic !== null ? <img src={profilePic} alt="" style={{borderRadius : "50%"}} className=" w-16 h-16" /> : <img src={user} alt="" className="w-16" />}

@@ -48,9 +48,9 @@ const FacilitiesDocuments = () => {
   if (isLoading) return <Loader />
   return (
     <form className="bg-white rounded-3xl mt-3 p-3">
-      <div style={{display:"flex" , justifyContent:"space-between"}}>
+      <div className="flex justify-between items-center">
         <p className=" font-bold p-4 py-6">مشاهده مدارک</p>
-         <p onClick={() => navigate(-1)} className="cursor-pointer hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
+         <p onClick={() => navigate(-1)} className="cursor-pointer h-fit hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
       </div>
       <hr className="border-dashed" />
       
