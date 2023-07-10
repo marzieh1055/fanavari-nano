@@ -111,7 +111,7 @@ export default function TashilatProvider({ children }) {
               specifications:"",
               competitor:"",
               sales_amount:"",
-              is_confirmation:true
+              is_confirmation: false
           }
       ]
   
@@ -154,7 +154,7 @@ export default function TashilatProvider({ children }) {
             due_date:""  //2022-10-10
         }
     ],
-    bills:[
+    benefits:[
         {
             account:"NetSales",
             last_balance_a:"", //55

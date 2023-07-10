@@ -6,7 +6,7 @@ export default function AssetsLine({title , mapIndex}) {
     const {stepFour, setStepFour} = useContext(TashilatContext)
     const changeHandler = (e) => {
         setStepFour(prevState => {
-            const updated = prevState.bills.map((item, index) => {
+            const updated = prevState.benefits.map((item, index) => {
               if (index === parseInt(e.target.id)) {
                 return {
                   ...item,
@@ -17,10 +17,10 @@ export default function AssetsLine({title , mapIndex}) {
             });
             return {
               ...prevState,
-              bills: updated
+              benefits: updated
             };
           });
-          console.log(stepFour.bills);
+          console.log(stepFour.benefits);
     }
   return (
     <tr className="bg-white  border-b">
@@ -48,9 +48,10 @@ export default function AssetsLine({title , mapIndex}) {
                 cols="30"
                 rows="10"
                 onChange={changeHandler}
-                value={stepFour.bills[mapIndex].last_balance_a}
+                value={stepFour.benefits[mapIndex].last_balance_a}
                 name="last_balance_a"
                 id={mapIndex}
+                required 
             ></textarea>
         </td>
         <td className="p-2">
@@ -59,9 +60,10 @@ export default function AssetsLine({title , mapIndex}) {
                 cols="30"
                 rows="10"
                 onChange={changeHandler}
-                value={stepFour.bills[mapIndex].last_year_a}
+                value={stepFour.benefits[mapIndex].last_year_a}
                 name="last_year_a"
                 id={mapIndex}
+                required 
             ></textarea>
         </td>
         <td className="p-2">
@@ -71,9 +73,10 @@ export default function AssetsLine({title , mapIndex}) {
                 cols="30"
                 rows="10"
                 onChange={changeHandler}
-                value={stepFour.bills[mapIndex].two_years_a}
+                value={stepFour.benefits[mapIndex].two_years_a}
                 name="two_years_a"
                 id={mapIndex}
+                required 
             ></textarea>
         </td>
         <td className="p-2">
@@ -83,9 +86,10 @@ export default function AssetsLine({title , mapIndex}) {
                 cols="30"
                 rows="10"
                 onChange={changeHandler}
-                value={stepFour.bills[mapIndex].three_years_a}
+                value={stepFour.benefits[mapIndex].three_years_a}
                 name="three_years_a"
                 id={mapIndex}
+                required 
             ></textarea>
         </td>
     </tr>

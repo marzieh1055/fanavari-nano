@@ -1,8 +1,57 @@
 import React, { useContext, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
-export default function S4Activewarranty() {
+import { useEffect } from 'react';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
+export default function S4Activewarranty({showAllErr , setSendAccept}) {
 
     const { stepFour, setStepFour } = useContext(TashilatContext)
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+    // for Validation
+    console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                name: true,
+                amount: true,
+                subject: true,
+                institution: true,
+                type_w: true,
+                type_collateral: true,
+                deposit_amount: true,
+                received: true, //2022-10-10
+                due_date: true
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepFour.active_warranty))
+      setSendAccept(prev => ({...prev , active_warranty : VS2shareholders(stepFour.active_warranty)}))
+    } , [showAllErr , stepFour])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepFour.active_warranty))
+      setSendAccept(prev => ({...prev , active_warranty : VS2shareholders(stepFour.active_warranty)}))
+    }
     const changeHandler = (e) => {
         setStepFour(prevState => {
             const updatedPlaces = prevState.active_warranty.map((item, index) => {
@@ -28,8 +77,8 @@ export default function S4Activewarranty() {
                     فهرست ضمانتنامه فعال شرکت - فهرست ضمانتنامه باطل شده (3 سال اخیر){" "}
                 </p>
             </div>
-
-            <div className=" ">
+            <span className='p-2 text-sm'>* فیلد های تاریخ اخذ و تاریخ سر رسید نهایی با فرمت : 9-10-1399 پر شود</span>
+            <div className="mt-2 ">
                 <table className="w-full rounded-xl overflow-hidden">
                     <thead>
                         <tr className=" sticky top-0 text-xs border-b ">
@@ -65,93 +114,102 @@ export default function S4Activewarranty() {
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].name}
                                                 name="name"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].amount && showErr[index] && showErr[index].amount ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].amount}
                                                 name="amount"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].subject && showErr[index] && showErr[index].subject ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].subject}
                                                 name="subject"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
 
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].institution && showErr[index] && showErr[index].institution ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].institution}
                                                 name="institution"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
 
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].type_w && showErr[index] && showErr[index].type_w ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].type_w}
                                                 name="type_w"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].type_collateral && showErr[index] && showErr[index].type_collateral ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].type_collateral}
                                                 name="type_collateral"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].deposit_amount && showErr[index] && showErr[index].deposit_amount ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].deposit_amount}
                                                 name="deposit_amount"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].received && showErr[index] && showErr[index].received ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].received}
                                                 name="received"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
+                                                className={ err[index] && err[index].due_date && showErr[index] && showErr[index].due_date ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].due_date}
                                                 name="due_date"
                                                 id={index}
+                                                onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
                                     </tr>

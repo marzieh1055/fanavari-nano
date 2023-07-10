@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TashilatContext } from '../../../contexts/Tashilat.Provider';
 import { useContext } from 'react';
 
 export default function AssetsLine({title , mapIndex}) {
     const {stepFour, setStepFour} = useContext(TashilatContext)
+
     const changeHandler = (e) => {
         setStepFour(prevState => {
             const updated = prevState.assets.map((item, index) => {
@@ -57,50 +58,48 @@ export default function AssetsLine({title , mapIndex}) {
             }
         </td>
         <td className="p-2">
-            <textarea
+            <input
+                type='number'
                 className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                cols="30"
-                rows="10"
                 onChange={changeHandler}
                 value={stepFour.assets[mapIndex].last_balance_a}
                 name="last_balance_a"
                 id={mapIndex}
-            ></textarea>
+                required 
+            />
         </td>
         <td className="p-2">
-            <textarea
+            <input
+                type='number'
                 className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                cols="30"
-                rows="10"
                 onChange={changeHandler}
                 value={stepFour.assets[mapIndex].last_year_a}
                 name="last_year_a"
                 id={mapIndex}
-            ></textarea>
+                required 
+            />
         </td>
         <td className="p-2">
-            <textarea
+            <input
+                type='number'
                 className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                
-                cols="30"
-                rows="10"
                 onChange={changeHandler}
                 value={stepFour.assets[mapIndex].two_years_a}
                 name="two_years_a"
                 id={mapIndex}
-            ></textarea>
+                required 
+            />
         </td>
         <td className="p-2">
-            <textarea
+            <input
+                type='number'
                 className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                
-                cols="30"
-                rows="10"
                 onChange={changeHandler}
                 value={stepFour.assets[mapIndex].three_years_a}
                 name="three_years_a"
                 id={mapIndex}
-            ></textarea>
+                required 
+            />
         </td>
     </tr>
   )

@@ -26,10 +26,10 @@ export default function Two() {
   const [showAllErr , setShowAllErr] = useState(false)
   const [sendAccept , setSendAccept] = useState({
     shareholders : [{name : ""}] ,
-    // boards : false ,
+    boards : [{name : ""}] ,
     residences : [{name : ""}] ,
     manpowers : [{name : ""}] ,
-    // educational : false ,
+    educational : [{name : ""}] ,
   })
 
   const [ok , setOk] = useState(false)

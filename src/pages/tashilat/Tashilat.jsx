@@ -6,13 +6,16 @@ import Loader from "../../components/Loader/Loader";
 
 export default function Tashilat() {
   let { pathname: pass } = useLocation();
-  console.log(pass.split("/"));
   const [stepLevel , setStepLevel] = useState(pass.split("/")[3])
+  console.log(stepLevel);
 
   const {userDatas} = useContext(UserDataContext)
   const navigate = useNavigate()
   const [isLoading , setIsLoading] = useState(true)
 
+  useEffect(() => {
+    setStepLevel(pass.split("/")[3])
+  } , [pass])
   useEffect(() => {
     Axios.get("/api/v1/is_profile_genuine")
     .then((res) => {
