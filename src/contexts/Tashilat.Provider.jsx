@@ -111,7 +111,7 @@ export default function TashilatProvider({ children }) {
               specifications:"",
               competitor:"",
               sales_amount:"",
-              is_confirmation:true
+              is_confirmation: false
           }
       ]
   
