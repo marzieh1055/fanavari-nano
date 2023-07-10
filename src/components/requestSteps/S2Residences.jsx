@@ -45,7 +45,7 @@ export default function S2Residences({showAllErr , setSendAccept}) {
       }
       setErr(VS2shareholders(stepTwo.residences))
       setSendAccept(prev => ({...prev , residences : VS2shareholders(stepTwo.residences)}))
-  }
+    }
 
     const changeHandler = (e) => {
         setStepTwo(prevState => {

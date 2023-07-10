@@ -1,8 +1,54 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 
-export default function S2Educational() {
+export default function S2Educational({showAllErr , setSendAccept}) {
     const {stepTwo, setStepTwo} = useContext(TashilatContext)
+
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+       // for Validation
+       console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                name:true,
+                university:true,
+                study:true,
+                position:true,
+                records:true
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepTwo.educational))
+      setSendAccept(prev => ({...prev , educational : VS2shareholders(stepTwo.educational)}))
+    } , [showAllErr , stepTwo])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepTwo.educational))
+      setSendAccept(prev => ({...prev , educational : VS2shareholders(stepTwo.educational)}))
+    }
+
     const changeHandler = (e) => {
         setStepTwo(prevState => {
             const updated = prevState.educational.map((item, index) => {
@@ -57,7 +103,9 @@ export default function S2Educational() {
                             value={stepTwo.educational[index].name}
                             name="name"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -67,7 +115,9 @@ export default function S2Educational() {
                             value={stepTwo.educational[index].university}
                             name="university"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].university && showErr[index] && showErr[index].university && <span className='text-red-500 font-thin text-xs p-2'>{err[index].university}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -77,7 +127,9 @@ export default function S2Educational() {
                             value={stepTwo.educational[index].study}
                             name="study"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].study && showErr[index] && showErr[index].study && <span className='text-red-500 font-thin text-xs p-2'>{err[index].study}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -87,7 +139,9 @@ export default function S2Educational() {
                             value={stepTwo.educational[index].position}
                             name="position"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                         </td>
                     </tr>
 
@@ -102,7 +156,9 @@ export default function S2Educational() {
                             id={index}
                             cols="30"
                             rows="10"
+                            onFocus={(e) => focusHandler(e , index)}
                         ></textarea>
+                        {err[index] && err[index].records && showErr[index] && showErr[index].records && <span className='text-red-500 font-thin text-xs p-2'>{err[index].records}</span> }
                         </td>
                     </tr>
                     </>

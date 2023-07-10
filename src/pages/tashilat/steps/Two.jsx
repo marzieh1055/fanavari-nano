@@ -28,7 +28,7 @@ export default function Two() {
     shareholders : [{name : ""}] ,
     // boards : false ,
     residences : [{name : ""}] ,
-    // manpowers : false ,
+    manpowers : [{name : ""}] ,
     // educational : false ,
   })
 
@@ -85,9 +85,9 @@ export default function Two() {
       {/* ای پی آی نداشت باید اضافه شه */}
       {/* <S2TarkibHeyatmodire /> */}
       <S2Residences showAllErr={showAllErr} setSendAccept={setSendAccept} />
-      <S2Manpowers />
-      <S2Boards />
-      <S2Educational />
+      <S2Manpowers showAllErr={showAllErr} setSendAccept={setSendAccept} />
+      <S2Boards showAllErr={showAllErr} setSendAccept={setSendAccept} />
+      <S2Educational showAllErr={showAllErr} setSendAccept={setSendAccept} />
 
         <div className=" text-left mt-2">
           {/* {console.log(sendAccept)} */}

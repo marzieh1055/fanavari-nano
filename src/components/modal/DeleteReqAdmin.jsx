@@ -3,7 +3,7 @@ import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function DeleteReqAdmin({ close , id , toast }) {
+export default function DeleteReqAdmin({ close , id , toast , setUp }) {
   const navigate = useNavigate();
 
   const [IsLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function DeleteReqAdmin({ close , id , toast }) {
     const isLoggedIn = token ? true : false;
 
     // اینجا
-    axios.delete(`/api/admin/request/${id}`, {
+    axios.delete(`/api/v1/request/${id}`, {
         headers: {
           "Content-Type": "multipart/form-data",
           ...(isLoggedIn && {
@@ -29,6 +29,7 @@ export default function DeleteReqAdmin({ close , id , toast }) {
         setIsLoading(false)
         toast("حذف با موفقیت انجام شد")
         close(false)
+        setUp(prev => prev + 1)
     })
     .catch((err) => {
         setIsLoading(false)

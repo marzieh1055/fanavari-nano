@@ -1,8 +1,54 @@
-import React, { useContext } from 'react'
+import React, { useContext , useEffect , useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 
-export default function S2Manpowers() {
+export default function S2Manpowers({showAllErr , setSendAccept}) {
     const {stepTwo, setStepTwo} = useContext(TashilatContext)
+
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+       // for Validation
+       console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                name:true,
+                position:true,
+                level_education:true,
+                study:true,
+                work_experience:true,
+                important:true
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepTwo.manpowers))
+      setSendAccept(prev => ({...prev , manpowers : VS2shareholders(stepTwo.manpowers)}))
+    } , [showAllErr , stepTwo])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepTwo.manpowers))
+      setSendAccept(prev => ({...prev , manpowers : VS2shareholders(stepTwo.manpowers)}))
+    }
     const changeHandler = (e) => {
         setStepTwo(prevState => {
             const updated = prevState.manpowers.map((item, index) => {
@@ -54,7 +100,7 @@ export default function S2Manpowers() {
                         {index}
                     </td>
 
-                    <td className="p-4 text-xs text-gray-600 font-bold">
+                    <td className="flex flex-col p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
                             className="border border-gray-300 rounded-xl w-20"
@@ -62,11 +108,13 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].name}
                             name="name"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> } 
                     </td>
 
                     <td className="p-4 text-xs text-gray-600 font-bold">
-                        <div className="flex">
+                        <div className="flex flex-col items-center">
                         <input
                             type="text"
                             className="border border-gray-300 rounded-xl w-20"
@@ -74,11 +122,13 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].position}
                             name="position"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                         </div>
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
-                        <div className="flex">
+                        <div className="flex flex-col items-center">
                         <input
                             type="text"
                             className="border border-gray-300 rounded-xl w-20"
@@ -86,11 +136,13 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].level_education}
                             name="level_education"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].level_education && showErr[index] && showErr[index].level_education && <span className='text-red-500 font-thin text-xs p-2'>{err[index].level_education}</span> }
                         </div>
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
-                        <div className="flex">
+                        <div className="flex flex-col items-center">
                         <input
                             type="text"
                             className="border border-gray-300 rounded-xl w-20"
@@ -98,7 +150,9 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].study}
                             name="study"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].study && showErr[index] && showErr[index].study && <span className='text-red-500 font-thin text-xs p-2'>{err[index].study}</span> }
                         </div>
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
@@ -109,11 +163,11 @@ export default function S2Manpowers() {
                             className="border-gray-300 rounded-xl w-32 text-xs"
                         >
                         <option value="full">تمام وقت </option>
-                        <option value="حقوقی">پاره وقت</option>
+                        <option value="part">پاره وقت</option>
                         </select>
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
-                        <div className="flex">
+                        <div className="flex flex-col items-center">
                         <input
                             type="number"
                             className="border border-gray-300 rounded-xl w-20"
@@ -121,12 +175,14 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].work_experience}
                             name="work_experience"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].work_experience && showErr[index] && showErr[index].work_experience && <span className='text-red-500 font-thin text-xs p-2'>{err[index].work_experience}</span> }
                         </div>
                     </td>
 
                     <td className="p-4 text-xs text-gray-600 font-bold">
-                        <div className="flex">
+                        <div className="flex flex-col items-center">
                         <input
                             type="text"
                             className="border border-gray-300 rounded-xl w-20"
@@ -134,7 +190,9 @@ export default function S2Manpowers() {
                             value={stepTwo.manpowers[index].important}
                             name="important"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].important && showErr[index] && showErr[index].important && <span className='text-red-500 font-thin text-xs p-2'>{err[index].important}</span> }
                         </div>
                     </td>
                     </tr>

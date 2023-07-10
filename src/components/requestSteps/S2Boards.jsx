@@ -1,8 +1,54 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 import { DatePicker } from 'zaman';
-export default function S2Boards() {
+export default function S2Boards({showAllErr , setSendAccept}) {
     const {stepTwo, setStepTwo} = useContext(TashilatContext)
+
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+       // for Validation
+       console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                name:true, 
+                position:true, 
+                n_national:true, 
+                birth_date:true, 
+                education:true, 
+                study:true 
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepTwo.boards))
+      setSendAccept(prev => ({...prev , boards : VS2shareholders(stepTwo.boards)}))
+    } , [showAllErr , stepTwo])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepTwo.boards))
+      setSendAccept(prev => ({...prev , boards : VS2shareholders(stepTwo.boards)}))
+    }
 
     const changeHandler = (e) => {
         setStepTwo(prevState => {
@@ -89,7 +135,9 @@ export default function S2Boards() {
                             value={stepTwo.boards[index].name}
                             name="name"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].name && showErr[index] && showErr[index].name && <span className='text-red-500 font-thin text-xs p-2'>{err[index].name}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                             <select
@@ -102,16 +150,6 @@ export default function S2Boards() {
                             <option value="legal">حقوقی</option>
                             </select>
                         </td>
-                        {/* <td className="p-4 text-xs text-gray-600 font-bold">
-                        <input
-                            type="text"
-                            className="border border-gray-300 rounded-xl w-full"
-                            onChange={changeHandler}
-                            value={stepTwo.boards[index].type}
-                            name="university"
-                            id={index}
-                        />
-                        </td> */}
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
                             type="text"
@@ -120,7 +158,9 @@ export default function S2Boards() {
                             value={stepTwo.boards[index].position}
                             name="position"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].position && showErr[index] && showErr[index].position && <span className='text-red-500 font-thin text-xs p-2'>{err[index].position}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -130,7 +170,9 @@ export default function S2Boards() {
                             value={stepTwo.boards[index].n_national}
                             name="n_national"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].n_national && showErr[index] && showErr[index].n_national && <span className='text-red-500 font-thin text-xs p-2'>{err[index].n_national}</span> }
                         </td>
 
 
@@ -143,7 +185,7 @@ export default function S2Boards() {
                             placeholder="تاریخ را انتخاب کنید"
                             format="jYYYY/jMM/jDD"
                         />
-
+                        {err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date && <span className='text-red-500 font-thin text-xs p-2'>{err[index].birth_date}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -153,7 +195,9 @@ export default function S2Boards() {
                             value={stepTwo.boards[index].education}
                             name="education"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].education && showErr[index] && showErr[index].education && <span className='text-red-500 font-thin text-xs p-2'>{err[index].education}</span> }
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <input
@@ -163,7 +207,9 @@ export default function S2Boards() {
                             value={stepTwo.boards[index].study}
                             name="study"
                             id={index}
+                            onFocus={(e) => focusHandler(e , index)}
                         />
+                        {err[index] && err[index].study && showErr[index] && showErr[index].study && <span className='text-red-500 font-thin text-xs p-2'>{err[index].study}</span> }
                         </td>
                     </tr>
                     </>

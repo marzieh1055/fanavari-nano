@@ -20,10 +20,12 @@ export default function DeleteReq({ close , id , toast }) {
   useEffect(() => {
     const errObj = {}
     Object.keys(sendData).map((item , index) => {
-      if (sendData[item] === "") {
-        errObj[item] = "این فیلد نباید خالی باشد"
-      } else {
-        delete errObj[item]
+      if (item === "description") {
+        if (sendData[item] === "") {
+          errObj[item] = "این فیلد نباید خالی باشد"
+        } else {
+          delete errObj[item]
+        }
       }
     })
     setErr(errObj)
@@ -71,7 +73,7 @@ export default function DeleteReq({ close , id , toast }) {
               </div>
                 <p className='text-sm p-4'>نام فایل : {sendData.file && sendData.file.name}</p>
                 {err.description && showErr && <span className='text-sm text-red-400'>*فیلد توضیحات نباید خالی باشد</span>}
-                {err.file && showErr && <span className='text-sm text-red-400'>*فیلد فایل نباید خالی باشد</span>}
+                {/* {err.file && showErr && <span className='text-sm text-red-400'>*فیلد فایل نباید خالی باشد</span>} */}
               <div className='flex'>
                 <button onClick={() => close(false)}  className="w-full m-1 rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs" >بستن</button>
                 {

@@ -1,10 +1,7 @@
 import React , { useContext, useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
-import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import Loader from '../../components/Loader/Loader'
-import { Link } from "react-router-dom";
 import { UserDataContext } from "../../contexts/UserData.Provider";
-import user from "../../assets/imges/user.png"
 import DeleteReqAdmin from "../../components/modal/DeleteReqAdmin";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -12,9 +9,11 @@ export default function ViewDeleteReqs() {
   const {userDatas} = useContext(UserDataContext)
   const [isLoading , setIsLoading] = useState(true)
   const [showDeleteReq, setShowDeleteReq] = useState(false)
+  const [up , setUp] = useState(0)
   
   const [reqDatas , setReqDatas] = useState([])
   useEffect(() => {
+    setIsLoading(true)
     Axios.get(`/api/admin/get_request_delete`)
     .then((res) => {
       console.log(res);
@@ -24,7 +23,7 @@ export default function ViewDeleteReqs() {
     .catch((err) => {
       console.log(err);
     })
-  },[])
+  },[up])
   return (
     <div>
       <ToastContainer />
@@ -38,7 +37,7 @@ export default function ViewDeleteReqs() {
           // console.log(item);
           return (
             <div key={item.id} className="p-3 w-1/3">
-                {showDeleteReq && <DeleteReqAdmin close={setShowDeleteReq} id={item.request.id} toast={toast}/>}
+                {showDeleteReq && <DeleteReqAdmin close={setShowDeleteReq} id={item.request.id} toast={toast} setUp={setUp}/>}
                 <div className="bg-white rounded-xl p-4 flex flex-col ">
                   <p>شناسه درخواست : <span className="text-blue-500">{item.request.shenaseh}</span></p>
                   <div>
@@ -62,6 +61,12 @@ export default function ViewDeleteReqs() {
             )
           })
         }
+      {
+        !reqDatas[0] && 
+        <div className="w-full mt-[50px] flex justify-center">
+          <p >درخواست حذفی وجود ندارد</p>
+        </div>
+      }
       </div>
     </div>
   );

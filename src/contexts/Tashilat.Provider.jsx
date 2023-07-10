@@ -77,13 +77,13 @@ export default function TashilatProvider({ children }) {
       ],
       manpowers:[
           {
-              name:"test",
-              position:"test",
-              level_education:"test",
-              study:"test",
+              name:"",
+              position:"",
+              level_education:"",
+              study:"",
               type_contract:"full",
-              work_experience:"44",
-              important:"test"
+              work_experience:"",
+              important:""
           }
       ],
       educational:[
