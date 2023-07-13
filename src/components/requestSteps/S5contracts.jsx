@@ -66,7 +66,7 @@ export default function S5contracts() {
               <th className="bg-white p-3 text-center ">رديف </th>
               <th className="bg-white p-3 text-center ">موضوع قرارداد</th>
               <th className="bg-white p-3 text-center ">نام کارفرما</th>
-              <th className="bg-white p-3 text-center ">مبلغ( میلیون ریال)</th>
+              <th className="bg-white p-3 text-center ">مبلغ(میلیون ریال)</th>
               <th className="bg-white p-3 text-center ">تاریخ شروع</th>
               <th className="bg-white p-3 text-center ">تاریخ پایان</th>
               <th className="bg-white p-3 text-center ">درصد پیشرفت</th>
@@ -84,7 +84,7 @@ export default function S5contracts() {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className="border border-gray-300 rounded-xl w-20"
                         onChange={changeHandler}
                         value={stepFive.contracts[index].subject}
                         name="subject"
@@ -109,6 +109,10 @@ export default function S5contracts() {
                         value={stepFive.contracts[index].amount}
                         name="amount"
                         id={index}
+<<<<<<< HEAD
+                        placeholder='10'
+=======
+>>>>>>> f37ff7d4c7b0eb0b46f0f6e0267ab63d1f4885d3
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">

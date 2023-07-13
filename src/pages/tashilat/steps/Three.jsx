@@ -211,8 +211,13 @@ export default function Three() {
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
+<<<<<<< HEAD
+                        type="text"
+                        className="border border-gray-300 rounded-xl w-full"
+=======
                         type="number"
                         className={err[index] && err[index].sales_amount && showErr[index] && showErr[index].sales_amount ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
+>>>>>>> f37ff7d4c7b0eb0b46f0f6e0267ab63d1f4885d3
                         onChange={changeHandler}
                         value={stepThree.products[index].sales_amount}
                         name="sales_amount"

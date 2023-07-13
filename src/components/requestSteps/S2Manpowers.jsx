@@ -82,11 +82,11 @@ export default function S2Manpowers({ showAllErr, setSendAccept }) {
                             <th className="bg-white p-3  ">رديف </th>
                             <th className="bg-white p-3  ">نام و نام خانوادگي</th>
                             <th className="bg-white p-3  ">سمت</th>
-                            <th className="bg-white p-3  ">سطح تحصيالات</th>
+                            <th className="bg-white p-3  "> تحصیلات</th>
                             <th className="bg-white p-3  ">رشته تحصيلي</th>
                             <th className="bg-white p-3  ">نوع قرارداد </th>
                             <th className="bg-white p-3  ">سابقه کار مرتبط (سال)</th>
-                            <th className="bg-white p-3  ">اهم سوابق کاري</th>
+                            <th className="bg-white p-3  ">سوابق کاري</th>
                         </tr>
                     </thead>
                     <tbody>
