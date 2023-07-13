@@ -109,10 +109,7 @@ export default function S5contracts() {
                         value={stepFive.contracts[index].amount}
                         name="amount"
                         id={index}
-<<<<<<< HEAD
                         placeholder='10'
-=======
->>>>>>> f37ff7d4c7b0eb0b46f0f6e0267ab63d1f4885d3
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
