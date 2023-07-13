@@ -50,6 +50,7 @@ import TestticketExpert from "./pages/Ticket/TestticketExpert";
 import ExpertInfo from "./pages/Expert/ExpertInfo";
 import ChangepassE from "./pages/Register/ChangepassE";
 import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
+import UpdateFact from "./components/updateFacts/UpdateFacts";
 
 const routes = [
   {
@@ -92,6 +93,8 @@ const routes = [
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       { path: "404", element: <ErrorPage /> },
       {path:"changePass" , element: <Changepass />},
+
+      { path: "updateFact/:id", element: <UpdateFact /> },
       
       { path: "expertChangePassword/:id", element: <ChangepassE /> },
       { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
