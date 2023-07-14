@@ -190,6 +190,7 @@ const changeHandler = (e) => {
                                     {" "}
                                     افزودن ردیف{" "}
                                 </button>
+                                {err && <span className='text-red-500 text-center'>*همه فیلد ها باید پر شوند</span>}
                             </td>
                         </tr>
                     </tbody>

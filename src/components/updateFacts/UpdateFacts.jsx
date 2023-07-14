@@ -94,7 +94,7 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" } */}
         { showDoc !== null &&  showDoc.select === "product" ? <S3 close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
-        { showDoc !== null &&  showDoc.select === "educational" ? <S2EducationalUP data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
+        { showDoc !== null &&  showDoc.select === "educational" ? <S2EducationalUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
 
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
