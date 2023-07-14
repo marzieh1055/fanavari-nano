@@ -10,6 +10,7 @@ import S2ViewShareholder from "../../components/modal/ViewDocFModals/S2ViewShare
 import { itemTitle } from "../../helper/itemTitle";
 import S1PlacesUp from "./components/S1PlacesUp";
 import { ToastContainer, toast } from "react-toastify";
+import S2ResidencesUp from "./components/S2ResidencesUp";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -66,6 +67,7 @@ const UpdateFact = () => {
           </p>
         </div>
         { showDoc !== null &&  showDoc.select === "place" ? <S1PlacesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "residence" ? <S2ResidencesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "residence" ? <S2residenceView data={showDoc.data} close={setShowDoc} /> : "" }

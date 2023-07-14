@@ -67,7 +67,7 @@ export default function S2Residences({showAllErr , setSendAccept}) {
     }
   return (
     <>
-        <div className=" py-6 mt-4">
+      <div className=" py-6 mt-4">
         <p className="text-lg font-extrabold">
           آدرس محل سكونت اعضای هیئت مدیره فعلي شرکت :{" "}
         </p>
