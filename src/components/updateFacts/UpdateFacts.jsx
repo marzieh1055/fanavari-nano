@@ -6,7 +6,6 @@ import { useState } from "react";
 import Loader from "../../components/Loader/Loader"
 import S1Places from "../../components/modal/ViewDocFModals/S1Places";
 import { dateConversion } from "../../helper/dateConversion.cjs";
-import S2ViewShareholder from "../../components/modal/ViewDocFModals/S2ViewShareholder";
 import { itemTitle } from "../../helper/itemTitle";
 import S1PlacesUp from "./components/S1PlacesUp";
 import { ToastContainer, toast } from "react-toastify";
