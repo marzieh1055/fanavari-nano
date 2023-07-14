@@ -8,7 +8,7 @@ export default function S3({ close, data, id, toast }) {
 
     const [isLoading, setIsLoading] = useState(false);
     const [err, setErr] = useState(false);
-    const { stepThree, setStepThree } = useState({
+    const [stepThree, setStepThree ] = useState({
         products: [
             ...data
         ],
