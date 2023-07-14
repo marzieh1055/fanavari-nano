@@ -11,6 +11,7 @@ import { itemTitle } from "../../helper/itemTitle";
 import S1PlacesUp from "./components/S1PlacesUp";
 import { ToastContainer, toast } from "react-toastify";
 import S2ResidencesUp from "./components/S2ResidencesUp";
+import S3 from "./components/S3";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -84,6 +85,8 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgeV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" } */}
+        { showDoc !== null &&  showDoc.select === "product" ? <S3 close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
             {
