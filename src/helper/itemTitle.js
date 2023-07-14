@@ -33,6 +33,8 @@ export const itemTitle = (name) => {
         return "فهرست دارایی‌های شرکت، مدیران، سهامداران، ضامنین (دریافت فهرست دارایی‌های شرکت و مدیران تنها برای افزایش حد اعتباری شرکت می‌باشد)"
     } else if (name === "introduction") {
         return "تاریخچه و معرفی اجمالی شرکت"
+    } else if (name === "board") {
+        return "ترکیب اعضای هیئت مدیره"
     } else {
         return name
     }
