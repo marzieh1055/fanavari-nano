@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from '../../../../axiosinstancs'
 import Loader from '../../Loader/Loader';
 
@@ -6,12 +6,29 @@ export default function S2ResidencesUp({close , data , id , toast }) {
     console.log(data);
 
     const [isLoading , setIsLoading] = useState(false)
+    const [err , setErr] = useState(false)
     const [stepTwo , setStepTwo] = useState({
       residences: [
             ...data
         ],
     })
 
+    useEffect(() => {
+      setErr(false)
+      let count = 0
+      Object.keys(stepTwo).map((item) => {
+        stepTwo[item].map(j => {
+          Object.keys(j).map((k) => {
+            if (j[k] === "") {
+              count += 1
+            }
+          })
+        })
+      })
+      if (count > 0) {
+        setErr(true)
+      }
+    } , [stepTwo])
     const changeHandler = (e) => {
       setStepTwo(prevState => {
           const updated = prevState.residences.map((item, index) => {
@@ -35,15 +52,15 @@ export default function S2ResidencesUp({close , data , id , toast }) {
       e.preventDefault()
       setStepTwo(prev => (
         {
-            ...prev ,
-            residences : [
-                ...prev.residences,
-                {
-                    name:"",
-                    position:"",
-                    address:""
-                },
-            ]
+          ...prev ,
+          residences : [
+            ...prev.residences,
+            {
+              name:"",
+              position:"",
+              address:""
+            },
+          ]
         }
     ));
     }
@@ -87,7 +104,7 @@ export default function S2ResidencesUp({close , data , id , toast }) {
           <tbody>
             {stepTwo.residences.length > 0 &&
               stepTwo.residences.map((item, index) => (
-                <tr className="bg-white  border-b">
+                <tr key={index} className="bg-white  border-b">
                   <td className="p-4 text-xs text-gray-800 font-bold">
                     {index}
                   </td>
@@ -143,6 +160,7 @@ export default function S2ResidencesUp({close , data , id , toast }) {
                   {" "}
                   افزودن ردیف{" "}
                 </button>
+                {err && <span className='text-red-500 text-center'>*همه فیلد ها باید پر شوند</span>}
               </td>
             </tr>
           </tbody>

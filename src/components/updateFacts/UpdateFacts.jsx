@@ -11,6 +11,9 @@ import { itemTitle } from "../../helper/itemTitle";
 import S1PlacesUp from "./components/S1PlacesUp";
 import { ToastContainer, toast } from "react-toastify";
 import S2ResidencesUp from "./components/S2ResidencesUp";
+import S2ShareholdersUp from "./components/S2ShareholdersUp";
+import S2ManpowersUp from "./components/S2ManpowersUp";
+import S2BoardsUp from "./components/S2BoardsUp";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -41,7 +44,7 @@ const UpdateFact = () => {
     <form className="bg-white rounded-3xl mt-3 p-3">
       <ToastContainer />
       <div className="flex justify-between items-center">
-        <p className=" font-bold p-4 py-6">مشاهده مدارک</p>
+        <p className=" font-bold p-4 py-6">مشاهده و تغییر مدارک</p>
           <p onClick={() => navigate(-1)} className="cursor-pointer h-fit hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
       </div>
       <hr className="border-dashed" />
@@ -68,6 +71,11 @@ const UpdateFact = () => {
         </div>
         { showDoc !== null &&  showDoc.select === "place" ? <S1PlacesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "residence" ? <S2ResidencesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ShareholdersUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "manpower" ? <S2ManpowersUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "board" ? <S2BoardsUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        {/* این بورد رو باید توی ویو برا مدیرم بزاریم نزاشته بود */}
+        
         {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "residence" ? <S2residenceView data={showDoc.data} close={setShowDoc} /> : "" }
@@ -90,7 +98,7 @@ const UpdateFact = () => {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {
                   // console.log(keyss);
-                  if (["approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
+                  if (["board" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
                     return (
                       <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                         <div className="flex gap-x-4">
