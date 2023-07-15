@@ -15,6 +15,8 @@ import S2ManpowersUp from "./components/S2ManpowersUp";
 import S2BoardsUp from "./components/S2BoardsUp";
 import S3 from "./components/S3";
 import S2EducationalUP from "./components/S2EducationalUP";
+import S4BillsUp from "../updateFacts/components/S4BillsUp"
+import S4AssetsTUp from "./components/S4AssetsTUp.js";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -76,6 +78,8 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "manpower" ? <S2ManpowersUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "board" ? <S2BoardsUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         {/* این بورد رو باید توی ویو برا مدیرم بزاریم نزاشته بود */}
+        { showDoc !== null &&  showDoc.select === "benefit" ? <S4BillsUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "asset" ? <S4AssetsTUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         
         {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }

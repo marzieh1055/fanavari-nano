@@ -2,7 +2,7 @@ import React from 'react'
 import { TashilatContext } from '../../../contexts/Tashilat.Provider';
 import { useContext } from 'react';
 
-export default function AssetsLine({title , mapIndex}) {
+export default function BellsLine({title , mapIndex}) {
     const {stepFour, setStepFour} = useContext(TashilatContext)
     const changeHandler = (e) => {
         setStepFour(prevState => {
