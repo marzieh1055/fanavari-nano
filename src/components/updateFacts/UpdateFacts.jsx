@@ -13,12 +13,13 @@ import S2ResidencesUp from "./components/S2ResidencesUp";
 import S2ShareholdersUp from "./components/S2ShareholdersUp";
 import S2ManpowersUp from "./components/S2ManpowersUp";
 import S2BoardsUp from "./components/S2BoardsUp";
-import S3 from "./components/S3";
+import S3UP from "./components/S3";
 import S2EducationalUP from "./components/S2EducationalUP";
 import S4BillsUp from "../updateFacts/components/S4BillsUp"
 import S4AssetsTUp from "./components/S4AssetsTUp.js";
 import S4ActivewarrantyUp from "./components/S4ActivewarrantyUp";
 import S4ActivefacilitiesUp from "./components/S4ActivefacilitiesUp";
+import S4bankUP from "./components/S4bankUP"
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -101,8 +102,9 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgeV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" } */}
-        { showDoc !== null &&  showDoc.select === "product" ? <S3 close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "product" ? <S3UP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "educational" ? <S2EducationalUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
+        { showDoc !== null &&  showDoc.select === "educational" ? <S4bankUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
 
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
