@@ -6,7 +6,7 @@ export default function temp({ close, data, id, toast }) {
     console.log(data);
 
     const [isLoading, setIsLoading] = useState(false)
-    const { stepFour, setStepFour } = useState({
+    const [ stepFour, setStepFour ] = useState({
         banks: [
             ...data
         ],
