@@ -3,9 +3,8 @@ import Axios from '../../../../axiosinstancs'
 import Loader from '../../Loader/Loader';
 
 export default function S4bankUP({ close, data, id, toast }) {
-    console.log(data);
-
     const [isLoading, setIsLoading] = useState(false)
+    const [err, setErr] = useState(false);
     const [ stepFour, setStepFour ] = useState({
         banks: [
             ...data
@@ -13,7 +12,24 @@ export default function S4bankUP({ close, data, id, toast }) {
     })
 
 
-
+    /////validation
+    useEffect(() => {
+        setErr(false)
+        let count = 0
+        Object.keys(stepThree).map((item) => {
+            stepThree[item].map(j => {
+                Object.keys(j).map((k) => {
+                    if (j[k] === "") {
+                        count += 1
+                    }
+                })
+            })
+        })
+        if (count > 0) {
+            setErr(true)
+        }
+    }, [stepThree])
+    /////
 
     const changeHandler = (e) => {
         setStepFour(prevState => {
@@ -33,6 +49,8 @@ export default function S4bankUP({ close, data, id, toast }) {
         });
         console.log(stepFour.banks[e.target.id]);
     }
+
+    //add row
     const addHandler = (e) => {
         e.preventDefault()
         setStepFour(prev => (
@@ -49,10 +67,6 @@ export default function S4bankUP({ close, data, id, toast }) {
             }
         ));
     }
-
-
-
-
 
     const sendHandler = (e) => {
         e.preventDefault()
