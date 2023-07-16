@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Axios from '../../../../axiosinstancs'
 import Loader from '../../Loader/Loader';
 
-export default function temp({ close, data, id, toast }) {
+export default function S4bankUP({ close, data, id, toast }) {
     console.log(data);
 
     const [isLoading, setIsLoading] = useState(false)
