@@ -2,31 +2,31 @@ import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 
 export default function S5pledges() {
-    const { stepFive, setStepFive } = useContext(TashilatContext)
+  const { stepFive, setStepFive } = useContext(TashilatContext)
 
-    const changeHandler = (e) => {
-      setStepFive(prevState => {
-        const updated = prevState.pledges.map((item, index) => {
-          if (index === parseInt(e.target.id)) {
-            return {
-              ...item,
-              [e.target.name]: e.target.value
-            };
-          }
-          return item;
-        });
-        return {
-          ...prevState,
-          pledges: updated
-        };
+  const changeHandler = (e) => {
+    setStepFive(prevState => {
+      const updated = prevState.pledges.map((item, index) => {
+        if (index === parseInt(e.target.id)) {
+          return {
+            ...item,
+            [e.target.name]: e.target.value
+          };
+        }
+        return item;
       });
-      console.log(stepFive);
-    }
+      return {
+        ...prevState,
+        pledges: updated
+      };
+    });
+    console.log(stepFive);
+  }
   return (
     <>
-              <div className=" py-6 mt-4">
+      <div className=" py-6 mt-4">
         <p className="text-lg font-extrabold">
-        وثایق قابل‌ارائه        </p>
+          وثایق قابل‌ارائه        </p>
       </div>
 
       <div className=" ">
@@ -95,9 +95,9 @@ export default function S5pledges() {
                         pledges: [
                           ...prev.pledges,
                           {
-                            type:"",
-                            cost:"",
-                            description:""
+                            type: "",
+                            cost: "",
+                            description: ""
                           }
                         ]
                       }
