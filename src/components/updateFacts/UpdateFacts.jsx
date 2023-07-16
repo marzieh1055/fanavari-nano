@@ -17,6 +17,8 @@ import S3 from "./components/S3";
 import S2EducationalUP from "./components/S2EducationalUP";
 import S4BillsUp from "../updateFacts/components/S4BillsUp"
 import S4AssetsTUp from "./components/S4AssetsTUp.js";
+import S4ActivewarrantyUp from "./components/S4ActivewarrantyUp";
+import S4ActivefacilitiesUp from "./components/S4ActivefacilitiesUp";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -80,6 +82,8 @@ const UpdateFact = () => {
         {/* این بورد رو باید توی ویو برا مدیرم بزاریم نزاشته بود */}
         { showDoc !== null &&  showDoc.select === "benefit" ? <S4BillsUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "asset" ? <S4AssetsTUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "active_w" ? <S4ActivewarrantyUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "active_f" ? <S4ActivefacilitiesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         
         {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
