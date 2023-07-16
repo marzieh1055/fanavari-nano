@@ -70,11 +70,11 @@ export default function S4ActivefacilitiesUp({close , data , id , toast }) {
     return (
     <div className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex flex-col items-center justify-center">
         <div className=" py-6 mt-4">
-              <p className="text-lg font-extrabold">
+              <p className="text-lg text-white font-extrabold">
                   فهرست تسهیلات فعال شرکت - فهرست تسهیلات تسویه شده (3 سال اخیر){" "}
               </p>
           </div>
-          <span className='p-2 text-sm'>* فیلد های زمان تسویه حساب نهایی با فرمت : 9-10-1399 پر شود</span>
+          <span className='p-2 text-white text-sm'>* فیلد های زمان تسویه حساب نهایی با فرمت : 9-10-1399 پر شود</span>
           <div className=" mt-2">
               <table className="max-w-[1000px] rounded-xl overflow-hidden">
                   <thead>

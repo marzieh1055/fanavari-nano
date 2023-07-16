@@ -19,6 +19,9 @@ import S4BillsUp from "../updateFacts/components/S4BillsUp"
 import S4AssetsTUp from "./components/S4AssetsTUp.js";
 import S4ActivewarrantyUp from "./components/S4ActivewarrantyUp";
 import S4ActivefacilitiesUp from "./components/S4ActivefacilitiesUp";
+import S5ApprovalsUp from "./components/S5ApprovalsUp";
+import S5contractsUp from "./components/S5contractsUp";
+import S5estatesUp from "./components/S5estatesUp";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -84,6 +87,9 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "asset" ? <S4AssetsTUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "active_w" ? <S4ActivewarrantyUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "active_f" ? <S4ActivefacilitiesUp close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "approvals" ? <S5ApprovalsUp  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "contract" ? <S5contractsUp  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
+        { showDoc !== null &&  showDoc.select === "estate" ? <S5estatesUp  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         
         {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
@@ -110,7 +116,7 @@ const UpdateFact = () => {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {
                   // console.log(keyss);
-                  if (["board" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
+                  if (["board" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
                     return (
                       <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                         <div className="flex gap-x-4">

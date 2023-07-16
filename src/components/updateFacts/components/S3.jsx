@@ -107,7 +107,7 @@ export default function S3({ close, data, id, toast }) {
             </div>
 
             <div className=" ">
-                <table className="w-full rounded-xl overflow-hidden">
+                <table className="max-w-[1000px] rounded-xl overflow-hidden">
                     <thead>
                         <tr className=" sticky top-0 text-sm border-b ">
                             <th className="bg-white p-3  ">رديف </th>
@@ -213,10 +213,10 @@ export default function S3({ close, data, id, toast }) {
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <div>
                     <button className='bg-red-500 p-3 mt-2 ml-2 rounded-xl text-white shadow-md transition hover:bg-red-600' onClick={() => close(null)}>بستن</button>
                     <button className='bg-green-500 p-3 mt-2 mr-2 rounded-xl text-white shadow-md transition hover:bg-green-600' onClick={sendHandler}>ثبت اطلاعات</button>
-                </div>
             </div>
         </div>
     )
