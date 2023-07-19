@@ -51,6 +51,7 @@ import ExpertInfo from "./pages/Expert/ExpertInfo";
 import ChangepassE from "./pages/Register/ChangepassE";
 import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
 import UpdateFact from "./components/updateFacts/UpdateFacts";
+import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
 
 const routes = [
   {
@@ -88,6 +89,7 @@ const routes = [
       { path: "oploadDoc", element: <UploadDoc /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
+      { path: "WarrantyDocumentsUp/:id", element: <WarrantyDocumentsUp /> },
       { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },

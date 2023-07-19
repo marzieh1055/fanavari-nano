@@ -56,7 +56,7 @@ export default function OpenedRequests() {
                     </div>
                     <p className="font-bold text-sm pt-2 ">
                       {item.type === "facilities" ? "درخواست تسهیلات" :
-                        item.type === "guarantee" ? "درخواست ضمانت" : "درخواست"
+                        item.type === "warranty" ? "درخواست ضمانت" : "درخواست"
                       }
                       {item.facilities[0] !== undefined && (<p className="font-bold text-sm pt-2 ">{`عنوان : ${item.facilities[0].title}`}</p>)}
                       {item.warranty[0] !== undefined && (<p className="font-bold text-sm pt-2 ">{`عنوان : ${item.warranty[0].title}`}</p>)}

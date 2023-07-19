@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BiErrorCircle } from "react-icons/bi";
 import Axios from "../../../axiosinstancs";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import ExpertModal from "../../components/modal/ExpertModal";
 import DownloadStep5 from "../../components/ChekRequestComp/DownloadStep5.jsx";
@@ -17,7 +17,7 @@ export default function ViewDetailRequest() {
   const [showDeleteReq, setShowDeleteReq] = useState(false)
   const [expertData, setExpertData] = useState(null)
   const [reqStatus, setReqStatus] = useState({})
-
+  const [reqType, setReqType] = useState("")
 
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function ViewDetailRequest() {
         commite: res.data.commite,
         credit: res.data.credit,
       })
+      setReqType(res.data.type)
       setIsLoading(false)
     })
   }, [])
@@ -106,8 +107,14 @@ export default function ViewDetailRequest() {
             showDeleteReq && <DeleteReq close={setShowDeleteReq} id={reqId.id} toast={toast}/>
           }
           {<ToastContainer />}
+          <div className="w-full mt-5">
+            {reqType && <Link to={reqType === "facilities" ? `/panel/updateFact/${reqId.id}` : `/panel/WarrantyDocumentsUp/${reqId.id}`} className={"rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
+                        مشاهده و تغییر مدارک{" "}
+                      </Link>
+            }
+          </div>
           <div className="pt-4">
-            <div className="flex">
+            <div className="flex mt-2">
               <button onClick={() => setShowModal(true)} className="w-full  rounded-lg bg-blue-700 mt-2 ml-2  text-white p-3 font-bold text-xs">
                 اطلاعات کارشناس{" "}
               </button>

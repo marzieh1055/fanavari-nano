@@ -109,7 +109,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
           </p>
           {
             document.file4 === null ?
-              <label htmlFor='file3' className="text-blue-400 text-xs w-full justify-center">
+              <label htmlFor='file4' className="text-blue-400 text-xs w-full justify-center">
                 برای بارگذاری کلیک کنید
               </label> :
               <div>

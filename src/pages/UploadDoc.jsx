@@ -70,12 +70,17 @@ export default function UploadDoc() {
       //   console.log(item);
       //   if (item === "type" || item === "title" | item === "type_w" || item === "user_id" || item === "type")
       // })
+      const token = localStorage.getItem('token');
+      const isLoggedIn = token ? true : false;
       axios.post("/api/v1/request", document ,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(isLoggedIn && {
+              Authorization: `Bearer ${JSON.parse(token)}`
+          })
         }
+      }
       ).then(res => {
         console.log(res)
         setIsLoading(false)
