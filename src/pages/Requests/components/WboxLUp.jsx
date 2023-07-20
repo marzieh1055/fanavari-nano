@@ -6,7 +6,7 @@ export default function WboxLUp({document , setDocment , reqData}) {
     const filesEvent = e.target.files;
     const filesList = []
     for (let i = 0 ; i < filesEvent.length ; i++) {
-      filesList.push(filesEvent[i])
+      filesList.push({file : filesEvent[i]})
     }
     setDocment({
       ...document,
@@ -23,37 +23,61 @@ export default function WboxLUp({document , setDocment , reqData}) {
         {
             reqData.warranty && reqData.warranty.map((item) => {
               return Object.keys(item).map(( i , index ) => {
+                  let ii = i === "balance" ? "balances" :
+                  i === "bills" ? "bills" :
+                  i === "catalog" ? "catalogs" :
+                  i === "insurance" ? "insurances" :
+                  i === "knowledge" ? "knowledge" :
+                  i === "license" ? "licenses" :
+                  i === "loans" ? "loans" :
+                  i === "proforma" ? "proforma" :
+                  i === "registration_doc" ? "register_doc" :
+                  i === "resume" ? "resume" :
+                  i === "signatory" ? "signatory" :
+                  i === "statement" ? "statements" : ""
                 if (
                   ["balance", "bills", "catalog", "insurance", "knowledge", "license", "loans", "proforma", "registration_doc", "resume", "signatory", "statement"].includes(i) &&
                   item[i].length > 0
                 ) {
-                    return(
-                        <div key={index}>
+                  return(
+                    <div key={index}>
                           <DownloadBoxL key={index} item={item} i={i} />
                           {
-                            document[i] === undefined ?
-                              <label htmlFor={i} className="text-yellow-400 text-xs w-full justify-center">
+                            document[ii] === undefined ?
+                              <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center">
                                 برای بروزرسانی کلیک کنید
                               </label> :
                               <div>
                                 {
-                                    document[i] && document[i].map((item , keyNum)=> {
+                                  document[ii] && document[ii].map((item , keyNum)=> {
                                         return (
                                             <p key={keyNum} className="text-blue-400 text-xs w-full m-1 justify-center">
                                             {
-                                                `نام فایل : ${item.name}`
+                                              `نام فایل جدید : ${item.file.name}`
                                             }
                                             </p>
                                         )
                                     })
                                 }
-                                <label htmlFor={i} className="text-yellow-400 m-1 text-xs w-full justify-center">
+                                <label htmlFor={ii} className="text-yellow-400 m-1 text-xs w-full justify-center">
                                   برای تغییر کلیک کنید
                                 </label>
                               </div>
 
                           }
-                          <input style={{ display: "none" }} id={i} className="text-blue-400 text-xs " accept="application/pdf" type="file"  multiple onChange={changeHandler} name={i} />
+                          <input style={{ display: "none" }} id={ii} className="text-blue-400 text-xs " accept="application/pdf" type="file"  multiple onChange={changeHandler} name={ i === "balance" ? "balances" :
+                                                                                                                                                                                      i === "bills" ? "bills" :
+                                                                                                                                                                                      i === "catalog" ? "catalogs" :
+                                                                                                                                                                                      i === "insurance" ? "insurances" :
+                                                                                                                                                                                      i === "knowledge" ? "knowledge" :
+                                                                                                                                                                                      i === "license" ? "licenses" :
+                                                                                                                                                                                      i === "loans" ? "loans" :
+                                                                                                                                                                                      i === "proforma" ? "proforma" :
+                                                                                                                                                                                      i === "registration_doc" ? "register_doc" :
+                                                                                                                                                                                      i === "resume" ? "resume" :
+                                                                                                                                                                                      i === "signatory" ? "signatory" :
+                                                                                                                                                                                      i === "statement" ? "statements" : ""
+                          } />
                           <br />
                         </div>
                         

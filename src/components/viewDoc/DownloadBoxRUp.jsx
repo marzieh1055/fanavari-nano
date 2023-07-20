@@ -30,7 +30,7 @@ export default function DownloadBoxRUp({document , setDocment , file_name , path
                   document[file_name] && 
                     <p className="text-blue-400 text-xs w-full m-1 justify-center">
                     {
-                      `نام فایل : ${document[file_name].name}`
+                      `نام فایل جدید : ${document[file_name].name}`
                     }
                     </p>
                 }

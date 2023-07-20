@@ -25,6 +25,7 @@ const WarrantyDocumentsUp = () => {
   console.log(document);
   const [reqData , setReqData] = useState([])
   useEffect(() => {
+
     setIsLoading(true)
     Axios.get(`/api/v1/request/${reqId.id}`)
     .then(async (res) => {
@@ -32,6 +33,9 @@ const WarrantyDocumentsUp = () => {
       setReqData(res.data)
       setIsLoading(false)
       setDocment({})
+      if (up > 0) {
+        toast("تغییرات با موفقیت ثبت شد")
+      }
     })
     .catch((err) => {
       setErrore(true)
@@ -44,19 +48,20 @@ const WarrantyDocumentsUp = () => {
     setIsLoading(true)
     const token = localStorage.getItem('token');
     const isLoggedIn = token ? true : false;
-    axios.put(`/api/v1/request/${reqId.id}`, document ,
+
+    axios.post(`/api/v1/request/${reqId.id}`, document ,
       {
         headers: {
           "Content-Type": "multipart/form-data",
           ...(isLoggedIn && {
               Authorization: `Bearer ${JSON.parse(token)}`
-          })
+          }),
+          "X-HTTP-Method-Override": "PUT",
         }
       })
       .then((res) => {
         console.log(res.data);
         setIsLoading(false)
-        toast("تغییرات با موفقیت ثبت شد")
         setUp(prev => prev + 1)
       })
       .catch((err) => {
@@ -71,13 +76,13 @@ const WarrantyDocumentsUp = () => {
     <form className="bg-white rounded-3xl mt-3 p-3">
       <ToastContainer />
       <div className="flex justify-between items-center">
-        <p className=" font-bold p-4 py-6">مشاهده مدارک</p>
+        <p className=" font-bold p-4 py-6">مشاهده و تغییر مدارک</p>
          <p onClick={() => navigate(-1)} className="cursor-pointer hover:bg-blue-700 transition-all hover:text-white p-2 rounded-lg">بازگشت</p>
       </div>
       <hr className="border-dashed" />
       
       <div className="px-5">
-        <div className="flex">
+        <div className="flex items-center">
         <button onClick={sendHandler} className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
           ذخیره{" "}
         </button>
