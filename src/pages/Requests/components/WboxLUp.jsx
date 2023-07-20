@@ -30,7 +30,7 @@ export default function WboxLUp({document , setDocment , reqData}) {
                   i === "knowledge" ? "knowledge" :
                   i === "license" ? "licenses" :
                   i === "loans" ? "loans" :
-                  i === "proforma" ? "proforma" :
+                  i === "proforma" ? "invoices" :
                   i === "registration_doc" ? "register_doc" :
                   i === "resume" ? "resume" :
                   i === "signatory" ? "signatory" :
@@ -44,7 +44,7 @@ export default function WboxLUp({document , setDocment , reqData}) {
                           <DownloadBoxL key={index} item={item} i={i} />
                           {
                             document[ii] === undefined ?
-                              <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center">
+                              <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center cursor-pointer">
                                 برای بروزرسانی کلیک کنید
                               </label> :
                               <div>
@@ -59,25 +59,13 @@ export default function WboxLUp({document , setDocment , reqData}) {
                                         )
                                     })
                                 }
-                                <label htmlFor={ii} className="text-yellow-400 m-1 text-xs w-full justify-center">
+                                <label htmlFor={ii} className="text-yellow-400 m-1 text-xs w-full justify-center cursor-pointer">
                                   برای تغییر کلیک کنید
                                 </label>
                               </div>
 
                           }
-                          <input style={{ display: "none" }} id={ii} className="text-blue-400 text-xs " accept="application/pdf" type="file"  multiple onChange={changeHandler} name={ i === "balance" ? "balances" :
-                                                                                                                                                                                      i === "bills" ? "bills" :
-                                                                                                                                                                                      i === "catalog" ? "catalogs" :
-                                                                                                                                                                                      i === "insurance" ? "insurances" :
-                                                                                                                                                                                      i === "knowledge" ? "knowledge" :
-                                                                                                                                                                                      i === "license" ? "licenses" :
-                                                                                                                                                                                      i === "loans" ? "loans" :
-                                                                                                                                                                                      i === "proforma" ? "proforma" :
-                                                                                                                                                                                      i === "registration_doc" ? "register_doc" :
-                                                                                                                                                                                      i === "resume" ? "resume" :
-                                                                                                                                                                                      i === "signatory" ? "signatory" :
-                                                                                                                                                                                      i === "statement" ? "statements" : ""
-                          } />
+                          <input style={{ display: "none" }} id={ii} className="text-blue-400 text-xs " accept="application/pdf" type="file"  multiple onChange={changeHandler} name={ii} />
                           <br />
                         </div>
                         

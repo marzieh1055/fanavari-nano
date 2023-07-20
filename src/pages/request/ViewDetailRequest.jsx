@@ -95,7 +95,7 @@ export default function ViewDetailRequest() {
       }
 
 
-      <div className="flex pt-4">
+      <div className="flex justify-center mt-5">
         <div className="w-1/2 px-2 ">
           <div className=" bg-white rounded-xl p-5">
           <DownloadStep5 reqStatus={reqStatus} reqId={reqId.id} />
@@ -107,18 +107,18 @@ export default function ViewDetailRequest() {
             showDeleteReq && <DeleteReq close={setShowDeleteReq} id={reqId.id} toast={toast}/>
           }
           {<ToastContainer />}
-          <div className="w-full mt-5">
-            {reqType && <Link to={reqType === "facilities" ? `/panel/updateFact/${reqId.id}` : `/panel/WarrantyDocumentsUp/${reqId.id}`} className={"rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs"}>
-                        مشاهده و تغییر مدارک{" "}
+          <div className="w-full">
+            {reqType && <Link to={reqType === "facilities" ? `/panel/updateFact/${reqId.id}` : `/panel/WarrantyDocumentsUp/${reqId.id}`}>
+                        <button className="w-full rounded-lg border border-blue-700 mt-2 text-blue-700 p-3 font-bold text-xs hover:bg-blue-700 hover:text-white transition">مشاهده و تغییر مدارک{" "}</button>
                       </Link>
             }
           </div>
-          <div className="pt-4">
-            <div className="flex mt-2">
+          <div className="">
+            <div className="flex">
               <button onClick={() => setShowModal(true)} className="w-full  rounded-lg bg-blue-700 mt-2 ml-2  text-white p-3 font-bold text-xs">
                 اطلاعات کارشناس{" "}
               </button>
-              <button onClick={() => setShowDeleteReq(true)} className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs">
+              <button onClick={() => setShowDeleteReq(true)} className="w-full  rounded-lg border border-red-700 mt-2 text-red-700 p-3 font-bold text-xs hover:bg-red-700 hover:text-white transition">
                 لغو درخواست{" "}
               </button>
             </div>
