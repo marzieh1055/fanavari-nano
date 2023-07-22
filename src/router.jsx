@@ -60,51 +60,59 @@ const routes = [
     children: [ 
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
-
-      { path: "dashboard", element: <Dashboard /> },
+      
+      //user
       { path: "dashboarduser", element: <DashboardUser /> },
+      { path: "addFacilities", element: <AddFacilities /> },
+      { path: "updateFact/:id", element: <UpdateFact /> },
+      { path: "viewRequest/:id", element: <ViewDetailRequest /> },
+      { path: "oploadDoc", element: <UploadDoc /> },
+      { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
+      { path: "WarrantyDocumentsUp/:id", element: <WarrantyDocumentsUp /> },
+      { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
+      { path: "legaluserInfo", element: <LegalUserInfo /> },
+      { path: "genuineUserInfo", element: <GenuineUserInfo /> },
+      
+      //expert
       { path: "dashboardexpert", element: <DashboardExpert /> },
+      { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
+      { path: "TestticketExpert", element: <TestticketExpert /> },
+      { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
+      { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
+      { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
+      { path: "expertInfo", element: <ExpertInfo /> },
+      
+      //admin
+      { path: "dashboard", element: <Dashboard /> },
       { path: "requests", element: <Requests /> },
       { path: "Addexpert", element: <Addexpert /> },
       { path: "viewExpert", element: <ViewExpert /> },
       { path: "viewUsers", element: <ViewUsers /> },
       { path: "ViewTicketsAdmin", element: <ViewTicketsAdmin /> },
-      { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
-      { path: "viewTickets", element: <ViewTickets /> },
       { path: "ViewDeleteReqs", element: <ViewDeleteReqs /> },
-
-      { path: "TestticketExpert", element: <TestticketExpert /> },
-      { path: "Testticket", element: <Testticket /> },
-
+      { path: "Viewdetailuser/:id", element: <Viewdetailuser /> },
+      { path: "expertChangePassword/:id", element: <ChangepassE /> },
+      { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
+      { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
+      
+      //public
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },
       { path: "siteGuide", element: <SiteGuide /> },
       { path: "guarantee", element: <Guarantee /> },
-      { path: "addFacilities", element: <AddFacilities /> },
       { path: "allNotifs", element: <AllNotifs /> },
-      { path: "viewRequest/:id", element: <ViewDetailRequest /> },
-      { path: "Viewdetailuser/:id", element: <Viewdetailuser /> },
-      { path: "openedRequests", element: <OpenedRequests /> },
-      { path: "oploadDoc", element: <UploadDoc /> },
-      { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
-      { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
-      { path: "WarrantyDocumentsUp/:id", element: <WarrantyDocumentsUp /> },
-      { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
-      { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
-      { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
+      { path: "userInfo", element: <UserInfo /> },
+      { path: "Testticket", element: <Testticket /> },
+      { path: "viewTickets", element: <ViewTickets /> },
       { path: "404", element: <ErrorPage /> },
       {path:"changePass" , element: <Changepass />},
-
-      { path: "updateFact/:id", element: <UpdateFact /> },
       
-      { path: "expertChangePassword/:id", element: <ChangepassE /> },
-      { path: "expertViewAllRequest", element: <ExpertviewAllRequest /> },
-      { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
-      { path: "userInfo", element: <UserInfo /> },
-      { path: "expertInfo", element: <ExpertInfo /> },
-      { path: "legaluserInfo", element: <LegalUserInfo /> },
-      { path: "genuineUserInfo", element: <GenuineUserInfo /> },
+      { path: "openedRequests", element: <OpenedRequests /> },
+
+
+
+      
       {
         path: "tashilat",
         element: <Tashilat />,
