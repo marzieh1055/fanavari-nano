@@ -13,7 +13,7 @@ import Bell from '../../assets/svg/Bell.svg'
 import cc from '../../assets/imges/Vector (1).png'
 import c2 from '../../assets/imges/Vector (2).png'
 import { UserDataContext } from "../../contexts/UserData.Provider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../../axiosinstancs";
 
 const Topbar = ({ avatar }) => {
@@ -21,6 +21,8 @@ const Topbar = ({ avatar }) => {
   const [showModal, setShowModal] = useState(false)
   const [showUnreade, setShowUnreade] = useState(false)
   const [details , setDetails] = useState()
+  const navigate = useNavigate()
+
   useEffect(() => {
     Axios.get("/api/v1/profile_genuine")
     .then((res) => {
@@ -48,6 +50,10 @@ const Topbar = ({ avatar }) => {
     }
     )
   }, [])
+  const exitHandler = () => {
+    localStorage.removeItem('userData')
+    navigate("/auth/login")
+  }
   return (
     <div className="flex items-center justify-between w-full h-c-6 rounded-3xl bg-c-2 px-7 relative">
         <div className="flex">
@@ -122,9 +128,9 @@ const Topbar = ({ avatar }) => {
                   <div>
                     <img src={c2} alt="" />
                   </div>
-                  <Link to={"/auth/login"} class="text-xs flex-1 text-c-9">
+                  <button onClick={exitHandler} class="text-xs flex-1 text-c-9 text-right">
                     خروج
-                  </Link>
+                  </button>
                 </div>
               </div>
 

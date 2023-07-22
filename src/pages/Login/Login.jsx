@@ -18,9 +18,7 @@ const Login = () => {
   const [bcInput , setBcInput] = useState(true)
 
 
-  const { apiLogin , isLoading, setIsLoading , errRes, setErrRes ,rememberStory , setRememberStory } = useContext(UserDataContext)
-
-  const [showResp, setShowResp] = useState(false);
+  const { apiLogin , isLoading, setIsLoading , errRes, setErrRes ,rememberStory , setRememberStory , showLogin } = useContext(UserDataContext)
 
   const [userData, setUserData] = useState({ username: "", password: "" })
   const [showPass, setShowPass] = useState(false);
@@ -134,7 +132,7 @@ const Login = () => {
             <button onClick={subHandler} className="text-sm bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">ورود</button>
             {isLoading && <span style={{ color: '#e88f19' }}>در حال ارسال اطلاعات...</span>}
             {errRes && <span style={{ color: '#a73c36' }}>اطلاعات وارد شده مطابقت ندارد</span>}
-            {showResp && <span style={{ color: '#e88f19' }}>درحال انتقال به صفحه ورود...</span>}
+            {showLogin && <span style={{ color: '#e88f19' }}>درحال انتقال به صفحه داشبورد...</span>}
             <div className="flex justify-between">
               <div className="flex gap-3 items-center">
                 <input onClick={rememberChange} type="checkbox" />
