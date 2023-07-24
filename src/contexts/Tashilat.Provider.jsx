@@ -656,11 +656,11 @@ export default function TashilatProvider({ children }) {
       facilities_id:1,
       approvals:[
           {
-              license:"test",
-              reference:"test",
-              date:"2022-02-02",
-              validity:"test",
-              description:"test"
+              license:"",
+              reference:"",
+              date:"",
+              validity:"",
+              description:""
           }
       ],
       contracts:[

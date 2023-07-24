@@ -1,9 +1,57 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 import { DatePicker } from 'zaman';
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
 
-export default function S5Approvals() {
+export default function S5Approvals({showAllErr , setSendAccept}) {
   const { stepFive, setStepFive } = useContext(TashilatContext)
+
+   // for Validation
+   const [err , setErr] = useState([{name : "پر کنید"}])
+   const [showErr , setShowErr] = useState([])
+   // for Validation
+   console.log(err);
+   useEffect(() => {
+     if (showAllErr) {
+         showErr.map((i , index)=> {
+             const arr = showErr
+             const newObj = {
+              license:true,
+              reference:true,
+              date:true,
+              validity:true
+             }
+             arr[index] = newObj
+             // console.log(arr);
+             setShowErr(arr)
+         })
+     }
+     // console.log("hhhhhhhh");
+     console.log(showErr);
+
+     setErr(VS2shareholders(stepFive.approvals))
+     setSendAccept(prev => ({...prev , approvals : VS2shareholders(stepFive.approvals)}))
+   } , [showAllErr , stepFive])
+
+   // for Validation
+   const focusHandler = (e , index) => {
+     if (showErr[index]) {
+         const arr = showErr
+         arr[index] = {...arr[index] , [e.target.name] : true}
+         setShowErr(arr)
+         
+     } else if (showErr[index] === undefined) {
+         const arr = showErr
+         arr[arr.length] = {[e.target.name] : true}
+         setShowErr(arr)
+     }
+     setErr(VS2shareholders(stepFive.approvals))
+     setSendAccept(prev => ({...prev , approvals : VS2shareholders(stepFour.approvals)}))
+   }
+
+
+
+
 
   const changeHandler = (e) => {
     setStepFive(prevState => {
@@ -81,6 +129,8 @@ export default function S5Approvals() {
                         value={stepFive.approvals[index].license}
                         name="license"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
+
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
@@ -91,6 +141,8 @@ export default function S5Approvals() {
                         value={stepFive.approvals[index].reference}
                         name="reference"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
+
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
@@ -99,6 +151,8 @@ export default function S5Approvals() {
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
                         format="jYYYY/jMM/jDD"
+                        onFocus={(e) => focusHandler(e , index)}
+
                       />
 
                     </td>
@@ -110,6 +164,8 @@ export default function S5Approvals() {
                         value={stepFive.approvals[index].validity}
                         name="validity"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
+
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
@@ -120,6 +176,8 @@ export default function S5Approvals() {
                         value={stepFive.approvals[index].description}
                         name="description"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
+
                       />
                     </td>
                   </tr>
