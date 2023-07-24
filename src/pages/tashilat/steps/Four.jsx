@@ -30,6 +30,7 @@ export default function Four() {
     // assets : [{name : ""}] ,
   })
 
+  const [showErr , setShowErr] = useState([])
   console.log(stepFour);
   const [ok , setOk] = useState(false)
 
@@ -83,8 +84,8 @@ export default function Four() {
     <S4Activefacilities showAllErr={showAllErr} setSendAccept={setSendAccept} />
     <S4Activewarranty showAllErr={showAllErr} setSendAccept={setSendAccept} />
     <S4Bills showAllErr={showAllErr} setSendAccept={setSendAccept} />
-    <S4AssetsT showAllErr={showAllErr} setSendAccept={setSendAccept} />
-    <S4AssetsF showAllErr={showAllErr} setSendAccept={setSendAccept} />
+    <S4AssetsT showErrObj={{showErr , setShowErr}} showAllErr={showAllErr} setSendAccept={setSendAccept} />
+    <S4AssetsF showErrObj={{showErr , setShowErr}} showAllErr={showAllErr} setSendAccept={setSendAccept} />
         <div className=" text-left mt-2">
         {
           ok ? 

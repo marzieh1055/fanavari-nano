@@ -3,7 +3,7 @@ import AssetsLine from './Comp/AssetsLine'
 import { useContext } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider'
 
-export default function S4AssetsF() {
+export default function S4AssetsF({showErrObj , showAllErr}) {
     const {stepFour, setStepFour} = useContext(TashilatContext)
   return (
     <div className="mt-4">
@@ -44,7 +44,7 @@ export default function S4AssetsF() {
                             stepFour.assets.map((item, index)  =>{
                                 if (!item.is_asset) {
                                     return (
-                                        <AssetsLine title={item.account} mapIndex={index}   />
+                                        <AssetsLine showErrObj={showErrObj} showAllErr={showAllErr} title={item.account} mapIndex={index}   />
                                     )
                                 }
                             })

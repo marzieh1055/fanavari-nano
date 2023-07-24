@@ -1,9 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TashilatContext } from '../../../contexts/Tashilat.Provider';
 import { useContext } from 'react';
+import { VS2shareholders } from '../../../helper/validation/VS2shareholders';
 
-export default function BellsLine({title , mapIndex}) {
+export default function BellsLine({title , mapIndex , showAllErr , showErrObj}) {
     const {stepFour, setStepFour} = useContext(TashilatContext)
+    const [err , setErr] = useState({})
+    const {showErr , setShowErr} = showErrObj
+    
+    useEffect(() => {
+      if (showAllErr) {
+        const arr = []
+        stepFour.benefits.map((item) => {
+          arr.push({three_years_a : true , two_years_a : true , last_year_a : true , last_balance_a : true})
+        })
+        setShowErr(arr)
+      }
+
+      setErr(VS2shareholders(stepFour.benefits))
+    } , [stepFour , showAllErr])
+
+    const focusHandler = (e, index) => {
+        if (showErr[index]) {
+            const arr = showErr
+            arr[index] = { ...arr[index], [e.target.name]: true }
+            setShowErr(arr)
+
+        } else if (showErr[index] === undefined) {
+            console.log(showErr);
+            const arr = showErr
+            const len = arr.length - 1
+            for(let i = 0 ; i < mapIndex ; i++) {
+              if ( i > len ) {
+                console.log("Y");
+                arr.push({})
+              }
+            }
+            arr[mapIndex] = { [e.target.name]: true }
+            setShowErr(arr)
+        }
+        setErr(VS2shareholders(stepFour.benefits))
+    }
+
     const changeHandler = (e) => {
         setStepFour(prevState => {
             const updated = prevState.benefits.map((item, index) => {
@@ -43,54 +81,52 @@ export default function BellsLine({title , mapIndex}) {
             }
         </td>
         <td className="p-2">
-            <textarea
-                className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                cols="30"
-                rows="10"
-                onChange={changeHandler}
-                value={stepFour.benefits[mapIndex].last_balance_a}
-                name="last_balance_a"
-                id={mapIndex}
-                required 
-            ></textarea>
+            <input
+              className={err[mapIndex] && showErr[mapIndex] && err[mapIndex].last_balance_a && showErr[mapIndex].last_balance_a ? "w-full h-12 border border-red-300 rounded-xl my -2" : "w-full h-12 border border-gray-300 rounded-xl my -2"}
+              onChange={changeHandler}
+              value={stepFour.benefits[mapIndex].last_balance_a}
+              name="last_balance_a"
+              onFocus={(e) => focusHandler(e, mapIndex)}
+              id={mapIndex}
+              required 
+              type='number'
+            />
         </td>
         <td className="p-2">
-            <textarea
-                className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                cols="30"
-                rows="10"
-                onChange={changeHandler}
-                value={stepFour.benefits[mapIndex].last_year_a}
-                name="last_year_a"
-                id={mapIndex}
-                required 
-            ></textarea>
+            <input
+              className={err[mapIndex] && showErr[mapIndex] && err[mapIndex].last_year_a && showErr[mapIndex].last_year_a ? "w-full h-12 border border-red-300 rounded-xl my -2" : "w-full h-12 border border-gray-300 rounded-xl my -2"}
+              onChange={changeHandler}
+              value={stepFour.benefits[mapIndex].last_year_a}
+              name="last_year_a"
+              id={mapIndex}
+              onFocus={(e) => focusHandler(e, mapIndex)}
+              required 
+              type='number'
+            />
         </td>
         <td className="p-2">
-            <textarea
-                className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                
-                cols="30"
-                rows="10"
-                onChange={changeHandler}
-                value={stepFour.benefits[mapIndex].two_years_a}
-                name="two_years_a"
-                id={mapIndex}
-                required 
-            ></textarea>
+            <input
+              className={err[mapIndex] && showErr[mapIndex] && err[mapIndex].two_years_a && showErr[mapIndex].two_years_a ? "w-full h-12 border border-red-300 rounded-xl my -2" : "w-full h-12 border border-gray-300 rounded-xl my -2"}
+              onChange={changeHandler}
+              value={stepFour.benefits[mapIndex].two_years_a}
+              name="two_years_a"
+              id={mapIndex}
+              onFocus={(e) => focusHandler(e, mapIndex)}
+              required 
+              type='number'
+            />
         </td>
         <td className="p-2">
-            <textarea
-                className="w-full h-12 border border-gray-300 rounded-xl my -2"
-                
-                cols="30"
-                rows="10"
-                onChange={changeHandler}
-                value={stepFour.benefits[mapIndex].three_years_a}
-                name="three_years_a"
-                id={mapIndex}
-                required 
-            ></textarea>
+            <input
+              className={err[mapIndex] && showErr[mapIndex] && err[mapIndex].three_years_a && showErr[mapIndex].three_years_a ? "w-full h-12 border border-red-300 rounded-xl my -2" : "w-full h-12 border border-gray-300 rounded-xl my -2"}
+              onChange={changeHandler}
+              value={stepFour.benefits[mapIndex].three_years_a}
+              name="three_years_a"
+              id={mapIndex}
+              onFocus={(e) => focusHandler(e, mapIndex)}
+              required 
+              type='number'
+            />
         </td>
     </tr>
   )

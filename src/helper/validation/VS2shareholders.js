@@ -16,3 +16,25 @@ export const  VS2shareholders = (data) => {
 
     return errArry
 }
+
+export const  V4AssetsVal = (data) => {
+    const errArry = []
+    data.map(i => {
+        errArry.push({})
+    })
+    
+    data.map((item , index) => {
+        const errObj = {}
+        Object.keys(item).map(i => {
+            if (item[i] === "") {
+                errObj[i] = "این فیلد نباید خالی باشد"
+            } else {
+                delete errObj[i]
+            }
+        })
+        errArry[index] = errObj
+    })
+
+    console.log(errArry);
+    return errArry
+}

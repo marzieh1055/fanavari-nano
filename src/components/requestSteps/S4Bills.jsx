@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 import BellsLine from './Comp/BellsLine'
-export default function S4Bills() {
+export default function S4Bills({showAllErr}) {
 
     const { stepFour, setStepFour } = useContext(TashilatContext)
+    const [showErr , setShowErr] = useState([])
     return (
         <>
             <div className=" py-6 mt-4">
@@ -40,7 +41,7 @@ export default function S4Bills() {
                         {stepFour.benefits &&
                             stepFour.benefits.map((item, index) => {
                                 return (
-                                    <BellsLine title={item.account} mapIndex={index} />
+                                    <BellsLine showAllErr={showAllErr} showErrObj={{showErr , setShowErr}} title={item.account} mapIndex={index} />
                                 )
                             })
                         }
