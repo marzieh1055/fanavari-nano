@@ -656,36 +656,36 @@ export default function TashilatProvider({ children }) {
       facilities_id:1,
       approvals:[
           {
-              license:"test",
-              reference:"test",
-              date:"2022-02-02",
-              validity:"test",
-              description:"test"
+            license:"",
+            reference:"",
+            date:"2022-02-02",
+            validity:"",
+            description:""
           }
       ],
       contracts:[
           {
-              subject:"",
-              name:"",
-              amount:"",
-              start:"",
-              end:"",
-              progress:""
+            subject:"",
+            name:"",
+            amount:"",
+            start:"",
+            end:"",
+            progress:""
           }
       ],
       pledges:[
           {
-              type:"",
-              cost:"",
-              description:""
+            type:"",
+            cost:"",
+            description:""
           }
       ],
       estates:[
           {
-              type:"",
-              owner:"",
-              cost:"",
-              description:""
+            type:"",
+            owner:"",
+            cost:"",
+            description:""
           }
       ]
   });

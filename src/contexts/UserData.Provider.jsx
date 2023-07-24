@@ -7,6 +7,7 @@ export const UserDataContext = React.createContext()
 
 export default function UserDataProvider({children}) {
   const [up , setUp] = useState(0)
+
     const datasLoc = window.localStorage.getItem("userData")
     const isLoggedIn = datasLoc ? true : false;
 
@@ -44,7 +45,7 @@ export default function UserDataProvider({children}) {
           setTimeout(() => {
             if (response.data.user.type === "genuine" || response.data.user.type === "legal") {
               setShowLogin(false)
-              nextPage("/panel/dashboarduser")
+              nextPage("/panel/dashboarduser" , { replace: false })
             } else if (response.data.user.type === "Admin" || response.data.user.type === "admin") {
               setShowLogin(false)
               nextPage("/panel/dashboard")

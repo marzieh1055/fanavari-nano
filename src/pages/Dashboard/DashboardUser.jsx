@@ -15,6 +15,7 @@ import Ellipse3 from "../../assets/imges/Ellipse 3.png"
 import Ellipse6 from "../../assets/imges/Ellipse 6.png"
 import Ellipse5 from "../../assets/imges/Ellipse 5.png"
 import { Link } from "react-router-dom";
+
 const DashboardUser = () => {
   const {userDatas} = useContext(UserDataContext)
 
@@ -95,7 +96,7 @@ const DashboardUser = () => {
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
   
-  if (userDatas && (userDatas.user.type === "genuine" || userDatas.user.type === "legal") ) return (
+  return (
     <>
       <div className="p-6 flex flex-col gap-6">
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>

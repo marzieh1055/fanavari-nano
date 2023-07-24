@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
 import Axios from '../../../axiosinstancs'
-export default function CheckReport({ close , reqId}) {
+export default function CheckReport({ close , setUpdatePage , reqId}) {
     const [repText , setRepText] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const [err, setErr] = useState(false)
@@ -23,6 +23,7 @@ export default function CheckReport({ close , reqId}) {
             console.log(res);
             setUpdatePage(prev => prev + 1)
             setIsLoading(false)
+            close(null)
         })
         .catch((error) => {
             console.log(error);

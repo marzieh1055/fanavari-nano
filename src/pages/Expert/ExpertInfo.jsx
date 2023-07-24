@@ -35,8 +35,8 @@ export default function ExpertInfo() {
         birth_day : "",
         place_issue : "",
         // series_certificatenationality : "",
-        gendermarital : "",
-        residential : "",
+        gendermarital : "female",
+        residential : "resident",
         studyeducation : "",
         job : "",
 

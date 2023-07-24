@@ -61,7 +61,7 @@ export default function ExpertCheckRequest() {
       }
       <ToastContainer />
       {
-        showCheckRep !== null && <CheckReport close={setShowCheckRep} reqId={reqId.id} />
+        showCheckRep !== null && <CheckReport setUpdatePage={setUpdatePage} close={setShowCheckRep} reqId={reqId.id} />
       }
       {
         !isLoading &&

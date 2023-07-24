@@ -40,6 +40,7 @@ export default function ViewDetailRequest() {
       setIsLoading(false)
     })
   }, [])
+  
   return (
     <div className="px-5">
       <div className=" py-6">

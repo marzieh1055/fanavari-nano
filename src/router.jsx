@@ -52,6 +52,10 @@ import ChangepassE from "./pages/Register/ChangepassE";
 import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
 import UpdateFact from "./components/updateFacts/UpdateFacts";
 import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
+import { userAuth } from "./auth/auth";
+import {Navigate} from "react-router-dom"
+import AccessError from "./pages/404/AccessError";
+
 
 const routes = [
   {
@@ -62,16 +66,17 @@ const routes = [
       { path: "", element: <Dashboard /> },
       
       //user
-      { path: "dashboarduser", element: <DashboardUser /> },
-      { path: "addFacilities", element: <AddFacilities /> },
-      { path: "updateFact/:id", element: <UpdateFact /> },
-      { path: "viewRequest/:id", element: <ViewDetailRequest /> },
-      { path: "oploadDoc", element: <UploadDoc /> },
-      { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
-      { path: "WarrantyDocumentsUp/:id", element: <WarrantyDocumentsUp /> },
-      { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
-      { path: "legaluserInfo", element: <LegalUserInfo /> },
-      { path: "genuineUserInfo", element: <GenuineUserInfo /> },
+      
+      { path: "dashboarduser", element: userAuth(<DashboardUser />) },
+      { path: "addFacilities", element: userAuth(<AddFacilities />) },
+      { path: "updateFact/:id", element: userAuth(<UpdateFact />) },
+      { path: "viewRequest/:id", element: userAuth(<ViewDetailRequest />) },
+      { path: "oploadDoc", element: userAuth(<UploadDoc />)},
+      { path: "WarrantyDocuments/:id", element: userAuth(<WarrantyDocuments />) },
+      { path: "WarrantyDocumentsUp/:id", element: userAuth(<WarrantyDocumentsUp />) },
+      { path: "FacilitiesDocuments/:id", element: userAuth(<FacilitiesDocuments />) },
+      { path: "legaluserInfo", element: userAuth(<LegalUserInfo />) },
+      { path: "genuineUserInfo", element: userAuth(<GenuineUserInfo />) },
       
       //expert
       { path: "dashboardexpert", element: <DashboardExpert /> },
@@ -106,11 +111,12 @@ const routes = [
       { path: "Testticket", element: <Testticket /> },
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "404", element: <ErrorPage /> },
+      { path: "accesserror", element: <AccessError /> },
       {path:"changePass" , element: <Changepass />},
       
       { path: "openedRequests", element: <OpenedRequests /> },
-
-
+      
+      
 
       
       {
