@@ -17,10 +17,11 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
          showErr.map((i , index)=> {
              const arr = showErr
              const newObj = {
-              license:true,
-              reference:true,
-              date:true,
-              validity:true
+              license: true,
+              reference: true,
+              date: true,
+              validity: true,
+              description: true
              }
              arr[index] = newObj
              // console.log(arr);
@@ -197,11 +198,11 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                         approvals: [
                           ...prev.approvals,
                           {
-                            license: "test",
-                            reference: "test",
+                            license: "",
+                            reference: "",
                             date: "2022-02-02",
-                            validity: "test",
-                            description: "test"
+                            validity: "",
+                            description: ""
                           }
                         ]
                       }
