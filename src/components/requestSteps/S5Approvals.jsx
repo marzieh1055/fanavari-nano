@@ -9,6 +9,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
    // for Validation
    const [err , setErr] = useState([{name : "پر کنید"}])
    const [showErr , setShowErr] = useState([])
+   console.log(showErr);
    // for Validation
    console.log(err);
    useEffect(() => {
@@ -46,7 +47,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
          setShowErr(arr)
      }
      setErr(VS2shareholders(stepFive.approvals))
-     setSendAccept(prev => ({...prev , approvals : VS2shareholders(stepFour.approvals)}))
+     setSendAccept(prev => ({...prev , approvals : VS2shareholders(stepFive.approvals)}))
    }
 
 
@@ -124,7 +125,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].license && showErr[index] && showErr[index].license ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                         onChange={changeHandler}
                         value={stepFive.approvals[index].license}
                         name="license"
@@ -136,7 +137,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].reference && showErr[index] && showErr[index].reference ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                         onChange={changeHandler}
                         value={stepFive.approvals[index].reference}
                         name="reference"
@@ -159,7 +160,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].validity && showErr[index] && showErr[index].validity ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                         onChange={changeHandler}
                         value={stepFive.approvals[index].validity}
                         name="validity"
@@ -171,7 +172,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].description && showErr[index] && showErr[index].description ? "border border-red-300 rounded-xl w-20" : "border border-gray-300 rounded-xl w-20"}
                         onChange={changeHandler}
                         value={stepFive.approvals[index].description}
                         name="description"

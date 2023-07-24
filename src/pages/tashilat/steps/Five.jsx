@@ -18,6 +18,13 @@ export default function Five() {
   const {stepFive, setStepFive} = useContext(TashilatContext)
 
   const [isLoading, setIsLoading] = useState(false)
+  const [showAllErr , setShowAllErr] = useState(false)
+  const [sendAccept , setSendAccept] = useState({
+    approvals : [{name : ""}] ,
+    contracts : [{name : ""}] ,
+    pledges : [{name : ""}] ,
+    estates : [{name : ""}] ,
+  })
 
   useState(() => {
     setStepFive((prev) => {
@@ -46,7 +53,7 @@ export default function Five() {
   return (
     <>
     <ToastContainer />
-      <S5Approvals />
+      <S5Approvals setSendAccept={setSendAccept} showAllErr={showAllErr}/>
       <S5contracts />
       <S5pledges />
       <S5estates />
