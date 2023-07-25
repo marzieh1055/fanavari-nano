@@ -99,6 +99,7 @@ const routes = [
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       
       //public
+
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },
