@@ -15,7 +15,7 @@ const Loader = () => {
         wrapperClassName=""
         visible={true}
       />
-      <span>درحال پردازش...</span>
+      {/* <span>درحال پردازش...</span> */}
     </div>
   );
 };
