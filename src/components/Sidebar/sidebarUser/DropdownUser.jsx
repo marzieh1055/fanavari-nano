@@ -24,7 +24,7 @@ export default function DropdownUser({route , title , itemsList}) {
           </button>
           <div className={showOption ? "flex flex-col" : "hidden"}>
             {/* Shayad Badan Nesbat Be data haye Api Inja Avazzz Beshe */}
-            {console.log(route)}
+            {/* {console.log(route)} */}
             {route !== undefined && itemsList.map((i , index) => <Link to={route[index]} key={index} className="h-12 flex items-center">{i}</Link>)}
           </div>
     </div>

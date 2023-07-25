@@ -45,7 +45,7 @@ export default function UserDataProvider({children}) {
           setTimeout(() => {
             if (response.data.user.type === "genuine" || response.data.user.type === "legal") {
               setShowLogin(false)
-              nextPage("/panel/dashboarduser" , { replace: false })
+              nextPage("/panel/dashboarduser")
             } else if (response.data.user.type === "Admin" || response.data.user.type === "admin") {
               setShowLogin(false)
               nextPage("/panel/dashboard")

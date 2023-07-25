@@ -52,7 +52,6 @@ import ChangepassE from "./pages/Register/ChangepassE";
 import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
 import UpdateFact from "./components/updateFacts/UpdateFacts";
 import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
-import { userAuth } from "./auth/auth";
 import AccessError from "./pages/404/AccessError";
 
 

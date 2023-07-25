@@ -41,7 +41,7 @@ export default function SendFileSec({ reqStatus , reqId , setUpdatePage }) {
                 console.log(err.response.data);
                 setRendering(false)
                 setFileStorage({
-                    file : null
+                    file1 : null
                 })            
             })
     } , [ up ])
