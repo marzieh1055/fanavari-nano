@@ -73,6 +73,7 @@ export default function Four() {
       console.log(err)
       setIsLoading(false)
       toast("مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید")
+      toast("فیلد ها را با فرمت مناسب تکمیل کنید")
     })
   }
 
@@ -86,7 +87,7 @@ export default function Four() {
     <S4Bills showAllErr={showAllErr} setSendAccept={setSendAccept} />
     <S4AssetsT showErrObj={{showErr , setShowErr}} showAllErr={showAllErr} setSendAccept={setSendAccept} />
     <S4AssetsF showErrObj={{showErr , setShowErr}} showAllErr={showAllErr} setSendAccept={setSendAccept} />
-        <div className=" text-left mt-2">
+      <div className=" text-left mt-2">
         {
           ok ? 
           <button onClick={sendHandler} type="submit" className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
@@ -95,9 +96,8 @@ export default function Four() {
           <button onClick={() => setShowAllErr(true)}  className="bg-gray-500  text-white rounded-xl p-4 font-bold text-sm">
             مرحله بعد
           </button>
-            
         }
-        </div>
+      </div>
     </>
   );
 }

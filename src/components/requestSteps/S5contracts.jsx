@@ -1,9 +1,55 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 import { DatePicker } from 'zaman';
-export default function S5contracts() {
+import { VS2shareholders } from '../../helper/validation/VS2shareholders';
+export default function S5contracts({showAllErr , setSendAccept}) {
 
     const { stepFive, setStepFive } = useContext(TashilatContext)
+
+    // for Validation
+    const [err , setErr] = useState([{name : "پر کنید"}])
+    const [showErr , setShowErr] = useState([])
+       // for Validation
+       console.log(err);
+    useEffect(() => {
+      if (showAllErr) {
+          showErr.map((i , index)=> {
+              const arr = showErr
+              const newObj = {
+                subject:true,
+                name:true,
+                amount:true,
+                start:true,
+                end:true,
+                progress:true
+              }
+              arr[index] = newObj
+              // console.log(arr);
+              setShowErr(arr)
+          })
+      }
+      // console.log("hhhhhhhh");
+      console.log(showErr);
+
+      setErr(VS2shareholders(stepFive.contracts))
+      setSendAccept(prev => ({...prev , contracts : VS2shareholders(stepFive.contracts)}))
+    } , [showAllErr , stepFive])
+
+    // for Validation
+    const focusHandler = (e , index) => {
+      if (showErr[index]) {
+          const arr = showErr
+          arr[index] = {...arr[index] , [e.target.name] : true}
+          setShowErr(arr)
+          
+      } else if (showErr[index] === undefined) {
+          const arr = showErr
+          arr[arr.length] = {[e.target.name] : true}
+          setShowErr(arr)
+      }
+      setErr(VS2shareholders(stepFive.contracts))
+      setSendAccept(prev => ({...prev , contracts : VS2shareholders(stepFive.contracts)}))
+    }
 
     const changeHandler = (e) => {
       setStepFive(prevState => {
@@ -84,36 +130,39 @@ export default function S5contracts() {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-20"
+                        className={err[index] && err[index].subject && showErr[index] && showErr[index].subject ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepFive.contracts[index].subject}
                         name="subject"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].name && showErr[index] && showErr[index].name ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepFive.contracts[index].name}
                         name="name"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].amount && showErr[index] && showErr[index].amount ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepFive.contracts[index].amount}
                         name="amount"
                         id={index}
-                        placeholder='10'
+                        onFocus={(e) => focusHandler(e , index)}
                       />
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <DatePicker
+                        inputClass={err[index] && err[index].start && showErr[index] && showErr[index].start ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={(e) => datechangeHandler(e, index ,"start")}
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
@@ -123,6 +172,7 @@ export default function S5contracts() {
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <DatePicker
+                        inputClass={err[index] && err[index].end && showErr[index] && showErr[index].end ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={(e) => datechangeHandler(e, index , "end")}
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
@@ -133,11 +183,12 @@ export default function S5contracts() {
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <input
                         type="text"
-                        className="border border-gray-300 rounded-xl w-full"
+                        className={err[index] && err[index].progress && showErr[index] && showErr[index].progress ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
                         onChange={changeHandler}
                         value={stepFive.contracts[index].progress}
                         name="progress"
                         id={index}
+                        onFocus={(e) => focusHandler(e , index)}
                       />
                     </td>
                   </tr>
@@ -149,7 +200,8 @@ export default function S5contracts() {
               <td className="bg-white" colSpan="9">
                 <button
                   className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     setStepFive(prev => (
                       {
                         ...prev,

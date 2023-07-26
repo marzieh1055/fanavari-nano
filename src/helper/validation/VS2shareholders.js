@@ -38,3 +38,17 @@ export const  V4AssetsVal = (data) => {
     console.log(errArry);
     return errArry
 }
+
+export const  Vconfirm = (data) => {
+    const objectErr = {}
+        Object.keys(data).map(i => {
+            if (i !== "signature" && data[i] === "") {
+                objectErr[i] = "این فیلد نباید خالی باشد"
+            } else if (i === "signature" && data[i] === null) {
+                objectErr[i] = "این فیلد نباید خالی باشد"
+            } else {
+                delete objectErr[i]
+            }
+        })
+    return objectErr
+}

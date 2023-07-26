@@ -4,7 +4,6 @@ import { Navigate, Outlet, useLocation, useNavigate, useParams } from 'react-rou
 import { UserDataContext } from '../contexts/UserData.Provider'
 import SidebarUser from '../components/Sidebar/sidebarUser/SidebarUser'
 import user2 from "../assets/imges/user-(2).png"
-import AccessError from './404/AccessError'
 import { userRouts , expertRouts , adminRouts , publicRouts } from '../auth/authRoutes'
 
 export default function Panel() {

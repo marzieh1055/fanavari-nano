@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 import { useEffect } from 'react';
 import { VS2shareholders } from '../../helper/validation/VS2shareholders';
+import { DatePicker } from 'zaman';
 export default function S4Activewarranty({showAllErr , setSendAccept}) {
 
     const { stepFour, setStepFour } = useContext(TashilatContext)
@@ -70,6 +71,34 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
         });
         console.log(stepFour.active_warranty[e.target.id]);
     }
+
+    const datechangeHandler = (e, InIndex , keyName) => {
+        const day = e.value.getDate()
+        const mouth = e.value.getMonth()
+        const year = e.value.getFullYear()
+        setStepFour(prevState => {
+            const updated = prevState.active_warranty.map((item, index) => {
+            if (index === parseInt(InIndex)) {
+                if (keyName === "received") {
+                return {
+                    ...item,
+                    received: `${year}-${mouth + 1}-${day}`
+                };
+                } else if (keyName === "due_date") {
+                    return {
+                        ...item,
+                        due_date: `${year}-${mouth + 1}-${day}`
+                    };
+                }
+            }
+                return item;
+            });
+            return {
+                ...prevState,
+                active_warranty: updated
+            };
+        });
+    }
     return (
         <>
             <div className=" py-6 mt-4">
@@ -77,7 +106,6 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
                     فهرست ضمانتنامه فعال شرکت - فهرست ضمانتنامه باطل شده (3 سال اخیر){" "}
                 </p>
             </div>
-            <span className='p-2 text-sm'>* فیلد های تاریخ اخذ و تاریخ سر رسید نهایی با فرمت : 9-10-1399 پر شود</span>
             <div className="mt-2 ">
                 <table className="w-full rounded-xl overflow-hidden">
                     <thead>
@@ -92,6 +120,8 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
                             </th>
                             <th className="bg-white p-3  ">موضوع قرارداد </th>
                             <th className="bg-white p-3  ">نهاد دریافت کننده ضمانتنامه </th>
+                            <th className="bg-white p-3  ">تاریخ اخذ </th>
+                            <th className="bg-white p-3  ">تاریخ سررسید نهایی </th>
                             <th className="bg-white p-3  ">نوع ضمانت نامه </th>
                             <th className="bg-white p-3  ">
                                 نوع وثیقه سپرده شده جهت دریافت ضمانت نامه{" "}
@@ -99,8 +129,6 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
                             <th className="bg-white p-3  ">
                                 میزان ودیعه سپرده شده جهت دریافت ضمانت نامه{" "}
                             </th>
-                            <th className="bg-white p-3  ">تاریخ اخذ </th>
-                            <th className="bg-white p-3  ">تاریخ سررسید نهایی </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,6 +185,27 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
                                             />
                                         </td>
 
+                                        {/* .................................... */}
+                                        <td className="p-4 text-xs text-gray-600 font-bold">
+                                            <DatePicker
+                                                inputClass={err[index] && err[index].received && showErr[index] && showErr[index].received ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
+                                                onChange={(e) => datechangeHandler(e, index ,"received")}
+                                                locale="fa"
+                                                placeholder="تاریخ را انتخاب کنید"
+                                                format="jYYYY/jMM/jDD"
+                                            />
+
+                                        </td>
+                                        <td className="p-4 text-xs text-gray-600 font-bold">
+                                            <DatePicker
+                                                inputClass={err[index] && err[index].due_date && showErr[index] && showErr[index].due_date ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
+                                                onChange={(e) => datechangeHandler(e, index , "due_date")}
+                                                locale="fa"
+                                                placeholder="تاریخ را انتخاب کنید"
+                                                format="jYYYY/jMM/jDD"
+                                            />
+                                        </td>
+                                        {/* .............................................. */}
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="text"
@@ -186,28 +235,6 @@ export default function S4Activewarranty({showAllErr , setSendAccept}) {
                                                 onChange={changeHandler}
                                                 value={stepFour.active_warranty[index].deposit_amount}
                                                 name="deposit_amount"
-                                                id={index}
-                                                onFocus={(e) => focusHandler(e , index)}
-                                            />
-                                        </td>
-                                        <td className="p-2 text-xs text-gray-600 font-bold">
-                                            <input
-                                                type="text"
-                                                className={ err[index] && err[index].received && showErr[index] && showErr[index].received ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
-                                                onChange={changeHandler}
-                                                value={stepFour.active_warranty[index].received}
-                                                name="received"
-                                                id={index}
-                                                onFocus={(e) => focusHandler(e , index)}
-                                            />
-                                        </td>
-                                        <td className="p-2 text-xs text-gray-600 font-bold">
-                                            <input
-                                                type="text"
-                                                className={ err[index] && err[index].due_date && showErr[index] && showErr[index].due_date ? "border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-full"}
-                                                onChange={changeHandler}
-                                                value={stepFour.active_warranty[index].due_date}
-                                                name="due_date"
                                                 id={index}
                                                 onFocus={(e) => focusHandler(e , index)}
                                             />

@@ -69,33 +69,33 @@ export default function S2Boards({showAllErr , setSendAccept}) {
           console.log(stepTwo.boards[e.target.id]);
     }
     const datechangeHandler = (e, InIndex , keyName) => {
-        const day = e.value.getDate()
-        const mouth = e.value.getMonth()
-        const year = e.value.getFullYear()
-        setStepTwo(prevState => {
-          const updated = prevState.boards.map((item, index) => {
-            if (index === parseInt(InIndex)) {
-              if (keyName === "start") {
-                return {
-                  ...item,
-                  start: `${year}-${mouth + 1}-${day}`
-                };
-              } else if (keyName === "birth_date") {
-                return {
-                  ...item,
-                  birth_date: `${year}-${mouth + 1}-${day}`
-                };
-              }
+      const day = e.value.getDate()
+      const mouth = e.value.getMonth()
+      const year = e.value.getFullYear()
+      setStepTwo(prevState => {
+        const updated = prevState.boards.map((item, index) => {
+          if (index === parseInt(InIndex)) {
+            if (keyName === "start") {
+              return {
+                ...item,
+                start: `${year}-${mouth + 1}-${day}`
+              };
+            } else if (keyName === "birth_date") {
+              return {
+                ...item,
+                birth_date: `${year}-${mouth + 1}-${day}`
+              };
             }
-            return item;
-          });
-          return {
-            ...prevState,
-            boards: updated
-          };
+          }
+          return item;
         });
-        console.log(stepTwo);
-      }
+        return {
+          ...prevState,
+          boards: updated
+        };
+      });
+      console.log(stepTwo);
+    }
   return (
     <>
         <div className=" py-6 mt-4">
@@ -177,11 +177,11 @@ export default function S2Boards({showAllErr , setSendAccept}) {
 
                         <td className="p-4 text-xs text-gray-600 font-bold">
                         <DatePicker
-                            onChange={(e) => datechangeHandler(e, index , "birth_date")}
-                            locale="fa"
-                            placeholder="تاریخ را انتخاب کنید"
-                            format="jYYYY/jMM/jDD"
-                            className={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ?"border border-red-300 rounded-xl w-full" : "border border-gray-300 rounded-xl w-20"}
+                          inputClass={err[index] && err[index].birth_date && showErr[index] && showErr[index].birth_date ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
+                          onChange={(e) => datechangeHandler(e, index , "birth_date")}
+                          locale="fa"
+                          placeholder="تاریخ را انتخاب کنید"
+                          format="jYYYY/jMM/jDD"
                         />
                         </td>
                         <td className="p-4 text-xs text-gray-600 font-bold">

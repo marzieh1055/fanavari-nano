@@ -7,6 +7,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import Loader from "../../../components/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
+import { Vconfirm } from "../../../helper/validation/VS2shareholders";
+import FinishModal from "../../../components/modal/FinishModal";
  
 
 export default function Confirm() {
@@ -19,7 +22,16 @@ export default function Confirm() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  useState(() => {
+  const [showFinish, setShowFinish] = useState(false)
+
+  const [err , setErr] = useState({})
+  console.log(err);
+
+  useEffect(() => {
+    setErr(Vconfirm(confirm))
+  } , [confirm])
+
+  useEffect(() => {
     setConfirm((prev) => {
       return ({
         ...prev,
@@ -49,6 +61,10 @@ export default function Confirm() {
 
   };
 
+  const clearHandler = () => {
+    setConfirm(prev => ({...prev , signature : null}))
+    signatureRef.current.clear(); 
+  }
   const changeHandler = (e) => {
     setConfirm((prev) => {
       return({
@@ -58,97 +74,52 @@ export default function Confirm() {
     })
     console.log(confirm);
   }
-  const sendHandler = (e) => {
-    e.preventDefault();
-    setIsLoading(true)
-    const formData = new FormData();
-    formData.append("facilities_id", 20)
-    formData.append("name", confirm.name)
-    formData.append("amount", confirm.amount)
-    formData.append("title", confirm.title)
-    formData.append("supply", confirm.supply)
-    formData.append("signature", confirm.signature)
-
-    const token = localStorage.getItem('token');
-    const isLoggedIn = token ? true : false;
-
-    axios.post("/api/v1/finish", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        ...(isLoggedIn && {
-            Authorization: `Bearer ${JSON.parse(token)}`
+  const sendHandler = () => {
+      setIsLoading(true)
+      setShowFinish(false)
+      const formData = new FormData();
+      formData.append("facilities_id", 20)
+      formData.append("name", confirm.name)
+      formData.append("amount", confirm.amount)
+      formData.append("title", confirm.title)
+      formData.append("supply", confirm.supply)
+      formData.append("signature", confirm.signature)
+  
+      const token = localStorage.getItem('token');
+      const isLoggedIn = token ? true : false;
+  
+      axios.post("/api/v1/finish", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(isLoggedIn && {
+              Authorization: `Bearer ${JSON.parse(token)}`
+          })
+        }
+      })
+        .then(async (res) => {
+          console.log(res);
+          setIsLoading(false)
+          navigate("/panel/openedRequests")
         })
-      }
-    })
-      .then(async (res) => {
-        console.log(res);
-        setIsLoading(false)
-        navigate("/panel/openedRequests")
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false)
-        toast("مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید")
-      })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false)
+          toast("مشکلی در ارسال اطلاعات پیش آمده لطفا تمام فیلد هارا کامل نمایید")
+        })
   }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    confirmAlert({
-      overlayClassName: "tashilat-submit-form",
-      customUI: ({ onClose }) => {
-        return (
-          <div className="absolute top-0 left-0 w-screen h-screen flex items-center bg-gray-600 bg-opacity-50">
-            <div
-              dir="rtl"
-              className="  mx-auto w-1/2  first-letter: p-4 bg-gray-700 rounded-2xl text-white"
-            >
-              <h1 className="text-3xl text-yellow-300 font-medium">
-                درخواست تسهیلات{" "}
-              </h1>
-              <p className="my-5 text-justify	">
-                اینجانب {confirm.name} مدیرعامل شرکت ضمن اعلام موافقت و قبول
-                شرایط آن صندوق، درخواست مبلغ {confirm.amount}
-                ریال به عنوان تسهیلات {confirm.title} به منظور تأمین
-                {confirm.supply} را دارم و کلیه برگه های تكمیل شده و اسناد
-                تعهدآور ارائه شده را مورد تائید قرار داده و اعلام می دارم که
-                اطلاعات تكمیلی بر اساس آخرین تغییرات ثبتی مندرج در روزنامه رسمی
-                ارائه شده و با امضاء این برگه مسئولیت هرگونه مغایرت یا خطا و یا
-                کشف سوءاستفاده احتمالی را به عهده می گیرم. همچنین صندوق توسعه
-                فناوری نانو اختیار دارد نسبت به پرداخت یا عدم پرداخت تسهیلات
-                مذکور تصمیم گیری نماید.{" "}
-              </p>
-              <button
-                onClick={() => {
-                  onClose();
-                }}
-                className="bg-purple-400 p-2 rounded ml-2"
-              >
-                امضاء
-              </button>
-              <button onClick={onClose} className=" bg-[#6272A4] p-2 rounded">
-                انصراف
-              </button>
-            </div>
-          </div>
-        );
-      },
-    });
-  };
 
   if (isLoading) return <Loader />
   return (
     <>
-      <form
-        onSubmit={submitHandler}
-        action=" "
+      <div
         className="tashilat-submit-form flex flex-col w-1/3 items-center mx-auto my-6 bg-white rounded-xl p-6"
-      >
+        >
+        {showFinish && <FinishModal confirm={confirm} sendHandler={sendHandler} close={setShowFinish}/>}
         <ToastContainer />
         <span className="font-semibold text-sm text-gray-600    ">
           نام و نام خانوادگی مدیر عامل
         </span>
+        
         <input
           onChange={changeHandler}
           value={confirm.name}
@@ -179,24 +150,31 @@ export default function Confirm() {
         <span className="font-semibold text-sm text-gray-600    ">
           منظور از درخواست
         </span>
-        <input
-          onChange={changeHandler}
-          value={confirm.supply}
-          name="supply"
-          type="text"
-          className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg   "
-        />
-            <div>
-      <SignatureCanvas ref={signatureRef} />
-      <button onClick={handleSave} className="text-center">ذخیره امضا</button>
-    </div>
-        <input
-          type="submit"
+          <input
+            onChange={changeHandler}
+            value={confirm.supply}
+            name="supply"
+            type="text"
+            className="rounded-2xl bg-transparent  border-b border-gray-600 my-2 shadow-lg   "
+          />
+        <div className="flex flex-col items-center mt-2">
+          <span className="font-semibold text-sm text-gray-600 ">امضا</span>
+          <div className="border mb-3">
+            <SignatureCanvas ref={signatureRef} />
+          </div>
+          {confirm.signature !== null && <p className="text-green-300">امضا ثبت شد</p>}
+          <div className="flex w-full justify-around">
+            <button type="button" onClick={handleSave} className="text-center p-2 bg-green-400 rounded text-white">ذخیره امضا</button>
+            <button type="button" onClick={clearHandler} className="text-center p-2 bg-yellow-300 rounded text-white">پاک کردن</button>
+          </div>
+        </div>
+
+        <button
+          type="button"
           className="rounded-2xl bg-blue-700 text-white p-2 text-center mt-8 shadow-lg  w-40 cursor-pointer  "
-          value="ثبت اطلاعات"
-          onClick={sendHandler}
-        />
-      </form>
+          onClick={() => (Object.keys(err).length === 0) ? setShowFinish(true) : toast("لطفا همه فیلد هارا با دقت کامل کنید") }
+        >ثبت اطلاعات</button>
+      </div>
     </>
   );
 }

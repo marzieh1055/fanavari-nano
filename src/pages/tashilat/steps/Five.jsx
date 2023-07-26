@@ -1,4 +1,4 @@
-import React , { useState , useContext } from "react";
+import React , { useState , useContext, useEffect } from "react";
 import S5Approvals from "../../../components/requestSteps/S5Approvals";
 import S5contracts from "../../../components/requestSteps/S5contracts";
 import S5pledges from "../../../components/requestSteps/S5pledges";
@@ -26,7 +26,25 @@ export default function Five() {
     estates : [{name : ""}] ,
   })
 
-  useState(() => {
+  const [ok , setOk] = useState(false)
+
+  useEffect(() => {
+    let yesNumber = 0
+    Object.keys(sendAccept).map(i => {
+      sendAccept[i].map(j => {
+        if (Object.keys(j).length > 0) {
+          setOk(false)
+          yesNumber += 1
+        }
+      })
+    })
+    console.log(yesNumber);
+    if (yesNumber === 0) {
+      setOk(true)
+    }
+  } , [sendAccept])
+
+  useEffect(() => {
     setStepFive((prev) => {
       return ({
         ...prev,
@@ -34,6 +52,7 @@ export default function Five() {
       })
     })
   } , [])
+
   const sendHandler = () => {
     setIsLoading(true)
     Axios.post("/api/v1/approvals", stepFive)
@@ -54,13 +73,20 @@ export default function Five() {
     <>
     <ToastContainer />
       <S5Approvals setSendAccept={setSendAccept} showAllErr={showAllErr}/>
-      <S5contracts />
-      <S5pledges />
-      <S5estates />
-        <div className=" text-left mt-2">
-          <button onClick={sendHandler} className="bg-blue-700 text-white rounded-xl p-4 font-bold text-sm">
+      <S5contracts setSendAccept={setSendAccept} showAllErr={showAllErr}/>
+      <S5pledges setSendAccept={setSendAccept} showAllErr={showAllErr}/>
+      <S5estates setSendAccept={setSendAccept} showAllErr={showAllErr}/>
+      <div className=" text-left mt-2">
+        {
+          ok ? 
+          <button onClick={sendHandler} type="submit" className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+            مرحله بعد
+          </button> :
+          <button onClick={() => setShowAllErr(true)}  className="bg-gray-500  text-white rounded-xl p-4 font-bold text-sm">
             مرحله بعد
           </button>
+            
+        }
         </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { TashilatContext } from '../../contexts/Tashilat.Provider';
 import { useEffect } from 'react';
 import { VS2shareholders } from '../../helper/validation/VS2shareholders';
-
+import { DatePicker } from 'zaman';
 
 export default function S4Activefacilities({showAllErr , setSendAccept}) {
     const { stepFour, setStepFour } = useContext(TashilatContext)
@@ -26,6 +26,7 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                     n_remaining:true,
                     amount_installment:true,
                     remaining_f:true,
+                    settlement_time:true
                   }
                   arr[index] = newObj
                   // console.log(arr);
@@ -73,6 +74,29 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
         });
         console.log(stepFour.active_facilities[e.target.id]);
     }
+
+    const datechangeHandler = (e, InIndex , keyName) => {
+        const day = e.value.getDate()
+        const mouth = e.value.getMonth()
+        const year = e.value.getFullYear()
+        setStepFour(prevState => {
+            const updated = prevState.active_facilities.map((item, index) => {
+                if (index === parseInt(InIndex)) {
+                    if (keyName === "settlement_time") {
+                        return {
+                            ...item,
+                            settlement_time: `${year}-${mouth + 1}-${day}`
+                        };
+                }
+            }
+                return item;
+            });
+            return {
+                ...prevState,
+                active_facilities: updated
+            };
+        });
+    }
     return (
         <>
             <div className=" py-6 mt-4">
@@ -80,7 +104,6 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                     فهرست تسهیلات فعال شرکت - فهرست تسهیلات تسویه شده (3 سال اخیر){" "}
                 </p>
             </div>
-            <span className='p-2 text-sm'>* فیلد های زمان تسویه حساب نهایی با فرمت : 9-10-1399 پر شود</span>
             <div className=" mt-2">
                 <table className="w-full rounded-xl overflow-hidden">
                     <thead>
@@ -98,11 +121,11 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                             </th>
                             <th className="bg-white p-3  ">نرخ تسهیلات </th>
                             <th className="bg-white p-3  ">نوع وثیقه </th>
+                            <th className="bg-white p-3  ">زمان تسویه حساب نهایی </th>
                             <th className="bg-white p-3  ">تعداد اقساط بازپرداخت شده </th>
                             <th className="bg-white p-3  ">تعداد اقساط باقیمانده </th>
                             <th className="bg-white p-3  ">مبلغ هر قسط </th>
                             <th className="bg-white p-3  ">مانده تسهیلات </th>
-                            <th className="bg-white p-3  ">زمان تسویه حساب نهایی </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -181,6 +204,17 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                                                 onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
+                                        {/* .................................................... */}
+                                        <td className="p-2 text-xs text-gray-600 font-bold">
+                                            <DatePicker
+                                                inputClass={err[index] && err[index].settlement_time && showErr[index] && showErr[index].settlement_time ? "border border-red-300 rounded-xl w-full" :"border border-gray-300 rounded-xl w-full"}
+                                                onChange={(e) => datechangeHandler(e, index , "settlement_time")}
+                                                locale="fa"
+                                                placeholder="تاریخ را انتخاب کنید"
+                                                format="jYYYY/jMM/jDD"
+                                            />
+                                        </td>
+                                        {/* ............................................................. */}
                                         <td className="p-2 text-xs text-gray-600 font-bold">
                                             <input
                                                 type="number"
@@ -225,18 +259,6 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                                                 onFocus={(e) => focusHandler(e , index)}
                                             />
                                         </td>
-                                        {/* .................................................... */}
-                                        <td className="p-2 text-xs text-gray-600 font-bold">
-                                            <input
-                                                type="text"
-                                                className="border border-gray-300 rounded-xl w-full"
-                                                onChange={changeHandler}
-                                                value={stepFour.active_facilities[index].settlement_time}
-                                                name="settlement_time"
-                                                id={index}
-                                                onFocus={(e) => focusHandler(e , index)}
-                                            />
-                                        </td>
                                     </tr>
                                 )
                             })
@@ -262,7 +284,7 @@ export default function S4Activefacilities({showAllErr , setSendAccept}) {
                                                         n_remaining:"",
                                                         amount_installment:"",
                                                         remaining_f:"",
-                                                        settlement_time:"2022-03-03" //2022-03-03
+                                                        settlement_time:"" //2022-03-03
                                                     },
                                                 ]
                                             }

@@ -149,6 +149,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                     </td>
                     <td className="p-4 text-xs text-gray-600 font-bold">
                       <DatePicker
+                        inputClass={err[index] && err[index].date && showErr[index] && showErr[index].date ? "text-center border border-red-300 rounded-xl w-full" :"text-center border border-gray-300 rounded-xl w-full"}
                         onChange={(e) => datechangeHandler(e, index)}
                         locale="fa"
                         placeholder="تاریخ را انتخاب کنید"
@@ -191,7 +192,8 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
               <td className="bg-white" colSpan="9">
                 <button
                   className=" w-28 p-2 px-4 text-sm font-bold bg-green-200 rounded-xl m-2"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     setStepFive(prev => (
                       {
                         ...prev,
@@ -200,7 +202,7 @@ export default function S5Approvals({showAllErr , setSendAccept}) {
                           {
                             license: "",
                             reference: "",
-                            date: "2022-02-02",
+                            date: "",
                             validity: "",
                             description: ""
                           }
