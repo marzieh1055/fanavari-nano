@@ -17,3 +17,6 @@
     background-image: url('../../assets/imges/aa.jpg');
 
 }
+.bg-fade{
+    background-color: rgba(243, 243, 243, 0.548);
+}

@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Input from "../../components/Input/Input";
 import axios from 'axios';
 import './Register.css'
 // Validation
 import { Validation } from '../../helper/validation';
-import { UserDataContext } from '../../contexts/UserData.Provider';
 // api 
-import { verify } from '../../services/apireq';
-import Verification from './Verification';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -29,6 +26,7 @@ const Register = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errRes, setErrRes] = useState(false);
+  const [showmodal, setShowmodal] = useState(false);
 
 
   const [showPass, setShowPass] = useState(false);
@@ -186,11 +184,10 @@ const Register = () => {
 
   // { if (showVerify) return <Verification datas={selectedOption === "genuine" ? genuine : legal} /> }
   return (
-
+    
     <div class="flex">
       {
-          isLoading && <Loader />
-
+        isLoading && <Loader />
       }
       <ToastContainer />
       <div class="w-1/3 bg-cover bg-center bg-no-repeat">
@@ -418,7 +415,7 @@ const Register = () => {
               onChange={changeHandler}
               onFocus={focusHandler} />
 
-            <p class="text-sm">با <span className='text-c-orange' >   قوانین و مقررات </span>سامانه موافقم </p>
+            <p class="text-sm">با <span onClick={() => setShowmodal(!showmodal)} className='text-c-orange cursor-pointer' >   قوانین و مقررات </span>سامانه موافقم </p>
           </div>
           {errors.is_confirmed && showErr.is_confirmed && <span style={{ color: '#e88f19', fontSize: "13px" }}>{errors.is_confirmed}</span>}
           <button onClick={subHandler} class="text-sm bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">
@@ -431,7 +428,23 @@ const Register = () => {
           </p>
         </form>
       </div>
-      <div class="h-screen w-2/3 bg-cover bg-center bg-no-repeat sticky top-0 ff" ></div>
+      {
+        !showmodal ? <div class="h-screen w-2/3 bg-cover bg-center bg-no-repeat sticky top-0 ff" ></div> :
+        <div className='flex flex-col justify-center items-center h-screen w-2/3 bg-cover bg-center bg-no-repeat sticky top-0 '>
+          <div class="flex flex-col justify-center items-center h-screen w-full bg-cover bg-center bg-no-repeat relative top-0 ff blur " >
+          </div>
+            <div className='max-w-[700px] absolute z-10 bg-fade p-3 rounded-lg text-gray-800 flex flex-col items-center'>
+              <div>
+                <h2 className='p-2 font-bold'>لطفا شرایط زیر را با دقت مطالعه فرمائید.</h2>
+                <h3 className='p-2 font-semibold'>با ثبت سفارش، شما موافقت خود را با شرایط و قوانین زیر اعلام می‌نمائید. علاوه بر این مفاد، صندوق نانو به عنوان یک شرکت ایرانی از تمامی قوانین و مقررات جمهوری اسلامی ایران تبعیت می‌نماید.</h3>
+                <p className='p-2'>1- مسئولیت تمامی اطلاعات ثبت شده در  سامانه بر عهدۀ شخص بوده و ثبت اطلاعات به معنی اطمینان از صحت آن است و صندوق نانو  هیچگونه مسئولیتی در قبال صحت اطلاعات شما ندارد.</p>
+                <p className='p-2'>2- عضویت شما در سامانه شرکت ، بیانگر پذیرش کلیه ضوابط و قوانین سایت بوده و نیاز به امضای کاربر نمی باشد و کاربر متعهد به احترام و رعایت کلیه ضوابط و مقررات می باشد .</p>
+                <p className='p-2'>3- امکان انصراف از سفارش و فسخ قرارداد تنها باتوجه به شرایط فسخ قرارداد و یا قبل از امضای قرارداد امکان پذیر خواهد بود.</p>
+              </div>
+              <button className='text-sky-800' onClick={() => setShowmodal(false)}>بستن</button>
+            </div>
+        </div>
+      }
     </div>
   )
 }
