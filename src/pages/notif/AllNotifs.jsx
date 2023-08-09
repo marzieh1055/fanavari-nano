@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Axios from "../../../axiosinstancs";
 import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import Loader from "../../components/Loader/Loader";
+import { Link } from "react-router-dom";
+import { UserDataContext } from "../../contexts/UserData.Provider";
 export default function AllNotifs() {
+  const {userDatas} = useContext(UserDataContext)
+
   const [IsLoading, setIsLoading] = useState(true);
   const [allnotif, setAllnotif] = useState(null);
-  const [unreadNotif, setUnreadNotif] = useState([
-    // {
-    //   created_at: "2023-05-30T10:00:04.000000Z",
-    //   data: {message: 'شما یک تیکت جدید دارید'},
-    //   id: "dee891e6-0068-46de-ac9d-c9d05f7538a3",
-    //   notifiable_id: 8,
-    //   notifiable_type: "App\\Models\\User",
-    //   read_at : null,
-    //   type :  "App\\Notifications\\Notificate",
-    //   updated_at : "2023-05-30T10:00:04.000000Z",
-    // },
-    // {
-    //   created_at: "2023-05-30T06:29:52.000000Z",
-    //   data: {message: 'یک درخواست حذف درخواست دارید!!'},
-    //   id: "3e55df36-d8fe-46a3-9f57-0b63a4a7c542",
-    //   notifiable_id: 8,
-    //   notifiable_type: "App\\Models\\User",
-    //   read_at: "2023-06-22T08:35:41.000000Z",
-    //   type: "App\\Notifications\\Notificate",
-    //   updated_at: "2023-06-22T08:35:41.000000Z",
-    // }
-  ]);
+  const [unreadNotif, setUnreadNotif] = useState([]);
   
   useEffect(() => {
     getAllnotification()
@@ -73,40 +56,139 @@ export default function AllNotifs() {
             <tr className=" top-0   ">
               <th className="bg-white p-3 rounded-r-xl ">فرستنده </th>
               <th className="bg-white p-3 ">توضیحات </th>
+              <th className="bg-white p-3 ">درخواست</th>
               <th className="bg-white p-3 ">تاریخ ارسال</th>
             </tr>
           </thead>
           <tbody >
             {unreadNotif && unreadNotif.map((notif) => {
-              return (
-                <tr
+              if (notif.data.request_id && userDatas.user.type === "genuine" || userDatas.user.type === "legal") {
+                return (
+                  <tr
                   key={notif.id}
                   id={notif.id}
-                >                  
-                <td className="p-4 text-xs text-red-400 font-bold">{notif.data.sender}</td>
-
-                  <td className="p-4 text-xs text-red-400 font-bold">{notif.data.message}</td>
-                  <td className="p-4 text-xs text-red-400 font-bold">{onlyDateConversion(notif.created_at)} </td>
-
-                </tr>
-              );
+                  >
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/viewRequest/${notif.data.request_id}`}>
+                      <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>       
+                      <td className="p-4 text-xs text-blue-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } if (notif.data.request_id && userDatas.user.type === "expert") {
+                return (
+                  <tr
+                    key={notif.id}
+                    id={notif.id}
+                  >
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/expertCheckRequest/${notif.data.request_id}`}>
+                    <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>       
+                      <td className="p-4 text-xs text-blue-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } if (notif.data.request_id && userDatas.user.type === "admin") {
+                return (
+                  <tr
+                  key={notif.id}
+                  id={notif.id}
+                  >
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/AdminCheckRequest/${notif.data.request_id}`}>
+                      <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>    
+                      <td className="p-4 text-xs text-blue-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } else {
+                return (
+                  <tr
+                      key={notif.id}
+                      id={notif.id}
+                    >                  
+                    <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.sender}</td>
+    
+                      <td className="p-4 text-xs text-blue-400 font-bold">{notif.data.message}</td>
+                      <button className="p-2 bg-gray-500 text-white rounded">مشاهده</button>
+                      <td className="p-4 text-xs text-blue-400 font-bold">{onlyDateConversion(notif.created_at)} 
+                    </td>
+                  </tr>
+                )
+              }
             })}
             </tbody>
             <tbody >
 
             {filteredArray2 && filteredArray2.map((notif) => {
-              return (
-                <tr
+              if (notif.data.request_id && userDatas.user.type === "genuine" || userDatas.user.type === "legal") {
+                return (
+                  <tr
                   key={notif.id}
                   id={notif.id}
-                >                  
-                <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
-
-                  <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)} </td>
-
-                </tr>
-              );
+                  >
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/viewRequest/${notif.data.request_id}`}>
+                      <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>       
+                      <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } if (notif.data.request_id && userDatas.user.type === "expert") {
+                return (
+                  <tr
+                    key={notif.id}
+                    id={notif.id}
+                  >
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/expertCheckRequest/${notif.data.request_id}`}>
+                    <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>       
+                      <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } if (notif.data.request_id && userDatas.user.type === "admin") {
+                return (
+                  <tr
+                  key={notif.id}
+                  id={notif.id}
+                  >
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
+                    <Link to={`/panel/AdminCheckRequest/${notif.data.request_id}`}>
+                      <button className="p-2 bg-blue-500 text-white rounded">مشاهده</button>
+                    </Link>    
+                      <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)}
+                    </td>  
+                  </tr>
+                );
+              } else {
+                console.log(Boolean(notif.data.request_id));
+                console.log(notif.data.message);
+                return (
+                  <tr
+                      key={notif.id}
+                      id={notif.id}
+                    >                  
+                    <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.sender}</td>
+    
+                      <td className="p-4 text-xs text-gray-400 font-bold">{notif.data.message}</td>
+                      <button className="p-2 bg-gray-500 text-white rounded">مشاهده</button>
+                      <td className="p-4 text-xs text-gray-400 font-bold">{onlyDateConversion(notif.created_at)} 
+                    </td>
+                  </tr>
+                )
+              }
             })}
           </tbody>
         </table>

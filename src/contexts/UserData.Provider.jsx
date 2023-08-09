@@ -25,7 +25,7 @@ export default function UserDataProvider({children}) {
       axios.post('/api/v1/login', datas, {
         headers: {
           Authorization: "token",
-          'Access-Control-Allow-Origin': "http://localhost:5173"
+          // 'Access-Control-Allow-Origin': "http://localhost:5173"
         }
       })
         .then(response => {

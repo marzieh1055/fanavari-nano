@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import bellAlert from '../../assets/svg/bellAlert.svg'
 import Bell from '../../assets/svg/Bell.svg'
 import back from '../../assets/svg/back.svg'
 import trash from '../../assets/svg/trash.svg'
 import { Link } from 'react-router-dom'
 import Axios from '../../../axiosinstancs'
+import { UserDataContext } from '../../contexts/UserData.Provider'
 
 
 export default function ViewNotif({unreadNotif , trashHandler , close}) {
+
+  const {userDatas} = useContext(UserDataContext)
 
   return (
     <div class="relative left-1/2 top-8">
@@ -16,20 +19,69 @@ export default function ViewNotif({unreadNotif , trashHandler , close}) {
           <div class="p-4">
             {
               unreadNotif.length !== 0 ? unreadNotif.map((item , index) => {
-                return (
-                  <div key={index} class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
-                    <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <img class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" src={bellAlert} alt="" />
-                    </div>
-                    <div>
-                      <p class="font-semibold text-gray-900">
-                        اسم کاربر
-                        <span class="absolute inset-0"></span>
-                      </p>
-                      <p class="mt-1 text-gray-600">{item.data.message}</p>
-                    </div>
-                  </div>
-                )
+                if (item.data.request_id && userDatas.user.type === "genuine" || userDatas.user.type === "legal") {
+                  return (
+                    <Link to={`/panel/viewRequest/${item.data.request_id}`}>
+                      <div key={index} class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" src={bellAlert} alt="" />
+                        </div>
+                        <div>
+                          <p class="font-semibold text-gray-900">
+                            {item.data.sender ? item.data.sender : "اسم کاربر" }
+                          </p>
+                          <p class="mt-1 text-gray-600">{item.data.message}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                } else if (item.data.request_id && userDatas.user.type === "expert") {
+                  return (
+                    <Link to={`/panel/expertCheckRequest/${item.data.request_id}`}>
+                      <div key={index} class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" src={bellAlert} alt="" />
+                        </div>
+                        <div>
+                          <p class="font-semibold text-gray-900">
+                            {item.data.sender ? item.data.sender : "اسم کاربر" }
+                          </p>
+                          <p class="mt-1 text-gray-600">{item.data.message}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                } else if (item.data.request_id && userDatas.user.type === "admin") {
+                  return (
+                    <Link to={`/panel/AdminCheckRequest/${item.data.request_id}`}>
+                      <div key={index} class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" src={bellAlert} alt="" />
+                        </div>
+                        <div>
+                          <p class="font-semibold text-gray-900">
+                            {item.data.sender ? item.data.sender : "اسم کاربر" }
+                          </p>
+                          <p class="mt-1 text-gray-600">{item.data.message}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                } else {
+                  return (
+                      <div key={index} class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
+                        <div class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <img class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" src={bellAlert} alt="" />
+                        </div>
+                        <div>
+                          <p class="font-semibold text-gray-900">
+                            {item.data.sender ? item.data.sender : "اسم کاربر" }
+                          </p>
+                          <p class="mt-1 text-gray-600">{item.data.message}</p>
+                        </div>
+                      </div>
+                  )
+                }
               }) : 
               <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">
                   <p class="mt-1 text-gray-600">اعلان جدیدی وجود ندارد</p>

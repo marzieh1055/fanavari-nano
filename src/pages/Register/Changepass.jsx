@@ -37,12 +37,12 @@ export default function Changepass() {
       .catch((err) => {
         console.log(err);
         setIsLoading(false)
-        console.log(err.response.data.message);
         if (typeof(err.response.data.message) === "string") {
             toast(err.response.data.message)
         } else {
             Object.keys(err.response.data.message).map((item) => {
-                toast(err.response.data.message[item][0])
+              console.log(err.response.data.message[item][0]);
+              toast(err.response.data.message[item][0])
             })
         }
       })
@@ -51,13 +51,14 @@ export default function Changepass() {
       console.log("err");
     }
   }
-  if (isLoading) return <Loader />
+  // if (isLoading) return <Loader />
   return (
       <div className="bg-white rounded-2xl mt-6 p-6">
+        {isLoading && <Loader />}
+        <ToastContainer />
         <div className=" p-6">
           <p className="text-xl font-extrabold">تغییر رمز عبور</p>
         </div>
-        <ToastContainer />
         <hr />
         <div className="">
           <div className="w-1/2 mx-auto">

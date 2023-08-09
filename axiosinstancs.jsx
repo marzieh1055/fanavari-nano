@@ -2,6 +2,7 @@
 //                     ************
 import axios from 'axios';
 const baseURL = "https://backend.nanotf.ir/";
+axios.defaults.baseURL = 'https://backend.nanotf.ir/';
 
 const Bearertoken = localStorage.getItem("token");
 
