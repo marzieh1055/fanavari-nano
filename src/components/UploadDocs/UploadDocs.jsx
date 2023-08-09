@@ -103,31 +103,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
           {errors.file3 && showErr.file3 && <span className="text-red-500 text-xs ">*{errors.file3}</span>}
         </div>
         {/* FILE 4 */}
-        <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
-          <p className="">
-            آپلود فیش واریزی
-          </p>
-          {
-            document.file4 === null ?
-              <label htmlFor='file4' className="text-blue-400 text-xs w-full justify-center">
-                برای بارگذاری کلیک کنید
-              </label> :
-              <div>
-                <p className="text-blue-400 text-xs w-full m-1 justify-center">
-                  {
-                    `نام فایل : ${document.file4.name}`
-                  }
-                </p>
-                <label htmlFor='file4' className="text-yellow-400 m-1 text-xs w-full justify-center">
-                  برای تغییر کلیک کنید
-                </label>
-              </div>
-
-          }
-          <input style={{ display: "none" }} id='file4' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file4" />
-          <br />
-          {errors.file4 && showErr.file4 && <span className="text-red-500 text-xs ">*{errors.file4}</span>}
-        </div>
+        
       </div>
     </div>)
 }

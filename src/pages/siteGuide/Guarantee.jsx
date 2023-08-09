@@ -76,13 +76,20 @@ export default function Guarantee() {
           پس از بارگذاری کامل مدارک، می توانید از قسمت درخواست های جاری جزئیات درخواستخود را بررسی کنید و از روند آن اطلاع داشته باشید.
         </p>
       </div>
-      <Link to="/panel/oploadDoc">
-      <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
-        <MdPayment className="text-2xl ml-2" />
-
-        انتقال به درگاه بانکی
-      </button>
-      </Link>
+      <div className="flex w-full">
+        <Link className="w-1/2 p-2" to="/panel/404">
+          <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
+            <MdPayment className="text-2xl ml-2" />
+            انتقال به درگاه بانکی
+          </button>
+        </Link>
+        {/* /panel/oploadDoc */}
+        <Link className="w-1/2 p-2" to="/panel/uploadPic">
+          <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
+            آپلود عکس فیش واریزی
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

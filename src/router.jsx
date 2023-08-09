@@ -53,6 +53,7 @@ import ViewDeleteReqs from "./pages/Requests/ViewDeleteReqs";
 import UpdateFact from "./components/updateFacts/UpdateFacts";
 import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
 import AccessError from "./pages/404/AccessError";
+import UploadPic from "./pages/waranty/UploadPic";
 
 
 const routes = [
@@ -105,6 +106,7 @@ const routes = [
       { path: "suport/:ticket_route_id", element: <Support /> },
       { path: "siteGuide", element: <SiteGuide /> },
       { path: "guarantee", element: <Guarantee /> },
+      { path: "uploadPic", element: <UploadPic /> },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "Testticket", element: <Testticket /> },
