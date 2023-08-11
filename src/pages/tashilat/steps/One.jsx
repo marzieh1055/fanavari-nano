@@ -153,7 +153,7 @@ export default function One() {
           <table className="w-full rounded-xl overflow-hidden">
             <thead>
               <tr className=" sticky top-0   ">
-                <th className="bg-white p-3 ">عنوان درخواست </th>
+                <th className="bg-white p-3 "> نام شرکت درخواست دهنده </th>
                 <th className="bg-white p-3 ">نوع درخواست </th>
               </tr>
             </thead>

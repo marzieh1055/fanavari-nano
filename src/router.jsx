@@ -32,6 +32,7 @@ import One from "./pages/tashilat/steps/One";
 import Three from "./pages/tashilat/steps/Three"
 import Four from "./pages/tashilat/steps/Four";
 import Five from "./pages/tashilat/steps/Five";
+import Six from "./pages/tashilat/steps/Six";
 import Confirm from "./pages/tashilat/steps/Confirm";
 import WarrantyDocuments from "./pages/Requests/WarrantyDocuments";
 import AdminCheckRequest from "./pages/Requests/AdminCheckRequest";
@@ -129,6 +130,7 @@ const routes = [
           { path: "3", element: <Three /> },
           { path: "4", element: <Four /> },
           { path: "5", element: <Five /> },
+          { path: "6", element: <Six /> },
           { path: "confirm", element: <Confirm /> },
         ]
       },
