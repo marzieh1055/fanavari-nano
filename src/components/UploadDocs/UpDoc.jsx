@@ -4,8 +4,8 @@ import UPBox from './UPBox'
 export default function UpDoc({document , changeHandler, errors , showErr }) {
   return (
     <div className="w-1/2 px-2">
-        <div className=" bg-white rounded-xl p-5">
-          <div className=" pb-4">
+        <div className="rounded-xl p-5">
+          <div className=" pb-4 p-2 bg-white rounded-lg border">
             <p className=" font-bold"> اسناد </p>
             <p className="text-xs text- gray-400 my-1 ">
               حداکثر بارگذاری برای هر فرم 5 فایل میباشد .{" "}

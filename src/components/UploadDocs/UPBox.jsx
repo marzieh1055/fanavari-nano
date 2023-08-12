@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function UPBox({SelectDocument , changeHandler , InputName , titleText , errors , showErr }) {
   return (
-    <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
+    <div className="rounded-lg bg-white p-2 border text-gray-400 text-xs mt-4">
         <p className="">
             {titleText}
         </p>

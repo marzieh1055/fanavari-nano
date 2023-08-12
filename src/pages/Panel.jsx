@@ -10,14 +10,14 @@ export default function Panel() {
   const { userDatas } = useContext(UserDataContext)
   const navigate = useNavigate();
   let { pathname: pass } = useLocation();
-  const [loc, setLoc] = useState(pass.split("/")[2])
+  const [loc, setLoc] = useState(pass.split("/")[2].toLowerCase())
 
   const datasLoc = window.localStorage.getItem("userData")
   const parsData = JSON.parse(datasLoc)
 
   console.log(loc);
   useEffect(() => {
-    setLoc(pass.split("/")[2])
+    setLoc(pass.split("/")[2].toLowerCase())
   }, [pass])
   useEffect(() => {
     if (!userDatas) {

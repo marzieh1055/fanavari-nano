@@ -88,6 +88,14 @@ export default function Tashilat() {
           </p>
         </div>
         <div className="w-10 px-2">
+          <div className={stepLevel > 5 || stepLevel === "confirm" ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-slate-300 h-full rounded"}></div>
+        </div>
+        <div className="flex items-center">
+          <p className={stepLevel >= 6 || stepLevel === "confirm" ? "bg-blue-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 " : "bg-slate-200 p-0.5 pt-1 px-3 rounded-xl text-blue-800 "}>
+            6
+          </p>
+        </div>
+        <div className="w-10 px-2">
           <div className={stepLevel === "confirm" ? "border-t border-2 border-blue-800 h-full rounded" : "border-t border-2 border-slate-300 h-full rounded"}></div>
         </div>
         <div className="flex items-center">

@@ -58,7 +58,7 @@ export default function Five() {
     Axios.post("/api/v1/approvals", stepFive)
     .then((res) => {
       console.log(res.data)
-      navigate(`/panel/Tashilat/confirm?last_id=${parseInt(values.last_id)}`)
+      navigate(`/panel/tashilat/6?last_id=${parseInt(values.last_id)}`)
       setIsLoading(false)
     })
     .catch((err) => {
