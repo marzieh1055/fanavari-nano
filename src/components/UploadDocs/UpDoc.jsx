@@ -4,16 +4,15 @@ import UPBox from './UPBox'
 export default function UpDoc({document , changeHandler, errors , showErr }) {
   return (
     <div className="w-1/2 px-2">
-        <div className="rounded-xl p-5">
-          <div className=" pb-4 p-2 bg-white rounded-lg border">
-            <p className=" font-bold"> اسناد </p>
-            <p className="text-xs text- gray-400 my-1 ">
-              حداکثر بارگذاری برای هر فرم 5 فایل میباشد .{" "}
-            </p>
-            <p className="text-xs gray-400 my-1 ">
-              فایل ها را به صورت یکجا انتخاب کرده و وارد کنید .{" "}
-            </p>
+        <div className="rounded-xl ">
+          <div className=" pb-4 p-2 bg-white rounded-lg ">
+            <div className=" pb-4">
+            <p className=" font-bold">محل تصاویر مدارک ثبتی و حقوقی</p>
+            </div>
+            <hr className="border-dashed border-gray-300" />
+            
           </div>
+
           <UPBox 
             SelectDocument={document.licenses}
             changeHandler={changeHandler}
