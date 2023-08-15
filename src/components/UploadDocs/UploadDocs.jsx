@@ -5,7 +5,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
     changeHandler(e)
   }
   return (
-    <div className="w-1/2 px-2">
+    <div className="w-full px-2">
       <div className=" bg-white rounded-xl p-5">
         <div className=" pb-4">
           <p className=" font-bold"> مدارک اصلی </p>

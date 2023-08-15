@@ -84,7 +84,7 @@ export default function Guarantee() {
           </button>
         </Link>
         {/* /panel/oploadDoc */}
-        <Link className="w-1/2 p-2" to="/panel/uploadPic">
+        <Link className="w-1/2 p-2" to="/panel/oploadDoc">
           <button className="flex bg-blue-800 text-white rounded-xl p-3 my-3 w-full justify-center items-center  ">
             آپلود عکس فیش واریزی
           </button>

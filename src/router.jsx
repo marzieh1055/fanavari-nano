@@ -107,7 +107,6 @@ const routes = [
       { path: "suport/:ticket_route_id", element: <Support /> },
       { path: "siteGuide", element: <SiteGuide /> },
       { path: "guarantee", element: <Guarantee /> },
-      { path: "uploadPic", element: <UploadPic /> },
       { path: "allNotifs", element: <AllNotifs /> },
       { path: "userInfo", element: <UserInfo /> },
       { path: "Testticket", element: <Testticket /> },

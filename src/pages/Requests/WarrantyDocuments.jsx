@@ -25,6 +25,7 @@ const WarrantyDocuments = () => {
       setErrore(true)
       navigate(`/panel/404`)
     })
+
   } , [])
 
   if (isLoading) return <Loader />

@@ -22,6 +22,7 @@ import S5contractV from "../../components/modal/ViewDocFModals/S5contractV";
 import S5pledgeV from "../../components/modal/ViewDocFModals/S5pledgeV";
 import S5estateV from "../../components/modal/ViewDocFModals/S5estateV";
 import S1introductionV from "../../components/modal/ViewDocFModals/S1introductionV";
+import S6LeftBox from "../../components/modal/ViewDocFModals/S6LeftBox";
 
 const FacilitiesDocuments = () => {
   const reqId = useParams()
@@ -30,6 +31,8 @@ const FacilitiesDocuments = () => {
   const [isLoading , setIsLoading] = useState(true)
   const [errore , setErrore] = useState(false)
   const [showDoc , setShowDoc] = useState(null)
+
+  const f_boxLItems = ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" ]
 
   const [reqData , setReqData] = useState([])
   useEffect(() => {
@@ -74,6 +77,7 @@ const FacilitiesDocuments = () => {
             }
           </p>
         </div>
+
         { showDoc !== null &&  showDoc.select === "place" ? <S1Places data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
@@ -91,13 +95,14 @@ const FacilitiesDocuments = () => {
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgeV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" }
+        { showDoc !== null &&  f_boxLItems.includes(showDoc.select) ? <S6LeftBox  object_f={showDoc} close={setShowDoc} /> : "" }
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
             {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {
                   // console.log(keyss);
-                  if (["approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
+                  if ( ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w"].includes(keyss) && obj[keyss].length > 0) {
                     return (
                       <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                         <div className="flex gap-x-4">

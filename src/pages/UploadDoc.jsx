@@ -7,6 +7,7 @@ import Loader from '../components/Loader/Loader'
 import { Validation } from "../helper/validation";
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import UpPic from "./waranty/UpPic";
 
 
 export default function UploadDoc() {
@@ -24,11 +25,12 @@ export default function UploadDoc() {
     // request_id: 6,
     type: "Warranty",
     title: "",
+    // deposit : null,
     type_w: type_w,
     file1: null,
     file2: null,
     file3: null,
-    file4: null,
+    path4: null,
     licenses: null, // inja
     user_id : userDatas.user.id,
     register_doc: null,
@@ -200,7 +202,10 @@ export default function UploadDoc() {
       </div>
     
       <div className="flex">
-        <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
+        <div className="flex flex-col">
+          <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
+          <UpPic sendData={document} setSendData={setDocment} errors={errors} showErr={showErr} />
+        </div>
         <UpDoc document={document} changeHandler={docChangeFile} errors={errors} showErr={showErr} />
         {isLoading && <Loader />}
       </div>
