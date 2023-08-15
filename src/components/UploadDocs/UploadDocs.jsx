@@ -8,7 +8,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
     <div className="w-full px-2">
       <div className=" bg-white rounded-xl p-5">
         <div className=" pb-4">
-          <p className=" font-bold"> مدارک اصلی </p>
+          <p className=" font-bold"> مدارک اولیه </p>
         </div>
         <hr className="border-dashed border-gray-300" />
         <p className="text-xs py-3">
@@ -79,7 +79,7 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
         {/* FILE 3 */}
         <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
           <p className="">
-            کاربرگ تکمیل شده
+            فرم مشخصات مشتریان
           </p>
           {
             document.file3 === null ?
@@ -103,7 +103,56 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
           {errors.file3 && showErr.file3 && <span className="text-red-500 text-xs ">*{errors.file3}</span>}
         </div>
         {/* FILE 4 */}
-        
+        <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
+          <p className="">
+            تکمیل فرم 1 - حقوقی
+          </p>
+          {
+            document.file2 === null ?
+              <label htmlFor='file2' className="text-blue-400 text-xs w-full justify-center">
+                برای بارگذاری کلیک کنید
+              </label> :
+              <div>
+                <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                  {
+                    `نام فایل : ${document.file2.name}`
+                  }
+                </p>
+                <label htmlFor='file2' className="text-yellow-400 m-1 text-xs w-full justify-center">
+                  برای تغییر کلیک کنید
+                </label>
+              </div>
+
+          }
+          <input style={{ display: "none" }} id='file2' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file2" />
+          <br />
+          {errors.file2 && showErr.file2 && <span className="text-red-500 text-xs ">*{errors.file2}</span>}
+        </div>
+        {/* FILE 5 */}
+        <div className="rounded-lg p-2 border text-gray-400 text-xs mt-4">
+          <p className="">
+            شناسنامه ضمانت نامه          </p>
+          {
+            document.file2 === null ?
+              <label htmlFor='file2' className="text-blue-400 text-xs w-full justify-center">
+                برای بارگذاری کلیک کنید
+              </label> :
+              <div>
+                <p className="text-blue-400 text-xs w-full m-1 justify-center">
+                  {
+                    `نام فایل : ${document.file2.name}`
+                  }
+                </p>
+                <label htmlFor='file2' className="text-yellow-400 m-1 text-xs w-full justify-center">
+                  برای تغییر کلیک کنید
+                </label>
+              </div>
+
+          }
+          <input style={{ display: "none" }} id='file2' className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={handelChang} name="file2" />
+          <br />
+          {errors.file2 && showErr.file2 && <span className="text-red-500 text-xs ">*{errors.file2}</span>}
+        </div>
       </div>
     </div>)
 }

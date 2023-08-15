@@ -66,7 +66,6 @@ const routes = [
       { path: "", element: <Dashboard /> },
       
       //user
-      
       { path: "dashboarduser", element: <DashboardUser /> },
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "updateFact/:id", element: <UpdateFact /> },
@@ -101,7 +100,6 @@ const routes = [
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
       
       //public
-
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
       { path: "suport/:ticket_route_id", element: <Support /> },
@@ -116,10 +114,7 @@ const routes = [
       {path:"changePass" , element: <Changepass />},
       
       { path: "openedRequests", element: <OpenedRequests /> },
-      
-      
 
-      
       {
         path: "tashilat",
         element: <Tashilat />,
