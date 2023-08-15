@@ -40,7 +40,10 @@ export default function DownloadBoxRUp({document , setDocment , file_name , path
               </div>
 
           }
-          <input style={{ display: "none" }} id={file_name} className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={changeHandler} name={file_name} />
+          {file_name === "file6" ? <input style={{ display: "none" }} id={file_name} className="text-blue-400 text-xs " type="file" onChange={changeHandler} name={file_name} /> : 
+            <input style={{ display: "none" }} id={file_name} className="text-blue-400 text-xs " accept="application/pdf" type="file" onChange={changeHandler} name={file_name} />
+
+          } 
           <br />
         </div>
     </div>

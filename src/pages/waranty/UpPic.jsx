@@ -22,7 +22,9 @@ export default function UpPic({sendData , setSendData , errors , showErr}) {
                             برای بارگذاری کلیک کنید
                         </label> :
                         <div>
-                            <img className='w-full h-[250px] rounded' src={URL.createObjectURL(sendData.file6)} alt="عکس فیش" />
+                            <div className='w-full flex justify-center'>
+                                <img className='w-[400px] h-[250px] rounded' src={URL.createObjectURL(sendData.file6)} alt="عکس فیش" />
+                            </div>
                             <p className="text-blue-400 text-xs w-full m-1 justify-center">
                             {
                                 `نام فایل : ${sendData.file6.name}`

@@ -65,9 +65,16 @@ const WarrantyDocuments = () => {
                   path1={item.path1}
                   path2={item.path2}
                   path3={item.path3}
+                  path4={item.path4}
+                  path5={item.path5}
+                  path6={item.path6}
+
                   fn1={item.file_name1}
                   fn2={item.file_name2}
                   fn3={item.file_name3}
+                  fn4={item.file_name4}
+                  fn5={item.file_name5}
+                  fn6={item.file_name6}
                 />
               )
             })
