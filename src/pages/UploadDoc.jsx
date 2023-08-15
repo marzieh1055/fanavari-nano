@@ -22,28 +22,32 @@ export default function UploadDoc() {
   const [showErr, setShowErr] = useState({});
 
   const [document, setDocment] = useState({
-    // request_id: 6,
     type: "Warranty",
     title: "",
-    // deposit : null,
     type_w: type_w,
+    
     file1: null,
     file2: null,
     file3: null,
-    path4: null,
-    licenses: null, // inja
+    file4: null,
+    file5: null,
+    file6 : null,
+
+    licenses: null,
     user_id : userDatas.user.id,
     register_doc: null,
     signatory: null,
     knowledge: null,
     resume: null,
-    loans: null, // ta inja felan mish
+    loans: null, 
     statements: null,
     balances: null,
     catalogs: null,
     insurances: null,
-    invoices: null,
     bills: null,
+    // request_id: 6,
+    // path4: null,
+    invoices: null,
   })
   
   useEffect(() => {

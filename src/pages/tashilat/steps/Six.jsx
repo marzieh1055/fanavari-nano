@@ -8,6 +8,7 @@ import { Validation } from "../../../helper/validation";
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import queryString from "query-string";
+import UploadDocs_f from "../../../components/UploadDocs/UploadDocs_f";
 
 
 export default function Six() {
@@ -147,7 +148,7 @@ export default function Six() {
       </div>
       <ToastContainer />
       <div className="flex">
-        <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
+        <UploadDocs_f document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
         <UpDoc document={document} changeHandler={docChangeFile} errors={errors} showErr={showErr} />
         {isLoading && <Loader />}
       </div>

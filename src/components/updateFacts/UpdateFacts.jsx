@@ -25,6 +25,7 @@ import S5estatesUp from "./components/S5estatesUp";
 import S4bankUP from "./components/S4bankUP"
 import S5pledgesUP from "./components/S5pledgesUP";
 import S1 from "./components/S1";
+import S6Up from "./S6Up";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -94,30 +95,30 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "contract" ? <S5contractsUp  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estatesUp  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         
-        {/* { showDoc !== null &&  showDoc.select === "shareholder" ? <S2ViewShareholder data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "part2" ? <S2Part2View data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "residence" ? <S2residenceView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "manpower" ? <S2manpowerView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "educational" ? <S2educationalView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "product" ? <S3productView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "bank" ? <S4bankView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "active_f" ? <S4active_fView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "active_w" ? <S4active_wView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "benefit" ? <S4benefitView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "asset" ? <S4AssetView data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "approvals" ? <S5approvalsV  data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "contract" ? <S5contractV  data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgeV  data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
-        { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" } */}
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1  close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "product" ? <S3UP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} /> : "" }
         { showDoc !== null &&  showDoc.select === "educational" ? <S2EducationalUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
         { showDoc !== null &&  showDoc.select === "bank" ? <S4bankUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgesUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
+        { showDoc !== null &&  showDoc.select === "step6" ? <S6Up close={setShowDoc} reqData={showDoc.data.facilities[0]} reqId={reqData.facilities[0].request_id} toast={toast} />: "" }
 
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
+            {
+              reqData.facilities && 
+              <li onClick={() => setShowDoc({select : "step6" , data : reqData})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
+                <div className="flex gap-x-4">
+                  <div className="min-w-0 flex-auto">
+                    <p className="text-sm font-semibold leading-6 text-gray-900">اسناد مرحله ششم</p>
+                    {/* <p className="mt-1 truncate text-xs leading-5 text-gray-500">تعداد اسناد : {obj[keyss].length} عدد</p> */}
+                  </div>
+                </div>
+                <div className=" sm:flex sm:flex-col sm:items-end">
+                  {/* <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(obj[keyss][0].created_at)}</p> */}
+                  {/* <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(obj[keyss][0].updated_at)}</p> */}
+                </div>
+              </li>
+            }
             {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {

@@ -17,26 +17,26 @@ export default function UpPic({sendData , setSendData , errors , showErr}) {
                         آپلود فیش واریزی
                     </p>
                     {
-                        sendData.path4 === null ?
-                        <label htmlFor='path4' className="text-blue-400 text-xs mt-3 w-full justify-center">
+                        sendData.file6 === null ?
+                        <label htmlFor='file6' className="text-blue-400 text-xs mt-3 w-full justify-center">
                             برای بارگذاری کلیک کنید
                         </label> :
                         <div>
-                            <img className='w-full h-[250px] rounded' src={URL.createObjectURL(sendData.path4)} alt="عکس فیش" />
+                            <img className='w-full h-[250px] rounded' src={URL.createObjectURL(sendData.file6)} alt="عکس فیش" />
                             <p className="text-blue-400 text-xs w-full m-1 justify-center">
                             {
-                                `نام فایل : ${sendData.path4.name}`
+                                `نام فایل : ${sendData.file6.name}`
                             }
                             </p>
-                            <label htmlFor='path4' className="text-yellow-400 m-1 mt-3 text-xs w-full justify-center">
+                            <label htmlFor='file6' className="text-yellow-400 m-1 mt-3 text-xs w-full justify-center">
                             برای تغییر کلیک کنید
                             </label>
                         </div>
 
                     }
-                    <input style={{ display: "none" }} id='path4' className="text-blue-400 text-xs " accept="image/*" type="file" onChange={changeHandler} name="path4" />
+                    <input style={{ display: "none" }} id='file6' className="text-blue-400 text-xs " accept="image/*" type="file" onChange={changeHandler} name="file6" />
                     <br />
-                    {errors.path4 && showErr.path4 && <span className="text-red-500 text-xs ">*{errors.path4}</span>}
+                    {errors.file6 && showErr.file6 && <span className="text-red-500 text-xs ">*{errors.file6}</span>}
                 </div>
             </div>
         </div>

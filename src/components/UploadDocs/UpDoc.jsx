@@ -93,6 +93,14 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             errors={errors.loans}
             showErr={showErr.loans}
           />
+          <UPBox 
+              SelectDocument={document.invoices}
+              changeHandler={changeHandler}
+              InputName="invoices"
+              titleText={"پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح"}
+              errors={errors.invoices}
+              showErr={showErr.invoices}
+            />
         </div>
 
 
@@ -127,14 +135,6 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
 
 
 
-        {/* <UPBox 
-            SelectDocument={document.invoices}
-            changeHandler={changeHandler}
-            InputName="invoices"
-            titleText={"پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح"}
-            errors={errors.invoices}
-            showErr={showErr.invoices}
-          /> */}
 
       </div>
     </div>
