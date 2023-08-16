@@ -166,7 +166,7 @@ export const Validation = (data , type) => {
 
     // upDoc
     if (type === "upDoc") {
-        console.log(errors);
+        // console.log(errors);
         Object.keys(data).map((item) => {
             if (item === "title") {
                 if (data[item] === "") {

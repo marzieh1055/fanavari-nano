@@ -8,10 +8,38 @@ export default function WboxLUp({document , setDocment , reqData}) {
     for (let i = 0 ; i < filesEvent.length ; i++) {
       filesList.push({file : filesEvent[i]})
     }
+
+    let arryasli = [];
+    if (document[e.target.name] !== null && document[e.target.name] !== undefined) {
+      arryasli = document[e.target.name]
+    }
+    const finalArry = filesList.concat(arryasli)
     setDocment({
       ...document,
-      [e.target.name]: filesList
+      [e.target.name]: finalArry
     });
+    console.log(finalArry);
+  }
+  const  removeItem = (e) => {
+    let arryasli = [];
+    if (document[e.name] !== null) {
+      arryasli = document[e.name]
+    }
+    arryasli.splice(e.index , 1)
+    if (arryasli.length > 0) {
+      setDocment({
+        ...document,
+        [e.name]: arryasli
+      });
+    } else {
+      let objectDel = document
+      delete objectDel[e.name]
+      
+      setDocment({
+        ...objectDel
+      });
+      console.log(objectDel);
+    }
     console.log(document);
   }
   return (
@@ -40,11 +68,12 @@ export default function WboxLUp({document , setDocment , reqData}) {
                                 <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center cursor-pointer">
                                   برای بروزرسانی کلیک کنید
                                 </label> :
-                                <div>
+                                <div className='flex flex-col'>
                                   {
                                     document[ii] && document[ii].map((item , keyNum)=> {
                                           return (
-                                              <p key={keyNum} className="text-blue-400 text-xs w-full m-1 justify-center">
+                                              <p key={keyNum} className="flex text-blue-400 text-xs w-full m-1 items-center">
+                                                <span title='حذف' onClick={() => removeItem({index : keyNum , name : ii})} className='flex w-5 h-5 text-center items-center justify-center cursor-pointer hover:bg-red-500 transition text-white bg-red-700 p-1 ml-1 rounded-[50%] '>×</span>
                                               {
                                                 `نام فایل جدید : ${item.file.name}`
                                               }
@@ -96,11 +125,12 @@ export default function WboxLUp({document , setDocment , reqData}) {
                                 <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center cursor-pointer">
                                   برای بروزرسانی کلیک کنید
                                 </label> :
-                                <div>
+                                <div className='flex flex-col'>
                                   {
                                     document[ii] && document[ii].map((item , keyNum)=> {
                                           return (
-                                              <p key={keyNum} className="text-blue-400 text-xs w-full m-1 justify-center">
+                                              <p key={keyNum} className="flex text-blue-400 text-xs w-full m-1 items-center">
+                                                <span title='حذف' onClick={() => removeItem({index : keyNum , name : ii})} className='flex w-5 h-5 text-center items-center justify-center cursor-pointer hover:bg-red-500 transition text-white bg-red-700 p-1 ml-1 rounded-[50%] '>×</span>
                                               {
                                                 `نام فایل جدید : ${item.file.name}`
                                               }
@@ -148,11 +178,12 @@ export default function WboxLUp({document , setDocment , reqData}) {
                                 <label htmlFor={ii} className="text-yellow-400 text-xs w-full justify-center cursor-pointer">
                                   برای بروزرسانی کلیک کنید
                                 </label> :
-                                <div>
+                                <div className='flex flex-col'>
                                   {
                                     document[ii] && document[ii].map((item , keyNum)=> {
                                           return (
-                                              <p key={keyNum} className="text-blue-400 text-xs w-full m-1 justify-center">
+                                              <p key={keyNum} className="flex text-blue-400 text-xs w-full m-1 items-center">
+                                                <span title='حذف' onClick={() => removeItem({index : keyNum , name : ii})} className='flex w-5 h-5 text-center items-center justify-center cursor-pointer hover:bg-red-500 transition text-white bg-red-700 p-1 ml-1 rounded-[50%] '>×</span>
                                               {
                                                 `نام فایل جدید : ${item.file.name}`
                                               }

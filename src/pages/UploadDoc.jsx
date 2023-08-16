@@ -52,7 +52,7 @@ export default function UploadDoc() {
   
   useEffect(() => {
     setErrors(Validation(document , "upDoc"))
-    console.log(errors);
+    // console.log(errors);
   } , [ document ])
 
   const oploaddoc = () => {
@@ -62,7 +62,7 @@ export default function UploadDoc() {
       if (document[item] === null) {
         console.log(item);
         showE[item] = true
-        console.log(showErr);
+        // console.log(showErr);
       }
     })
     setShowErr(showE)
@@ -141,14 +141,18 @@ export default function UploadDoc() {
     for (let i = 0 ; i < filesEvent.length ; i++) {
       filesList.push({file : filesEvent[i]})
     }
+
+    let arryasli = [];
+    if (document[e.target.name] !== null) {
+      arryasli = document[e.target.name]
+    }
+    const finalArry = filesList.concat(arryasli)
     setDocment({
       ...document,
-      [e.target.name]: filesList
+      [e.target.name]: finalArry
     });
+    // console.log(finalArry);
     console.log(document);
-    // setDocment({
-    //   ...document , [e.target.name] : e.target.files[0]
-    // });
   }
   
   const focusHandler = e => {
@@ -161,6 +165,26 @@ export default function UploadDoc() {
       console.log(errors);
   }
   
+  const removeHandler = (e) => {
+    let arryasli = [];
+    if (document[e.name] !== null) {
+      arryasli = document[e.name]
+    }
+    arryasli.splice(e.index , 1)
+    if (arryasli.length > 0) {
+      setDocment({
+        ...document,
+        [e.name]: arryasli
+      });
+    } else {
+      setDocment({
+        ...document,
+        [e.name]: null
+      });
+    }
+    console.log(document);
+  }
+
   return (
     <div className="px-5">
       <div className=" py-6">
@@ -210,7 +234,7 @@ export default function UploadDoc() {
           <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
           <UpPic sendData={document} setSendData={setDocment} errors={errors} showErr={showErr} />
         </div>
-        <UpDoc document={document} changeHandler={docChangeFile} errors={errors} showErr={showErr} />
+        <UpDoc document={document} changeHandler={docChangeFile} removeItem={removeHandler} errors={errors} showErr={showErr} />
         {isLoading && <Loader />}
       </div>
     </div>

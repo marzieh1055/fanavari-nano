@@ -3,12 +3,13 @@ import Axios from '../../../axiosinstancs'
 import Loader from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 
-export default function DeleteUser({userDataaa , close }) {
+export default function DeleteUser({userDataaa , close , setShowMore }) {
 
   const navigate = useNavigate();
   const [IsLoading, setIsLoading] = useState(false);
   console.log(userDataaa);
   const confirmHandler = () => {
+    setShowMore(null)
     setIsLoading(true)
     Axios.delete(`/api/admin/users/${userDataaa.id}`)
     .then((res) => {

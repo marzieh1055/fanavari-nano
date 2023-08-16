@@ -1,7 +1,7 @@
 import React from 'react'
 import UPBox from './UPBox'
 
-export default function UpDoc({ document, changeHandler, errors, showErr }) {
+export default function UpDoc({ document, changeHandler, errors, showErr , removeItem }) {
   return (
     <div className="w-1/2 px-2">
       <div className="rounded-xl ">
@@ -18,6 +18,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"تصویر قرارداد اجاره یا سند مالکیت محل استقرار شرکت"}
             errors={errors.bills}
             showErr={showErr.bills}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.register_doc}
@@ -26,6 +27,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={" مدارک ثبتی شرکت شامل اساسنامه/لیست سهامداران/روزنامه رسمی آخرین تغییرات ثبتی شرکت/پروانه و جواز تاسیس"}
             errors={errors.register_doc}
             showErr={showErr.register_doc}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.signatory}
@@ -34,6 +36,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"تصویر مدارک هویتی اعضای هیئت مدیره  شرکت که صاحب امضا می باشند (تصویر کارت ملی و شناسنامه)"}
             errors={errors.signatory}
             showErr={showErr.signatory}
+            removeItem={removeItem}
           />
         </div>
 
@@ -51,6 +54,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"اظهارنامه مالیاتی سال 1399 , 1400 , 1401"}
             errors={errors.statements}
             showErr={showErr.statements}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.balances}
@@ -59,6 +63,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={" اسکن گزارش معدل تمام حساب های فعال شرکت برای حداقل یک سال گذشته"}
             errors={errors.balances}
             showErr={showErr.balances}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.insurances}
@@ -67,6 +72,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"آخرین لیست بیمه کارکنان شرکت "}
             errors={errors.insurances}
             showErr={showErr.insurances}
+            removeItem={removeItem}
           />
 
           <UPBox
@@ -76,6 +82,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"مستندات قرارداد ها (فروش محصول به مشتریان) و فروش فصلی سال 1401"}
             errors={errors.knowledge}
             showErr={showErr.knowledge}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.resume}
@@ -84,6 +91,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"معدل حساب های فعال شرکت و گردش حساب خلاصه سال 1401"}
             errors={errors.resume}
             showErr={showErr.resume}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.loans}
@@ -92,6 +100,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"لیست تسهیلات و وام های اخذ شده شرکت"}
             errors={errors.loans}
             showErr={showErr.loans}
+            removeItem={removeItem}
           />
           <UPBox 
               SelectDocument={document.invoices}
@@ -100,6 +109,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
               titleText={"پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح"}
               errors={errors.invoices}
               showErr={showErr.invoices}
+              removeItem={removeItem}
             />
         </div>
 
@@ -117,6 +127,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"تصویر آخرین مجوز ها و گواهی نامه های اخذ شده توسط شرکت"}
             errors={errors.licenses}
             showErr={showErr.licenses}
+            removeItem={removeItem}
           />
           <UPBox
             SelectDocument={document.catalogs}
@@ -125,6 +136,7 @@ export default function UpDoc({ document, changeHandler, errors, showErr }) {
             titleText={"مشخصات فنی و کاتالوگ محصول / خدمات"}
             errors={errors.catalogs}
             showErr={showErr.catalogs}
+            removeItem={removeItem}
           />
         </div>
 

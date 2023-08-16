@@ -10,6 +10,8 @@ import DeleteUser from "../../components/modal/DeleteUser";
 
 import queryString from "query-string";
 import { ToastContainer, toast } from "react-toastify";
+import ActionButton from "./components/ActionButton";
+import UserLine from "./components/UserLine";
 
 
 export default function ViewUsers() {
@@ -20,6 +22,8 @@ export default function ViewUsers() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [IsLoading, setIsLoading] = useState(true);
   const [showDelete, setShowDelete] = useState(null);
+  const [showMore, setShowMore] = useState(null);
+  
 
   useEffect(() => {
     getUserGenuine();
@@ -85,17 +89,17 @@ export default function ViewUsers() {
           </button>
           <button
             className={`${isPerson && " bg-blue-600 text-white "
-              } rounded-xl p-3 `}
-            onClick={() => {
-              setIsPerson(true);
-            }}
+          } rounded-xl p-3 `}
+          onClick={() => {
+            setIsPerson(true);
+          }}
           >
             حقیقی
           </button>
           
         </div>
       </div>
-      {showDelete !== null && <DeleteUser close={setShowDelete} userDataaa={showDelete} />}
+      {showDelete !== null && <DeleteUser setShowMore={setShowMore} close={setShowDelete} userDataaa={showDelete} />}
       <div className="max-h-[60vh] overflow-y-scroll">
         {isPerson ? (
           <table className="w-full ">
@@ -108,40 +112,10 @@ export default function ViewUsers() {
             </tr>
             {allGenuineUser && allGenuineUser.map((GenuineUser) => {
               return (
-                <tr
-                  key={GenuineUser.id}
-                  id={GenuineUser.id}
-
-                  className={
-                    selectedItem?.id === GenuineUser.id
-                      ? console.log(GenuineUser.id)
-                      : null
-                  }
-                >
-                  <td>
-                    {" "}
-                    <img
-                      className="w-10"
-                      src={user}
-                      alt=""
-                    />
-                  </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    {onlyDateConversion(GenuineUser.created_at)}
-                  </td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
-                      <button onClick={() => setShowDelete(GenuineUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                        حذف کاربر
-                      </button>
-                      <Link to={`/panel/Viewdetailuser/${GenuineUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
-                        اطلاعات بیشتر
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
+                <>
+                {showMore && <ActionButton close={setShowMore} GenuineUser={showMore} setShowDelete={setShowDelete} />}
+                  <UserLine GenuineUser={GenuineUser} setShowMore={setShowMore} />
+                </>
               );
             })}
           </table>
@@ -156,30 +130,10 @@ export default function ViewUsers() {
             </tr>
             {allLegalUser && allLegalUser.map((LegalUser) => {
               return (
-                <tr
-                  key={LegalUser.id}
-                  id={LegalUser.id}
-
-                  className={
-                    selectedItem?.id === LegalUser.id
-                      ? console.log(LegalUser.id)
-                      : null
-                  }
-                >
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.company_name}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.name}{LegalUser.family}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">{LegalUser.national_company}</td>
-                  <td className="p-4 text-xs text-gray-400 font-bold">
-                    <div className="flex">
-                      <button onClick={() => setShowDelete(LegalUser)} className="text-red-600 border-2 border-red-600 rounded-2xl p-2 ml-2">
-                        حذف کاربر
-                      </button>
-                      <Link to={`/panel/Viewdetailuser/${LegalUser.id}`} className="text-blue-700 border rounded-2xl p-2 ">
-                        اطلاعات بیشتر
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
+                <>
+                {showMore && <ActionButton close={setShowMore} GenuineUser={showMore} setShowDelete={setShowDelete} />}
+                  <UserLine GenuineUser={LegalUser} setShowMore={setShowMore} />
+                </>
               );
             })}
 
@@ -189,37 +143,6 @@ export default function ViewUsers() {
       </div>
       <hr />
         <button className="rounded-lg bg-green-700 mt-2 text-white p-3 font-bold text-xs " onClick={downloadHandler}>خروجی اکسل</button>
-      {/* <div className="flex justify-between py-4 text-gray-600 items-center">
-        <div className="">نمایش 21-31 از 80 مورد</div>
-        <div className="">
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {"<"}
-          </button>
-          <button className="text-gray-800 text-lg font-bold mx-2">6</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">5</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">4</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">3</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">2</button>
-          <button className="text-gray-800 text-lg font-bold mx-2">1</button>
-          <button className="text-gray-800 text-2xl font-bold mx-2">
-            {" "}
-            {">"}{" "}
-          </button>
-        </div>
-        <div className="flex">
-          <select
-            dir="ltr"
-            name=""
-            id=""
-            className="rounded outline-none w-20 text-gray-800 border ml-4"
-          >
-            <option value="10">10</option>
-            <option value="10">15</option>
-            <option value="10">20</option>
-          </select>
-          <p>تعداد کاربر در هر صفحه</p>
-        </div>
-      </div> */}
     </div>
   );
 }
