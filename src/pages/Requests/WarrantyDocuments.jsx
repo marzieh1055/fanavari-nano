@@ -14,10 +14,30 @@ const WarrantyDocuments = () => {
   const [errore , setErrore] = useState(false)
 
   const [reqData , setReqData] = useState([])
+  const [reqDataL , setReqDataL] = useState([])
   useEffect(() => {
     Axios.get(`/api/v1/request/${reqId.id}`)
     .then(async (res) => {
       console.log(res.data);
+      const response = {
+        warranty : [{
+          bills : res.data.warranty[0].bills,
+          registration_doc : res.data.warranty[0].registration_doc,
+          signatory : res.data.warranty[0].signatory,
+          
+          statement : res.data.warranty[0].statement,
+          balance : res.data.warranty[0].balance,
+          insurance : res.data.warranty[0].insurance,
+          knowledge : res.data.warranty[0].knowledge,
+          resume : res.data.warranty[0].resume,
+          loans : res.data.warranty[0].loans,
+          proforma : res.data.warranty[0].proforma,
+
+          license : res.data.warranty[0].license,
+          catalog : res.data.warranty[0].catalog,
+        }]
+      }
+      setReqDataL(response)
       setReqData(res.data)
       setIsLoading(false)
     })
@@ -81,7 +101,7 @@ const WarrantyDocuments = () => {
             }
           </div>
           <div className="w-1/2 px-2">
-            {reqData.warranty && <WboxL reqData={reqData} />}
+            {reqData.warranty && <WboxL reqData={reqDataL} />}
           </div>
         </div>
     </div>

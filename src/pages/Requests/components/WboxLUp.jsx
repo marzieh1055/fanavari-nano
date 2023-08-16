@@ -18,7 +18,7 @@ export default function WboxLUp({document , setDocment , reqData}) {
       ...document,
       [e.target.name]: finalArry
     });
-    console.log(finalArry);
+    // console.log(finalArry);
   }
   const  removeItem = (e) => {
     let arryasli = [];
@@ -40,7 +40,7 @@ export default function WboxLUp({document , setDocment , reqData}) {
       });
       console.log(objectDel);
     }
-    console.log(document);
+    // console.log(document);
   }
   return (
     <div>
