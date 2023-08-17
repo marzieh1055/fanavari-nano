@@ -1,4 +1,4 @@
-export const itemTitle = (name) => {
+const itemTitle = (name) => {
     if (name === "place") {
         return "مکان فعالیت شرکت"
     } else if (name === "shareholder") {
@@ -64,3 +64,41 @@ export const itemTitle = (name) => {
     }
 
 }
+
+const viewTitle = (name) => {
+    if (name === "education") {
+        return "رشته تحصیلی"
+    } else if (name === "father_name") {
+        return "نام پدر"
+    } else if (name === "job") {
+        return "شغل"
+    } else if (name === "nationality") {
+        return "ملیت"
+    } else if (name === "number_certificate") {
+        return "کد ملی"
+    } else if (name === "place_issue") {
+        return "محل تولد"
+    } else if (name === "series_certificate") {
+        return "شماره شناسنامه"
+    } else if (name === "study") {
+        return "تحصیلات"
+    } else if (name === "gender") {
+        return "جنسیت"
+    } else if (name === "residential") {
+        return "وضعیت مسکن"
+    } else if (name === "marital") {
+        return "وضعیت تاهل"
+    } else if (name === "male") {
+        return "مرد"
+    } else if (name === "female") {
+        return "زن"
+    } else if (name === "married") {
+        return "متاهل"
+    } else if (name === "single") {
+        return "مجرد"
+    } else {
+        return name
+    }
+}
+
+export { itemTitle , viewTitle }
