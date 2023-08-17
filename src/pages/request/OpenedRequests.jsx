@@ -45,7 +45,7 @@ export default function OpenedRequests() {
                           {
                             item.status === "null" || item.status === null ? "در انتظار بررسی" :
                               item.status === "check" ? "بررسی مدارک" :
-                                item.status === "assessment" ? "شروع ارزیابی و جلسه با مشاور فنی" :
+                                item.status === "assessment" ? "ارزیابی" :
                                   item.status === "report" ? "گزارش ارزیابی" :
                                     item.status === "committee" ? "کمیته" :
                                       item.status === "credit" ? "اعلام حد اعتباری" : "در حال بررسی"

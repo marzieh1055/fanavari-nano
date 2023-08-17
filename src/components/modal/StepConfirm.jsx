@@ -108,7 +108,7 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
               <p className="text-center my-3 mb-1">
                 {
                   action.step === 1 ? " بررسی مدارک تکمیل شد" :
-                  action.step === 2 ? "شروع ارزیابی و جلسه" :
+                  action.step === 2 ? "ارزیابی " :
                   action.step === 3 ? "گزارش ارزیابی" :
                   action.step === 4 ? "کمیته" :
                   action.step === 5 ? "اعلام حد اعتباری" : ""

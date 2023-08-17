@@ -47,7 +47,7 @@ export default function ViewExpert() {
       {showReqsModal !== null && <ExpertReqs close={setShowReqsModal} details={showReqsModal} />}
       <div className=" py-6 flex justify-between	">
         <div>
-        <p className="text-xl font-extrabold" >وضعیت کارشناسان</p>
+        <p className="text-xl font-extrabold" >لیست کارشناسان</p>
 
         <div className="flex items-center pt-2">
           <AiOutlineInfoCircle className="text-blue-400" />

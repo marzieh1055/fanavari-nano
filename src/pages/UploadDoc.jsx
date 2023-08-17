@@ -202,7 +202,7 @@ export default function UploadDoc() {
             value={document.title}
             onChange={changeHandler}
             className="w-full my-3 p-3 bg-transparent rounded-2xl  border-b border-gray-400 "
-            placeholder="نام شرکت درخواست دهنده"
+            placeholder="نام شرکت متقاضی "
             onFocus={focusHandler}
           />
           {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}

@@ -101,7 +101,7 @@ const Requests = () => {
             شناسه
           </p>
           <p className="w-1/6 text-center" >
-            درخواست‌دهنده
+          متقاضی
           </p>
           <p className="w-1/6 text-center pr-8" >
             نوع درخواست

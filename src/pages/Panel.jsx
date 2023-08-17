@@ -29,8 +29,8 @@ export default function Panel() {
       {/* Sidebar section */}
       {userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin") && <SidebarUser objects={[
         {
-          title: "داشبورد",
-          drop: [" داشبورد"],
+          title: "خانه",
+          drop: [" خانه"],
           links: ["/panel/dashboard"]
         },
         {
@@ -62,8 +62,8 @@ export default function Panel() {
       ]} />}
       {userDatas && (userDatas.user.type === "genuine") && <SidebarUser objects={[
         {
-          title: "داشبورد",
-          drop: [" داشبورد"],
+          title: "خانه",
+          drop: [" خانه"],
           links: ["/panel/dashboarduser"]
         },
         {
@@ -91,8 +91,8 @@ export default function Panel() {
 
       {userDatas && (userDatas.user.type === "legal") && <SidebarUser objects={[
         {
-          title: "داشبورد",
-          drop: [" داشبورد"],
+          title: "خانه",
+          drop: [" خانه"],
           links: ["/panel/dashboarduser"]
         },
         {
@@ -121,8 +121,8 @@ export default function Panel() {
 
       {userDatas && (userDatas.user.type === "expert") && <SidebarUser objects={[
         {
-          title: "داشبورد",
-          drop: [" داشبورد"],
+          title: "خانه",
+          drop: [" خانه"],
           links: ["/panel/dashboardexpert"]
         },
         {

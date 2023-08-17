@@ -14,7 +14,7 @@ const Sidebar = ({objects}) => {
         <img className="mx-auto" src={imm2} alt="" />
       </div>
       <div className="mb-6">
-        <h1 className="font-bold text-center">داشبورد</h1>
+        <h1 className="font-bold text-center">خانه</h1>
       </div>
         {
           objects && objects.map((item , index) => <Dropdown key={index} title={item.title} itemsList={item.drop} />)
