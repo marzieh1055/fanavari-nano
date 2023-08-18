@@ -117,9 +117,9 @@ const viewTitle = (name) => {
     } else if (name === "subject_activity") {
         return ""
     } else if (name === "non_resident") {
-        return ""
+        return "غیرمقیم"
     } else if (name === "resident") {
-        return ""
+        return "مقیم"
     } else {
         return name
     }
