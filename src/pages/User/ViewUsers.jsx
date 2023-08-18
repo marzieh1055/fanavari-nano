@@ -126,6 +126,7 @@ export default function ViewUsers() {
               <th className="bg-white p-3 rounded-r-xl ">نام شرکت </th>
               <th className="bg-white p-3 ">نام ونام خانوادگی نماینده </th>
               <th className="bg-white p-3 ">شناسه مالی شرکت</th>
+              <th className="bg-white p-3 ">تاریخ ثبت نام کاربر </th>
               <th className="bg-white p-3 rounded-l-xl">اعمال </th>
             </tr>
             {allLegalUser && allLegalUser.map((LegalUser) => {

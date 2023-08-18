@@ -18,7 +18,13 @@ export default function UserLine({GenuineUser , setShowMore}) {
         />
         </td>
         <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.name}</td>
-        <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
+        {
+            GenuineUser.type === "legal" ?
+            <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.national_company}</td> :
+            <td className="p-4 text-xs text-gray-400 font-bold">{GenuineUser.family}</td>
+
+            
+        }
         <td className="p-4 text-xs text-gray-400 font-bold">
         {onlyDateConversion(GenuineUser.created_at)}
         </td>

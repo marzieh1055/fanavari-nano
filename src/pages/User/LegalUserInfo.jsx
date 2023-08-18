@@ -58,20 +58,24 @@ export default function LegalUserInfo() {
         .then((res) => {
             console.log(res);
             setEditStatus(res.data)
-        })
-        .catch((err) =>{
+          })
+          .catch((err) =>{
             console.log(err);
-        })
-      } , [])
-
-  const sendHandler = () => {
-    setIsLoading(true)
-    Axios.post("/api/v1/profile_legal" , sendDatas)
-    .then((res) => {
-      console.log(res.data);
-      if (res.data.success) {
-        toast("اطلاعات با موفقیت ثبت شد")
-      }
+          })
+        } , [])
+        
+        const sendHandler = () => {
+          setIsLoading(true)
+          Axios.post("/api/v1/profile_legal" , sendDatas)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              toast("اطلاعات با موفقیت ثبت شد")
+              toast("درحال انتقال به داشبورد...")
+            }
+            setTimeout(() => {
+              navigate("/panel/dashboardUser")
+            } , 2000)
       setIsLoading(false)
               
     })

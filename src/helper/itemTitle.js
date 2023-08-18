@@ -96,6 +96,28 @@ const viewTitle = (name) => {
         return "متاهل"
     } else if (name === "single") {
         return "مجرد"
+    } else if (name === "email") {
+        return "ایمیل"
+    } else if (name === "establishment") {
+        return "مجرد"
+    } else if (name === "fund") {
+        return "مجرد"
+    } else if (name === "initial_investment") {
+        return "مجرد"
+    } else if (name === "landline_phone") {
+        return "تلفن ثابت"
+    } else if (name === "name_representative") {
+        return "مجرد"
+    } else if (name === "place_registration") {
+        return "مجرد"
+    } else if (name === "signed_right") {
+        return "مجرد"
+    } else if (name === "site") {
+        return "سایت"
+    } else if (name === "subject_activity") {
+        return "مجرد"
+    } else if (name === "type_legal") {
+        return "مجرد"
     } else {
         return name
     }

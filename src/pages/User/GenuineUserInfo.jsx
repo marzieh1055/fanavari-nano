@@ -156,9 +156,11 @@ export default function GenuineUserInfo() {
       })
     .then((res) => {
         console.log(res);
-        if (res.data.success) {
-            toast("اطلاعات با موفقیت ثبت شد")
-        }
+        toast("اطلاعات با موفقیت ثبت شد")
+        toast("درحال انتقال به داشبورد...")
+        setTimeout(() => {
+            navigate("/panel/dashboardUser")
+          } , 2000)
         setIsLoading(false)
     })
     .catch((err) => {

@@ -185,7 +185,13 @@ const Requests = () => {
                     {item.shenaseh}
                   </Link>
                   <Link title="برای دیدن جزئیات کلیک کنید" to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
-                    {`${item.user.name} ${item.user.family}`}
+                    {
+                      item.facilities.length > 0 ?
+                      item.facilities[0].title :
+                      item.warranty.length > 0 ?
+                      item.warranty[0].title : ""
+
+                    }
                   </Link>
                   <Link title="برای دیدن جزئیات کلیک کنید" to={`/panel/AdminCheckRequest/${item.id}`} className="w-1/6 text-center" href="">
                     {item.type === "facilities" ? "تسهیلات" : "ضمانت نامه"}
