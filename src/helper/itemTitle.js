@@ -85,7 +85,7 @@ const viewTitle = (name) => {
     } else if (name === "gender") {
         return "جنسیت"
     } else if (name === "residential") {
-        return "وضعیت مسکن"
+        return "وضعیت اقامت"
     } else if (name === "marital") {
         return "وضعیت تاهل"
     } else if (name === "male") {
@@ -99,25 +99,27 @@ const viewTitle = (name) => {
     } else if (name === "email") {
         return "ایمیل"
     } else if (name === "establishment") {
-        return "مجرد"
+        return ""
     } else if (name === "fund") {
-        return "مجرد"
+        return ""
     } else if (name === "initial_investment") {
-        return "مجرد"
+        return ""
     } else if (name === "landline_phone") {
         return "تلفن ثابت"
     } else if (name === "name_representative") {
-        return "مجرد"
+        return ""
     } else if (name === "place_registration") {
-        return "مجرد"
+        return ""
     } else if (name === "signed_right") {
-        return "مجرد"
+        return ""
     } else if (name === "site") {
         return "سایت"
     } else if (name === "subject_activity") {
-        return "مجرد"
-    } else if (name === "type_legal") {
-        return "مجرد"
+        return ""
+    } else if (name === "non_resident") {
+        return ""
+    } else if (name === "resident") {
+        return ""
     } else {
         return name
     }
