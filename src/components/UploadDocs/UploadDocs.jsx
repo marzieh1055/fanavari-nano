@@ -16,10 +16,12 @@ export default function UploadDocs({ document, changeHandler, errors, showErr })
           فشرده خارج کنید و هر فرم را پر کنید سپس در جای مناسب بارگذاری کنید
         </p>
         <p className="text-xs py-3">فرمت های مجاز doc, docx, pdf, zip, png, jpg</p>
-        <button
-          className="w-full border rounded-lg border-green-400 text-green-400 p-2 font-bold text-sm">
-          بارگیری فایل مدارک اصلی
-        </button>
+        <a href="https://backend.nanotf.ir/storage/docs/1_6271033281.zip">
+          <button
+            className="w-full border rounded-lg border-green-400 text-green-400 p-2 hover:bg-green-400 hover:text-white transition font-bold text-sm">
+            بارگیری فایل مدارک اصلی
+          </button>
+        </a>
         <br />
         <br />
         <hr className="border-dashed border-gray-300" />
