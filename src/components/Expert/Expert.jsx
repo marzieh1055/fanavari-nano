@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import Axios from "../../../axiosinstancs";
 import Loader from "../Loader/Loader";
 
-const Expert = ({ name, avatar , reqId , expertId , closeP , setUpdatePage , type}) => {
+const Expert = ({ name, avatar , reqId , expertId , closeP , setUpdatePage , type , image}) => {
   const [isLoading , setIsLoading] = useState(false)
   
   const assignHandler = (reqId , expertId) => {
@@ -39,7 +39,11 @@ const Expert = ({ name, avatar , reqId , expertId , closeP , setUpdatePage , typ
       {
         isLoading && <Loader />
       }
-      <img className="w-8 h-8" src={avatar} alt="expert avatar" />
+      {
+        image ? 
+        <img className="w-8 h-8 rounded-[50%]" src={`https://backend.nanotf.ir/${image}`} alt="expert avatar" /> :
+        <img className="w-8 h-8" src={avatar} alt="expert avatar" />
+      }
       <div className="flex-1 px-2">{name}</div>
       <button onClick={() => type === "assign" ? assignHandler(reqId , expertId) : changeExpertHandler(reqId , expertId) } className="py-1 px-2 text-c-13 bg-c-14 rounded">اختصاص</button>
     </div>

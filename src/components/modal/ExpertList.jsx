@@ -31,7 +31,7 @@ export default function ExpertList({close , reqId , setUpdatePage , type}) {
         {
             expert && expert.map((item) => {
                 console.log(item);
-                return <Expert type={type} key={item.id} closeP={close} name={`${item.name} ${item.family}`} setUpdatePage={setUpdatePage} avatar="/src/assets/imges/user.png" reqId={reqId} expertId={item.id} />
+                return <Expert image={item.profilegenuine ? item.profilegenuine.image : null} type={type} key={item.id} closeP={close} name={`${item.name} ${item.family}`} setUpdatePage={setUpdatePage} avatar="/src/assets/imges/user.png" reqId={reqId} expertId={item.id} />
             })
         }
     </div>
