@@ -102,7 +102,7 @@ const FacilitiesDocuments = () => {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {
                   // console.log(keyss);
-                  if ( ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w"].includes(keyss) && obj[keyss].length > 0) {
+                  if ( ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w"].includes(keyss) && ( obj[keyss] && obj[keyss].length > 0)) {
                     return (
                       <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                         <div className="flex gap-x-4">

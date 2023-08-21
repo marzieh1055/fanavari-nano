@@ -63,8 +63,9 @@ export default function AdminCheckRequest() {
           title : res.data.type === "facilities" ? res.data.facilities[0].title : res.data.warranty[0].title
         }
         const queryString2 = queryString.stringify(params)
-        const url = res.data.type === "facilities" ? `https://backend.nanotf.ir/api/facilityExcel?${queryString2}` : `https://backend.nanotf.ir/api/warrantyExcel?${queryString2}`;
+        const url = res.data.type === "facilities" ? `https://backend.nanotf.ir/api/allFacilityExcel?facility_id=${reqId.id}` : `https://backend.nanotf.ir/api/warrantyExcel?${queryString2}`;
         setExUrl(url)
+        console.log(url);
       }
       setIsLoading(false)
       
