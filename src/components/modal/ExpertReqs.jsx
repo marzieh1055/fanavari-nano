@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react'
 import Axios from '../../../axiosinstancs'
 import Loader from '../Loader/Loader'
+import { Link } from 'react-router-dom'
 
 export default function ExpertReqs({details , close}) {
   const [isLoading , setIsLoading] = useState(true)
@@ -12,12 +13,12 @@ export default function ExpertReqs({details , close}) {
   // console.log(details);
   useEffect(() => {
     Axios.get(`/api/admin/get_request_with_expert/${details.id}`).then(async (res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setReqs(res.data)
       setIsLoading(false)
     })
     Axios.get(`/api/admin/get_current_requests/${details.id}`).then(async (res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setCurrentReqs(res.data)
       setIsLoading(false)
     })
@@ -40,12 +41,14 @@ export default function ExpertReqs({details , close}) {
                 listType === "allReqs" && reqs && reqs.map((item) => {
                   return (
                     <li class="flex justify-between gap-x-6 py-5">
-                      <div class="flex gap-x-4">
-                        <div class="min-w-0 flex-auto">
-                          <p class="text-sm font-semibold leading-6 text-gray-900">{item.request.type === "facilities" ? "درخواست تسهیلات" : "درخواست ضمانت"}</p>
-                          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{`شناسه : ${item.request.shenaseh}`}</p>
+                      <Link to={`/panel/AdminCheckRequest/${item.requests_id}`}>
+                        <div class="flex gap-x-4">
+                          <div class="min-w-0 flex-auto">
+                            <p class="text-sm font-semibold leading-6 text-gray-900">{item.request.type === "facilities" ? "درخواست تسهیلات" : "درخواست ضمانت"}</p>
+                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">{`شناسه : ${item.request.shenaseh}`}</p>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </li>
                   )
                 })
@@ -54,12 +57,14 @@ export default function ExpertReqs({details , close}) {
                 listType === "openReqs" && currentReqs && currentReqs.map((item) => {
                   return (
                     <li class="flex justify-between gap-x-6 py-5">
-                      <div class="flex gap-x-4">
-                        <div class="min-w-0 flex-auto">
-                          <p class="text-sm font-semibold leading-6 text-gray-900">{item.request.type === "facilities" ? "درخواست تسهیلات" : "درخواست ضمانت"}</p>
-                          <p class="mt-1 truncate text-xs leading-5 text-gray-500">{`شناسه : ${item.request.shenaseh}`}</p>
+                      <Link to={`/panel/AdminCheckRequest/${item.requests_id}`}>
+                        <div class="flex gap-x-4">
+                          <div class="min-w-0 flex-auto">
+                            <p class="text-sm font-semibold leading-6 text-gray-900">{item.request.type === "facilities" ? "درخواست تسهیلات" : "درخواست ضمانت"}</p>
+                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">{`شناسه : ${item.request.shenaseh}`}</p>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </li>
                   )
                 })
