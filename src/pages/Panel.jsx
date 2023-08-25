@@ -45,8 +45,8 @@ export default function Panel() {
         },
         {
           title: "درخواست ها",
-          drop: ["لیست درخواست ها", "درخواست های حذف"],
-          links: ["/panel/requests", "/panel/ViewDeleteReqs"]
+          drop: ["لیست درخواست ها", "درخواست های رد شده" , "درخواست های حذف"],
+          links: ["/panel/requests", "/panel/isfailedreqs" ,"/panel/ViewDeleteReqs"]
         },
         {
           title: "پشتیبانی",
@@ -127,8 +127,8 @@ export default function Panel() {
         },
         {
           title: "درخواست ها",
-          drop: ["درخواست های جاری"],
-          links: ["/panel/expertViewAllRequest"]
+          drop: ["درخواست های جاری" , "درخواست های رد شده" ],
+          links: ["/panel/expertViewAllRequest" , "/panel/isfailedreqs"]
         },
         {
           title: "پشتیبانی",

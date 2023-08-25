@@ -55,6 +55,7 @@ import UpdateFact from "./components/updateFacts/UpdateFacts";
 import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
 import AccessError from "./pages/404/AccessError";
 import UploadPic from "./pages/waranty/UploadPic";
+import IsFailedReqs from "./pages/Requests/IsFailedReqs";
 
 
 const routes = [
@@ -85,6 +86,8 @@ const routes = [
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "expertInfo", element: <ExpertInfo /> },
+      
+      { path: "isfailedreqs", element: <IsFailedReqs /> },
       
       //admin
       { path: "dashboard", element: <Dashboard /> },
