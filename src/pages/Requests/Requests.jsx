@@ -147,7 +147,7 @@ const Requests = () => {
                     <div>
                       شماره همراه کارشناس: <a href="">{item.expert_assignment !== null ? `${item.expert_assignment.expert.phone}` : "فاقد کارشناس"} </a>
                     </div>
-                      {showDeleteReq && <DeleteReqAdmin close={setShowDeleteReq} id={item.id} toast={toast}/>}
+                      {showDeleteReq && <DeleteReqAdmin setUp={setUpdatePage} close={setShowDeleteReq} id={item.id} toast={toast}/>}
                     <div className="flex ">
                       <button
                         href=""

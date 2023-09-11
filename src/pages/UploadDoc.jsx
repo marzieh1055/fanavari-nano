@@ -3,20 +3,19 @@ import { UserDataContext } from "../contexts/UserData.Provider";
 import UploadDocs from "../components/UploadDocs/UploadDocs";
 import UpDoc from "../components/UploadDocs/UpDoc";
 import axios from "axios";
-import Loader from '../components/Loader/Loader'
+import Loader from "../components/Loader/Loader";
 import { Validation } from "../helper/validation";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import UpPic from "./waranty/UpPic";
 
-
 export default function UploadDoc() {
-  const { userDatas } = useContext(UserDataContext)
+  const { userDatas } = useContext(UserDataContext);
 
-  const [type_w, settype_w] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [showNavigate, setShowNavigate] = useState(false)
-  const navigate = useNavigate()
+  const [type_w, settype_w] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showNavigate, setShowNavigate] = useState(false);
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [showErr, setShowErr] = useState({});
@@ -25,21 +24,21 @@ export default function UploadDoc() {
     type: "Warranty",
     title: "",
     type_w: type_w,
-    
+
     file1: null,
     file2: null,
     file3: null,
     file4: null,
     file5: null,
-    file6 : null,
+    file6: null,
 
     licenses: null,
-    user_id : userDatas.user.id,
+    user_id: userDatas.user.id,
     register_doc: null,
     signatory: null,
     knowledge: null,
     resume: null,
-    loans: null, 
+    loans: null,
     statements: null,
     balances: null,
     catalogs: null,
@@ -48,70 +47,74 @@ export default function UploadDoc() {
     // request_id: 6,
     // path4: null,
     invoices: null,
-  })
-  
+  });
+
   useEffect(() => {
-    setErrors(Validation(document , "upDoc"))
+    setErrors(Validation(document, "upDoc"));
     // console.log(errors);
-  } , [ document ])
+  }, [document]);
 
   const oploaddoc = () => {
-    const showE = {}
+    const showE = {};
     Object.keys(document).map((item) => {
-
       if (document[item] === null) {
         console.log(item);
-        showE[item] = true
+        showE[item] = true;
         // console.log(showErr);
       }
-    })
-    setShowErr(showE)
-    
+    });
+    setShowErr(showE);
+
     if (!Object.keys(errors).length) {
-
-
-      setIsLoading(true)
+      setIsLoading(true);
       // const formData = new FormData();
       // Object.keys(document).map(item => {
       //   console.log(item);
       //   if (item === "type" || item === "title" | item === "type_w" || item === "user_id" || item === "type")
       // })
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const isLoggedIn = token ? true : false;
-      axios.post("/api/v1/request", document ,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          ...(isLoggedIn && {
-              Authorization: `Bearer ${JSON.parse(token)}`
-          })
-        }
-      }
-      ).then(res => {
-        console.log(res)
-        setIsLoading(false)
-        toast("درخواست با موفقیت ثبت شد")
-        setShowNavigate(true)
-        setTimeout(() => {
-          navigate("/panel/openedRequests")
-        } , 3000)
-      }
-      ).catch(err => {
-        console.log(err)
-        toast("خطا در ارسال درخواست")
-        console.log();
-        if (typeof(err.response.data.message) === "string") {
-          toast(err.response.data.message)
-        } else {
-          Object.keys(err.response.data.message).map((item) => {
-            toast(err.response.data.message[item][0])
-          })
-        }
-        
-        setIsLoading(false)
-      })
+      axios
+        .post("/api/v1/request", document, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            ...(isLoggedIn && {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            }),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setIsLoading(false);
+          toast("درخواست با موفقیت ثبت شد");
+          setShowNavigate(true);
+          setTimeout(() => {
+            navigate("/panel/openedRequests");
+          }, 3000);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast("خطا در ارسال درخواست");
+          axios
+            .delete(`/api/v1/request/${err.response.data.id}`, {
+              headers: {
+                ...(isLoggedIn && {
+                  Authorization: `Bearer ${JSON.parse(token)}`,
+                }),
+              },
+            })
+            .then((res) => setIsLoading(false))
+            .catch((err) => setIsLoading(false));
+          if (typeof err.response.data.message === "string") {
+            toast(err.response.data.message);
+          } else {
+            Object.keys(err.response.data.message).map((item) => {
+              toast(err.response.data.message[item][0]);
+            });
+          }
+        });
     }
-  }
+  };
   const changeHandler = (ev) => {
     if (ev.target.type === "radio") {
       setDocment({
@@ -125,76 +128,84 @@ export default function UploadDoc() {
       });
     } else if (ev.target.type === "file") {
       setDocment({
-        ...document , [ev.target.name] : ev.target.files[0]
+        ...document,
+        [ev.target.name]: ev.target.files[0],
       });
     }
-    console.log(document)
+    console.log(document);
   };
 
   const handleChange = (e) => {
-    setDocment({...document , type_w : e.target.value})
-  }
+    setDocment({ ...document, type_w: e.target.value });
+  };
 
   const docChangeFile = (e) => {
     const filesEvent = e.target.files;
-    const filesList = []
-    for (let i = 0 ; i < filesEvent.length ; i++) {
-      filesList.push({file : filesEvent[i]})
+    const filesList = [];
+    for (let i = 0; i < filesEvent.length; i++) {
+      filesList.push({ file: filesEvent[i] });
     }
 
     let arryasli = [];
     if (document[e.target.name] !== null) {
-      arryasli = document[e.target.name]
+      arryasli = document[e.target.name];
     }
-    const finalArry = filesList.concat(arryasli)
+    const finalArry = filesList.concat(arryasli);
     setDocment({
       ...document,
-      [e.target.name]: finalArry
+      [e.target.name]: finalArry,
     });
     // console.log(finalArry);
     console.log(document);
-  }
-  
-  const focusHandler = e => {
-      if (e.target.localName === "select") {
-        setShowErr({ ...showErr, type_w : true })  
-      } else if (e.target.type === "text") {
-        setShowErr({ ...showErr, [e.target.name]: true })
-      }
-      console.log(showErr);
-      console.log(errors);
-  }
-  
+  };
+
+  const focusHandler = (e) => {
+    if (e.target.localName === "select") {
+      setShowErr({ ...showErr, type_w: true });
+    } else if (e.target.type === "text") {
+      setShowErr({ ...showErr, [e.target.name]: true });
+    }
+    console.log(showErr);
+    console.log(errors);
+  };
+
   const removeHandler = (e) => {
     let arryasli = [];
     if (document[e.name] !== null) {
-      arryasli = document[e.name]
+      arryasli = document[e.name];
     }
-    arryasli.splice(e.index , 1)
+    arryasli.splice(e.index, 1);
     if (arryasli.length > 0) {
       setDocment({
         ...document,
-        [e.name]: arryasli
+        [e.name]: arryasli,
       });
     } else {
       setDocment({
         ...document,
-        [e.name]: null
+        [e.name]: null,
       });
     }
     console.log(document);
-  }
+  };
 
   return (
     <div className="px-5">
       <div className=" py-6">
-        {showNavigate ? 
-          <p className="text-xl text-blue-700 font-extrabold">درحال انتقال به درخواست های جاری...</p> :
-          <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک درخواست ضمانت نامه</p>
-        }
+        {showNavigate ? (
+          <p className="text-xl text-blue-700 font-extrabold">
+            درحال انتقال به درخواست های جاری...
+          </p>
+        ) : (
+          <p className="text-xl font-extrabold">
+            بارگیری و بارگذاری مدارک درخواست ضمانت نامه
+          </p>
+        )}
       </div>
       <ToastContainer />
-      <div style={{display: "flex" , alignItems: "center" }} className="flex w-full">
+      <div
+        style={{ display: "flex", alignItems: "center" }}
+        className="flex w-full">
         <div className="w-1/2 p-2">
           <input
             type="text"
@@ -205,13 +216,23 @@ export default function UploadDoc() {
             placeholder="نام شرکت متقاضی "
             onFocus={focusHandler}
           />
-          {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}
+          {errors.title && showErr.title && (
+            <span style={{ color: "#e88f19" }}>{errors.title}</span>
+          )}
         </div>
-        <div  className="w-1/2 p-2">
+        <div className="w-1/2 p-2">
           <div class="relative">
-          {/* 'job','commitments','deduction','prepayment','commitment_pay','tender_offer','credit' */}
-            <select value={document.type_w} onFocus={focusHandler} onChange={handleChange} class="block appearance-none w-full bg-transparent border-b border-gray-400  my-3 p-3.5 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" >
-              <option value="" disabled selected>  نوع ضمانت نامه  را انتخاب کنید</option>
+            {/* 'job','commitments','deduction','prepayment','commitment_pay','tender_offer','credit' */}
+            <select
+              value={document.type_w}
+              onFocus={focusHandler}
+              onChange={handleChange}
+              class="block appearance-none w-full bg-transparent border-b border-gray-400  my-3 p-3.5 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state">
+              <option value="" disabled selected>
+                {" "}
+                نوع ضمانت نامه را انتخاب کنید
+              </option>
               <option value="job">حسن انجام کار </option>
               <option value="commitments">حسن انجام تعهدات</option>
               <option value="deduction">کسور وجه الضمان</option>
@@ -219,22 +240,41 @@ export default function UploadDoc() {
               <option value="commitment_pay">تعهد پرداخت</option>
               <option value="tender_offer">شرکت در مناقصه</option>
               <option value="credit">حد اعتباری</option>
-
             </select>
-            {errors.type_w && showErr.type_w && <span style={{ color: '#e88f19' }}>{errors.type_w}</span>}
+            {errors.type_w && showErr.type_w && (
+              <span style={{ color: "#e88f19" }}>{errors.type_w}</span>
+            )}
           </div>
         </div>
-        <button onClick={oploaddoc} className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
+        <button
+          onClick={oploaddoc}
+          className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
           ذخیره{" "}
         </button>
       </div>
-    
+
       <div className="flex">
         <div className="flex flex-col">
-          <UploadDocs document={document} changeHandler={changeHandler} errors={errors} showErr={showErr} />
-          <UpPic sendData={document} setSendData={setDocment} errors={errors} showErr={showErr} />
+          <UploadDocs
+            document={document}
+            changeHandler={changeHandler}
+            errors={errors}
+            showErr={showErr}
+          />
+          <UpPic
+            sendData={document}
+            setSendData={setDocment}
+            errors={errors}
+            showErr={showErr}
+          />
         </div>
-        <UpDoc document={document} changeHandler={docChangeFile} removeItem={removeHandler} errors={errors} showErr={showErr} />
+        <UpDoc
+          document={document}
+          changeHandler={docChangeFile}
+          removeItem={removeHandler}
+          errors={errors}
+          showErr={showErr}
+        />
         {isLoading && <Loader />}
       </div>
     </div>
