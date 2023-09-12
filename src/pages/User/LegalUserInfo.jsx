@@ -32,23 +32,52 @@ export default function LegalUserInfo() {
       })
 
       useEffect(() => {
-        Axios.get("/api/v1/profile_legal")
+        Axios.get(`/api/v1/show_user/${userDatas.user.id}`)
         .then((res) => {
+          console.log(res.data);
           setIsLoading(false)
-          const newArr = res.data.reverse()
-            Object.keys(sendDatas).map((item , index) => {
-                Object.keys(newArr[0]).map(ires => {
-                  if (item === ires) {
-                    setSendDatas(prev => {
-                      return({
-                          ...prev,
-                          [ires] : newArr[0][ires] 
-                      })
+          const newObj = res.data
+          if ((newObj.profilegenuine !== null) || (newObj.profilelagal !== null)) {
+              Object.keys(sendDatas).map(item => {
+                  Object.keys(newObj).map(pi => {
+                      if ((pi === "profilelagal") && (newObj.type === "legal")) {
+                          Object.keys(newObj.profilelagal).map(i => {
+                              if (i === "address") {
+                                  Object.keys(newObj.profilelagal.address).map(j => {
+                                      if (item === j) {
+                                          setSendDatas(prev => ({
+                                              ...prev ,
+                                              [item] : newObj.profilelagal.address[item]
+                                          }))                                
+                                      }
+                                  })
+                              } else {
+                                  if (item === i) {
+                                      setSendDatas(prev => ({
+                                          ...prev ,
+                                          [item] : newObj.profilelagal[item]
+                                      }))
+                                  }
+                              }
+                          })
+                      } else {
+                          if (item === pi) {
+                              setSendDatas(prev => ({
+                                  ...prev ,
+                                  [item] : newObj[item]
+                              }))
+                          }
+                      }
                   })
-                  }
-                })
-            })
-        })
+              })
+              if (newObj.profilegenuine.image !== null) {
+                  setProfilePic(`https://backend.nanotf.ir/${newObj.profilegenuine.image}`)
+              } else if (newObj.profilelagal.image !== null) {
+                  setProfilePic(`https://backend.nanotf.ir/${newObj.profilelagal.image}`)
+              }
+          }
+
+      })
         .catch((err) => {
           console.log(err);
           // navigate(`/panel/404`)
