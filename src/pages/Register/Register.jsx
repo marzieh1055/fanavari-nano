@@ -204,7 +204,7 @@ const Register = () => {
                 <h2 class="mt-3 inline-block ml-2 text-sm">
                    نوع کاربری  :
                 </h2>
-                <select onChange={handleChange} value={selectedOption} className='w-full w-full pl-3.5 pr-c-20 selectGandL'>
+                <select onChange={handleChange} value={selectedOption} className='w-full pl-3.5 pr-c-20 selectGandL'>
                   <option value="genuine">حقیقی</option>
                   <option value="legal">حقوقی</option>
                 </select>
