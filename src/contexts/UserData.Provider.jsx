@@ -1,10 +1,8 @@
 import React , { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import axios from 'axios'
 
 export const UserDataContext = React.createContext()
-
 export default function UserDataProvider({children}) {
   const [up , setUp] = useState(0)
 

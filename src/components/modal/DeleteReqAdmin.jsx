@@ -5,7 +5,6 @@ import axios from 'axios';
 
 export default function DeleteReqAdmin({ close , id , toast , setUp }) {
   const navigate = useNavigate();
-
   const [IsLoading, setIsLoading] = useState(false);
 
   // console.log(userDataaa);

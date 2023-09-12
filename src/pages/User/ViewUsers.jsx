@@ -69,7 +69,7 @@ export default function ViewUsers() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    toast("بارگیری به زودی شروع میشود")
+    toast("بارگیری به زودی شروع می شود")
   }
   if (IsLoading) return <Loader />
   if (userDatas && userDatas && (userDatas.user.type === "admin" || userDatas.user.type === "Admin")) return (

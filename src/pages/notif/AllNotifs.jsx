@@ -4,9 +4,9 @@ import { onlyDateConversion } from "../../helper/dateConversion.cjs";
 import Loader from "../../components/Loader/Loader";
 import { Link } from "react-router-dom";
 import { UserDataContext } from "../../contexts/UserData.Provider";
+
 export default function AllNotifs() {
   const {userDatas} = useContext(UserDataContext)
-
   const [IsLoading, setIsLoading] = useState(true);
   const [allnotif, setAllnotif] = useState(null);
   const [unreadNotif, setUnreadNotif] = useState([]);

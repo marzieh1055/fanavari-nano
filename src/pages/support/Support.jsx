@@ -8,8 +8,6 @@ export default function Support() {
   const [datas , setDatas] = useState([])
   const reqId = useParams()
   const navigate = useNavigate()
-
-  
   const formData = new FormData();
   const [replayDatas , setReplayDatas] = useState({
     body: "",

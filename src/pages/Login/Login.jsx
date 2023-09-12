@@ -5,21 +5,17 @@ import { Validation } from "../../helper/validation";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 import logo from "../../assets/imges/Login/logofarsi.png"
 import account from "../../assets/imges/account.png"
-// /src/assets/imges/account.png
 import lockedcomputer from "../../assets/imges/locked-computer.png"
 import view from "../../assets/imges/view.png"
 import hide from "../../assets/imges/hide.png"
 import "./Login.css"
 
-// /src/assets/imges/locked-computer.png
+
 const Login = () => {
 
   const [mountPage , setMountPage] = useState(true)
   const [bcInput , setBcInput] = useState(true)
-
-
   const { apiLogin , isLoading, setIsLoading , errRes, setErrRes ,rememberStory , setRememberStory , showLogin } = useContext(UserDataContext)
-
   const [userData, setUserData] = useState({ username: "", password: "" })
   const [showPass, setShowPass] = useState(false);
 
@@ -40,7 +36,6 @@ const Login = () => {
   }
 
   // Validation
-
   const [errors, setErrors] = useState({});
   const [showErr, setShowErr] = useState({});
 
@@ -54,10 +49,8 @@ const Login = () => {
   const subHandler = e => {
     e.preventDefault();
     if (!Object.keys(errors).length) {
-
       setIsLoading(true)
       setErrRes(false)
-      
       apiLogin(userData)
     } else {
       setShowErr({
