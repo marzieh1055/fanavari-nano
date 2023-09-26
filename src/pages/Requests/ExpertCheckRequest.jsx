@@ -298,7 +298,7 @@ export default function ExpertCheckRequest() {
                 style={{ display: "flex", justifyContent: "space-between" }}>
                 <div
                   className={
-                    "w-full  rounded-lg bg-blue-700 mt-2   text-white p-3 font-bold text-xs text-center"
+                    "w-full  rounded-lg border border-blue-700 mt-2  text-blue-700 p-3 font-bold text-xs text-center"
                   }>
                   نام کاربر : {`${user.name} ${user.family}`} -
                    شماره تماس : {user.phone}
