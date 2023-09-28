@@ -23,7 +23,7 @@ export default function ViewReqsE({close , setData , setRequest_data}) {
         setData(prev => {
             return({
                 ...prev,
-                request_id : e.id
+                request_id : e.requests_id
             })
         })
         setRequest_data(e)
@@ -32,7 +32,7 @@ export default function ViewReqsE({close , setData , setRequest_data}) {
     if (isLoading) return <Loader />
   return (
       <div className="bg-gradient-to-b z-10 from-gray-600 to-transparent fixed inset-0 flex items-center justify-center">
-        <div className="absolute z-20 max-h-[60vh] overflow-y-scroll  z-10 rounded-2xl w-c-17 top-18 text-sm right-1/2 translate-x-1/2 bg-white p-3.5 flex flex-col gap-2">
+        <div className="absolute z-20 max-h-[60vh] overflow-y-scroll rounded-2xl w-c-17 top-18 text-sm right-1/2 translate-x-1/2 bg-white p-3.5 flex flex-col gap-2">
             <div className="p-2 flex justify-between">
             <div>لیست درخواست ها</div>
             <button onClick={() => close(false)} className="text-c-9 border border-c-9 rounded w-c-4 h-c-4 flex justify-center items-center">
