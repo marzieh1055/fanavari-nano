@@ -2,151 +2,166 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../../../axiosinstancs";
 import { TashilatContext } from "../../../contexts/Tashilat.Provider";
-import Loader from '../../../components/Loader/Loader'
+import Loader from "../../../components/Loader/Loader";
 import { UserDataContext } from "../../../contexts/UserData.Provider";
 // import { ValidationRequest } from "../../../helper/validationRequest";
 
 export default function One() {
+  const navigate = useNavigate();
+  const { userDatas } = useContext(UserDataContext);
+  const { stepOne, setStepOne } = useContext(TashilatContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showErr, setShowErr] = useState(false);
 
-  const navigate = useNavigate()
-  const { userDatas } = useContext(UserDataContext)
-  const { stepOne, setStepOne } = useContext(TashilatContext)
-  const [isLoading, setIsLoading] = useState(false)
-  const [showErr, setShowErr] = useState(false)
-
-  const [confirmationDate, setConfirmationDate] = useState({ year: "2022", month: "02", day: "02" })
-  const [expirationDate, setExpirationDate] = useState({ year: "2022", month: "02", day: "02" })
-
+  const [confirmationDate, setConfirmationDate] = useState({
+    year: "1400",
+    month: "02",
+    day: "02",
+  });
+  const [expirationDate, setExpirationDate] = useState({
+    year: "1400",
+    month: "02",
+    day: "02",
+  });
 
   useEffect(() => {
-    userDatas && setStepOne((prev) => {
-      return ({
-        ...prev,
-        user_id: userDatas.user.id
-      })
-    })
+    userDatas &&
+      setStepOne((prev) => {
+        return {
+          ...prev,
+          user_id: userDatas.user.id,
+        };
+      });
     if (stepOne.is_knowledge) {
       setStepOne((prev) => {
-        return ({
+        return {
           ...prev,
-          confirmation: `${confirmationDate.year}-${confirmationDate.month}-${confirmationDate.day}`
-        })
-      })
+          confirmation: `${confirmationDate.year}-${confirmationDate.month}-${confirmationDate.day}`,
+        };
+      });
       setStepOne((prev) => {
-        return ({
+        return {
           ...prev,
-          expiration: `${expirationDate.year}-${expirationDate.month}-${expirationDate.day}`
-        })
-      })
+          expiration: `${expirationDate.year}-${expirationDate.month}-${expirationDate.day}`,
+        };
+      });
     }
-  }, [userDatas, confirmationDate, expirationDate])
+  }, [userDatas, confirmationDate, expirationDate]);
 
   // changeHandler ...
   const changeHandler = (e) => {
     if (e.target.type === "radio") {
       if (e.target.value === "true") {
-        setStepOne(prevState => {
-          return ({
+        setStepOne((prevState) => {
+          return {
             ...prevState,
-            [e.target.name]: !!e.target.value
-          })
-        })
+            [e.target.name]: !!e.target.value,
+          };
+        });
       } else {
-        setStepOne(prevState => {
-          return ({
+        setStepOne((prevState) => {
+          return {
             ...prevState,
-            [e.target.name]: !e.target.value
-          })
-        })
+            [e.target.name]: !e.target.value,
+          };
+        });
       }
-    } else if (e.target.name === "history" || e.target.name === "activity" || e.target.name === "title" || e.target.name === "type_f" || e.target.name === "area") {
-      setStepOne(prevState => {
-        return ({
+    } else if (
+      e.target.name === "history" ||
+      e.target.name === "activity" ||
+      e.target.name === "title" ||
+      e.target.name === "type_f" ||
+      e.target.name === "area"
+    ) {
+      setStepOne((prevState) => {
+        return {
           ...prevState,
-          [e.target.name]: e.target.value
-        })
-      })
-    } else if (e.target.type === "textarea" || e.target.type === "number" || e.target.type === "select-one") {
-      setStepOne(prevState => {
+          [e.target.name]: e.target.value,
+        };
+      });
+    } else if (
+      e.target.type === "textarea" ||
+      e.target.type === "number" ||
+      e.target.type === "select-one"
+    ) {
+      setStepOne((prevState) => {
         const updatedPlaces = prevState.places.map((place, index) => {
           if (index === parseInt(e.target.id)) {
             return {
               ...place,
-              [e.target.name]: e.target.value
+              [e.target.name]: e.target.value,
             };
           }
           return place;
         });
         return {
           ...prevState,
-          places: updatedPlaces
+          places: updatedPlaces,
         };
       });
     }
     console.log(stepOne);
-  }
+  };
   // date ...
   const dateChangeHandler = (e) => {
     if (e.target.name === "confirmation") {
-      setConfirmationDate(prev => {
-        return ({
+      setConfirmationDate((prev) => {
+        return {
           ...prev,
-          [e.target.id]: e.target.value
-        })
-      })
+          [e.target.id]: e.target.value,
+        };
+      });
     } else if (e.target.name === "expiration") {
-      setExpirationDate(prev => {
-        return ({
+      setExpirationDate((prev) => {
+        return {
           ...prev,
-          [e.target.id]: e.target.value
-        })
-      })
+          [e.target.id]: e.target.value,
+        };
+      });
     }
-  }
+  };
   const subHandler = () => {
-    setShowErr(false)
-    let errorsA = {}
+    setShowErr(false);
+    let errorsA = {};
     Object.keys(stepOne).map((item) => {
       if (item !== "places") {
         if (stepOne[item] === "") {
-          errorsA[item] = "این فیلد نباید خالی باشد"
+          errorsA[item] = "این فیلد نباید خالی باشد";
         }
       } else if (item === "places") {
         stepOne.places.map((item, index) => {
           Object.keys(stepOne.places[index]).map((item2) => {
             if (stepOne.places[index][item2] === "") {
-              errorsA[`${item2}_${index}`] = "این فیلد نباید خالی باشد"
+              errorsA[`${item2}_${index}`] = "این فیلد نباید خالی باشد";
             }
-          })
-        })
+          });
+        });
       }
-    })
+    });
     console.log(errorsA);
     if (!Object.keys(errorsA).length) {
-      setIsLoading(true)
+      setIsLoading(true);
 
       Axios.post("/api/v1/request", stepOne)
         .then((res) => {
-          console.log(res.data)
-          navigate(`/panel/Tashilat/2?last_id=${res.data.last_id}`)
-          setIsLoading(false)
+          console.log(res.data);
+          navigate(`/panel/Tashilat/2?last_id=${res.data.last_id}`);
+          setIsLoading(false);
         })
         .catch((err) => {
-          console.log(err)
-          setIsLoading(false)
-        })
+          console.log(err);
+          setIsLoading(false);
+        });
     } else {
-      setShowErr(errorsA)
+      setShowErr(errorsA);
     }
-  }
+  };
 
-  if (isLoading) return <Loader />
+  if (isLoading) return <Loader />;
   return (
     <>
-      <> 
+      <>
         <div className=" ">
-          {showErr.title && <span className="text-sm pr-2 text-c-9">*{showErr.title}</span>}
-
           <div className=" py-6 mt-4">
             <p className="text-lg font-extrabold">اطلاعات درخواست</p>
           </div>
@@ -176,7 +191,6 @@ export default function One() {
                     onChange={changeHandler}
                     id=""
                     className="border-gray-300 rounded-md  text-xs w-[200px]"
-
                   >
                     <option value="leasing">لیزینگ</option>
                     <option value="saturation">اشباع</option>
@@ -185,13 +199,11 @@ export default function One() {
                     <option value="industrial">تولید صنعتی</option>
                     <option value="pre_industrial">قبل از تولید صنعتی</option>
                   </select>
-                  {showErr.type_f && <span className="text-sm text-c-9">*{showErr.type_f}</span>}
-
+                  {showErr.type_f && (
+                    <span className="text-sm text-c-9">*{showErr.type_f}</span>
+                  )}
                 </td>
-
-
               </tr>
-
             </tbody>
           </table>
           <div className=" py-6 mt-4">
@@ -221,7 +233,6 @@ export default function One() {
                     value={stepOne.places[0].address}
                     onChange={changeHandler}
                     name="address"
-
                   ></textarea>
                 </td>
                 <td className="p-4 text-xs text-gray-600 font-bold">
@@ -384,8 +395,8 @@ export default function One() {
             <thead>
               <tr className=" sticky top-0   ">
                 <th className="bg-white p-3  ">
-                  شرح مختصر فعالیتها و فرآیند تولید/خدمات اصلی شرکت و همچنین نحوه
-                  تأمین مواد اولیه/ قطعات مصرفی{" "}
+                  شرح مختصر فعالیتها و فرآیند تولید/خدمات اصلی شرکت و همچنین
+                  نحوه تأمین مواد اولیه/ قطعات مصرفی{" "}
                 </th>
               </tr>
             </thead>
@@ -409,35 +420,34 @@ export default function One() {
                 <th className="bg-white p-3  ">وضعیت و حوزه دانش بنیان</th>
               </tr>
             </thead>
-                    <div className="flex  items-center m-3">
-                      <p className="font-bold text-sm">
-                        آیا شرکت در فهرست شرکتهای دانش بنیان معاونت علمی ریاست
-                        جمهوری قرار دارد؟
-                      </p>
-                        <input
-                          type="radio"
-                          name="is_knowledge"
-                          onChange={changeHandler}
-                          value={true}
-                          id=""
-                          className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
-                        />
-                        <p className="font-bold text-sm">بله</p>
-                        <input
-                          type="radio"
-                          name="is_knowledge"
-                          onChange={changeHandler}
-                          value={false}
-                          id=""
-                          className="relative overflow-hidden mx-2 w-5 rounded h-full"
-                        />
-                      <p className="font-bold text-sm">خیر</p>
-                    </div>
-            {stepOne.is_knowledge && 
+            <div className="flex  items-center m-3">
+              <p className="font-bold text-sm">
+                آیا شرکت در فهرست شرکتهای دانش بنیان معاونت علمی ریاست جمهوری
+                قرار دارد؟
+              </p>
+              <input
+                type="radio"
+                name="is_knowledge"
+                onChange={changeHandler}
+                value={true}
+                id=""
+                className="relative overflow-hidden mx-2 w-5 border rounded-full h-full"
+              />
+              <p className="font-bold text-sm">بله</p>
+              <input
+                type="radio"
+                name="is_knowledge"
+                onChange={changeHandler}
+                value={false}
+                id=""
+                className="relative overflow-hidden mx-2 w-5 rounded h-full"
+              />
+              <p className="font-bold text-sm">خیر</p>
+            </div>
+            {stepOne.is_knowledge && (
               <tbody>
                 <tr className="bg-white ">
-                  <td className=" text-xs text-gray-600 font-bold">
-                  </td>
+                  <td className=" text-xs text-gray-600 font-bold"></td>
                 </tr>
                 <tr className="bg-white ">
                   <td className="p-4 text-xs text-gray-600 font-bold flex">
@@ -581,6 +591,7 @@ export default function One() {
                         type="number"
                         className="text-sm border rounded-xl border-gray-400 m-1 h-8"
                         name="expiration"
+                        value={expirationDate.year}
                         onChange={dateChangeHandler}
                         id="year"
                         min="1300"
@@ -591,7 +602,14 @@ export default function One() {
                   </td>
                 </tr>
                 <tr className="bg-white ">
-                  <td style={{ display: "flex", flexDirection: "column", alignItems: "center" }} className="p-4 text-xs text-gray-600 font-bold">
+                  <td
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                    className="p-4 text-xs text-gray-600 font-bold"
+                  >
                     <select
                       name="area"
                       onChange={changeHandler}
@@ -601,7 +619,10 @@ export default function One() {
                       <option value="fanavari-zisti">
                         فناوری زیستی (پزشكی، کشاورزی، صنعتی و محیط زیست)
                       </option>
-                      <option value="fanavari-nano"> فناوری نانو (محصوالت و مواد )</option>
+                      <option value="fanavari-nano">
+                        {" "}
+                        فناوری نانو (محصوالت و مواد )
+                      </option>
                       <option value="optic-photonic">
                         {" "}
                         اپتیک و فوتونیک (مواد، قطعات و سامانه ها)
@@ -615,14 +636,17 @@ export default function One() {
                         سرامیکها، پلیمرها){" "}
                       </option>
                       <option value="electronic-controle">
-                        الكترونیک و کنترل (میكروالكترونیک، قطعات، مدارها، سختافزار
-                        کامپیوتر و سامانه ها){" "}
+                        الكترونیک و کنترل (میكروالكترونیک، قطعات، مدارها،
+                        سختافزار کامپیوتر و سامانه ها){" "}
                       </option>
                       <option value="tajhizat-azmayeshgahi">
                         {" "}
                         تجهیزات پیشرفته ساخت، تولید و آزمایشگاهی
                       </option>
-                      <option value="daroo-mohandesi-pezeshki"> داروهای پیشرفته و مهندسی پزشكی</option>
+                      <option value="daroo-mohandesi-pezeshki">
+                        {" "}
+                        داروهای پیشرفته و مهندسی پزشكی
+                      </option>
                       <option value="havafaza">
                         {" "}
                         هوافضا (پرنده ها، ماهواره ها، موشکها)
@@ -637,17 +661,24 @@ export default function One() {
                       </option>
                       <option value="daryaei"> صنایع دریایی</option>
                     </select>
-                    {showErr && <p style={{ textAlign: "center" }} className="border-gray-300 rounded-xl font-bold text-c-9 p-5 w-1/2 m-0 text-sm">*برای رفتن به مرحله بعد نیاز است همه ی فیلد ها پر شوند</p>}
                   </td>
                 </tr>
               </tbody>
-            }
+            )}
           </table>
+          {showErr && (
+            <p className="border-gray-300 rounded-xl font-bold text-c-9  p-5 w-full text-center m-0 text-sm">
+              *برای رفتن به مرحله بعد نیاز است همه ی فیلد ها پر شوند
+            </p>
+          )}
         </div>
       </>
 
       <div className=" text-left mt-2">
-        <button onClick={subHandler} className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm">
+        <button
+          onClick={subHandler}
+          className="bg-blue-700  text-white rounded-xl p-4 font-bold text-sm"
+        >
           مرحله بعد
         </button>
       </div>

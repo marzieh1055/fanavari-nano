@@ -77,6 +77,9 @@ export default function UploadDoc() {
       axios
         .post("/api/v1/request", document, {
           headers: {
+            // 'Access-Control-Allow-Origin' : '*',
+            // "Access-Control-Allow-Origin":"http://localhost:5173",
+            // 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             "Content-Type": "multipart/form-data",
             ...(isLoggedIn && {
               Authorization: `Bearer ${JSON.parse(token)}`,
@@ -84,7 +87,7 @@ export default function UploadDoc() {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setIsLoading(false);
           toast("درخواست با موفقیت ثبت شد");
           setShowNavigate(true);
@@ -95,6 +98,7 @@ export default function UploadDoc() {
         .catch((err) => {
           console.log(err);
           toast("خطا در ارسال درخواست");
+          setIsLoading(false)
           axios
             .delete(`/api/v1/request/${err.response.data.id}`, {
               headers: {

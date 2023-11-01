@@ -24,12 +24,12 @@ import DashboardUser from "./pages/Dashboard/DashboardUser";
 import UserInfo from "./pages/User/UserInfo";
 import LegalUserInfo from "./pages/User/LegalUserInfo";
 import ExpertviewAllRequest from "./pages/Requests/ExpertviewAllRequest";
-import ExpertCheckRequest from './pages/Requests/ExpertCheckRequest'
-import ViewDetailRequest from './pages/request/ViewDetailRequest'
+import ExpertCheckRequest from "./pages/Requests/ExpertCheckRequest";
+import ViewDetailRequest from "./pages/request/ViewDetailRequest";
 import Tashilat from "./pages/tashilat/Tashilat";
 import Two from "./pages/tashilat/steps/Two";
 import One from "./pages/tashilat/steps/One";
-import Three from "./pages/tashilat/steps/Three"
+import Three from "./pages/tashilat/steps/Three";
 import Four from "./pages/tashilat/steps/Four";
 import Five from "./pages/tashilat/steps/Five";
 import Six from "./pages/tashilat/steps/Six";
@@ -44,9 +44,9 @@ import FacilitiesDocuments from "./pages/Requests/FacilitiesDocuments";
 import GenuineUserInfo from "./pages/User/GenuineUserInfo";
 import AddTicketE from "./pages/Ticket/AddTicketE";
 import ViewTicketsExpert from "./pages/Ticket/ViewTicketsExpert";
-import ViewTicketsAdmin from "./pages/Ticket/ViewTicketsAdmin"
+import ViewTicketsAdmin from "./pages/Ticket/ViewTicketsAdmin";
 import Changepass from "./pages/Register/Changepass";
-import Testticket from "./pages/Ticket/Testticket";
+import Testticket from "./pages/Ticket/testticket";
 import TestticketExpert from "./pages/Ticket/TestticketExpert";
 import ExpertInfo from "./pages/Expert/ExpertInfo";
 import ChangepassE from "./pages/Register/ChangepassE";
@@ -57,27 +57,26 @@ import AccessError from "./pages/404/AccessError";
 import UploadPic from "./pages/waranty/UploadPic";
 import IsFailedReqs from "./pages/Requests/IsFailedReqs";
 
-
 const routes = [
   {
     path: "/panel",
     element: <Panel />,
-    children: [ 
+    children: [
       { path: "*", element: <Dashboard /> },
       { path: "", element: <Dashboard /> },
-      
+
       //user
       { path: "dashboarduser", element: <DashboardUser /> },
       { path: "addFacilities", element: <AddFacilities /> },
       { path: "updateFact/:id", element: <UpdateFact /> },
       { path: "viewRequest/:id", element: <ViewDetailRequest /> },
-      { path: "oploadDoc", element: <UploadDoc />},
+      { path: "oploadDoc", element: <UploadDoc /> },
       { path: "WarrantyDocuments/:id", element: <WarrantyDocuments /> },
       { path: "WarrantyDocumentsUp/:id", element: <WarrantyDocumentsUp /> },
       { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "genuineUserInfo", element: <GenuineUserInfo /> },
-      
+
       //expert
       { path: "dashboardexpert", element: <DashboardExpert /> },
       { path: "ViewTicketsExpert", element: <ViewTicketsExpert /> },
@@ -86,9 +85,9 @@ const routes = [
       { path: "expertCheckRequest/:id", element: <ExpertCheckRequest /> },
       { path: "ExpertViewRequest", element: <ExpertViewRequest /> },
       { path: "expertInfo", element: <ExpertInfo /> },
-      
+
       { path: "isfailedreqs", element: <IsFailedReqs /> },
-      
+
       //admin
       { path: "dashboard", element: <Dashboard /> },
       { path: "requests", element: <Requests /> },
@@ -101,7 +100,7 @@ const routes = [
       { path: "expertChangePassword/:id", element: <ChangepassE /> },
       { path: "AdminCheckRequest/:id", element: <AdminCheckRequest /> },
       { path: "ViewDetailExpert/:id", element: <ViewDetailExpert /> },
-      
+
       //public
       { path: "addTicket", element: <AddTicket /> },
       { path: "addTicketE", element: <AddTicketE /> },
@@ -114,26 +113,24 @@ const routes = [
       { path: "viewTickets", element: <ViewTickets /> },
       { path: "404", element: <ErrorPage /> },
       { path: "accesserror", element: <AccessError /> },
-      {path:"changePass" , element: <Changepass />},
-      
+      { path: "changePass", element: <Changepass /> },
+
       { path: "openedRequests", element: <OpenedRequests /> },
 
       {
         path: "tashilat",
         element: <Tashilat />,
         children: [
-          { path: "1", element: <One /> },
+          { path: "1", index: true, element: <One /> },
           { path: "2", element: <Two /> },
           { path: "3", element: <Three /> },
           { path: "4", element: <Four /> },
           { path: "5", element: <Five /> },
           { path: "6", element: <Six /> },
           { path: "confirm", element: <Confirm /> },
-        ]
+        ],
       },
-      
     ],
-
   },
   { path: "/", element: <Login /> },
 
@@ -143,4 +140,4 @@ const routes = [
   { path: "/auth/forgotpassword", element: <Forgotpassword /> },
 ];
 
-export default routes ;
+export default routes;

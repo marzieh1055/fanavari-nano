@@ -15,6 +15,9 @@ export default function Tashilat() {
 
   useEffect(() => {
     setStepLevel(pass.split("/")[3])
+    if (pass === "/panel/tashilat" || pass === "/panel/tashilat/") {
+      navigate("/panel/tashilat/1")
+    }
   } , [pass])
   useEffect(() => {
     Axios.get("/api/v1/is_profile_genuine")

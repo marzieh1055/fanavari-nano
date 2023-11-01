@@ -25,7 +25,6 @@ export default function Confirm() {
   const [showFinish, setShowFinish] = useState(false)
 
   const [err , setErr] = useState({})
-  console.log(err);
 
   useEffect(() => {
     setErr(Vconfirm(confirm))
@@ -78,7 +77,7 @@ export default function Confirm() {
       setIsLoading(true)
       setShowFinish(false)
       const formData = new FormData();
-      formData.append("facilities_id", 20)
+      formData.append("facilities_id", confirm.facilities_id)
       formData.append("name", confirm.name)
       formData.append("amount", confirm.amount)
       formData.append("title", confirm.title)
