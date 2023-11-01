@@ -69,13 +69,12 @@ const UpdateFact = () => {
             {Boolean(reqData.facilities[0]) && <span className="text-gray-500 font-normal mr-2">
               {/* باید عوض شه */}
               {
-                reqData.facilities[0].type_f === "job" ? "حسن انجام کار" :
-                reqData.facilities[0].type_f === "commitments" ? "حسن انجام تعهدات" :
-                reqData.facilities[0].type_f === "deduction" ? "کسور وجه الضمان" :
-                reqData.facilities[0].type_f === "prepayment" ? "پیش پرداخت" :
-                reqData.facilities[0].type_f === "commitment_pay" ? "تعهد پرداخت" :
-                reqData.facilities[0].type_f === "tender_offer" ? "شرکت در مناقصه" :
-                reqData.facilities[0].type_f === "credit" ? "حد اعتباری" : ""
+                reqData.facilities[0].type_f === "saturation" ? "اشباع" :
+                reqData.facilities[0].type_f === "fund" ? "سرمایه در گردش" :
+                reqData.facilities[0].type_f === "prototyping" ? "نمونه سازی" :
+                reqData.facilities[0].type_f === "industrial" ? "تولید صنعتی" :
+                reqData.facilities[0].type_f === "pre_industrial" ? "قبل از تولید صنعتی" :
+                reqData.facilities[0].type_f === "leasing" ? "لیزینگ" : ""
               }
             </span>
             }
@@ -105,17 +104,17 @@ const UpdateFact = () => {
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
             {
-              reqData.facilities && 
+              reqData.facilities && reqData.facilities[0].path1 &&
               <li onClick={() => setShowDoc({select : "step6" , data : reqData})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                 <div className="flex gap-x-4">
                   <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">اسناد مرحله ششم</p>
+                    <p className="text-sm font-semibold leading-6 text-gray-900">مدارک بارگداری شده</p>
                     {/* <p className="mt-1 truncate text-xs leading-5 text-gray-500">تعداد اسناد : {obj[keyss].length} عدد</p> */}
                   </div>
                 </div>
                 <div className=" sm:flex sm:flex-col sm:items-end">
-                  {/* <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(obj[keyss][0].created_at)}</p> */}
-                  {/* <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(obj[keyss][0].updated_at)}</p> */}
+                  <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(reqData.facilities[0].created_at)}</p>
+                  <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(reqData.facilities[0].updated_at)}</p>
                 </div>
               </li>
             }
