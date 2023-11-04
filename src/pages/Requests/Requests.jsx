@@ -49,13 +49,20 @@ const Requests = () => {
     } else if (ExFilter === "facilityExcel") {
       url = `https://backend.nanotf.ir/api/facilityExcel`;
     }
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'users.xlsx';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast("بارگیری به زودی شروع می شود")
+
+    Axios.get(url)
+    .then(res => {
+      console.log(res)
+      toast("بارگیری به زودی شروع می شود")
+    })
+    .catch(err => toast("بارگیری به زودی شروع می شود"))
+
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.download = 'users.xlsx';
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
   }
   const reqsList = requests && requests.filter(item => {
     if (item.shenaseh) {

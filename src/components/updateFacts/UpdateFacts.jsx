@@ -26,6 +26,7 @@ import S4bankUP from "./components/S4bankUP"
 import S5pledgesUP from "./components/S5pledgesUP";
 import S1 from "./components/S1";
 import S6Up from "./S6Up";
+import FinishStep from "./components/FinishStep";
 
 const UpdateFact = () => {
   const reqId = useParams()
@@ -100,11 +101,12 @@ const UpdateFact = () => {
         { showDoc !== null &&  showDoc.select === "bank" ? <S4bankUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgesUP close={setShowDoc} data={showDoc.data} id={reqData.facilities[0].request_id} toast={toast} />: "" }
         { showDoc !== null &&  showDoc.select === "step6" ? <S6Up close={setShowDoc} reqData={showDoc.data.facilities[0]} reqId={reqData.facilities[0].request_id} toast={toast} />: "" }
+        { showDoc !== null &&  showDoc.select === "finish" ? <FinishStep close={setShowDoc} data={showDoc.data[0]} id={reqData.facilities[0].request_id} toast={toast} />: "" }
 
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
             {
-              reqData.facilities && reqData.facilities[0].path1 &&
+              reqData.facilities && reqData.facilities[0]?.path1 &&
               <li onClick={() => setShowDoc({select : "step6" , data : reqData})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                 <div className="flex gap-x-4">
                   <div className="min-w-0 flex-auto">

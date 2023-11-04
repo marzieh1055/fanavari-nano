@@ -23,6 +23,7 @@ import S5pledgeV from "../../components/modal/ViewDocFModals/S5pledgeV";
 import S5estateV from "../../components/modal/ViewDocFModals/S5estateV";
 import S1introductionV from "../../components/modal/ViewDocFModals/S1introductionV";
 import S6LeftBox from "../../components/modal/ViewDocFModals/S6LeftBox";
+import ShowFinalStep from "../../components/modal/ViewDocFModals/ShowFinalStep";
 
 const FacilitiesDocuments = () => {
   const reqId = useParams()
@@ -95,6 +96,7 @@ const FacilitiesDocuments = () => {
         { showDoc !== null &&  showDoc.select === "pledge" ? <S5pledgeV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "estate" ? <S5estateV  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  showDoc.select === "introduction" ? <S1introductionV  data={showDoc.data} close={setShowDoc} /> : "" }
+        { showDoc !== null &&  showDoc.select === "finish" ? <ShowFinalStep  data={showDoc.data} close={setShowDoc} /> : "" }
         { showDoc !== null &&  f_boxLItems.includes(showDoc.select) ? <S6LeftBox  object_f={showDoc} close={setShowDoc} /> : "" }
         <div className="">
           <ul role="list" className="divide-y divide-gray-100">
