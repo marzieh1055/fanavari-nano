@@ -36,7 +36,7 @@ export default function GenuineUserInfo() {
         job:"",
         address:"",
         postal_code:"",
-        phone:"",
+        // phone:"",
         namabar:"",
         work_address:"",
         work_postal_code:"",
@@ -68,7 +68,7 @@ export default function GenuineUserInfo() {
                                         }
                                     })
                                 } else {
-                                    if (item === i) {
+                                    if (item === i && i != "phone") {
                                         setSendDatas(prev => ({
                                             ...prev ,
                                             [item] : newObj.profilegenuine[item]

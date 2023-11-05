@@ -122,7 +122,7 @@ const Login = () => {
             </div>
             {errors.password && showErr.password && <span style={{ color: '#e88f19' }}>{errors.password}</span>}
 
-            <button onClick={subHandler} className="text-sm bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">ورود</button>
+            <button onClick={subHandler} className="text-sm rounded-lg bg-c-17 text-white px-4 py-2 transition-colors hover:bg-c-18">ورود</button>
             {isLoading && <span style={{ color: '#e88f19' }}>در حال ارسال اطلاعات...</span>}
             {errRes && <span style={{ color: '#a73c36' }}>اطلاعات وارد شده مطابقت ندارد</span>}
             {showLogin && <span style={{ color: '#e88f19' }}>درحال انتقال به صفحه داشبورد...</span>}
