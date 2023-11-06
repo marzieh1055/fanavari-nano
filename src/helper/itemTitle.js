@@ -59,6 +59,8 @@ const itemTitle = (name) => {
         return "پیش فاکتور مواد اولیه و قطعات مورد نیاز جهت تولید محصول طرح"
     } else if (name === "f_bills") {
         return "قبوض اب و برق و قرداد اجاره محل اجرای طرح(در صورت استیجاری بودن)"
+    } else if (name === "finish") {
+        return "پایانی"
     } else {
         return name
     }
