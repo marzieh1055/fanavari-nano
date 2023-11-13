@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { inputTitle } from "../../helper/inputTitles";
 import { UserDataContext } from "../../contexts/UserData.Provider";
 import Loader from "../../components/Loader/Loader";
+import axios from "axios";
 
 export default function LegalUserInfo() {
   const navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function LegalUserInfo() {
         subject_activity:"",
         name_representative:"",
         landline_phone:"",
-        phone:"",
+        // phone:"",
         email:"",
         site:""
       })
@@ -52,7 +53,7 @@ export default function LegalUserInfo() {
                                       }
                                   })
                               } else {
-                                  if (item === i) {
+                                  if (item === i && i != "phone") {
                                       setSendDatas(prev => ({
                                           ...prev ,
                                           [item] : newObj.profilelagal[item]
@@ -95,7 +96,9 @@ export default function LegalUserInfo() {
         
         const sendHandler = () => {
           setIsLoading(true)
-          Axios.post("/api/v1/profile_legal" , sendDatas)
+          axios.post("/api/v1/profile_legal" , sendDatas , {headers : {
+            "X-HTTP-Method-Override" : "PUT"
+          }})
           .then((res) => {
             console.log(res.data);
             if (res.data.success) {
