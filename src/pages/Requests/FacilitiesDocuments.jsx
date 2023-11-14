@@ -102,24 +102,40 @@ const FacilitiesDocuments = () => {
           <ul role="list" className="divide-y divide-gray-100">
             {
               reqData.facilities && reqData.facilities.map((obj) => {
+                // console.log(obj);
                 return Object.keys(obj).map((keyss , index) => {
-                  // console.log(keyss);
-                  if ( ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w"].includes(keyss) && ( obj[keyss] && obj[keyss].length > 0)) {
-                    return (
-                      <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
-                        <div className="flex gap-x-4">
-                          <div className="min-w-0 flex-auto">
-                            <p className="text-sm font-semibold leading-6 text-gray-900">{itemTitle(keyss)}</p>
-                            <p className="mt-1 truncate text-xs leading-5 text-gray-500">تعداد اسناد : {obj[keyss].length} عدد</p>
+                  if ( ["f_license" , "f_registration_doc" , "f_signatory" , "f_knowledge" , "f_resume" , "f_loans" , "f_statement" , "f_balance" , "f_catalog" , "f_insurance" , "f_proforma" , "f_bills" ,"f_balance" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "part2" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w"].includes(keyss) && ( (obj[keyss] && obj[keyss].length > 0) || keyss === "introduction")) {
+                    if (keyss !== "introduction") {
+                      return (
+                        <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
+                          <div className="flex gap-x-4">
+                            <div className="min-w-0 flex-auto">
+                              <p className="text-sm font-semibold leading-6 text-gray-900">{itemTitle(keyss)}</p>
+                              <p className="mt-1 truncate text-xs leading-5 text-gray-500">تعداد اسناد : {obj[keyss].length} عدد</p>
+                            </div>
                           </div>
-                        </div>
-                        <div className=" sm:flex sm:flex-col sm:items-end">
-                          <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(obj[keyss][0].created_at)}</p>
-                          <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(obj[keyss][0].updated_at)}</p>
-                        </div>
-                      </li>
-                      
-                    )
+                          <div className=" sm:flex sm:flex-col sm:items-end">
+                            <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(obj[keyss][0].created_at)}</p>
+                            <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(obj[keyss][0].updated_at)}</p>
+                          </div>
+                        </li>
+                      )
+                    } else {
+                      return (
+                        <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
+                          <div className="flex gap-x-4">
+                            <div className="min-w-0 flex-auto">
+                              <p className="text-sm font-semibold leading-6 text-gray-900">{itemTitle(keyss)}</p>
+                              <p className="mt-1 truncate text-xs leading-5 text-gray-500">تعداد اسناد : {obj[keyss].length} عدد</p>
+                            </div>
+                          </div>
+                          <div className=" sm:flex sm:flex-col sm:items-end">
+                            <p className="text-sm leading-6 text-gray-900">بارگذاری شده در : {dateConversion(obj[keyss].created_at)}</p>
+                            <p className="mt-1 text-xs leading-5 text-gray-500">آخرین تغییرات : {dateConversion(obj[keyss].updated_at)}</p>
+                          </div>
+                        </li>
+                      )
+                    }
                   }
                 })
               })
