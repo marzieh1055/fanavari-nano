@@ -66,13 +66,12 @@ const FacilitiesDocuments = () => {
             {Boolean(reqData.facilities[0]) && <span className="text-gray-500 font-normal mr-2">
               {/* باید عوض شه */}
               {
-                reqData.facilities[0].type_f === "job" ? "حسن انجام کار" :
-                reqData.facilities[0].type_f === "commitments" ? "حسن انجام تعهدات" :
-                reqData.facilities[0].type_f === "deduction" ? "کسور وجه الضمان" :
-                reqData.facilities[0].type_f === "prepayment" ? "پیش پرداخت" :
-                reqData.facilities[0].type_f === "commitment_pay" ? "تعهد پرداخت" :
-                reqData.facilities[0].type_f === "tender_offer" ? "شرکت در مناقصه" :
-                reqData.facilities[0].type_f === "credit" ? "حد اعتباری" : ""
+                reqData.facilities[0].type_f === "leasing" ? "لیزینگ" :
+                reqData.facilities[0].type_f === "saturation" ? "اشباع" :
+                reqData.facilities[0].type_f === "fund" ? "سرمایه در گردش" :
+                reqData.facilities[0].type_f === "prototyping" ? "نمونه سازی" :
+                reqData.facilities[0].type_f === "industrial" ? "تولید صنعتی" :
+                reqData.facilities[0].type_f === "pre_industrial" ? "قبل از تولید صنعتی" : ""
               }
             </span>
             }

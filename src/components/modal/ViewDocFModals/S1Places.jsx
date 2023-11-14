@@ -33,7 +33,7 @@ export default function S1Places({ data , close }) {
                                 <span className='max-w-[135px]'>{item.address}</span>
                             </td>
                             <td className="p-4 text-xs text-gray-600 font-bold text-center">
-                                <span className='max-w-[135px]'>{item.ownership}</span>
+                                <span className='max-w-[135px]'>{item.ownership === "owner" ? "مالک" : "استیجاری"}</span>
                             </td>
                             <td className="p-4 text-xs text-gray-600 font-bold text-center">
                                 <span className='max-w-[135px]'>{item.count}</span>
