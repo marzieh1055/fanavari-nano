@@ -11,7 +11,8 @@ export default function StepConfirm({action , requestId , close , setUpdatePage}
     if (action.step === 1 && action.prevTest === true) {
       Axios.post("/api/admin/check_document" , {
         "request_id":requestId,
-        "is_accepted":true
+        "is_accepted":true,
+        "is_failed" : false
       }).then(async(res) => {
         console.log(res);
         setIsLoading(false)

@@ -102,7 +102,7 @@ const DashboardUser = () => {
         <h2 className="text-2xl font-bold">دسترسی سریع</h2>
         <div className="flex gap-6 text-white">
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <Link to="/panel/oploadDoc">  ثبت درخواست ضانت نامه</Link>
+            <Link to="/panel/oploadDoc">  ثبت درخواست ضمانت نامه</Link>
             <div>
               <img
                 className="absolute left-0 inset-y-0"
