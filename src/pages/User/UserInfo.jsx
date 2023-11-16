@@ -53,28 +53,28 @@ export default function UserInfo() {
               <p className="font-bold text-sm">نام نام خانوادگی</p>
               <RiPencilLine className="mr-3"/>
             </div>
-            <p className="border-0 w-[460px] rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
+            <p className="border-0  rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{`${userDatas.user.name} ${userDatas.user.family}`}</p>
           </div>
           <div className="mt-6">
             <div className="flex">
               <p className="font-bold text-sm">شماره تلفن</p>
               <RiPencilLine className="mr-3" />
             </div>
-            <p className="border-0 w-[460px] rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.phone}</p>
+            <p className="border-0  rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.phone}</p>
           </div>
           <div className="mt-6">
             <div className="flex">
               <p className="font-bold text-sm">ایمیل</p>
               <RiPencilLine className="mr-3" />
             </div>
-            <p className="border-0 w-[460px] rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.email}</p>
+            <p className="border-0  rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.email}</p>
           </div>
           <div className="mt-6">
             <div className="flex">
               <p className="font-bold text-sm">کد ملی</p>
               <RiPencilLine className="mr-3" />
             </div>
-            <p className="border-0 w-[460px] rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.national_code}</p>
+            <p className="border-0  rounded-xl p-2 bg-purple-50 outline-none mt-2 w-full">{userDatas.user.national_code}</p>
           </div>
         </div>
       </div>
