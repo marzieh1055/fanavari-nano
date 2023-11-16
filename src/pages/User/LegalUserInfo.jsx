@@ -96,9 +96,7 @@ export default function LegalUserInfo() {
         
         const sendHandler = () => {
           setIsLoading(true)
-          axios.post("/api/v1/profile_legal" , sendDatas , {headers : {
-            "X-HTTP-Method-Override" : "PUT"
-          }})
+          axios.post("/api/v1/profile_legal" , sendDatas)
           .then((res) => {
             console.log(res.data);
             if (res.data.success) {

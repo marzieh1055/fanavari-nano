@@ -146,10 +146,9 @@ export default function GenuineUserInfo() {
     // })
     const token = localStorage.getItem('token');
     const isLoggedIn = token ? true : false;
-    axios.post(`/api/v1/profile_genuine/${userDatas.user.id}`, sendDatas, {
+    axios.post(`/api/v1/profile_genuine`, sendDatas, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "X-HTTP-Method-Override": "PUT",
           ...(isLoggedIn && {
               Authorization: `Bearer ${JSON.parse(token)}`
           })

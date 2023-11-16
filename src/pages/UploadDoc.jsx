@@ -98,7 +98,7 @@ export default function UploadDoc() {
         .catch((err) => {
           console.log(err);
           toast("خطا در ارسال درخواست");
-          setIsLoading(false)
+          setIsLoading(false);
           axios
             .delete(`/api/v1/request/${err.response.data.id}`, {
               headers: {
@@ -109,13 +109,6 @@ export default function UploadDoc() {
             })
             .then((res) => setIsLoading(false))
             .catch((err) => setIsLoading(false));
-          if (typeof err.response.data.message === "string") {
-            toast(err.response.data.message);
-          } else {
-            Object.keys(err.response.data.message).map((item) => {
-              toast(err.response.data.message[item][0]);
-            });
-          }
         });
     }
   };
@@ -209,7 +202,8 @@ export default function UploadDoc() {
       <ToastContainer />
       <div
         style={{ display: "flex", alignItems: "center" }}
-        className="flex w-full">
+        className="flex w-full"
+      >
         <div className="w-1/2 p-2">
           <input
             type="text"
@@ -232,7 +226,8 @@ export default function UploadDoc() {
               onFocus={focusHandler}
               onChange={handleChange}
               class="block appearance-none w-full bg-transparent border-b border-gray-400  my-3 p-3.5 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-state">
+              id="grid-state"
+            >
               <option value="" disabled selected>
                 {" "}
                 نوع ضمانت نامه را انتخاب کنید
@@ -252,7 +247,8 @@ export default function UploadDoc() {
         </div>
         <button
           onClick={oploaddoc}
-          className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs">
+          className="w-1/5 h-1/2  rounded-lg bg-blue-700  text-white p-3 font-bold text-xs"
+        >
           ذخیره{" "}
         </button>
       </div>
