@@ -50,10 +50,15 @@ export default function Tashilat() {
     <div className="px-5">
       <div className=" py-6">
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک </p>
+<<<<<<< HEAD
+        <p className="text-red-400	"> کاربر گرامی، شما موظف به تکمیل تمامی صفحات برای نهایی کردن درخواست خود می باشید، در غیر این صورت درخواست شما بررسی نخواهد شد. </p>
+
+=======
         <p className=" text-yellow-400">
           کاربر عزیز، شما موظف به تکمیل تمامی صفحات برای نهایی کردن درخواست خود
           می باشید، در غیر این صورت درخواست شما بررسی نخواهد شد.
         </p>
+>>>>>>> 560331728d8c7e68f451660d35e0c48d9ceccbc7
       </div>
       <div className=" flex  items-center w-full justify-center">
         <div className="flex items-center">
@@ -181,7 +186,9 @@ export default function Tashilat() {
             تایید
           </p>
         </div>
+
       </div>
+
       <Outlet />
     </div>
   );

@@ -148,7 +148,7 @@ export default function AddTicket() {
         name="title"
         type="text"
         className="w-full mt-5 p-4 bg-transparent rounded-2xl border-0 border-b border-gray-400  outline-none "
-        placeholder="عنوان تیکت"
+        placeholder="عنوان پیام"
       />
       {errors.title && showErr.title && <span style={{ color: '#e88f19' }}>{errors.title}</span>}
       <div className="flex flex-row  justify-normal w-full items-center m-3 text-center">
@@ -227,14 +227,14 @@ export default function AddTicket() {
           onFocus={focusHandler}
           value={data.body}
           name="body"
-          placeholder="بدنه تیکت"
+          placeholder="متن پیام "
           id=""
           cols="30"
           rows="10"
           className="w-full p-4 bg-transparent rounded-2xl border border-gray-400  outline-none  "
         ></textarea>
         {errors.body && showErr.body && <span style={{ color: '#e88f19' }}>{errors.body}</span>}
-        <p className="absolute text-gray-400 top-0 left-0 p-4">0/2000</p>
+        {/* <p className="absolute text-gray-400 top-0 left-0 p-4">0/2000</p> */}
       </div>
       <div className="p-6 mt-3  bg-white rounded-xl">
 

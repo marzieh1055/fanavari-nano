@@ -117,7 +117,7 @@ const DashboardUser = () => {
             </div>
           </div>
           <div className="w-1/3 h-c-8 flex justify-between items-center rounded-2xl bg-c-5 relative overflow-hidden pr-11">
-            <Link to="/panel/tashilat"> ثبت درخواست تسهیلات</Link>
+            <Link to="/panel/tashilat/1"> ثبت درخواست تسهیلات</Link>
             <div>
               <img
                 className="absolute left-1 inset-y-0"
