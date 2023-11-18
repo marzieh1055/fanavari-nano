@@ -56,6 +56,8 @@ import WarrantyDocumentsUp from "./pages/Requests/WarrantyDocumentsUp";
 import AccessError from "./pages/404/AccessError";
 import UploadPic from "./pages/waranty/UploadPic";
 import IsFailedReqs from "./pages/Requests/IsFailedReqs";
+import UpdateGenuineUserInfo from "./pages/User/UpdateGenuineUserInfo";
+import UpdateLegalUserInfo from "./pages/User/UpdateLegalUserInfo";
 
 const routes = [
   {
@@ -76,6 +78,10 @@ const routes = [
       { path: "FacilitiesDocuments/:id", element: <FacilitiesDocuments /> },
       { path: "legaluserInfo", element: <LegalUserInfo /> },
       { path: "genuineUserInfo", element: <GenuineUserInfo /> },
+
+      // update profile
+      { path: "updatelegaluserInfo", element: <UpdateLegalUserInfo /> },
+      { path: "updategenuineUserInfo", element: <UpdateGenuineUserInfo /> },
 
       //expert
       { path: "dashboardexpert", element: <DashboardExpert /> },
