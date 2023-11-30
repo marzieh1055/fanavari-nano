@@ -46,6 +46,13 @@ export default function UpdateGenuineUserInfo() {
     work_namabar: "",
     image: null,
   });
+  const validArray = [
+    "gender",
+    "nationality",
+    "number_certificate",
+    "birth_day",
+    "address",
+  ]
   console.log(sendDatas);
   useEffect(() => {
     Axios.get(`/api/v1/show_user/${userDatas.user.id}`)
@@ -166,7 +173,7 @@ export default function UpdateGenuineUserInfo() {
       })
       .catch((err) => {
         setIsLoading(false);
-        if (typeof err.response.data.message === "string") {
+        if (typeof(err.response.data.message) === "string") {
           toast(err.response.data.message || "خطا در برقراری ارتباط");
         } else {
           Object.keys(err.response.data.message).map((item) => {
@@ -223,7 +230,7 @@ export default function UpdateGenuineUserInfo() {
                 key={index}
                 className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 "
               >
-                <p className="font-bold text-xs">{inputTitle(item)}</p>
+                <p className="font-bold text-xs">{inputTitle(item)} <span className=" text-yellow-500">{validArray.includes(item) ? "*" : ""}</span></p>
                 <UIInputDate
                   value={sendDatas[item]}
                   setSendDatas={setSendDatas}
@@ -242,7 +249,7 @@ export default function UpdateGenuineUserInfo() {
                 key={index}
                 className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 "
               >
-                <p className="font-bold text-xs">{inputTitle(item)}</p>
+                <p className="font-bold text-xs">{inputTitle(item)} <span className=" text-yellow-500">{validArray.includes(item) ? "*" : ""}</span></p>
                 <UISelectInput
                   value={sendDatas[item]}
                   setSendDatas={setSendDatas}
@@ -270,7 +277,7 @@ export default function UpdateGenuineUserInfo() {
                 key={index}
                 className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 "
               >
-                <p className="font-bold text-xs">{inputTitle(item)}</p>
+                <p className="font-bold text-xs">{inputTitle(item)} <span className=" text-yellow-500">{validArray.includes(item) ? "*" : ""}</span></p>
                 <UIInputNumber
                   value={sendDatas[item]}
                   setSendDatas={setSendDatas}
@@ -288,7 +295,7 @@ export default function UpdateGenuineUserInfo() {
                 key={index}
                 className="relative mt-3 ml-2 w-80 border rounded-2xl p-2 overflow-hidden  h-17 "
               >
-                <p className="font-bold text-xs">{inputTitle(item)}</p>
+                <p className="font-bold text-xs">{inputTitle(item)} <span className=" text-yellow-500">{validArray.includes(item) ? "*" : ""}</span></p>
                 <UIInput
                   value={sendDatas[item]}
                   setSendDatas={setSendDatas}
