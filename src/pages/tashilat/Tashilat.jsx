@@ -52,10 +52,10 @@ export default function Tashilat() {
         <p className="text-xl font-extrabold">بارگیری و بارگذاری مدارک </p>
         <p className="text-red-400	"> کاربر گرامی، شما موظف به تکمیل تمامی صفحات برای نهایی کردن درخواست خود می باشید، در غیر این صورت درخواست شما بررسی نخواهد شد. </p>
 
-        <p className=" text-yellow-400">
+        {/* <p className=" text-yellow-400">
           کاربر عزیز، شما موظف به تکمیل تمامی صفحات برای نهایی کردن درخواست خود
           می باشید، در غیر این صورت درخواست شما بررسی نخواهد شد.
-        </p>
+        </p> */}
       </div>
       <div className=" flex  items-center w-full justify-center">
         <div className="flex items-center">

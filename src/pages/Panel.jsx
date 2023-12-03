@@ -78,7 +78,7 @@ export default function Panel() {
               },
               {
                 title: "اطلاعات کاربری",
-                drop: [" پروفایل کاربری"],
+                drop: [" ویرایش اطلاعات"],
                 links: ["/panel/userInfo"],
               },
             ]}
@@ -121,7 +121,7 @@ export default function Panel() {
             },
             {
               title: "اطلاعات کاربری",
-              drop: ["پروفایل کاربری", "تغییر رمز عبور"],
+              drop: [" ویرایش اطلاعات", "تغییر رمز عبور"],
               links: ["/panel/updategenuineUserInfo", "/panel/changePass"],
             },
           ]}
@@ -165,7 +165,7 @@ export default function Panel() {
             },
             {
               title: "اطلاعات کاربری",
-              drop: ["پروفایل کاربری", "تغییر رمز عبور"],
+              drop: [" ویرایش اطلاعات", "تغییر رمز عبور"],
               links: ["/panel/updatelegaluserInfo", "/panel/changePass"],
             },
           ]}
@@ -192,7 +192,7 @@ export default function Panel() {
             },
             {
               title: "اطلاعات کاربری",
-              drop: ["پروفایل کاربری"],
+              drop: [" ویرایش اطلاعات"],
               links: ["/panel/expertInfo"],
             },
           ]}

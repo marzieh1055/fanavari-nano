@@ -58,6 +58,9 @@ export default function UpdateGenuineUserInfo() {
     Axios.get(`/api/v1/show_user/${userDatas.user.id}`)
       .then((res) => {
         console.log(res.data);
+        if(res.data.profilegenuine === null){
+          return navigate("/panel/genuineUserInfo")
+        }
         setProfileGenuineId(res.data.profilegenuine.address.profile_genuine_id);
         setIsLoading(false);
         const newObj = res.data;

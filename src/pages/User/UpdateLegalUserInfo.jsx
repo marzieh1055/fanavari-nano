@@ -36,11 +36,14 @@ export default function UpdateLegalUserInfo() {
       useEffect(() => {
         Axios.get(`/api/v1/show_user/${userDatas.user.id}`)
         .then((res) => {
-          console.log(res.data);
-          setProfileLegalId(res.data.profilegenuine.address.profile_genuine_id);
+          // console.log(res.data);
+          if(res.data.profilelagal === null){
+            return navigate("/panel/legaluserInfo")
+          }
+          setProfileLegalId(res.data.profilelagal.id);
           setIsLoading(false)
           const newObj = res.data
-          if ((newObj.profilegenuine !== null) || (newObj.profilelagal !== null)) {
+          if ((newObj.profilelagal !== null) || (newObj.profilelagal !== null)) {
               Object.keys(sendDatas).map(item => {
                   Object.keys(newObj).map(pi => {
                       if ((pi === "profilelagal") && (newObj.type === "legal")) {
@@ -97,8 +100,18 @@ export default function UpdateLegalUserInfo() {
         } , [])
         
         const sendHandler = () => {
+          const token = localStorage.getItem("token");
+    const isLoggedIn = token ? true : false;
           setIsLoading(true)
-          axios.post(`/api/v1/profile_legal/${profileLegalId}` , sendDatas)
+          axios.post(`/api/v1/profile_legal/${profileLegalId}` , sendDatas ,{
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "X-HTTP-Method-Override": "PUT",
+              ...(isLoggedIn && {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+              }),
+            },
+          })
           .then((res) => {
             console.log(res.data);
             if (res.data.success) {

@@ -27,7 +27,7 @@ export default function LegalUserInfo() {
         subject_activity:"",
         name_representative:"",
         landline_phone:"",
-        // phone:"",
+        phone:"",
         email:"",
         site:""
       })
@@ -95,8 +95,18 @@ export default function LegalUserInfo() {
         } , [])
         
         const sendHandler = () => {
+          const token = localStorage.getItem("token");
+          const isLoggedIn = token ? true : false;
+
           setIsLoading(true)
-          axios.post("/api/v1/profile_legal" , sendDatas)
+          axios.post("/api/v1/profile_legal" , sendDatas , {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              ...(isLoggedIn && {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+              }),
+            },
+          })
           .then((res) => {
             console.log(res.data);
             if (res.data.success) {
@@ -113,11 +123,16 @@ export default function LegalUserInfo() {
         console.log(err.response.data.message);
         setIsLoading(false)
         if (typeof(err.response.data.message) === "string") {
+
           toast(err.response.data.message)
         } else {
           Object.keys(err.response.data.message).map((item) => {
-              toast(err.response.data.message[item][0])
+            // console.log(err.response.data.message[item][0]);
+            toast("tt")
+
+              // toast(err.response.data.message[item][0])
           })
+
         }
     })
   }
