@@ -124,8 +124,8 @@ const UpdateFact = () => {
               reqData.facilities && reqData.facilities.map((obj) => {
                 return Object.keys(obj).map((keyss , index) => {
                   // console.log(keyss);
-                  if (["board" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss].length > 0) {
-                    return (
+                  if (["board" , "approvals" , "asset" , "bank" , "benefit" , "contract" , "educational" , "estate" , "finish" , "introduction" , "manpower" , "place" , "pledge" , "product" , "residence" , "shareholder" , "active_f" , "active_w" ,].includes(keyss) && obj[keyss] && obj[keyss].length > 0) {
+                    if (obj[keyss]) return (
                       <li key={index} onClick={() => setShowDoc({select : keyss , data : obj[keyss]})}  className="flex justify-between gap-x-6 rounded-2xl py-5 p-2 hover:bg-gray-200">
                         <div className="flex gap-x-4">
                           <div className="min-w-0 flex-auto">
