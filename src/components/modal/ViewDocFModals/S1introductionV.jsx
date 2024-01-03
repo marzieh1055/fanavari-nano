@@ -4,7 +4,7 @@ export default function S1introductionV({ data, close }) {
   console.log(data);
   return (
     <div className="bg-gradient-to-b from-gray-600 to-transparent fixed inset-0 flex flex-col items-center justify-center z-10">
-      <table className=" rounded-xl overflow-hidden">
+      <table className=" max-w-7xl rounded-xl overflow-hidden">
         <thead>
           <tr className=" sticky top-0   ">
             <th className="bg-white p-3  ">تاریخچه و معرفی اجمالی شرکت </th>
