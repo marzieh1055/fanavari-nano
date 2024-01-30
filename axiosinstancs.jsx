@@ -38,7 +38,7 @@ Axios.interceptors.response.use(undefined, (response) => {
     if (response.response.status === 401) {
         alert("توکن شما منقضی شده، نیاز است تا مجددا وارد شوید!")
         localStorage.clear();
-        window.location.href = '/login';
+        window.location.href = '/auth/login';
     }
 
     return Promise.reject(response);
