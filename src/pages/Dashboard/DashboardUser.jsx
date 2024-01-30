@@ -28,38 +28,6 @@ const DashboardUser = () => {
   
   const [showDetailsUser, setShowDetailsUser] = useState(false)
   const [selectItemE, setSelectItemE] = useState(null)
-
-
-  const getAllexpert = () => {
-    Axios.get("/api/admin/count_experts").then(async res => {
-      console.log(res)
-      setAllExpert(res.data)
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
-  const getAllrequest = () => {
-    Axios.get("/api/admin/count_requests").then(async res => {
-      console.log(res)
-      setAllRequest(res.data)
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
-  const getAllUser = () => {
-    Axios.get("/api/admin/count_users").then(async res => {
-      console.log(res)
-      setAllUser(res.data)
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
   // const getExpert = () => {
   //   Axios.get("/api/admin/expert").then(async res => {
   //     console.log(res)
@@ -69,30 +37,7 @@ const DashboardUser = () => {
   //     console.log(err)
   //   }
   //   )
-  // }
-  const getExpert = () => {
-    Axios.get("/api/admin/expert").then(async res => {
-      console.log(res)
-      setExpert(res.data)
-
-    }
-    ).catch(err => {
-      console.log(err)
-    }
-    )
-  }
-
-  useEffect(() => {
-    getAllUser();
-    getAllexpert();
-    getAllrequest();
-    getExpert()
-  }, []);
-  const detailsHandler = (e) => {
-    setSelectItemE(e)
-    setShowDetailsUser(true)
-
-  }
+  // 
 
   if (showDetailsUser) return <ViewDetailExpert close={setShowDetailsUser} details={selectItemE} />
   
